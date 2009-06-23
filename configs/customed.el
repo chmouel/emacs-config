@@ -23,6 +23,7 @@
  '(ediff-window-setup-function (quote ediff-setup-windows-plain))
  '(elscreen-tab-width 23)
  '(emerge-diff-options "--ignore-all-space")
+ '(enable-local-variables :all)
  '(eshell-directory-name "~/.emacs.d/auto-save-list/eshell/")
  '(eshell-modules-list (quote (eshell-alias eshell-banner eshell-basic eshell-cmpl eshell-dirs eshell-glob eshell-hist eshell-ls eshell-pred eshell-prompt eshell-rebind eshell-script)))
  '(gnus-init-file "~/.emacs.d/gnus/init.el")
