@@ -120,12 +120,12 @@
 (add-hook 'ibuffer-mode-hook 'ibuffer-auto-mode)
 (setq ibuffer-saved-filter-groups
       (quote (("default"
-               ("TiltWEB" (filename . "^.*/TiltWeb/.*"))
+               ("Emacs" (name . "^*"))
+;               ("IRC" (mode . erc-mode))
+;               ("TiltWEB" (filename . "^.*/TiltWeb/.*"))
 ;               ("CoreCli" (filename . "^.*CoreCli.*"))
 ;               ("DailyUpdate" (filename . "^.*DailyUpdate.*"))
-               ("IRC" (mode . erc-mode))
-               ("Emacs" (name . "^*"))
-;;                ("Gnus" (or
+;;              ("Gnus" (or
 ;;                         (mode . message-mode)
 ;;                         (mode . bbdb-mode)
 ;;                         (mode . mail-mode)
