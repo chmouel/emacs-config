@@ -80,7 +80,6 @@
 (define-key isearch-mode-map (kbd "C-o") 'my-isearch-occur)
 
 ;Isearch switched buffer
-(define-key global-map [(control ?x)(b)] 'isearchb-activate)
 ;(define-key global-map [(control ?z)] 'isearchb-activate)
 
 ;Info mode back and forth
