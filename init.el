@@ -47,4 +47,4 @@
 
 ;;END
 (cd (expand-file-name "~/"))
-(put 'narrow-to-region 'disabled nil)
+

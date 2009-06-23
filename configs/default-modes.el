@@ -63,7 +63,7 @@
 (Work
  (setq sql-user "root"
        sql-password ""
-       sql-database "intranet"
+       sql-database "test"
        sql-server "localhost"
        sql-product (quote mysql)
        sql-electric-stuff (quote semicolon)
@@ -72,6 +72,9 @@
        )
  (defalias 'sql 'sql-mysql)
 )
+
+; Narrow
+(put 'narrow-to-region 'disabled nil)
 
 ;Email With Message-mail
 (fset 'mail 'message-mail)

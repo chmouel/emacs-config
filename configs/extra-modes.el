@@ -45,10 +45,7 @@
 (when (featurep 'swbuff)
   (global-set-key (read-kbd-macro "M-`") 'swbuff-switch-to-next-buffer)
   (global-set-key (read-kbd-macro "M-~") 'swbuff-switch-to-previous-buffer))
-;
-;(require 'iswitch-recent-files)
 
-;
 
 ; BreadCrumb (Bookmarks)
 (autoload 'bc-set               "breadcrumb" "Set bookmark in current buffer."  t)
