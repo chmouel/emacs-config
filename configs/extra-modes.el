@@ -46,21 +46,6 @@
   (global-set-key (read-kbd-macro "M-`") 'swbuff-switch-to-next-buffer)
   (global-set-key (read-kbd-macro "M-~") 'swbuff-switch-to-previous-buffer))
 
-
-; BreadCrumb (Bookmarks)
-(autoload 'bc-set               "breadcrumb" "Set bookmark in current buffer."  t)
-(autoload 'bc-previous          "breadcrumb" "Go to previous bookmark."         t)
-(autoload 'bc-next              "breadcrumb" "Go to next bookmark."             t)
-(autoload 'bc-local-previous    "breadcrumb" "Go to previous local bookmark."   t)
-(autoload 'bc-local-next        "breadcrumb" "Go to next local bookmark."       t)
-(autoload 'bc-goto-current      "breadcrumb" "Go to the current bookmark."      t)
-(autoload 'bc-list              "breadcrumb" "List all bookmarks in menu mode." t)
-(autoload 'bc-clear             "breadcrumb" "Clear all bookmarks."             t)
-(global-set-key [C-f2]      'bc-set)
-(global-set-key [f2]        'bc-previous)
-(global-set-key [S-f2]      'bc-next)
-(global-set-key [M-f2]      'bc-list)
-
 ;Jabber
 (autoload 'jabber-connect "jabber" "Jabber Mode" t)
 (eval-after-load "jabber"

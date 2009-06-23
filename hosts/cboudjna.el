@@ -37,7 +37,7 @@
 (add-to-list 'auto-mode-alist '("\\.bat\\'" . bat-generic-mode))
 
 ;PSVN (Autoloaded on DEBIANS)
-(autoload 'svn-status "psvn" nil t))
+(autoload 'svn-status "psvn" nil t)
 
 ;Autohotkey Mode
 (autoload 'ahk-mode "ahk-mode"  "AHK Mode."  nil t)
