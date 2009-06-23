@@ -40,10 +40,6 @@
    )
  )
 
-;PSVN should be necessary only on custom install (debian configuration)
-(Win
- (autoload 'svn-status "psvn" nil t))
-
 ;
 (require 'swbuff nil t)
 (when (featurep 'swbuff)
@@ -53,8 +49,6 @@
 ;(require 'iswitch-recent-files)
 
 ;
-(Win
- (autoload 'ahk-mode "ahk-mode"  "AHK Mode."  t))
 
 ; BreadCrumb (Bookmarks)
 (autoload 'bc-set               "breadcrumb" "Set bookmark in current buffer."  t)

@@ -46,15 +46,9 @@
 
 ;Mouse
 (global-set-key (read-kbd-macro "<mouse-3>") 'mouse-popup-menubar-stuff)
-(Win
- (global-set-key (read-kbd-macro "<mouse-4>") 'bs-cycle-previous)
- (global-set-key (read-kbd-macro "<mouse-5>") 'bs-cycle-next))
 
 ;Windmove
 (windmove-default-keybindings)
 
 ;Unset
 (global-unset-key "\C-x\C-z")
-
-;Env for svn and stuff
-(Win (setenv "SVN_SSH" "c:/soft/putty/plink.exe -batch"))

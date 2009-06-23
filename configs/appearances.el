@@ -53,11 +53,6 @@
  (add-to-list 'default-frame-alist '(font . "Monospace-10"))
  )
 
-(Win 
- (add-to-list 'default-frame-alist '(font . "-outline-Lucida Console-normal-r-normal-normal-13-97-96-96-c-*-iso8859-1"))
- )
-
-
 
 ;;Default appearances
 (setq frame-title-format "Emacs - %b %*") 
@@ -84,7 +79,6 @@
 ;;              )
 
 ;Local
-(Win (setq w32-use-full-screen-buffer nil))
 (Laptop (display-battery-mode t))
 
 

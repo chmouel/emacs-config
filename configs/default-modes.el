@@ -22,21 +22,6 @@
   )
 (add-hook 'dired-mode-hook 'my-dired-mode-hook)
 
-
-
-(Win
- (defun w32-browser (doc)
-   "Browse to a particular file/URL using default web browser"
-   (w32-shell-execute 1 doc))
- (eval-after-load "dired"
-   '(define-key dired-mode-map [f3] (lambda () 
-                                      (interactive)
-                                      (w32-browser
-                                       (dired-replace-in-string 
-                                        "/" "\\" 
-                                        (dired-get-filename))))))
- )
-
 ;Hippy-Expand
 (setq hippie-expand-try-functions-list 
       '(try-complete-file-name-partially
@@ -52,14 +37,6 @@
 
 ;Emacs-Lisp
 (eldoc-mode 't)
-
-;Grep
-(Win (setq find-program "f:/cygwin/bin/find.exe"))
-
-;Bat files editing
-(Win
- (autoload 'bat-generic-mode "generic-x" nil t)
- (add-to-list 'auto-mode-alist '("\\.bat\\'" . bat-generic-mode)))
 
 ;Browse-URL
 (Work
@@ -82,14 +59,6 @@
 ;Isearch switched buffer
 ;(define-key global-map [(control ?z)] 'isearchb-activate)
 
-;Info mode back and forth
-(defun my-Info-mode-hook()
-  (Win
-   (local-set-key (kbd "<mouse-4>") 'Info-history-back)
-   (local-set-key (kbd "<mouse-5>") 'Info-history-forward))
-  )
-(add-hook 'Info-mode-hook 'my-Info-mode-hook)
-
 ;SQL Information
 (Work
  (setq sql-user "root"
@@ -103,13 +72,6 @@
        )
  (defalias 'sql 'sql-mysql)
 )
-
-;Find with Windows
-(Win
- (setq
-  find-dired-find-program "f:/cygwin/bin/find.exe"
-  grep-find-template "f:/cygwin/find . <X> -type f <F> -exec grep <C> -nH -e <R> {} NUL \";\""
- ))
 
 ;Email With Message-mail
 (fset 'mail 'message-mail)
