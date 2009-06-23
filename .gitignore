@@ -1,4 +1,5 @@
 auto-save-list/*
 !auto-save-list/.gitignore
 modes/local/*
+!modes/local/.gitignore
 *.elc
