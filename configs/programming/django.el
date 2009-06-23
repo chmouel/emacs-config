@@ -32,16 +32,3 @@
   (local-set-key '[(control meta p)] (lambda () (interactive) (snippet-insert "{% $${fun} %}\n$>$.\n{% end$${fun} %}")))
   )
 (add-hook 'django-html-mode-hook 'my-django-html-mode-hook)
-
-
-
-
-
-
-
-
-
-
-
-
-

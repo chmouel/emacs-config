@@ -8,7 +8,8 @@
 
 ;Appearance
 (add-to-list 'default-frame-alist '(font . "-outline-Lucida Console-normal-r-normal-normal-13-97-96-96-c-*-iso8859-1"))
-(setq w32-use-full-screen-buffer nil)
+(setq w32-use-full-screen-buffer nil
+      emacsw32-max-frames t)
 
 ;Default-Modes
 (defun w32-browser (doc)
@@ -41,4 +42,10 @@
 
 ;Autohotkey Mode
 (autoload 'ahk-mode "ahk-mode"  "AHK Mode."  nil t)
+(setq ahk-syntax-directory "c:/Program Files/AutoHotkey/Extras/Editors/Syntax/")
 
+;Battery
+(display-battery-mode t)
+
+; Cygwin
+(setq w32shell-cygwin-bin "bash")
