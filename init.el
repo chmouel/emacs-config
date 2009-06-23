@@ -1,4 +1,4 @@
-;;Chmouel Boudjnah <cboudjnah@squiz.net>
+;;Chmouel Boudjnah <chmouel@chmouel.com>
 ;Initializations variables
 (defvar my-init-directory "~/.emacs.d")
 
