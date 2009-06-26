@@ -29,7 +29,7 @@
 (setq 
  find-program "c:/unix/bin/find.exe"
  find-dired-find-program (concat find-program)
- grep-find-template (concat find-program " . <X> -type f <F> -exec grep <C> -nH -e <R> {} NUL \";\"")
+ grep-find-template (concat find-program " . <X> -type f <F> -exec c:/unix/bin/grep <C> -nH -e <R> {} NUL \";\"")
 )
 
 
