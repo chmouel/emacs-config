@@ -124,3 +124,4 @@
 (defun move-over-dbl-quote ()  (interactive)(move-over ?\" )) 
 
 
+(provide 'textmate)
