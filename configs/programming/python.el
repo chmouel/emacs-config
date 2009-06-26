@@ -18,14 +18,3 @@
   (eldoc-mode 1)
   )
 (add-hook 'python-mode-hook 'my-python-mode-hook)
-
-(define-abbrev-table 'python-mode-abbrev-table ())
-  (snippet-with-abbrev-table 'python-mode-abbrev-table
-                             ("pp"  .  "$>from pprint import pprint as p")
-                             ("sy" . "$>sys.exit($${0})")
-                             ("try"   . "$>try:\nexcept($${Exception}}):\n$>")
-                             ("def"  .  "def $${function}():\n$>")
-                             ("defs"  .  "def $${function}(self):\n$>")			   
-                             ("cl"  .  "class $${class}(object):\n$>def __init__(self):\n$>")
-                             ("ifm" . "if __name__ == \"__main__\":\n$>")
-                             )

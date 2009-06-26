@@ -92,3 +92,8 @@
 
 ;
 (require 'highlight-parentheses)
+
+;yasnippet
+(require 'yasnippet) ;; not yasnippet-bundle
+(yas/initialize)
+(yas/load-directory "~/.emacs.d/snippets")

@@ -25,10 +25,6 @@
        (lambda () (not (eq (get-text-property (point) 'face) 'font-lock-comment-face))))
 
   (define-abbrev-table 'csharp-mode-abbrev-table ())
-  (snippet-with-abbrev-table 'csharp-mode-abbrev-table
-                             ("names" . "namespace $${name}\n{ \n$>$.\n}"))
-  
-
   )
 
 (add-hook 'csharp-mode-hook 'my-csharp-mode-hook)

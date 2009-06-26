@@ -1,0 +1,4 @@
+#name : pp
+# --
+from pprint import pprint as p
+p( ${expression} )

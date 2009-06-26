@@ -17,13 +17,4 @@
   (local-set-key '[(control p)] (lambda () (interactive) (progn (insert "<?=  ?>")(backward-char 3))))
   (local-set-key '[(f12)] 'html-inlined-narrow))
 
-
-(define-abbrev-table 'php-mode-abbrev-table ())
-(snippet-with-abbrev-table 'php-mode-abbrev-table
-			   ("fun" . "$>$.function $${function} ()\n$>{ \n$>$.\n}\>")
-			   ("pf" . "$>$.public function $${function} () { \n$>$.\n}")
-			   ("pvf" . "$>$.private function $${function} () { \n$>$.\n}")
-               )
-
-
 (add-hook 'php-mode-hook 'my-php-mode-hook)
