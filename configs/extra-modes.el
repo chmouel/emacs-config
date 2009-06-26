@@ -97,3 +97,6 @@
 (require 'yasnippet) ;; not yasnippet-bundle
 (yas/initialize)
 (yas/load-directory "~/.emacs.d/snippets")
+
+;textmate
+(require 'textmate)
