@@ -1,10 +1,4 @@
 ;;; flymake-cursor.el --- 
-
-;; Copyright (C) 2009  Chmouel Boudjnah
-
-;; Author: Chmouel Boudjnah <chmouel.boudjnah@rackspace.co.uk>
-;; Keywords: 
-
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
 ;; the Free Software Foundation, either version 3 of the License, or
