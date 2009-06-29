@@ -14,7 +14,6 @@
       (list "pyflakes" (list local-file)))) 
   (add-to-list 'flymake-allowed-file-name-masks 
                '("\\.py\\'" flymake-pyflakes-init))) 
-(add-hook 'find-file-hook 'flymake-find-file-hook)
 
 (defun my-python-mode-hook()
   (set (make-local-variable 'my-compile-command) (concat python-check-command " \"" buffer-file-name "\""))
