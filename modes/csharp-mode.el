@@ -405,9 +405,11 @@ Each list item should be a regexp matching a single identifier.")
 ;;		  (cons "C#" (c-lang-const c-mode-menu csharp)))
 
 ;;; Autoload mode trigger
+;;;###autoload
 (add-to-list 'auto-mode-alist '("\\.cs" . csharp-mode))
 
 ;; Custom variables
+;;;###autoload
 (defcustom csharp-mode-hook nil
   "*Hook called by `csharp-mode'."
   :type 'hook
@@ -426,6 +428,8 @@ Key bindings:
 \\{csharp-mode-map}"
   (interactive)
   (kill-all-local-variables)
+  (make-local-variable 'beginning-of-defun-function)
+  (make-local-variable 'end-of-defun-function)
   (c-initialize-cc-mode t)
   (set-syntax-table csharp-mode-syntax-table)
   (setq major-mode 'csharp-mode
