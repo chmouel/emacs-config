@@ -100,3 +100,9 @@
 
 ;textmate
 (require 'textmate)
+
+;Flymake
+(eval-after-load "flymake"
+  '(progn
+     (require 'flymake-cursor)))
+     

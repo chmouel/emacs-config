@@ -120,7 +120,4 @@
 
 ;AutoInsert
 (setq auto-insert-alist
-      (append '((python-mode .  "python.py"))
-              auto-insert-alist))
-
-
+  '(((python-mode . "python.py"))))
