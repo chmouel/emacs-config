@@ -4,3 +4,5 @@ auto-save-list/*
 modes/local/*
 !modes/local/.gitignore
 *.elc
+!hosts/.gitignore
+hosts/*

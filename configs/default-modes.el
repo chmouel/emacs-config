@@ -116,3 +116,11 @@
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 (add-hook 'shell-mode-hook '(lambda () (toggle-truncate-lines 1)))
 (setq comint-prompt-read-only t)
+
+
+;AutoInsert
+(setq auto-insert-alist
+      (append '((python-mode .  "python.py"))
+              auto-insert-alist))
+
+
