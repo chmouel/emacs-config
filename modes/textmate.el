@@ -88,7 +88,7 @@
      (delete-char 1)
    )
  )
-(delete-backward-char 1)
+(python-backspace 1)
 )
 
 (setq pushovers

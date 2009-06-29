@@ -30,6 +30,7 @@
  '(enable-local-variables :all)
  '(eshell-directory-name "~/.emacs.d/auto-save-list/eshell/")
  '(eshell-modules-list (quote (eshell-alias eshell-banner eshell-basic eshell-cmpl eshell-dirs eshell-glob eshell-hist eshell-ls eshell-pred eshell-prompt eshell-rebind eshell-script)))
+ '(flymake-start-syntax-check-on-newline nil)
  '(gnus-init-file "~/.emacs.d/gnus/init.el")
  '(grep-scroll-output t)
  '(grep-window-height 10)
