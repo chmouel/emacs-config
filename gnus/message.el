@@ -37,7 +37,7 @@
 
 ;Switch Email Adresses
 (defvar my-email-adresses
-  '(("chmouel@chmouel.com") ("cboudjnah@squiz.co.nz") ("chmouel@squiz.net") ("sam@squiz.net") ("cboudjnah@squiz.net")("chmouel@yahoo.fr"))
+  '(("chmouel@chmouel.com") ("chmouel.boudjnah@rackspace.co.uk"))
   )
 (defun my-email-adress-switch ()
   (interactive)
