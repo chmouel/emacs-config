@@ -1,0 +1,7 @@
+#name : raise exception
+# --
+class ${ExceptionName}(Exception):
+    """
+    $0
+    """
+    pass
