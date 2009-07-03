@@ -11,6 +11,10 @@
 (when (featurep 'fringe) (fringe-mode -1))
 (when (featurep 'menu-bar)(menu-bar-mode -1))
 
+;Line Spacing by default
+(setq-default line-spacing 2)
+
+;Modes
 (put 'narrow-to-page 'disabled nil)
 (global-font-lock-mode 't)
 (delete-selection-mode 't)
