@@ -16,6 +16,7 @@
                '("\\.py\\'" flymake-pyflakes-init))) 
 
 (defun my-python-mode-hook()
+  (local-set-key '[(meta q)] 'python-fill-paragraph)
   (set (make-local-variable 'my-compile-command) (concat python-check-command " \"" buffer-file-name "\""))
   (set (make-local-variable 'my-compile-run-command) (concat "python  \"" buffer-file-name "\""))
   (my-programming-common-hook)
