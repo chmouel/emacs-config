@@ -20,6 +20,7 @@
 (global-set-key (read-kbd-macro "C-M-/") 'dabbrev-expand)
 (global-set-key (read-kbd-macro "M-/") 'hippie-expand)
 (global-set-key (read-kbd-macro "M-q") 'fill-region)
+(global-set-key (read-kbd-macro "M-l") 'downcase-word)
 (global-set-key (read-kbd-macro "C-;") 'comment-dwim)
 
 ;;Prefer BS style cycling (not used)

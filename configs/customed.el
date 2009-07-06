@@ -4,6 +4,7 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
+ '(ack-executable "c:\\unix\\bin\\ack.bat")
  '(all-christian-calendar-holidays t)
  '(anything-c-adaptive-history-file "~/.emacs.d/auto-save-list/anything-c-adaptive-history")
  '(auto-insert-directory "~/.emacs.d/snippets/autoinsert/")
@@ -20,7 +21,7 @@
  '(cursor-in-non-selected-windows nil)
  '(default-major-mode (quote text-mode))
  '(diff-switches "-uw")
- '(dired-omit-files "^\\.?#\\|^\\.$\\|^\\.\\.$\\|^Thumbs.db$\\|\\.svn$\\|\\.git\\(ignore\\)?\\|\\.pyc$")
+ '(dired-omit-files "^\\.?#\\|^\\.$\\|^\\.\\.$\\|^Thumbs.db$\\|\\.svn$\\|\\.git\\(ignore\\)?\\|\\.pyc$\\|^\\.coverage$\\|^TAGS$\\|^tags$")
  '(display-time-24hr-format t)
  '(display-time-default-load-average nil)
  '(display-time-mode t)
@@ -40,6 +41,8 @@
  '(html-inlined-key [f12])
  '(ibuffer-expert t)
  '(ibuffer-never-show-predicates nil nil (ibuf-ext))
+ '(ibuffer-saved-filter-groups (quote (("Remote" ("Remote" ...) ("Emacs" ...)) ("default" ("Emacs" ...)))))
+ '(ibuffer-saved-filters (quote (("gnus" (...)) ("programming" (...)))))
  '(ibuffer-truncate-lines nil)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
@@ -82,6 +85,7 @@
  '(svn-status-wash-control-M-in-process-buffers t)
  '(swbuff-exclude-buffer-regexps (quote ("^ " "^\\*" "^newsrc-dribble$" "^bbdb$")))
  '(tab-width 4)
+ '(tags-revert-without-query t)
  '(uniquify-buffer-name-style (quote forward) nil (uniquify))
  '(user-full-name "Chmouel Boudjnah")
  '(user-mail-address "chmouel.boudjnah@rackspace.co.uk")
