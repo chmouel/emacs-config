@@ -82,6 +82,7 @@
  '(svn-status-wash-control-M-in-process-buffers t)
  '(swbuff-exclude-buffer-regexps (quote ("^ " "^\\*" "^newsrc-dribble$" "^bbdb$")))
  '(tab-width 4)
+ '(tags-revert-without-query t)
  '(uniquify-buffer-name-style (quote forward) nil (uniquify))
  '(user-full-name "Chmouel Boudjnah")
  '(user-mail-address "chmouel.boudjnah@rackspace.co.uk")

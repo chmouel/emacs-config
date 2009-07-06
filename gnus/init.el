@@ -17,14 +17,12 @@
  nnmail-message-id-cache-file "~/Gnus/config/nnmail-cache"
  )
 
+
 (setq sendmail-program "/usr/bin/msmtp")
 (setq message-sendmail-extra-arguments '("-a" "rs"))
 
 ;Default methods to get mails
-(setq gnus-select-method '(nntp "localhost"))
-(setq gnus-secondary-select-methods
-      '((nnimap "rackspace"
-              (nnimap-address "lonmx01"))))
+(setq gnus-select-method '(nntp "news.gmane.org"))
 
 ;Archving
 (setq gnus-message-archive-group

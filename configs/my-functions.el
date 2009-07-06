@@ -122,7 +122,7 @@
    (next-line 1)
    (when newline-and-indent
      (indent-according-to-mode)))
- (global-set-key (kbd "M-o") 'open-next-line)
+(global-set-key (kbd "C-M-o") 'open-next-line)
 
  ;; behave like vi's O command
  (defun open-previous-line (arg)
