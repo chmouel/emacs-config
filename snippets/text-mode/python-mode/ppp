@@ -1,0 +1,5 @@
+#name : pp
+# --
+from pprint import pprint as p
+p( $0 )
+

@@ -14,7 +14,6 @@
 (global-set-key '[(control meta tab)]           'other-frame)
 (global-set-key '[(control x)(control =)]   'ediff-buffers)
 (global-set-key '[(control x)(-)] 'next-error)
-(global-set-key (read-kbd-macro "C-M-b")    'bookmark-jump)
 (global-set-key (read-kbd-macro "C-M-g") 'grep)
 (global-set-key (read-kbd-macro "C-x C-k") (lambda () (interactive) (kill-buffer nil)))
 (global-set-key (read-kbd-macro "C-x f") 'find-file-at-point)
@@ -24,13 +23,12 @@
 (global-set-key (read-kbd-macro "C-;") 'comment-dwim)
 
 ;;Prefer BS style cycling (not used)
-(global-set-key '[(control x)(left)]        'previous-buffer)
-(global-set-key '[(control x)(right)]       'next-buffer)
+(global-set-key '[(control x)(left)]        'bs-cycle-previous)
+(global-set-key '[(control x)(right)]       'bs-cycle-next)
 
 ;;No need digits
 (global-set-key (read-kbd-macro "C-1")      'delete-other-windows)
 (global-set-key (read-kbd-macro "C-2")      'split-window-vertically)
-
 
 ;;Redefine {for/back}ward paragraphs to just 4 lines
 (global-set-key '[(control down)](lambda () (interactive) (forward-line '5)))
