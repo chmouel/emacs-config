@@ -41,6 +41,8 @@
  '(html-inlined-key [f12])
  '(ibuffer-expert t)
  '(ibuffer-never-show-predicates nil nil (ibuf-ext))
+ '(ibuffer-saved-filter-groups (quote (("Remote" ("Remote" ...) ("Emacs" ...)) ("default" ("Emacs" ...)))))
+ '(ibuffer-saved-filters (quote (("gnus" (...)) ("programming" (...)))))
  '(ibuffer-truncate-lines nil)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
