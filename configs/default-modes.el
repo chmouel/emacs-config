@@ -86,28 +86,13 @@
 (setq ibuffer-saved-filter-groups
       (quote (("default"
                ("Emacs" (name . "^*"))
-;               ("IRC" (mode . erc-mode))
-;               ("TiltWEB" (filename . "^.*/TiltWeb/.*"))
-;               ("CoreCli" (filename . "^.*CoreCli.*"))
-;               ("DailyUpdate" (filename . "^.*DailyUpdate.*"))
-;;              ("Gnus" (or
-;;                         (mode . message-mode)
-;;                         (mode . bbdb-mode)
-;;                         (mode . mail-mode)
-;;                         (mode . gnus-group-mode)
-;;                         (mode . gnus-summary-mode)
-;;                         (mode . gnus-article-mode)
-;;                         (name . "^\\.bbdb$")
-;;                         (name . "^\\.newsrc-dribble")))
-               )))
-      )
+               ))))
+(global-set-key (read-kbd-macro "C-x C-b")    'ibuffer-bs-show)
 
-;; ibuffer, I like my buffers to be grouped
-(add-hook 'ibuffer-mode-hook
-          (lambda ()
-            (ibuffer-switch-to-saved-filter-groups
-             "default")))
-
+;; (add-hook 'ibuffer-mode-hook
+;;           (lambda ()
+;;             (ibuffer-switch-to-saved-filter-groups
+;;              "default")))
 
 ;Shell Mode
 (setq ansi-color-names-vector ; better contrast colors
