@@ -6,3 +6,4 @@ modes/local/*
 *.elc
 !hosts/.gitignore
 hosts/*
+tramp
