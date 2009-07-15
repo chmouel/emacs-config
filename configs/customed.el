@@ -4,7 +4,6 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(ack-executable "c:\\unix\\bin\\ack.bat")
  '(all-christian-calendar-holidays t)
  '(anything-c-adaptive-history-file "~/.emacs.d/auto-save-list/anything-c-adaptive-history")
  '(auto-insert-directory "~/.emacs.d/snippets/autoinsert/")
@@ -39,11 +38,13 @@
  '(home-end-enable t)
  '(html-inlined-install-modes (quote (nxml-mode nxhtmlmode html-mode php-mode)))
  '(html-inlined-key [f12])
+ '(ibuffer-always-compile-formats t)
+ '(ibuffer-elide-long-columns t)
  '(ibuffer-expert t)
  '(ibuffer-never-show-predicates nil nil (ibuf-ext))
- '(ibuffer-saved-filter-groups (quote (("Remote" ("Remote" ...) ("Emacs" ...)) ("default" ("Emacs" ...)))))
- '(ibuffer-saved-filters (quote (("gnus" (...)) ("programming" (...)))))
+ '(ibuffer-saved-filters nil)
  '(ibuffer-truncate-lines nil)
+ '(ibuffer-use-other-window nil)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(ispell-extra-args (quote ("--sug-mode=ultra")))

@@ -87,7 +87,8 @@
       (quote (("default"
                ("Emacs" (name . "^*"))
                ))))
-(global-set-key (read-kbd-macro "C-x C-b")    'ibuffer-bs-show)
+(global-set-key (read-kbd-macro "C-x C-b")    'ibuffer)
+(global-set-key (read-kbd-macro "C-`") 'ibuffer)
 
 ;; (add-hook 'ibuffer-mode-hook
 ;;           (lambda ()
