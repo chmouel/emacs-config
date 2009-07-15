@@ -15,6 +15,7 @@
 (global-set-key '[(control x)(control =)]   'ediff-buffers)
 (global-set-key '[(control x)(-)] 'next-error)
 (global-set-key (read-kbd-macro "C-=") 'jump-to-register)
+(global-set-key (read-kbd-macro "C-M-=") 'window-configuration-to-register)
 (global-set-key (read-kbd-macro "C-M-g") 'grep)
 (global-set-key (read-kbd-macro "C-M-b") 'bookmark-jump)
 (global-set-key (read-kbd-macro "C-x C-k") (lambda () (interactive) (kill-buffer nil)))
