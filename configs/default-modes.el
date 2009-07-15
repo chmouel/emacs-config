@@ -119,8 +119,8 @@
 	      ("<down>"  . ignore             ))))
 (add-hook 'iswitchb-define-mode-map-hook 'my-iswitchb-local-keys)
 
-
+;Comit mode
 (add-hook 'comint-mode-hook
 	  (lambda ()
-        (local-set-key '[(control meta l)]         (lambda () (interactive) (switch-to-buffer (other-buffer))))
+        (local-set-key '[(control meta l)] (lambda () (interactive) (switch-to-buffer (other-buffer nil))))
         ))
