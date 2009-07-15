@@ -1,6 +1,3 @@
-;;SNIPPPET
-(require 'snippet nil t)
-
 ;;Emacs-W3M
 (when (featurep 'w3m)
   (define-key w3m-mode-map [mouse-2] 'w3m-mouse-view-this-url-new-session))
@@ -95,6 +92,7 @@
 
 ;yasnippet
 (require 'yasnippet) ;; not yasnippet-bundle
+(setq yas/trigger-key (kbd "C-M-SPC")) 
 (yas/initialize)
 (yas/load-directory "~/.emacs.d/snippets")
 
@@ -108,7 +106,9 @@
      
 
 ;Ack
+(setenv "ACK_COLOR_MATCH" "")
 (autoload 'ack-same "full-ack" nil t)
 (autoload 'ack "full-ack" nil t)
 (autoload 'ack-find-same-file "full-ack" nil t)
 (autoload 'ack-find-file "full-ack" nil t)
+(global-set-key (kbd "C-M-s") 'ack)
