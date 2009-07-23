@@ -1,4 +1,4 @@
-(defun my-programming-common-hook() 
+1(defun my-programming-common-hook() 
   ;(textmate-mode)
   (local-set-key (kbd "RET") 'newline-and-indent)
   (local-set-key '[(meta return)] 'compile)

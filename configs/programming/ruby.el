@@ -16,8 +16,6 @@
              ))
 
     (local-set-key '[(control meta b)] 'bookmark-jump)
-    (local-set-key '[(return)] 'ruby-reindent-then-newline-and-indent)  
-
     (my-programming-common-hook)
 
     )

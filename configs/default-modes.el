@@ -84,16 +84,13 @@
 ;IBUFFER
 (add-hook 'ibuffer-mode-hook 'ibuffer-auto-mode)
 (setq ibuffer-saved-filter-groups
-      (quote (("default"
-               ("Emacs" (name . "^*"))
-               ))))
+      (quote (
+              ("default"
+               ("Files" (not mode . dired-mode) (name . "^[^*]"))
+               ("Directories" (mode . dired-mode))))
+              ))
 (global-set-key (read-kbd-macro "C-x C-b")    'ibuffer)
 (global-set-key (read-kbd-macro "C-`") 'ibuffer)
-
-;; (add-hook 'ibuffer-mode-hook
-;;           (lambda ()
-;;             (ibuffer-switch-to-saved-filter-groups
-;;              "default")))
 
 ;Shell Mode
 (setq ansi-color-names-vector ; better contrast colors
@@ -120,8 +117,15 @@
 	      ("<down>"  . ignore             ))))
 (add-hook 'iswitchb-define-mode-map-hook 'my-iswitchb-local-keys)
 
+(defun my-ido-local-keys ()
+ "Add my keybindings for ido."
+ (define-key ido-completion-map " " 'ido-next-match)
+ )
+(add-hook 'ido-setup-hook 'my-ido-local-keys)
+
 ;Comit mode
 (add-hook 'comint-mode-hook
 	  (lambda ()
         (local-set-key '[(control meta l)] (lambda () (interactive) (switch-to-buffer (other-buffer nil))))
         ))
+
