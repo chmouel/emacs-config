@@ -26,7 +26,7 @@
 (defmacro GNUEmacs (&rest x) (list 'if (string-match "GNU Emacs" (version)) (cons 'progn x)))
 (defmacro GUI (&rest x) (list 'if (not (null window-system)) (cons 'progn x))) 
 (defmacro Win (&rest x) (list 'if (string= window-system "w32") (cons 'progn x))) 
-(defmacro Work (&rest x) (list 'if (or (string= (my-short-hostname) "paris") (string= (my-short-hostname) "coco")) (cons 'progn x))) 
+(defmacro Work (&rest x) (list 'if (or (string= (my-short-hostname) "paris") (string= (my-short-hostname) "coco")) (cons 'progn x)))
 (defmacro Laptop (&rest x) (list 'if (string= (my-short-hostname) "laptop") (cons 'progn x)))
 
 ;Loading Packages

@@ -23,8 +23,5 @@
 (show-paren-mode 't)
 (display-time-mode 't)
 
-;Default Frame
-(add-to-list 'default-frame-alist '(fullscreen . fullwidth))
-
 ;Non Customizables
 (setq ring-bell-function 'ignore)
