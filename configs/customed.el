@@ -96,6 +96,7 @@
  '(swbuff-exclude-buffer-regexps (quote ("^ " "^\\*" "^newsrc-dribble$" "^bbdb$")))
  '(tab-width 4)
  '(tags-revert-without-query t)
+ '(tramp-chunksize 500)
  '(tramp-persistency-file-name "~/.emacs.d/auto-save-list/tramp")
  '(uniquify-buffer-name-style (quote forward) nil (uniquify))
  '(user-full-name "Chmouel Boudjnah")
