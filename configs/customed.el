@@ -47,7 +47,7 @@
  '(ibuffer-truncate-lines nil)
  '(ibuffer-use-other-window nil)
  '(ido-enable-tramp-completion nil)
- '(ido-everywhere t)
+ '(ido-everywhere nil)
  '(ido-ignore-directories (quote ("\\`CVS/" "\\`\\.\\./" "\\`\\./" "\\`\\.svn/")))
  '(ido-mode (quote both) nil (ido))
  '(ido-show-dot-for-dired t)
