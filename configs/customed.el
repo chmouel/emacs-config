@@ -123,4 +123,5 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(erc-input-face ((t (:foreground "white" :weight extra-bold))))
- '(erc-prompt-face ((t (:background "black" :foreground "Green")))))
+ '(erc-prompt-face ((t (:background "black" :foreground "Green"))))
+ '(flymake-errline ((nil (:foreground "orange" :weight bold)))))

@@ -11,6 +11,7 @@
 
   (my-programming-common-hook)
 
+  (local-set-key '[(tab)] 'indent-for-tab-command)
   (local-set-key '[(control c)(control v)] 'browse-url-of-buffer)
   (local-set-key '[(control =)] 'html-mode)  
   (local-set-key '[(control n)] (lambda () (interactive) (progn (insert "\\n"))))
