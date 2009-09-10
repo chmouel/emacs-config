@@ -131,12 +131,12 @@ The key to bind is defined by html-inlined-key")
     ("<script[ \t]+language=\"vbscript\"[ \t]*>" "</script>" visual-basic-mode)
     ("<script[ \t]+type=\"text/vbscript\"[ \t]*>" "</script>" visual-basic-mode)
     ("<script[ \t]+language=\"javascript\"[ \t]*>" "</script>"
-     ecmascript-mode jde-mode java-mode javascript-generic-mode c-mode)
+     js-mode jde-mode java-mode javascript-generic-mode c-mode)
     ("<script[ \t]+type=\"text/javascript\"[ \t]*>" "</script>"
-     ecmascript-mode jde-mode java-mode javascript-generic-mode c-mode)
+     js-mode jde-mode java-mode javascript-generic-mode c-mode)
     ;;("\s-on[a-z]+=\"javascript:" "\""
     ("[ \t]on[a-z]+=\"javascript:" "\""
-     ecmascript-mode jde-mode java-mode javascript-generic-mode c-mode)
+     js-mode jde-mode java-mode javascript-generic-mode c-mode)
     )
   "Define script regions.  Each entry should consist of a list of
   a starting regexp, an ending regexp, and a list of modes to try

@@ -18,15 +18,15 @@
  '(compilation-ask-about-save nil)
  '(completion-ignored-extensions (quote (".svn/" "CVS/" ".o" "~" ".bin" ".lbin" ".so" ".a" ".ln" ".blg" ".bbl" ".elc" ".pyc" ".pyo")))
  '(cursor-in-non-selected-windows nil)
- '(default-major-mode (quote text-mode))
+ '(default-major-mode (quote text-mode) t)
  '(diff-switches "-uw")
  '(dired-omit-files "^\\.?#\\|^\\.$\\|^\\.\\.$\\|^Thumbs.db$\\|\\.svn$\\|\\.git\\(ignore\\)?\\|\\.pyc$\\|^\\.coverage$\\|^TAGS$\\|^tags$")
  '(display-time-24hr-format t)
  '(display-time-default-load-average nil)
  '(display-time-mode t)
+ '(display-time-world-list (quote (("Europe/London" "London") ("Europe/Paris" "Paris") ("America/Chicago" "San Antonio"))))
  '(ediff-window-setup-function (quote ediff-setup-windows-plain))
  '(elscreen-tab-width 23)
- '(emerge-diff-options "--ignore-all-space")
  '(enable-local-variables :all)
  '(eshell-directory-name "~/.emacs.d/auto-save-list/eshell/")
  '(eshell-modules-list (quote (eshell-alias eshell-banner eshell-basic eshell-cmpl eshell-dirs eshell-glob eshell-hist eshell-ls eshell-pred eshell-prompt eshell-rebind eshell-script)))
@@ -84,6 +84,7 @@
  '(recentf-save-file "~/.emacs.d/auto-save-list/recent-file-list.el")
  '(require-final-newline (quote visit-save))
  '(safe-local-variable-values (quote ((c-hanging-comment-ender-p))))
+ '(save-interprogram-paste-before-kill t)
  '(save-place t nil (saveplace))
  '(save-place-file "~/.emacs.d/auto-save-list/emacs-places")
  '(savehist-file "~/.emacs.d/auto-save-list/history")
@@ -103,7 +104,8 @@
  '(user-mail-address "chmouel.boudjnah@rackspace.co.uk")
  '(wdired-enable t)
  '(woman-use-own-frame nil)
- '(x-select-enable-clipboard t))
+ '(x-select-enable-clipboard t)
+ '(zoneinfo-style-world-list (quote (("Europe/London" "London") ("America/Chicago" "San Antonio") ("Europe/Paris" "Paris")))))
 (if 'nil
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
@@ -124,4 +126,5 @@
   ;; If there is more than one, they won't work right.
  '(erc-input-face ((t (:foreground "white" :weight extra-bold))))
  '(erc-prompt-face ((t (:background "black" :foreground "Green"))))
- '(flymake-errline ((nil (:foreground "orange" :weight bold)))))
+ '(flymake-errline ((nil (:foreground "orange" :weight bold))))
+ '(yas/field-highlight-face ((((class color) (background light)) (:background "ivory4")))))

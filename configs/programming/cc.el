@@ -1,6 +1,5 @@
 (setq my-c++-compiler-program "c++")
 
-
 (defun my-c++-mode-hook()
   (set (make-local-variable 'my-compile-command) "make")
   (my-programming-common-hook)

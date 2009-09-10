@@ -20,6 +20,7 @@
   (set (make-local-variable 'my-compile-command) (concat python-check-command " \"" buffer-file-name "\""))
   (set (make-local-variable 'my-compile-run-command) (concat "python  \"" buffer-file-name "\""))
   (my-programming-common-hook)
+  (local-set-key '[(control p)] (lambda () (interactive) (progn (insert "self."))))
   (highlight-parentheses-mode)
   (c-subword-mode)
   (eldoc-mode 1)
