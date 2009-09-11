@@ -17,6 +17,7 @@
  '(color-theme-is-global t)
  '(compilation-ask-about-save nil)
  '(completion-ignored-extensions (quote (".svn/" "CVS/" ".o" "~" ".bin" ".lbin" ".so" ".a" ".ln" ".blg" ".bbl" ".elc" ".pyc" ".pyo")))
+ '(completion-styles (quote (initials basic partial-completion emacs22)))
  '(cursor-in-non-selected-windows nil)
  '(default-major-mode (quote text-mode) t)
  '(diff-switches "-uw")
