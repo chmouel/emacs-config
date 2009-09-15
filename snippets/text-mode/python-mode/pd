@@ -1,0 +1,5 @@
+#name : pd
+# --
+from pprint import pprint as p
+p( dir($0) )
+
