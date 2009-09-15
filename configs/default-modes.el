@@ -132,3 +132,5 @@
         (local-set-key '[(control meta l)] (lambda () (interactive) (switch-to-buffer (other-buffer nil))))
         ))
 
+
+(add-hook 'log-edit-mode-hook 'flyspell-mode)
