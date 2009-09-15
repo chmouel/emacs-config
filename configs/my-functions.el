@@ -139,3 +139,22 @@
  ;; autoindent open-*-lines
  (defvar newline-and-indent t
    "Modify the behavior of the open-*-line functions to cause them to autoindent.")
+
+
+;Increase/Decrease opacity
+(defun my-increase-opacity()
+  (interactive)
+  (let ((increase (+ 10 (car (frame-parameter nil 'alpha)))))
+    (if (> increase 99)(setq increase 99))
+    (set-frame-parameter (selected-frame) 'alpha (values increase 75)))
+)
+
+(defun my-decrease-opacity()
+  (interactive)
+  (let ((decrease (- (car (frame-parameter nil 'alpha)) 10)))
+    (if (< decrease 20)(setq decrease 20))
+    (set-frame-parameter (selected-frame) 'alpha (values decrease 75)))
+)
+
+(global-set-key (kbd "M-<mouse-4>") 'my-increase-opacity)
+(global-set-key (kbd "M-<mouse-5>") 'my-decrease-opacity)
