@@ -144,14 +144,14 @@
 ;Increase/Decrease opacity
 (defun my-increase-opacity()
   (interactive)
-  (let ((increase (+ 10 (car (frame-parameter nil 'alpha)))))
+  (let ((increase (+ 5 (car (frame-parameter nil 'alpha)))))
     (if (> increase 99)(setq increase 99))
     (set-frame-parameter (selected-frame) 'alpha (values increase 75)))
 )
 
 (defun my-decrease-opacity()
   (interactive)
-  (let ((decrease (- (car (frame-parameter nil 'alpha)) 10)))
+  (let ((decrease (- (car (frame-parameter nil 'alpha)) 5)))
     (if (< decrease 20)(setq decrease 20))
     (set-frame-parameter (selected-frame) 'alpha (values decrease 75)))
 )

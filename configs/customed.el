@@ -93,6 +93,7 @@
  '(savehist-mode t nil (savehist))
  '(server-mode t)
  '(server-window nil)
+ '(split-width-threshold nil)
  '(svn-status-display-full-path t)
  '(svn-status-hide-unmodified t)
  '(svn-status-wash-control-M-in-process-buffers t)
