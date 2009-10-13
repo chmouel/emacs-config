@@ -1,22 +1,3 @@
-;;
-(global-set-key '[(f9)] 'setup-for-ticket)
-(defun setup-for-ticket ()
-  (interactive)
-  (message-mode)
-  (flyspell-buffer)
-  (end-of-buffer)
-  (when (not (re-search-forward "Chmouel Boudjnah\nIntensive Linux Lead" nil t))
-    (longlines-mode nil)
-    (save-excursion
-      (message-insert-signature)
-      )
-    (next-line)
-    (kill-line)
-    (previous-line)
-    (longlines-mode t)
-    )
-)
-
 ;Switch to Gnus
 (global-set-key '[(f7)] 'switch-to-gnus)
 (defun switch-to-gnus (&optional arg)

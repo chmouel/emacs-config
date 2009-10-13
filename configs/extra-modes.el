@@ -67,20 +67,20 @@
 (when (featurep 'anything-config)
 ;ISEARCHB
   (define-key global-map [(control ?z)] 'anything)
-  (setq anything-sources
-        '(
-          anything-c-source-buffers
-          anything-c-source-file-name-history
-          anything-c-source-files-in-current-dir
-          anything-c-source-occur
-          anything-c-source-imenu
-          anything-c-source-ctags
-          anything-c-source-ffap-guesser
-          anything-c-source-bookmarks
-          anything-c-source-kill-ring
-          ))
-  (setq anything-c-boring-buffer-regexp 
-        "\\(\\` \\)\\|\\*anything\\| \\*Echo Area\\| \\*Minibuf\\|\\*Customize*\\|\\*Completions\\|\\*Woman\\|\\*info\\|\\*Messages\\|\\*Help")
+  ;; (setq anything-sources
+  ;;       '(
+  ;;         anything-c-source-buffers
+  ;;         anything-c-source-file-name-history
+  ;;         anything-c-source-files-in-current-dir
+  ;;         anything-c-source-occur
+  ;;         anything-c-source-imenu
+  ;;         anything-c-source-ctags
+  ;;         anything-c-source-ffap-guesser
+  ;;         anything-c-source-bookmarks
+  ;;         anything-c-source-kill-ring
+  ;;         ))
+  ;; (setq anything-c-boring-buffer-regexp 
+  ;;       "\\(\\` \\)\\|\\*anything\\| \\*Echo Area\\| \\*Minibuf\\|\\*Customize*\\|\\*Completions\\|\\*Woman\\|\\*info\\|\\*Messages\\|\\*Help")
   )
 
 ;

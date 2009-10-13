@@ -92,8 +92,6 @@
                ("Files" (not mode . dired-mode) (name . "^[^*]"))
                ("Directories" (mode . dired-mode))))
               ))
-(global-set-key (read-kbd-macro "C-x C-b")    'ibuffer)
-(global-set-key (read-kbd-macro "C-`") 'ibuffer)
 
 ;Shell Mode
 (setq ansi-color-names-vector ; better contrast colors

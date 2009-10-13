@@ -11,5 +11,17 @@
 (add-hook 'html-mode-hook 'my-html-mode-hook)
 
 ;CSS
+(defvar hexcolour-keywords
+  '(("#[abcdef[:digit:]]\\{6\\}"
+     (0 (put-text-property
+         (match-beginning 0)
+         (match-end 0)
+         'face (list :background 
+                     (match-string-no-properties 0)))))))
+
+(defun hexcolour-add-to-font-lock ()
+  (font-lock-add-keywords nil hexcolour-keywords))
+
 (autoload 'css-mode "css-mode")
 (add-to-list 'auto-mode-alist '("\\.css\\'" . css-mode))
+(add-hook 'css-mode-hook 'hexcolour-add-to-font-lock)
