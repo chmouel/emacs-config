@@ -24,7 +24,6 @@
 (global-set-key (read-kbd-macro "M-/") 'hippie-expand)
 (global-set-key (read-kbd-macro "M-q") 'fill-region)
 (global-set-key (read-kbd-macro "M-l") 'downcase-word)
-(global-set-key (read-kbd-macro "C-;") 'comment-dwim)
 (global-set-key (read-kbd-macro "C-x C-b")    'ibuffer)
 (global-set-key (read-kbd-macro "C-`") 'ido-switch-buffer)
 (global-set-key (read-kbd-macro "C-~") 'ibuffer)
