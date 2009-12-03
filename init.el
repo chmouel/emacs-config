@@ -36,7 +36,6 @@
       (setq load-path (cons my-lisp-dir load-path))
       (normal-top-level-add-subdirs-to-load-path)))
 
-
 ;Loading Configs files
 (my-load-dir (concat my-init-directory "/configs/"))
 (my-load-dir (concat my-init-directory "/configs/programming/"))

@@ -95,7 +95,6 @@
  ;; behave like vi's o command
  (defun open-next-line (arg)
    "Move to the next line and then opens a line.
- 
  See also `newline-and-indent'."
    (interactive "p")
    (end-of-line)
@@ -137,5 +136,16 @@
     (set-frame-parameter (selected-frame) 'alpha (values decrease 75)))
 )
 
-(global-set-key (kbd "M-<mouse-4>") 'my-increase-opacity)
-(global-set-key (kbd "M-<mouse-5>") 'my-decrease-opacity)
+; if no selection just comment line or comment selection
+(defun my-comment-line-or-region ()
+  (interactive "*")
+  (if (and mark-active transient-mark-mode)
+      (comment-or-uncomment-region (region-beginning) (region-end) nil)
+    (progn
+      (save-excursion
+        (move-beginning-of-line nil)
+        (set-mark-command nil)
+        (move-end-of-line nil)
+        (comment-dwim nil)
+        ))))
+(global-set-key (read-kbd-macro "M-;") 'my-comment-line-or-region)

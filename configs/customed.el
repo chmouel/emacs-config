@@ -10,6 +10,7 @@
  '(auto-insert-directory "~/.emacs.d/snippets/autoinsert/")
  '(auto-insert-mode t)
  '(auto-insert-query nil)
+ '(auto-install-directory "~/.emacs.d/modes/")
  '(battery-mode-line-format "--[%b%p%%]")
  '(bc-bookmark-file "~/.emacs.d/auto-save-list/breadcrumb.el")
  '(bookmark-save-flag 1)
