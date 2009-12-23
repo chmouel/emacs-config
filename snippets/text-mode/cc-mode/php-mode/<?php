@@ -1,0 +1,40 @@
+#contributor : Satoshi Nishimura <nishim314@gmail.com>
+#name : <?php /* ... */ class ...{...} 
+#group : definitions
+# --
+<?php
+/**
+ * ${1:file_title}
+ *
+ * @package   ${2:package}
+ * @author    ${3:author} <${4:email}>
+ * @copyright Copyright (c) ${5:`(format-time-string "%Y" (current-time))`} ${6:copyright}
+ */
+
+/**
+ * $1
+ *
+ * ${7:description}
+ *
+ * @package $2
+ * @author  $3 <$4>
+ * @copyright Copyright (c) $5 $6
+ */
+class ${8:`(replace-regexp-in-string
+ "^_+" ""
+ (mapconcat
+  #'identity
+  (split-string
+   ((lambda (a)
+      (substring a (let ((case-fold-search nil))
+                     (string-match "\\\\(/[A-Z][a-zA-Z0-9]+\\\\)+$" a )
+                     ))
+      )
+    (file-name-sans-extension (buffer-file-name))
+    ) "/") "_"))`}
+{
+   public function ${9:__construct}()
+   {
+      $0
+   }
+}
