@@ -21,7 +21,8 @@
 (column-number-mode 't)
 (line-number-mode 't)
 (show-paren-mode 't)
-(display-time-mode 't)
+(if window-system
+    (display-time-mode 't))
 
 ;Non Customizables
 (setq ring-bell-function 'ignore)
