@@ -149,3 +149,4 @@
         (comment-dwim nil)
         ))))
 (global-set-key (read-kbd-macro "M-;") 'my-comment-line-or-region)
+(global-set-key (read-kbd-macro "C-;") 'comment-dwim)

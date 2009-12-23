@@ -60,6 +60,9 @@
 ;
 (require 'rst)
 (add-to-list 'auto-mode-alist '("\\.rst\\'" . rst-mode))
+(setcdr (assq 'html rst-compile-toolsets)
+        '("rst2html" ".htm" 
+          "--stylesheet=/usr/share/doc/python-configobj/stylesheets/voidspace_docutils.css"))
 
 ;
 (require 'window-numbering)
@@ -70,12 +73,11 @@
 
 ;yasnippet
 (require 'yasnippet) ;; not yasnippet-bundle
-(setq yas/trigger-key (kbd "C-M-SPC")) 
+(setq yas/trigger-key (kbd "")) 
 (yas/initialize)
 (yas/load-directory "~/.emacs.d/snippets")
-
-;textmate
-(require 'textmate)
+(require 'dropdown-list)
+(setq yas/prompt-functions '(yas/dropdown-prompt)) 
 
 ;Flymake
 (eval-after-load "flymake"
@@ -93,3 +95,9 @@
 
 ;;
 (require 'lua-mode nil t)
+
+;;
+(autoload 'git-status "git" "GIT status" t)
+
+;twitter
+(autoload 'twit-show-recent-tweets	"twit" "" t) ; most recent direct tweets (!)

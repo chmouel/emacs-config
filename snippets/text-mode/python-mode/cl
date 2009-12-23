@@ -1,6 +1,0 @@
-#contributor : Julio Carlos Menendez <godinblack@gmail.com>
-#name : class simple no 
-# --
-class ${1:Class}(object):
-    def __init__(self):
-        $0

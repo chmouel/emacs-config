@@ -8,16 +8,13 @@
 (defun rcirc-handler-301 (process cmd sender args)
   "/away message handler.")
 
+(defun my-rcirc-mode-hook()
+  (remove-hook 'kill-buffer-hook 'rcirc-kill-buffer-hook)
+  (set (make-local-variable 'scroll-conservatively) 8192)
+)
 ;; Turn on spell checking.
-(add-hook 'rcirc-mode-hook (lambda ()
-			     (flyspell-mode 1)))
-
-;; Keep input line at bottom.                                                                               
-(add-hook 'rcirc-mode-hook
-	  (lambda ()
-	    (set (make-local-variable 'scroll-conservatively)
-		 8192)))
-
+(add-hook 'rcirc-mode-hook 'my-rcirc-mode-hook)
+  
 ;; Turn on logging everything to a special buffer, for debugging.
 (setq rcirc-debug-flag nil)
 
@@ -35,8 +32,7 @@
 
 ;; Join these channels at startup.
 (setq rcirc-startup-channels-alist
-      '(("localhost$""#nast")))
-
+      '(("irc.freenode.net$""#emacs")))
 
 ;;; rcirc-auto-away.el
 

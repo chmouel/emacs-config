@@ -132,3 +132,7 @@
 
 
 (add-hook 'log-edit-mode-hook 'flyspell-mode)
+
+;Generic Modes
+(autoload 'default-generic-mode "generic-x" nil t)
+(add-to-list 'auto-mode-alist '(".icewm/preferences\\'" . default-generic-mode))

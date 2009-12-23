@@ -1,4 +1,0 @@
-#name : class simple no 
-# --
-def ${1:function}(self):
-    $0
