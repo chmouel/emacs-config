@@ -24,7 +24,6 @@
   (my-programming-common-hook)
   (local-set-key '[(control meta p)] (lambda () (interactive) (progn (insert "self."))))
   (local-set-key '[(control shift return)] (lambda () (interactive) (compile (concat "pep8.py \"" buffer-file-name "\""))))
-  (highlight-parentheses-mode)
   (eldoc-mode 1)
   )
 (add-hook 'python-mode-hook 'my-python-mode-hook)
