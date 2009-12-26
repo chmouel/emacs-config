@@ -150,5 +150,6 @@
  '(erc-prompt-face ((t (:background "black" :foreground "Green"))))
  '(flymake-errline ((nil (:foreground "orange" :weight bold))))
  '(magit-item-highlight ((((class color) (background light)) (:background "dim gray" :foreground "white"))))
+ '(twitter-header-face ((t (:background "light gray" :foreground "black"))))
  '(which-func ((((class color) (min-colors 88) (background light)) (:inherit mode-line-emphasis))))
  '(yas/field-highlight-face ((((class color) (background light)) (:background "ivory4")))))
