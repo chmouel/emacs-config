@@ -75,6 +75,6 @@
     (if (string= regexp "")
         (setq regexp (current-word)))
     (igrep nil regexp '("*")))
-  ))
+  )
 (global-set-key (kbd "C-M-s") 'my-igrep-at-point)
 
