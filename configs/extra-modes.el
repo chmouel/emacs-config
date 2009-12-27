@@ -37,11 +37,7 @@
 ;
 (autoload 'rst-mode "rst" "RST" t)
 (add-to-list 'auto-mode-alist '("\\.rst\\'" . rst-mode))
-(eval-after-load "rst"
-  '(progn
-     (setcdr (assq 'html rst-compile-toolsets)
-             '("rst2html" ".htm" 
-               "--stylesheet=/usr/share/doc/python-configobj/stylesheets/voidspace_docutils.css"))))
+
 ;
 (require 'window-numbering)
 (window-numbering-mode t)
