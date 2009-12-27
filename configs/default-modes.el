@@ -51,9 +51,6 @@
     (occur (if isearch-regexp isearch-string (regexp-quote isearch-string)))))
 (define-key isearch-mode-map (kbd "C-o") 'my-isearch-occur)
 
-;Isearch switched buffer
-;(define-key global-map [(control ?z)] 'isearchb-activate)
-
 ;SQL Information
 (setq sql-user "root"
       sql-password ""
@@ -96,7 +93,7 @@
 ;AutoInsert
 (auto-insert-mode 't)
 (setq auto-insert-alist
-  '(((python-mode . "python.py"))))
+      '((python-mode . "python.py")))
 
 ;Iswitchb
 (defun my-iswitchb-local-keys ()
