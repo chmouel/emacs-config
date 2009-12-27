@@ -1,6 +1,5 @@
 ;FSET
 (fset 'yes-or-no-p 'y-or-n-p)
-(fset 'man 'woman)
 
 ;Custome customize (lol)
 (setq custom-file (concat my-init-directory "/configs/customed.el"))

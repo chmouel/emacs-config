@@ -120,7 +120,6 @@
  (defvar newline-and-indent t
    "Modify the behavior of the open-*-line functions to cause them to autoindent.")
 
-
 ;Increase/Decrease opacity
 (defun my-increase-opacity()
   (interactive)
