@@ -41,14 +41,6 @@
 ;Emacs-Lisp
 (eldoc-mode 't)
 
-;Browse-URL
-(Work
- (require 'browse-url)
- (add-to-list 'browse-url-filename-alist
-              '("/home/cboudjnah/Work/intranet" . "http://localhost/intranet")
-              '("/home/cboudjnah/Work/overmind/web" . "http://localhost/overmind")
-              ))
-
 ;Org-Mode
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 
@@ -63,18 +55,17 @@
 ;(define-key global-map [(control ?z)] 'isearchb-activate)
 
 ;SQL Information
-(Work
- (setq sql-user "root"
-       sql-password ""
-       sql-database "test"
-       sql-server "localhost"
-       sql-product (quote mysql)
-       sql-electric-stuff (quote semicolon)
-       sql-input-ring-file-name (concat my-init-directory "/auto-save-list/mysql_history.sql")
-       sql-product (quote mysql)
-       )
- (defalias 'sql 'sql-mysql)
-)
+(setq sql-user "root"
+      sql-password ""
+      sql-database "test"
+      sql-server "localhost"
+      sql-product (quote mysql)
+      sql-electric-stuff (quote semicolon)
+      sql-input-ring-file-name (concat my-init-directory "/auto-save-list/mysql_history.sql")
+      sql-product (quote mysql)
+      )
+(defalias 'sql 'sql-mysql)
+
 
 ; Narrow
 (put 'narrow-to-region 'disabled nil)
