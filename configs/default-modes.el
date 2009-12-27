@@ -63,10 +63,6 @@
       )
 (defalias 'sql 'sql-mysql)
 
-
-; Narrow
-(put 'narrow-to-region 'disabled nil)
-
 ;Email With Message-mail
 (fset 'mail 'message-mail)
 (if (file-exists-p (concat my-init-directory "/gnus/message.el"))
