@@ -29,20 +29,20 @@
     (setq elscreen-display-tab nil)
   )
 
-;
+;SWBUFF
 (when (featurep 'swbuff)
   (global-set-key (read-kbd-macro "M-`") 'swbuff-switch-to-next-buffer)
   (global-set-key (read-kbd-macro "M-~") 'swbuff-switch-to-previous-buffer))
 
-;
+;RST
 (autoload 'rst-mode "rst" "RST" t)
 (add-to-list 'auto-mode-alist '("\\.rst\\'" . rst-mode))
 
-;
+; Windows Numbering
 (require 'window-numbering)
 (window-numbering-mode t)
 
-;yasnippet
+;Yasnippet
 (require 'yasnippet) ;; not yasnippet-bundle
 (setq yas/trigger-key (kbd "")) 
 (yas/initialize)
@@ -55,11 +55,13 @@
   '(progn
      (require 'flymake-cursor)))
      
-;
+;LUA-MODE
 (autoload 'lua-mode "lua-mode" "Lua Mode" t)
-;
+
+;GIT
 (autoload 'git-status "git" "GIT status" t)
 
+;IGREP
 (autoload 'igrep "igrep" "IGREP" t)
 (autoload 'igrep-find "igrep" "IGREP" t)
 (defun my-igrep-at-point()

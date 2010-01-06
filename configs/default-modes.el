@@ -51,18 +51,6 @@
     (occur (if isearch-regexp isearch-string (regexp-quote isearch-string)))))
 (define-key isearch-mode-map (kbd "C-o") 'my-isearch-occur)
 
-;SQL Information
-(setq sql-user "root"
-      sql-password ""
-      sql-database "test"
-      sql-server "localhost"
-      sql-product (quote mysql)
-      sql-electric-stuff (quote semicolon)
-      sql-input-ring-file-name (concat my-init-directory "/auto-save-list/mysql_history.sql")
-      sql-product (quote mysql)
-      )
-(defalias 'sql 'sql-mysql)
-
 ;Email With Message-mail
 (fset 'mail 'message-mail)
 (if (file-exists-p (concat my-init-directory "/gnus/message.el"))
