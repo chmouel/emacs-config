@@ -23,5 +23,5 @@
   (font-lock-add-keywords nil hexcolour-keywords))
 
 (autoload 'css-mode "css-mode")
-(add-to-list 'auto-mode-alist '("\\.css\\'" . css-mode))
+(push '("\\.css\\'" . css-mode) auto-mode-alist)
 (add-hook 'css-mode-hook 'hexcolour-add-to-font-lock)

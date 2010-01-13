@@ -2,9 +2,9 @@
 (setq my-java-command "java")
 
 (defun my-java-mode-hook()
+  (local-set-key '[(control p)] (lambda () (interactive) (progn (insert "System.out.println(  );")(backward-char 3))))
   (set (make-local-variable 'my-compile-command) (concat "\"" my-java-compiler-command "\" \"" buffer-file-name "\""))
   (set (make-local-variable 'my-compile-run-command) (concat "\"" my-java-command "\" \"" buffer-file-name "\""))
   (my-programming-common-hook)
-  (c-subword-mode)
   )
 (add-hook 'java-mode-hook 'my-java-mode-hook)

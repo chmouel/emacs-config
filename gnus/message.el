@@ -1,6 +1,6 @@
 (require 'message)
 
-(add-to-list 'auto-mode-alist '("core\.rackspace\.com\..*\.txt\\'" . message-mode))
+(push '("core\.rackspace\.com\..*\.txt\\'" . message-mode) auto-mode-alist)
 
 (setq 
  message-auto-save-directory "~/Gnus/Mail/drafts"
@@ -8,7 +8,7 @@
 )
 
 
-(add-to-list 'auto-mode-alist '("\\.eml\\'" . message-mode))
+(push '("\\.eml\\'" . message-mode) auto-mode-alist)
 
 (GUI
  (set-face-foreground 'message-header-name "gold1")

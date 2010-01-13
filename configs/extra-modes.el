@@ -36,7 +36,7 @@
 
 ;RST
 (autoload 'rst-mode "rst" "RST" t)
-(add-to-list 'auto-mode-alist '("\\.rst\\'" . rst-mode))
+(push '("\\.rst\\'" . rst-mode) auto-mode-alist)
 
 ; Windows Numbering
 (require 'window-numbering)
@@ -76,3 +76,5 @@
   )
 (global-set-key (kbd "C-M-s") 'my-igrep-at-point)
 
+;RegexTool
+(autoload 'regex-tool "regex-tool" "REGEX Tool" t)

@@ -3,11 +3,11 @@
 ;MODELS
 (define-derived-mode django-models-mode python-mode  "django-models"
   "Major mode for editing django models files")
-(add-to-list 'auto-mode-alist '("models\\.py\\'" . django-models-mode))
+(push '("models\\.py\\'" . django-models-mode) auto-mode-alist)
 
 ;HTML Template
 (autoload 'django-html-mode "django-html-mode")
-(add-to-list 'auto-mode-alist '("\\.dhtml\\'" . django-html-mode))
+(push '("\\.dhtml\\'" . django-html-mode) auto-mode-alist)
 
 (defun my-django-html-mode-hook()
   (local-set-key '[(control p)] (lambda () (interactive) (snippet-insert "{{ $${variable}$. }}")))

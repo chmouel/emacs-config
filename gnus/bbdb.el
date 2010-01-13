@@ -7,7 +7,7 @@
  )
 
 ;BBDB ADDRBOOK
-(add-to-list 'load-path (expand-file-name "/usr/share/emacs/site-lisp/bbdb/lisp"))
+(push (expand-file-name "/usr/share/emacs/site-lisp/bbdb/lisp") load-path)
 (require 'message-x nil t)
 (require 'bbdb nil t)
 (require 'bbdb-gnus nil t)

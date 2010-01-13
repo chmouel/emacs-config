@@ -42,7 +42,7 @@
 (eldoc-mode 't)
 
 ;Org-Mode
-(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+(push '("\\.org$" . org-mode) auto-mode-alist)
 
 ;Isearch with occur
 (defun my-isearch-occur ()
@@ -107,4 +107,4 @@
 
 ;Generic Modes
 (autoload 'default-generic-mode "generic-x" nil t)
-(add-to-list 'auto-mode-alist '(".icewm/preferences\\'" . default-generic-mode))
+(push '(".icewm/preferences\\'" . default-generic-mode) auto-mode-alist)

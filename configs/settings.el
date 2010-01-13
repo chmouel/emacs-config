@@ -24,7 +24,7 @@
 (global-set-key (read-kbd-macro "M-q") 'fill-region)
 (global-set-key (read-kbd-macro "M-l") 'downcase-word)
 (global-set-key (read-kbd-macro "C-x C-b")    'ibuffer)
-(global-set-key (read-kbd-macro "C-`") 'ido-switch-buffer)
+(global-set-key (read-kbd-macro "C-z") 'ido-switch-buffer)
 (global-set-key (read-kbd-macro "C-~") 'ibuffer)
 
 ;;Prefer BS style cycling (not used)
