@@ -20,7 +20,7 @@
   (which-func-mode 't)
   (local-set-key '[(meta q)] 'python-fill-paragraph)
   (set (make-local-variable 'my-compile-command) (concat python-check-command " \"" buffer-file-name "\""))
-  (set (make-local-variable 'my-compile-run-command) (concat "python  \"" buffer-file-name "\""))
+  (set (make-local-variable 'my-compile-run-command) (concat python-command " \"" buffer-file-name "\""))
   (my-programming-common-hook)
   (local-set-key '[(control meta p)] (lambda () (interactive) (progn (insert "self."))))
   (local-set-key '[(control shift return)] (lambda () (interactive) (compile (concat "pep8.py \"" buffer-file-name "\""))))

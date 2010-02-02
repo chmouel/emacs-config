@@ -18,10 +18,6 @@
 ;; Turn on logging everything to a special buffer, for debugging.
 (setq rcirc-debug-flag nil)
 
-;; Adjust the colours of one of the faces.
-(set-face-background 'rcirc-my-nick "yellow" nil)
-(set-face-foreground 'rcirc-my-nick "blue" nil)
-
 ;; Include date in time stamp.
 (setq rcirc-time-format "%Y-%m-%d %H:%M ")
 

@@ -80,6 +80,7 @@
       '((python-mode . "python.py")))
 
 ;Iswitchb
+(require 'iswitchb)
 (defun my-iswitchb-local-keys ()
   (mapc (lambda (K) 
 	      (let* ((key (car K)) (fun (cdr K)))
