@@ -18,13 +18,13 @@
  '(canlock-password "38ebb79c7f0ece35d1103834941558b48e754833")
  '(color-theme-is-global t)
  '(compilation-ask-about-save nil)
- '(completion-ignored-extensions (quote (".svn/" "CVS/" ".o" "~" ".bin" ".lbin" ".so" ".a" ".ln" ".blg" ".bbl" ".elc" ".pyc" ".pyo" ".gitignore")))
+ '(completion-ignored-extensions (quote (".svn/" "CVS/" ".o" "~" ".bin" ".lbin" ".so" ".a" ".ln" ".blg" ".bbl" ".elc" ".pyc" ".pyo" ".gitignore" ".class")))
  '(completion-styles (quote (basic partial-completion emacs22 initials)))
  '(cursor-in-non-selected-windows nil)
  '(default-major-mode (quote text-mode) t)
  '(diff-switches "-uw")
  '(dired-auto-revert-buffer (quote dired-directory-changed-p))
- '(dired-omit-files "^\\.?#\\|^\\.$\\|^\\.\\.$\\|^Thumbs.db$\\|\\.svn$\\|\\.git\\(ignore\\)?\\|\\.pyc$\\|^\\.coverage$\\|^TAGS$\\|^tags$")
+ '(dired-omit-files "^\\.?#\\|^\\.$\\|^\\.\\.$\\|^Thumbs.db$\\|\\.svn$\\|\\.git\\(ignore\\)?\\|\\.pyc$\\|^\\.coverage$\\|^TAGS$\\|^tags$\\|\\.class$")
  '(display-time-24hr-format t)
  '(display-time-default-load-average nil)
  '(display-time-mode t)
@@ -149,6 +149,7 @@
  '(x-select-enable-clipboard t)
  '(yas/global-mode nil nil (yasnippet))
  '(yas/trigger-key "C-M-SPC")
+ '(yas/wrap-around-region t)
  '(zoneinfo-style-world-list (quote (("Europe/London" "London") ("America/Chicago" "San Antonio") ("Europe/Paris" "Paris")))))
 (if 'nil
 (custom-set-faces

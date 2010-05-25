@@ -1,0 +1,11 @@
+(autoload 'groovy-mode "groovy-mode")
+(autoload 'groovy-electric-mode "groovy-electric")
+(add-to-list 'auto-mode-alist '("\\.groovy" . groovy-mode))
+
+(defun my-groovy-mode-hook()
+  ;(local-set-key '[(control p)] (lambda () (interactive) (progn (insert "System.out.println(  );")(backward-char 3))))
+  (set (make-local-variable 'my-compile-command) 'my-compile-run-command)
+  (set (make-local-variable 'my-compile-run-command) (concat "groovy \"" buffer-file-name "\"" ))
+  (my-programming-common-hook)
+  )
+(add-hook 'groovy-mode-hook 'my-groovy-mode-hook)

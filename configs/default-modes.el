@@ -38,9 +38,6 @@
         try-complete-lisp-symbol-partially
         try-complete-lisp-symbol))
 
-;Emacs-Lisp
-(eldoc-mode 't)
-
 ;Org-Mode
 (push '("\\.org$" . org-mode) auto-mode-alist)
 

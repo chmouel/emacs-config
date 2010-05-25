@@ -2,7 +2,7 @@
 (setq my-java-command "java")
 
 (defun my-java-mode-hook()
-  (local-set-key '[(control p)] (lambda () (interactive) (progn (insert "System.out.println(  );")(backward-char 3))))
+  ;(local-set-key '[(control p)] (lambda () (interactive) (progn (insert "System.out.println(  );")(backward-char 3))))
   (set (make-local-variable 'my-compile-command) 'my-compile-run-command)
   (set (make-local-variable 'my-compile-run-command) (concat "\"" my-java-compiler-command "\" \"" buffer-file-name "\" && " "\"" my-java-command "\" \"" (file-name-sans-extension (file-name-nondirectory (buffer-file-name))) "\""))
   (my-programming-common-hook)
