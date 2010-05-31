@@ -108,6 +108,7 @@
  '(make-backup-files nil)
  '(max-specpdl-size 50000)
  '(mm-inline-text-html-with-w3m-keymap nil)
+ '(org-startup-folded nil)
  '(rcirc-always-use-server-buffer-flag t)
  '(rcirc-default-nick "chmouelb")
  '(rcirc-default-user-name "chmouelb")
