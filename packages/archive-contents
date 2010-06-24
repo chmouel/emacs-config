@@ -1,0 +1,8 @@
+(1
+ (hello .
+	[(0 2)
+	 nil "hello world package" single])
+ (js2-mode .
+	   [(20090814)
+	    nil "an improved JavaScript editing mode" single]))
+

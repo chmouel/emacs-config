@@ -84,3 +84,6 @@
   (progn 
     (sml-modeline-mode 1)                   ;; show buffer pos in the mode line
     (scroll-bar-mode -1)))                   ;; turn off the scrollbar
+
+;Magit
+(autoload 'magit-status "magit" "Magit Status" t)

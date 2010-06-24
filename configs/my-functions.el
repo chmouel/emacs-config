@@ -147,5 +147,12 @@
         (move-end-of-line nil)
         (comment-dwim nil)
         ))))
-(global-set-key (read-kbd-macro "M-;") 'my-comment-line-or-region)
-(global-set-key (read-kbd-macro "C-;") 'comment-dwim)
+(global-set-key (read-kbd-macro "C-;") 'my-comment-line-or-region)
+(global-set-key (read-kbd-macro "M-;") 'comment-dwim)
+
+;Hides the disturbing '^M' showing up in files containing mixed UNIX and DOS line endings.
+(defun my-hide-ctrl-M ()
+  (interactive)
+  (setq buffer-display-table (make-display-table))
+  (aset buffer-display-table ?\^M []))
+(global-set-key '[(C-f1)] 'my-hide-ctrl-M)
