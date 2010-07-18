@@ -132,6 +132,7 @@
  '(savehist-file "~/.emacs.d/auto-save-list/history")
  '(savehist-mode t nil (savehist))
  '(server-mode t)
+ '(server-use-tcp nil)
  '(server-window nil)
  '(split-width-threshold nil)
  '(svn-status-display-full-path t)
