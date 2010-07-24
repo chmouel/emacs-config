@@ -42,6 +42,8 @@
 (require 'window-numbering)
 (window-numbering-mode t)
 
+(require 'python)
+
 ;Yasnippet
 (require 'yasnippet) ;; not yasnippet-bundle
 (setq yas/trigger-key (kbd "")) 
