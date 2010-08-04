@@ -64,6 +64,7 @@
  '(gnus-init-file "~/.emacs.d/gnus/init.el")
  '(grep-scroll-output t)
  '(grep-window-height 10)
+ '(gud-tooltip-echo-area t)
  '(hippie-expand-try-functions-list (quote (yas/hippie-try-expand try-complete-file-name-partially try-complete-file-name try-expand-dabbrev try-expand-dabbrev-all-buffers try-expand-all-abbrevs try-expand-list try-expand-line try-expand-dabbrev-from-kill try-complete-lisp-symbol-partially try-complete-lisp-symbol)))
  '(hl-line-sticky-flag nil)
  '(home-end-enable t)
@@ -106,7 +107,7 @@
  '(kill-do-not-save-duplicates t)
  '(ls-lisp-dirs-first t)
  '(ls-lisp-use-insert-directory-program nil)
- '(magit-repo-dirs (quote ("/home/chmouel/GIT/rackspace/core")) t)
+ '(magit-repo-dirs (quote ("/home/chmouel/GIT/rackspace/core")))
  '(make-backup-files nil)
  '(max-specpdl-size 50000)
  '(mm-inline-text-html-with-w3m-keymap nil)
@@ -136,6 +137,7 @@
  '(server-use-tcp nil)
  '(server-window nil)
  '(split-width-threshold nil)
+ '(sql-connection-alist (quote (("tt" (sql-product (quote sqlite)) (sql-database "/tmp/a.db")) ("core" (sql-product (quote postgres)) (sql-user "core_write") (sql-database "core_dev") (sql-server "d-db1.core.rackspace.com")))))
  '(svn-status-display-full-path t)
  '(svn-status-hide-unmodified t)
  '(svn-status-wash-control-M-in-process-buffers t)
@@ -174,6 +176,7 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
+ '(c-annotation-face ((t (:foreground "chartreuse"))) t)
  '(diff-added ((default nil) (nil nil)))
  '(diff-changed ((nil nil)))
  '(diff-file-header ((((class color) (min-colors 88) (background light)) (:background "#242424" :foreground "green" :weight bold))))
