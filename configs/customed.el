@@ -1,9 +1,9 @@
 
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(ack-executable "/usr/bin/ack-grep")
  '(all-christian-calendar-holidays t)
  '(anything-c-adaptive-history-file "~/.emacs.d/auto-save-list/anything-c-adaptive-history")
@@ -32,6 +32,7 @@
  '(display-time-world-list (quote (("Europe/London" "London") ("Europe/Paris" "Paris") ("America/Chicago" "San Antonio"))))
  '(doc-view-continuous t)
  '(ediff-window-setup-function (quote ediff-setup-windows-plain))
+ '(electric-pair-mode t)
  '(elscreen-tab-width 23)
  '(enable-local-variables :all)
  '(erc-away-nickname "chmouel_away")
@@ -172,10 +173,10 @@
  '(mode-line ((t (:background "#3e3e5e" :foreground "#ffdab9" :box (:line-width -1 :style released-button) :weight bold))))
  '(which-func ((((class color) (min-colors 88) (background dark)) (:foreground "Green"))))))
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(c-annotation-face ((t (:foreground "chartreuse"))) t)
  '(diff-added ((default nil) (nil nil)))
  '(diff-changed ((nil nil)))
