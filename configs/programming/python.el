@@ -5,9 +5,8 @@
   (setq python-check-command "/usr/bin/pylint --output-format=parseable"))
 
 (when (load "flymake" t) 
-  (require 'tramp)
   (defun flymake-pyflakes-init () 
-   (when (not (subsetp (list (current-buffer)) (tramp-list-remote-buffers)))
+   (when (not (file-remote-p (buffer-file-name)))
       (let* ((temp-file (flymake-init-create-temp-buffer-copy 
                          'flymake-create-temp-inplace)) 
              (local-file (file-relative-name 
