@@ -191,6 +191,7 @@
  '(eshell-ls-directory ((((class color) (background light)) (:foreground "cyan" :weight bold))))
  '(flymake-errline ((nil (:foreground "orange" :weight bold))))
  '(gnus-cite-1 ((((class color) (background light)) (:foreground "cyan"))))
+ '(gnus-group-mail-3-empty ((((class color) (background light)) (:foreground "deep sky blue"))))
  '(gnus-summary-normal-read ((((class color) (background light)) (:foreground "grey40" :weight thin))))
  '(hi-yellow ((((min-colors 88)) (:background "yellow1" :foreground "black"))))
  '(log-view-message ((((class color) (background light)) (:background "red" :foreground "white"))))

@@ -106,3 +106,4 @@
 ;Generic Modes
 (autoload 'default-generic-mode "generic-x" nil t)
 (push '(".icewm/preferences\\'" . default-generic-mode) auto-mode-alist)
+
