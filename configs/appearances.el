@@ -1,8 +1,8 @@
 ; The theme
-(require 'color-theme 'nil t)
-(when (fboundp 'color-theme-mode) 
-  (require 'color-theme-wombat)
-  (color-theme-wombat))
+;; (require 'color-theme 'nil t)
+;; (when (fboundp 'color-theme-mode) 
+;;   (require 'color-theme-wombat)
+;;   (color-theme-wombat))
 
 ;;Default appearances
 (setq frame-title-format "Emacs - %b %*") 
