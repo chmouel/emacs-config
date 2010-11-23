@@ -82,6 +82,7 @@
  '(ibuffer-use-other-window nil)
  '(ido-enable-last-directory-history nil)
  '(ido-enable-tramp-completion nil)
+ '(ido-everywhere t)
  '(ido-ignore-directories (quote ("\\`CVS/" "\\`\\.\\./" "\\`\\./" "\\`\\.svn/")))
  '(ido-mode (quote buffer) nil (ido))
  '(ido-save-directory-list-file "~/.emacs.d/auto-save-list/ido.last")
