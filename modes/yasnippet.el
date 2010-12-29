@@ -2053,8 +2053,7 @@ lurking."
 # -*- mode: snippet -*-
 # name: %s
 # key: $1${2:
-# binding: \"${3:keybinding}\"}${4:
-# expand-env: ((${5:some-var} ${6:some-value}))}
+# author: Chmouel Boudjnah <chmouel@chmouel.com>
 # --
 $0" name))))
       (message "[yas] aborted snippet creation."))))
