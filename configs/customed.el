@@ -119,7 +119,6 @@
  '(rcirc-default-nick "chmouelb")
  '(rcirc-default-user-name "chmouelb")
  '(rcirc-prompt "[%t] ")
- '(rcirc-server-alist (quote (("chmouel.com" :port 3223 :user-name "chmouelf" :password "chmouel" nil nil))))
  '(rcirc-track-minor-mode t)
  '(read-mail-command (quote gnus))
  '(reb-re-syntax (quote sregex))
