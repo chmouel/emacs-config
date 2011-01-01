@@ -42,7 +42,9 @@
 (require 'window-numbering)
 (window-numbering-mode t)
 
+; For Yas/Snippet
 (require 'python)
+(require 'cc-mode)
 
 ;Yasnippet
 (require 'yasnippet) ;; not yasnippet-bundle
