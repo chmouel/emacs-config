@@ -70,7 +70,6 @@
 (add-hook 'shell-mode-hook '(lambda () (toggle-truncate-lines 1)))
 (setq comint-prompt-read-only t)
 
-
 ;AutoInsert
 (auto-insert-mode 't)
 (setq auto-insert-alist
@@ -88,6 +87,7 @@
 	      ("<down>"  . ignore             ))))
 (add-hook 'iswitchb-define-mode-map-hook 'my-iswitchb-local-keys)
 
+; IDO
 (defun my-ido-local-keys ()
  "Add my keybindings for ido."
  (define-key ido-completion-map " " 'ido-next-match)
@@ -97,13 +97,11 @@
 ;Comit mode
 (add-hook 'comint-mode-hook
 	  (lambda ()
-        (local-set-key '[(control meta l)] (lambda () (interactive) (switch-to-buffer (other-buffer nil))))
-        ))
+        (local-set-key 
+         '[(control meta l)] 
+         (lambda () (interactive) 
+           (switch-to-buffer (other-buffer nil))))))
 
-
+; Flyspell mode
 (add-hook 'log-edit-mode-hook 'flyspell-mode)
-
-;Generic Modes
-(autoload 'default-generic-mode "generic-x" nil t)
-(push '(".icewm/preferences\\'" . default-generic-mode) auto-mode-alist)
 
