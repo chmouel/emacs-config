@@ -8,3 +8,5 @@ modes/local/*
 !hosts/.gitignore
 hosts/*
 tramp
+/elpa/archives/gnu/archive-contents
+/packages/archives/gnu/archive-contents

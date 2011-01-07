@@ -78,3 +78,6 @@
 
 ;Magit
 (autoload 'magit-status "magit" "Magit Status" t)
+
+;GIT Commit
+(require 'git-commit)

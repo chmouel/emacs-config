@@ -43,3 +43,4 @@
 ;;END
 (cd (expand-file-name "~/"))
 (put 'dired-find-alternate-file 'disabled nil)
+

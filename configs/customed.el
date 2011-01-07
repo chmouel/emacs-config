@@ -17,12 +17,10 @@
  '(c-basic-offset 4)
  '(calendar-christian-all-holidays-flag t)
  '(canlock-password "38ebb79c7f0ece35d1103834941558b48e754833")
- '(color-theme-is-global t)
  '(compilation-ask-about-save nil)
  '(completion-ignored-extensions (quote (".svn/" "CVS/" ".o" "~" ".bin" ".lbin" ".so" ".a" ".ln" ".blg" ".bbl" ".elc" ".pyc" ".pyo" ".gitignore" ".class")))
  '(completion-styles (quote (basic partial-completion emacs22 initials)))
- '(cursor-in-non-selected-windows nil)
- '(custom-enabled-themes (quote (wheatgrass)))
+ '(custom-enabled-themes (quote (tango-dark)))
  '(default-major-mode (quote text-mode) t)
  '(diff-switches "-uw")
  '(dired-auto-revert-buffer (quote dired-directory-changed-p))
@@ -216,4 +214,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(git-commit-comment-face ((((class color) (min-colors 88) (background dark)) (:foreground "cyan"))))
+ '(git-commit-nonempty-second-line-face ((((class color) (min-colors 88) (background dark)) (:background "red" :weight bold))))
+ '(git-commit-overlong-summary-face ((((class color) (min-colors 88) (background dark)) nil)))
+ '(git-commit-summary-face ((default (:weight bold)) (((class color) (min-colors 88) (background dark)) (:foreground "Yellow")))))
