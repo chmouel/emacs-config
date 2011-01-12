@@ -1,5 +1,8 @@
 ;;Default appearances
-(setq frame-title-format "Emacs - %b %*") 
+(setq frame-title-format
+  '("" invocation-name ": "(:eval (if (buffer-file-name)
+                (abbreviate-file-name (buffer-file-name))
+                  "%b"))))
 (when (featurep 'tool-bar) (tool-bar-mode -1))
 (when (featurep 'scroll-bar) (scroll-bar-mode -1))
 (when (featurep 'fringe) (fringe-mode -1))

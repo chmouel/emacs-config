@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# contributor: Chmouel Boudjnah <chmouel@chmouel.com>
+# name: interface
+# --
+interface ${1:`(file-name-sans-extension (file-name-nondirectory (buffer-file-name)))`}${2: extends ${3:Parent}} {
+      $0
+}
