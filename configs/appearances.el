@@ -20,3 +20,12 @@
 
 ;Non Customizables
 (setq ring-bell-function 'ignore)
+
+;
+(when (string-match "^23." emacs-version)
+  (if (and (featurep 'color-theme) window-system)
+      (cond ((require 'color-theme-wombat nil t)
+            (color-theme-wombat)
+            )))
+  )
+
