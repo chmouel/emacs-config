@@ -17,6 +17,7 @@
   (local-set-key '[(j)] 'dired-next-line) 
   (local-set-key '[(k)] 'dired-previous-line) 
   (local-set-key '[(s)] 'dired-up-directory) 
+  (local-set-key '[(l)] 'my-dired-launch-command) 
   (local-set-key '[(backspace)] 'dired-up-directory) 
   (local-set-key '[(E)] 'wdired-change-to-wdired-mode) 
   (local-set-key '[(W)] 'browse-url-of-dired-file)

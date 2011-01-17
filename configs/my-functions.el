@@ -159,7 +159,7 @@
 
 ;Hack dired to launch files with 'l' key.  
 ;http://omniorthogonal.blogspot.com/2008/05/useful-emacs-dired-launch-hack.html
-(defun dired-launch-command ()
+(defun my-dired-launch-command ()
   (interactive)
   (dired-do-shell-command 
    (case system-type       
@@ -167,7 +167,3 @@
      (darwin "open"))
    nil
    (dired-get-marked-files t current-prefix-arg)))
-
-(setq dired-load-hook
-      (lambda (&rest ignore)
-        (define-key dired-mode-map   "l" 'dired-launch-command)))
