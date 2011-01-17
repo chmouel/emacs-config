@@ -20,11 +20,11 @@
  '(compilation-ask-about-save nil)
  '(completion-ignored-extensions (quote (".svn/" "CVS/" ".o" "~" ".bin" ".lbin" ".so" ".a" ".ln" ".blg" ".bbl" ".elc" ".pyc" ".pyo" ".gitignore" ".class")))
  '(completion-styles (quote (basic partial-completion emacs22 initials)))
- '(custom-enabled-themes (quote (tango-dark)))
+ '(custom-enabled-themes (quote (tango)))
  '(default-major-mode (quote text-mode) t)
  '(diff-switches "-uw")
  '(dired-auto-revert-buffer (quote dired-directory-changed-p))
- '(dired-omit-files "^\\.?#\\|^\\.$\\|^\\.\\.$\\|^Thumbs.db$\\|\\.svn$\\|\\.git\\(ignore\\)?\\|\\.pyc$\\|^\\.coverage$\\|^TAGS$\\|^tags$\\|\\.class$")
+ '(dired-omit-files "^\\.?#\\|^\\.$\\|^\\.\\.$\\|^Thumbs.db$\\|\\.svn$\\|\\.git\\(ignore\\)?\\|\\.pyc$\\|^\\.coverage$\\|^TAGS$\\|^tags$\\|\\.class$\\|\\.DS_Store\\|\\.localized$")
  '(display-time-24hr-format t)
  '(display-time-default-load-average nil)
  '(display-time-mode t)
@@ -112,6 +112,7 @@
  '(max-specpdl-size 50000)
  '(mm-inline-text-html-with-w3m-keymap nil)
  '(org-startup-folded nil)
+ '(package-archives (quote (("gnu" . "http://elpa.gnu.org/packages/") ("elpa" . "http://tromey.com/elpa/") ("marmalade" . "http://marmalade-repo.org/packages/"))))
  '(package-user-dir "~/.emacs.d/packages")
  '(rcirc-always-use-server-buffer-flag t)
  '(rcirc-default-nick "chmouelb")
@@ -146,6 +147,7 @@
  '(tramp-default-method "rsyncc")
  '(tramp-persistency-file-name "~/.emacs.d/auto-save-list/tramp")
  '(uniquify-buffer-name-style (quote forward) nil (uniquify))
+ '(url-cookie-file "~/.emacs.d/auto-save-list/cookies")
  '(use-file-dialog nil)
  '(user-full-name "Chmouel Boudjnah")
  '(user-mail-address "chmouel@chmouel.com")
@@ -156,65 +158,9 @@
  '(yas/trigger-key "C-M-SPC")
  '(yas/wrap-around-region t)
  '(zoneinfo-style-world-list (quote (("Europe/London" "London") ("America/Chicago" "San Antonio") ("Europe/Paris" "Paris")))))
-(if 'nil
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
-;;  '(flymake-errline ((((class color)) (:background "Brown" :foreground "LightSalmon" :weight bold))))
-;;  '(flymake-warnline ((((class color)) (:background "Salmon" :foreground "White" :weight bold))))
-;;  '(hl-line ((t (:foreground "Orange"))))
-;;  '(jabber-roster-user-away ((t (:foreground "grey" :slant italic :weight normal))))
-;;  '(jabber-roster-user-online ((t (:foreground "cyan" :slant normal :weight bold))))
-;;  '(mode-line ((t (:background "#3e3e5e" :foreground "#ffdab9" :box (:line-width -1 :style released-button) :weight bold))))
-;;  '(which-func ((((class color) (min-colors 88) (background dark)) (:foreground "Green"))))))
-;; (custom-set-faces
-;;  ;; custom-set-faces was added by Custom.
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
-;;  '(c-annotation-face ((t (:foreground "chartreuse"))) t)
-;;  '(diff-added ((default nil) (nil nil)))
-;;  '(diff-changed ((nil nil)))
-;;  '(diff-file-header ((((class color) (min-colors 88) (background light)) (:background "#242424" :foreground "green" :weight bold))))
-;;  '(diff-header ((((class color) (min-colors 88) (background light)) (:background "#242424" :foreground "white"))))
-;;  '(diff-refine-change ((((class color) (min-colors 88) (background light)) nil)))
-;;  '(diff-removed ((t (:foreground "coral"))))
-;;  '(erc-direct-msg-face ((t (:foreground "Yellow"))))
-;;  '(erc-input-face ((t (:foreground "white" :weight extra-bold))))
-;;  '(erc-notice-face ((t (:foreground "Grey66"))))
-;;  '(erc-prompt-face ((t (:foreground "Green"))))
-;;  '(eshell-ls-directory ((((class color) (background light)) (:foreground "cyan" :weight bold))))
-;;  '(flymake-errline ((nil (:foreground "orange" :weight bold))))
-;;  '(gnus-cite-1 ((((class color) (background light)) (:foreground "cyan"))))
-;;  '(gnus-group-mail-3-empty ((((class color) (background light)) (:foreground "deep sky blue"))))
-;;  '(gnus-summary-normal-read ((((class color) (background light)) (:foreground "grey40" :weight thin))))
-;;  '(hi-yellow ((((min-colors 88)) (:background "yellow1" :foreground "black"))))
-;;  '(log-view-message ((((class color) (background light)) (:background "red" :foreground "white"))))
-;;  '(magit-diff-add ((((class color) (background light)) (:foreground "deep sky blue" :weight bold))))
-;;  '(magit-diff-del ((((class color) (background light)) (:foreground "red"))))
-;;  '(magit-diff-file-header ((t (:inherit diff-file-header))))
-;;  '(magit-header ((t (:background "dim gray" :foreground "white"))))
-;;  '(magit-item-highlight ((((class color) (background light)) nil)))
-;;  '(magit-log-sha1 ((((class color) (background light)) (:foreground "red"))))
-;;  '(message-header-subject ((t (:foreground "cyan" :weight bold))))
-;;  '(message-header-to ((t (:foreground "Cyan" :weight bold))))
-;;  '(org-footnote ((((class color) (background light)) (:foreground "gold" :underline t))))
-;;  '(org-link ((((class color) (background light)) (:foreground "orchid" :underline t :weight bold))))
-;;  '(org-table ((((class color) (min-colors 88) (background light)) (:foreground "deep sky blue"))))
-;;  '(svn-status-directory-face ((((class color) (background light)) (:foreground "cyan"))))
-;;  '(svn-status-filename-face ((((class color) (background light)) (:foreground "yellow"))))
-;;  '(twitter-header-face ((t (:background "light gray" :foreground "black"))))
-;;  '(which-func ((((class color) (min-colors 88) (background light)) (:inherit mode-line-emphasis))))
-;;  '(yas/field-highlight-face ((((class color) (background light)) (:background "ivory4")))
- ))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(git-commit-comment-face ((((class color) (min-colors 88) (background dark)) (:foreground "cyan"))))
- '(git-commit-nonempty-second-line-face ((((class color) (min-colors 88) (background dark)) (:background "red" :weight bold))))
- '(git-commit-overlong-summary-face ((((class color) (min-colors 88) (background dark)) nil)))
- '(git-commit-summary-face ((default (:weight bold)) (((class color) (min-colors 88) (background dark)) (:foreground "Yellow")))))
+ )

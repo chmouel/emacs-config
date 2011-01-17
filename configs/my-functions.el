@@ -156,3 +156,14 @@
   (setq buffer-display-table (make-display-table))
   (aset buffer-display-table ?\^M []))
 (global-set-key '[(C-f1)] 'my-hide-ctrl-M)
+
+;Hack dired to launch files with 'l' key.  
+;http://omniorthogonal.blogspot.com/2008/05/useful-emacs-dired-launch-hack.html
+(defun my-dired-launch-command ()
+  (interactive)
+  (dired-do-shell-command 
+   (case system-type       
+     (gnu/linux "gnome-open") ;right for gnome (ubuntu), not for other systems
+     (darwin "open"))
+   nil
+   (dired-get-marked-files t current-prefix-arg)))
