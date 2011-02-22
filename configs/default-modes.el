@@ -106,3 +106,6 @@
 ; Flyspell mode
 (add-hook 'log-edit-mode-hook 'flyspell-mode)
 
+;
+(add-hook 'after-save-hook
+  'executable-make-buffer-file-executable-if-script-p)
