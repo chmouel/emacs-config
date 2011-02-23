@@ -1,14 +1,18 @@
+
+
 (dolist (x '("pychecker" "pylint"))
   (if (executable-find x)
       (setq python-check-command (executable-find x)))
   )
 
+(setq python-pyflakes-command 'nil)
 (dolist (x '("pyflakes" "flake8"))
   (if (executable-find x)
       (setq python-pyflakes-command (executable-find x)))
   )
 
-(when (and (load "flymake" t) python-pyflake-command)
+
+(when (and (load "flymake" t) python-pyflakes-command)
   (defun flymake-pyflakes-init () 
    (when (not (file-remote-p (buffer-file-name)))
       (let* ((temp-file (flymake-init-create-temp-buffer-copy 
@@ -16,7 +20,7 @@
              (local-file (file-relative-name 
                           temp-file 
                           (file-name-directory buffer-file-name)))) 
-        (list python-pyflake-command (list local-file)))))
+        (list python-pyflakes-command (list local-file)))))
   (push '("\\.py\\'" flymake-pyflakes-init) flymake-allowed-file-name-masks)) 
 
 (defun my-python-mode-hook()
