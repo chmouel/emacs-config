@@ -1,10 +1,14 @@
-(if (file-exists-p "/usr/bin/pychecker")
-  (setq python-check-command "/usr/bin/pychecker -e --stdlib"))
+(dolist (x '("pychecker" "pylint"))
+  (if (executable-find x)
+      (setq python-check-command (executable-find x)))
+  )
 
-(if (file-exists-p "/usr/bin/pylint")
-  (setq python-check-command "/usr/bin/pylint --output-format=parseable"))
+(dolist (x '("pyflakes" "flake8"))
+  (if (executable-find x)
+      (setq python-pyflakes-command (executable-find x)))
+  )
 
-(when (load "flymake" t) 
+(when (and (load "flymake" t) python-pyflake-command)
   (defun flymake-pyflakes-init () 
    (when (not (file-remote-p (buffer-file-name)))
       (let* ((temp-file (flymake-init-create-temp-buffer-copy 
@@ -12,16 +16,16 @@
              (local-file (file-relative-name 
                           temp-file 
                           (file-name-directory buffer-file-name)))) 
-        (list "pyflakes" (list local-file)))))
+        (list python-pyflake-command (list local-file)))))
   (push '("\\.py\\'" flymake-pyflakes-init) flymake-allowed-file-name-masks)) 
 
 (defun my-python-mode-hook()
+  (flymake-mode 't)
   (which-func-mode 't)
   (local-set-key '[(meta q)] 'python-fill-paragraph)
   (set (make-local-variable 'my-compile-command) (concat python-check-command " \"" buffer-file-name "\""))
   (set (make-local-variable 'my-compile-run-command) (concat python-command " \"" buffer-file-name "\""))
   (my-programming-common-hook)
-  ;; (local-set-key '[(control meta p)] (lambda () (interactive) (progn (insert "self."))))
-  (local-set-key '[(control shift return)] (lambda () (interactive) (compile (concat "pep8.py \"" buffer-file-name "\""))))
+  (local-set-key '[(control meta p)] (lambda () (interactive) (progn (insert "self."))))
   )
 (add-hook 'python-mode-hook 'my-python-mode-hook)
