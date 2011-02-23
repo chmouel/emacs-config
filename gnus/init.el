@@ -80,14 +80,14 @@
 (require 'gnus-cite)
 (require 'mail-parse)
 
-(GUI
- (set-face-background 'gnus-summary-selected "ForestGreen")
- (set-face-foreground 'gnus-summary-selected "white")
- (set-face-foreground 'gnus-header-from "PaleGreen")
- (set-face-foreground 'gnus-header-content "PaleGreen")
- (set-face-foreground 'gnus-header-subject "PaleGreen")
- (set-face-foreground 'gnus-header-name "gold1")
-)
+;; (GUI
+;;  (set-face-background 'gnus-summary-selected "ForestGreen")
+;;  (set-face-foreground 'gnus-summary-selected "white")
+;;  (set-face-foreground 'gnus-header-from "PaleGreen")
+;;  (set-face-foreground 'gnus-header-content "PaleGreen")
+;;  (set-face-foreground 'gnus-header-subject "PaleGreen")
+;;  (set-face-foreground 'gnus-header-name "gold1")
+;; )
 
 (setq gnus-article-display-hook
       '(gnus-article-de-quoted-unreadable
@@ -237,7 +237,7 @@ address"
 ;; ;; and ham found into the spambox should be moved to reclassify group
 ;;        gnus-ham-process-destinations '(("nnfolder:spam" "nnfolder:mail.reclassify")) 
 ;;      spam-junk-mailgroups '("mail.spam")
-;;      spam-split-group "mail.spam")
+;;      spam-split-grup "mail.spam")
 ;(require 'nnir)
 ;Searching
 ;; this corresponds to a topic line format of "%n %A"
