@@ -3,12 +3,14 @@
 
 (defun my-html-mode-hook()
   (require 'html-inlined)
+  (yas/minor-mode 't)
+  (local-set-key (kbd "RET") 'newline-and-indent)
   (html-inlined-add-key-to-modes)
   (local-set-key '[(control c)(control v)] 'browse-url-of-buffer)
   (local-set-key '[(control c)(control w)] 'sgml-validate)
   (local-set-key '[(control =)] 'php-mode)  
   )
-(add-hook 'html-mode-hook 'my-html-mode-hook)
+(add-hook 'sgml-mode-hook 'my-html-mode-hook)
 
 ;CSS
 (defvar hexcolour-keywords
