@@ -78,6 +78,7 @@
 
 ;Magit
 (autoload 'magit-status "magit" "Magit Status" t)
+(global-set-key (read-kbd-macro "C-c g") 'magit-status)
 
 ;GIT Commit
 (require 'git-commit)

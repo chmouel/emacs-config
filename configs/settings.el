@@ -23,9 +23,10 @@
 (global-set-key (read-kbd-macro "M-/") 'hippie-expand)
 (global-set-key (read-kbd-macro "M-q") 'fill-region)
 (global-set-key (read-kbd-macro "M-l") 'downcase-word)
-(global-set-key (read-kbd-macro "C-x C-b")    'ibuffer-bs-show)
+(global-set-key (read-kbd-macro "C-x C-b")    'list-buffers)
 (global-set-key (read-kbd-macro "C-z") 'ido-switch-buffer)
 (global-set-key (read-kbd-macro "C-~") 'ibuffer)
+(global-set-key (read-kbd-macro "C-M-o") 'other-frame)
 
 ;;Prefer BS style cycling (not used)
 (global-set-key '[(control x)(left)]        'bs-cycle-previous)
