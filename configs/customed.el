@@ -20,7 +20,7 @@
  '(compilation-ask-about-save nil)
  '(completion-ignored-extensions (quote (".svn/" "CVS/" ".o" "~" ".bin" ".lbin" ".so" ".a" ".ln" ".blg" ".bbl" ".elc" ".pyc" ".pyo" ".gitignore" ".class")))
  '(completion-styles (quote (basic partial-completion emacs22 initials)))
- '(custom-enabled-themes (quote (tango-dark)))
+ '(custom-enabled-themes (quote (misterioso)))
  '(default-major-mode (quote text-mode) t)
  '(delete-by-moving-to-trash t)
  '(diff-switches "-uw")
