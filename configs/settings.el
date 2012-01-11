@@ -1,10 +1,6 @@
 ;FSET
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;Custome customize (lol)
-(setq custom-file (concat my-init-directory "/configs/customed.el"))
-(load custom-file)
-
 ;KeyBinding
 (global-set-key '[(control meta l)]         (lambda () (interactive) (switch-to-buffer (other-buffer))))
 (global-set-key '[(control next)]           'end-of-buffer)

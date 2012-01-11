@@ -18,7 +18,7 @@
       (load-file (concat dir (pop files))))))
 
 (defun my-short-hostname() 
-  (string-match "[0-9A-Za-z]+" system-name)
+  (string-match "[0-9A-Za-z-]+" system-name)
   (substring system-name (match-beginning 0) (match-end 0))
   )
 
@@ -31,6 +31,10 @@
 	   (default-directory my-lisp-dir))
       (setq load-path (cons my-lisp-dir load-path))
       (normal-top-level-add-subdirs-to-load-path)))
+
+;Custome customize (lol)
+(setq custom-file (concat my-init-directory "/configs/customed.el"))
+(load custom-file)
 
 ;Loading Configs files
 (my-load-dir (concat my-init-directory "/configs/"))

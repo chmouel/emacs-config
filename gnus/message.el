@@ -1,7 +1,5 @@
 (require 'message)
 
-(push '("core\.rackspace\.com\..*\.txt\\'" . message-mode) auto-mode-alist)
-
 (setq 
  message-auto-save-directory "~/Gnus/Mail/drafts"
  message-directory "~/Gnus/Mail"
@@ -37,7 +35,9 @@
 
 ;Switch Email Adresses
 (defvar my-email-adresses
-  '(("chmouel@chmouel.com") ("chmouel.boudjnah@rackspace.co.uk"))
+  '(("chmouel@openstack.org")
+    ("chmouel@chmouel.com")
+    ("chmouel.boudjnah@rackspace.co.uk"))
   )
 (defun my-email-adress-switch ()
   (interactive)
