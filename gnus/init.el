@@ -33,6 +33,13 @@
  gnus-topic-display-empty-topics nil
  )
 
+;USE K-J for navigation evil
+(defun my-gnus-summary-mode-hook () 
+  (local-set-key '[(j)] 'gnus-summary-next-article) 
+  (local-set-key '[(k)] 'gnus-summary-prev-article) 
+  )
+(add-hook 'gnus-summary-mode-hook 'my-gnus-summary-mode-hook)
+
 (setq gnus-thread-sort-functions '(gnus-thread-sort-by-number 
                                    gnus-thread-sort-by-date 
 								   gnus-thread-sort-by-subject 

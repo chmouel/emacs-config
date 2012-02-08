@@ -136,7 +136,6 @@
  '(save-place-file "~/.emacs.d/auto-save-list/emacs-places")
  '(savehist-file "~/.emacs.d/auto-save-list/history")
  '(savehist-mode t nil (savehist))
- '(server-mode t)
  '(server-use-tcp nil)
  '(server-window nil)
  '(split-width-threshold nil)
@@ -146,6 +145,7 @@
  '(swbuff-exclude-buffer-regexps (quote ("^ " "^\\*" "^newsrc-dribble$" "^bbdb$")))
  '(tab-width 4)
  '(tags-revert-without-query t)
+ '(todotxt-file "/home/chmouel/Dropbox/todo/todo.txt" nil (todotxt))
  '(tramp-chunksize 500)
  '(tramp-default-method "rsyncc")
  '(tramp-persistency-file-name "~/.emacs.d/auto-save-list/tramp")
@@ -166,4 +166,5 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(magit-item-highlight ((t (:weight bold))) t)
+ '(which-func ((t (:weight bold))) t))

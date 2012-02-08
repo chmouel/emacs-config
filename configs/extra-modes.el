@@ -39,11 +39,6 @@
     (setq elscreen-display-tab nil)
   )
 
-;SWBUFF
-(when (featurep 'swbuff)
-  (global-set-key (read-kbd-macro "M-`") 'swbuff-switch-to-next-buffer)
-  (global-set-key (read-kbd-macro "M-~") 'swbuff-switch-to-previous-buffer))
-
 ;RST
 (autoload 'rst-mode "rst" "RST" t)
 (push '("\\.rst\\'" . rst-mode) auto-mode-alist)
@@ -86,3 +81,10 @@
 ;Puppet Mode
 (autoload 'puppet-mode "puppet-mode" "Major mode for editing puppet manifests")
 (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
+
+; Lua Mode
+(require 'lua-mode nil t)
+
+(require 'todotxt nil t)
+(when (featurep 'todotxt)
+  (global-set-key (kbd "<f12>") 'todotxt))

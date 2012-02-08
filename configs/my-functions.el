@@ -154,7 +154,6 @@
   (interactive)
   (setq buffer-display-table (make-display-table))
   (aset buffer-display-table ?\^M []))
-(global-set-key '[(C-f1)] 'my-hide-ctrl-M)
 
 ;Hack dired to launch files with 'l' key.  
 ;http://omniorthogonal.blogspot.com/2008/05/useful-emacs-dired-launch-hack.html
@@ -166,3 +165,26 @@
      (darwin "open"))
    nil
    (dired-get-marked-files t current-prefix-arg)))
+
+
+;From http://xahlee.org/emacs/ergonomic_emacs_keybinding.html
+(defun my-select-text-in-quote ()
+  "Select text between the nearest left and right delimiters.
+Delimiters are paired characters:
+() [] {} «» ‹› “” 〖〗 【】 「」 『』 （） 〈〉 《》 〔〕 ⦗⦘ 〘〙 ⦅⦆ 〚〛 ⦃⦄
+
+For practical purposes, it also includes double straight quote
+\", but not curly single quote matching pairs ‘’, because that is
+often used as apostrophy. It also consider both left and right
+angle brackets <> as either beginning or ending pair, so that it
+is easy to get content inside html tags."
+(interactive)
+(let (b1)
+  (skip-chars-backward "^<>([{“「『‹«（〈《〔【〖⦗〘⦅〚⦃\"")
+  (setq b1 (point))
+  (skip-chars-forward "^<>)]}”」』›»）〉》〕】〗⦘〙⦆〛⦄\"")
+  (set-mark b1)
+  )
+)
+(global-set-key (read-kbd-macro "C-c '") 'my-select-text-in-quote)
+
