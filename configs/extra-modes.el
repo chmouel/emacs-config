@@ -85,6 +85,9 @@
 ; Lua Mode
 (require 'lua-mode nil t)
 
+;
+(require 'pastie nil t)
+
 (require 'todotxt nil t)
 (when (featurep 'todotxt)
   (global-set-key (kbd "<f12>") 'todotxt))

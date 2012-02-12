@@ -4,6 +4,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(*pastie-restricted* t)
  '(ack-executable "/usr/bin/ack-grep")
  '(all-christian-calendar-holidays t)
  '(anything-c-adaptive-history-file "~/.emacs.d/auto-save-list/anything-c-adaptive-history")
@@ -20,7 +21,7 @@
  '(compilation-ask-about-save nil)
  '(completion-ignored-extensions (quote (".svn/" "CVS/" ".o" "~" ".bin" ".lbin" ".so" ".a" ".ln" ".blg" ".bbl" ".elc" ".pyc" ".pyo" ".gitignore" ".class")))
  '(completion-styles (quote (basic partial-completion emacs22 initials)))
- '(custom-enabled-themes (quote (misterioso)))
+ '(custom-enabled-themes (quote (wombat)))
  '(default-major-mode (quote text-mode) t)
  '(delete-by-moving-to-trash t)
  '(diff-switches "-uw")
