@@ -17,6 +17,8 @@
 (push '("\\.py\\'" flymake-pyflakes-init) flymake-allowed-file-name-masks)
 
 (defun my-python-mode-hook()
+  (when "highlight-80+" (highlight-80+-mode))
+  (when "highlight-indentation" (highlight-indentation))
   (flymake-mode 't)
   (local-set-key '[(control c)(\[)] 'flymake-goto-prev-error) 
   (local-set-key '[(control c)(\])] 'flymake-goto-next-error) 

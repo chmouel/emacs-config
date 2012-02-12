@@ -85,6 +85,15 @@
 ; Lua Mode
 (require 'lua-mode nil t)
 
+;Todo-Txt
 (require 'todotxt nil t)
 (when (featurep 'todotxt)
-  (global-set-key (kbd "<f12>") 'todotxt))
+  (global-set-key (kbd "<f12>") 'todotxt)
+  (setq todotxt-file (expand-file-name "~/Dropbox/todo/todo.txt"))
+)
+
+; Hightly more than 80
+(require 'highlight-80+ nil t)
+
+; Highlight Indentation
+(require 'highlight-indentation nil t)
