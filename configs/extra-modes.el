@@ -99,3 +99,6 @@
 
 ; Highlight Indentation
 (require 'highlight-indentation nil t)
+
+;Find find in GIT repo
+(require 'find-file-in-git-repo nil t)
