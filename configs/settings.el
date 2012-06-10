@@ -26,8 +26,8 @@
 (global-set-key (read-kbd-macro "C-M-o") 'other-frame)
 
 ;;Prefer BS style cycling (not used)
-(global-set-key '[(control x)(left)]        'bs-cycle-previous)
-(global-set-key '[(control x)(right)]       'bs-cycle-next)
+(global-set-key '[(control x)(left)]        'switch-to-prev-buffer)
+(global-set-key '[(control x)(right)]       'switch-to-next-buffer)
 
 ;;No need digits
 (global-set-key (read-kbd-macro "C-1")      'delete-other-windows)
