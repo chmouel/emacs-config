@@ -101,4 +101,5 @@
 (require 'highlight-indentation nil t)
 
 ;Find find in GIT repo
-(require 'find-file-in-git-repo nil t)
+(autoload 'find-file-in-git-repo "find-file-in-git-repo" nil t)
+
