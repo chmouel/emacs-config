@@ -157,7 +157,6 @@
  '(wdired-enable t)
  '(woman-use-own-frame nil)
  '(x-select-enable-clipboard t)
- '(yas/global-mode nil nil (yasnippet))
  '(yas/trigger-key "C-M-SPC")
  '(yas/wrap-around-region t)
  '(zoneinfo-style-world-list (quote (("Europe/London" "London") ("America/Chicago" "San Antonio") ("Europe/Paris" "Paris")))))

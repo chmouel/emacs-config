@@ -48,14 +48,14 @@
 (require 'cc-mode)
 
 ;Yasnippet
-(require 'yasnippet) ;; not yasnippet-bundle
-(setq yas/trigger-key (kbd "")) 
-(yas/initialize)
-(yas/load-directory "~/.emacs.d/snippets")
-(eval-after-load "yasnippet"
-  '(progn
-     (require 'dropdown-list)
-     (setq yas/prompt-functions '(yas/dropdown-prompt))))
+(require 'yasnippet nil t) ;; not yasnippet-bundle
+(when (featurep 'yasnippet)
+  (yas/global-mode 1)
+  (eval-after-load "yasnippet"
+    '(progn
+       (require 'dropdown-list)
+       (setq yas/prompt-functions '(yas/dropdown-prompt))))
+)
 
 ;Flymake
 (eval-after-load "flymake"
