@@ -29,6 +29,5 @@
   (set (make-local-variable 'my-compile-run-command) (concat (executable-find python-command) " -E \"" buffer-file-name "\""))
   (my-programming-common-hook)
   (local-set-key '[(control meta p)] (lambda () (interactive) (progn (insert "self."))))
-  (local-set-key '[(control meta /)] 'yas/expand)
   )
 (add-hook 'python-mode-hook 'my-python-mode-hook)
