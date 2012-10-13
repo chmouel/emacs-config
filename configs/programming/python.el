@@ -5,14 +5,21 @@
       (setq python-check-command (executable-find x)))
   )
 
+(defun my-copy-current-function()
+  (interactive)
+  (let ((cmd)
+        (function-name (python-info-current-defun)))
+    (setq cmd (concat "python " (buffer-file-name) " " function-name))
+    (progn (kill-new cmd) (message cmd))))
+
 (require 'flymake)
-(defun flymake-pyflakes-init () 
+(defun flymake-pyflakes-init ()
   (when (not (file-remote-p (buffer-file-name)))
-    (let* ((temp-file (flymake-init-create-temp-buffer-copy 
-                       'flymake-create-temp-inplace)) 
-           (local-file (file-relative-name 
-                        temp-file 
-                        (file-name-directory buffer-file-name)))) 
+    (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                       'flymake-create-temp-inplace))
+           (local-file (file-relative-name
+                        temp-file
+                        (file-name-directory buffer-file-name))))
       (list "flake8" (list local-file)))))
 (push '("\\.py\\'" flymake-pyflakes-init) flymake-allowed-file-name-masks)
 (push '("bin/swift\\'" flymake-pyflakes-init) flymake-allowed-file-name-masks)
@@ -21,8 +28,9 @@
   (when "highlight-80+" (highlight-80+-mode))
   ;(when "highlight-indentation" (highlight-indentation))
   (flymake-mode 't)
-  (local-set-key '[(control c)(\[)] 'flymake-goto-prev-error) 
-  (local-set-key '[(control c)(\])] 'flymake-goto-next-error) 
+  (local-set-key '[(control c)(\[)] 'flymake-goto-prev-error)
+  (local-set-key '[(control c)(\])] 'flymake-goto-next-error)
+  (local-set-key (kbd "C-S-t") 'my-copy-current-function)
   (which-func-mode 't)
   (local-set-key '[(meta q)] 'python-fill-paragraph)
   (set (make-local-variable 'my-compile-command) (concat python-check-command " \"" buffer-file-name "\""))

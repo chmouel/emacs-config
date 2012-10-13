@@ -33,11 +33,11 @@
 
 ;; I-search with initial contents
 (global-set-key '[(control *)] 'isearch-forward-at-point)
-(defvar isearch-initial-string nil)    
+(defvar isearch-initial-string nil)
 (defun isearch-set-initial-string ()
   (remove-hook 'isearch-mode-hook 'isearch-set-initial-string)
   (setq isearch-string isearch-initial-string)
-  (isearch-search-and-update))    
+  (isearch-search-and-update))
 (defun isearch-forward-at-point (&optional regexp-p no-recursive-edit)
       "Interactive search forward for the symbol at point."
       (interactive "P\np")
@@ -106,7 +106,7 @@
  ;; behave like vi's O command
  (defun open-previous-line (arg)
    "Open a new line before the current one.
- 
+
   See also `newline-and-indent'."
    (interactive "p")
    (beginning-of-line)
@@ -114,7 +114,7 @@
    (when newline-and-indent
      (indent-according-to-mode)))
  (global-set-key (kbd "C-o") 'open-previous-line)
- 
+
  ;; autoindent open-*-lines
  (defvar newline-and-indent t
    "Modify the behavior of the open-*-line functions to cause them to autoindent.")
@@ -155,36 +155,57 @@
   (setq buffer-display-table (make-display-table))
   (aset buffer-display-table ?\^M []))
 
-;Hack dired to launch files with 'l' key.  
+;Hack dired to launch files with 'l' key.
 ;http://omniorthogonal.blogspot.com/2008/05/useful-emacs-dired-launch-hack.html
 (defun my-dired-launch-command ()
   (interactive)
-  (dired-do-shell-command 
-   (case system-type       
+  (dired-do-shell-command
+   (case system-type
      (gnu/linux "gnome-open") ;right for gnome (ubuntu), not for other systems
      (darwin "open"))
    nil
    (dired-get-marked-files t current-prefix-arg)))
 
 
-;From http://xahlee.org/emacs/ergonomic_emacs_keybinding.html
-(defun my-select-text-in-quote ()
-  "Select text between the nearest left and right delimiters.
-Delimiters are paired characters:
-() [] {} «» ‹› “” 〖〗 【】 「」 『』 （） 〈〉 《》 〔〕 ⦗⦘ 〘〙 ⦅⦆ 〚〛 ⦃⦄
+(defun my-devstack-remote()
+  (interactive)
+  (let (replacement)
+    (setq replacement
+          (cond
+           ((string-match "/swift/" (buffer-file-name))
+            "/var/lib/lxc/shared/GIT/openstack/swift")
+           (t (expand-file-name "~/GIT/openstack"))))
+    (find-file
+     (replace-regexp-in-string "^.*/opt/stack" replacement (buffer-file-name)))
+    ))
 
-For practical purposes, it also includes double straight quote
-\", but not curly single quote matching pairs ‘’, because that is
-often used as apostrophy. It also consider both left and right
-angle brackets <> as either beginning or ending pair, so that it
-is easy to get content inside html tags."
-(interactive)
-(let (b1)
-  (skip-chars-backward "^<>([{“「『‹«（〈《〔【〖⦗〘⦅〚⦃\"")
-  (setq b1 (point))
-  (skip-chars-forward "^<>)]}”」』›»）〉》〕】〗⦘〙⦆〛⦄\"")
-  (set-mark b1)
-  )
-)
-(global-set-key (read-kbd-macro "C-c '") 'my-select-text-in-quote)
+(defun my-devstack-local()
+  (interactive)
+  (let (replacement)
+    (setq replacement
+          (cond
+           ((string-match "/var/lib/lxc.*swift/" (buffer-file-name))
+            (replace-regexp-in-string "/var/lib/lxc/shared/GIT/openstack/swift" "swift" (buffer-file-name)))
+           ((string-match ".*openstack/swift/swift" (buffer-file-name))
+            (replace-regexp-in-string ".*openstack/swift/swift" "swift" (buffer-file-name)))
+          (t (replace-regexp-in-string ".*GIT/openstack/" "" (buffer-file-name)))))
+    (find-file (concat "/devstack:./" replacement))))
 
+
+(defun my-devstack-edit()
+  (interactive)
+  (if (buffer-file-name)
+      (progn
+        (if (file-remote-p (buffer-file-name))
+            (my-devstack-remote)
+          (my-devstack-local)))))
+
+(global-set-key (read-kbd-macro "C-~") 'my-devstack-edit)
+
+(defun recentf-ido-find-file ()
+  "Find a recent file using Ido."
+  (interactive)
+  (let ((file (ido-completing-read "Choose recent file: " recentf-list nil t)))
+    (when file
+      (find-file file))))
+(global-set-key (read-kbd-macro "C-S-o") 'recentf-ido-find-file)

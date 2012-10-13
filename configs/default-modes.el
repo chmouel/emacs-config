@@ -1,5 +1,5 @@
 ;Abbrev
-(setq 
+(setq
  abbrev-file-name (concat my-init-directory "/auto-save-list/abbrev_defs"))
 
 ;Bookmarks
@@ -9,17 +9,17 @@
 (require 'dired-x)
 (autoload 'dired-omit-mode "dired-x" nil t)
 
-(defun my-dired-mode-hook () 
+(defun my-dired-mode-hook ()
   ;(local-set-key '[(mouse-3)] 'mouse-popup-menubar-stuff)
   (dired-omit-mode)
   (when (featurep 'tooltip) (tooltip-mode 0))
-  (local-set-key '[(meta s)]  (lambda () (interactive) (svn-status (dired-current-directory)) (switch-to-buffer "*svn-status*"))) 
-  (local-set-key '[(j)] 'dired-next-line) 
-  (local-set-key '[(k)] 'dired-previous-line) 
-  (local-set-key '[(s)] 'dired-up-directory) 
-  (local-set-key '[(l)] 'my-dired-launch-command) 
-  (local-set-key '[(backspace)] 'dired-up-directory) 
-  (local-set-key '[(E)] 'wdired-change-to-wdired-mode) 
+  (local-set-key '[(meta s)]  (lambda () (interactive) (svn-status (dired-current-directory)) (switch-to-buffer "*svn-status*")))
+  (local-set-key '[(j)] 'dired-next-line)
+  (local-set-key '[(k)] 'dired-previous-line)
+  (local-set-key '[(s)] 'dired-up-directory)
+  (local-set-key '[(l)] 'my-dired-launch-command)
+  (local-set-key '[(backspace)] 'dired-up-directory)
+  (local-set-key '[(E)] 'wdired-change-to-wdired-mode)
   (local-set-key '[(W)] 'browse-url-of-dired-file)
   (local-set-key '[(mouse-1)] 'dired-advertised-find-file)
   (require 'dired-x)
@@ -27,7 +27,7 @@
 (add-hook 'dired-mode-hook 'my-dired-mode-hook)
 
 ;Hippy-Expand
-(setq hippie-expand-try-functions-list 
+(setq hippie-expand-try-functions-list
       '(try-complete-file-name-partially
         try-complete-file-name
         try-expand-dabbrev
@@ -79,7 +79,7 @@
 ;Iswitchb
 (require 'iswitchb)
 (defun my-iswitchb-local-keys ()
-  (mapc (lambda (K) 
+  (mapc (lambda (K)
 	      (let* ((key (car K)) (fun (cdr K)))
             (define-key iswitchb-mode-map (edmacro-parse-keys key) fun)))
 	    '(("<right>" . iswitchb-next-match)
@@ -98,9 +98,9 @@
 ;Comit mode
 (add-hook 'comint-mode-hook
 	  (lambda ()
-        (local-set-key 
-         '[(control meta l)] 
-         (lambda () (interactive) 
+        (local-set-key
+         '[(control meta l)]
+         (lambda () (interactive)
            (switch-to-buffer (other-buffer nil))))))
 
 ; Flyspell mode
@@ -110,3 +110,16 @@
 (add-hook 'after-save-hook
   'executable-make-buffer-file-executable-if-script-p)
 
+; Delete trailing whitespace
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+; Define j/k for scroll up/down on view-mode and derived.
+(defun my-view-vi-keys-map (x-map)
+  (define-key x-map (read-kbd-macro "S-SPC") 'View-scroll-page-backward)
+  (define-key x-map (read-kbd-macro "j") 'View-scroll-line-forward)
+  (define-key x-map (read-kbd-macro "k") 'View-scroll-line-backward)
+)
+
+(eval-after-load "view" '(my-view-vi-keys-map view-mode-map))
+(eval-after-load "man" '(my-view-vi-keys-map Man-mode-map))
+;(eval-after-load "help" '(my-view-vi-keys-map help-mode-map))

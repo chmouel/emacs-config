@@ -6,7 +6,6 @@
 (global-set-key '[(control next)]           'end-of-buffer)
 (global-set-key '[(control prior)]          'beginning-of-buffer)
 (global-set-key '[(control tab)]            'other-window)
-(global-set-key '[(control meta tab)]           'other-frame)
 (global-set-key '[(control x)(control =)]   'ediff-buffers)
 (global-set-key '[(control x)(-)] 'next-error)
 (global-set-key (read-kbd-macro "C-=") 'jump-to-register)
@@ -53,3 +52,9 @@
 
 ;Unset
 (global-unset-key "\C-x\C-z")
+
+; Minibuffer
+(define-key minibuffer-local-map
+  (read-kbd-macro "C-p") 'previous-history-element)
+(define-key minibuffer-local-map
+  (read-kbd-macro "C-n") 'next-history-element)
