@@ -71,9 +71,6 @@
 (autoload 'magit-status "magit" "Magit Status" t)
 (global-set-key (read-kbd-macro "C-c g") 'magit-status)
 
-;GIT Commit
-(require 'git-commit)
-
 ;Puppet Mode
 (autoload 'puppet-mode "puppet-mode" "Major mode for editing puppet manifests")
 (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
@@ -97,4 +94,3 @@
   (global-set-key (kbd "C-c C-g") 'find-file-in-git-repo)
   (global-set-key (kbd "C-S-f") 'find-file-in-git-repo)
   )
-
