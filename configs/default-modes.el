@@ -13,7 +13,6 @@
   ;(local-set-key '[(mouse-3)] 'mouse-popup-menubar-stuff)
   (dired-omit-mode)
   (when (featurep 'tooltip) (tooltip-mode 0))
-  (local-set-key '[(meta s)]  (lambda () (interactive) (svn-status (dired-current-directory)) (switch-to-buffer "*svn-status*")))
   (local-set-key '[(j)] 'dired-next-line)
   (local-set-key '[(k)] 'dired-previous-line)
   (local-set-key '[(s)] 'dired-up-directory)
