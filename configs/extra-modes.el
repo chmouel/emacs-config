@@ -58,22 +58,12 @@
   '(progn
      (require 'flymake-cursor)))
 
-;LUA-MODE
-(autoload 'lua-mode "lua-mode" "Lua Mode" t)
-
-;GIT
-(autoload 'git-status "git" "GIT status" t)
-
 ;RegexTool
 (autoload 'regex-tool "regex-tool" "REGEX Tool" t)
 
 ;Magit
 (autoload 'magit-status "magit" "Magit Status" t)
 (global-set-key (read-kbd-macro "C-c g") 'magit-status)
-
-;Puppet Mode
-(autoload 'puppet-mode "puppet-mode" "Major mode for editing puppet manifests")
-(add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
 
 ;Todo-Txt
 (require 'todotxt nil t)
@@ -95,6 +85,15 @@
   (global-set-key (kbd "C-S-f") 'find-file-in-git-repo)
   )
 
+; Like eclispe F2
 (require 'mark-more-like-this nil t)
 (when (featurep 'mark-more-like-this)
-  (global-set-key (kbd "C-c r") 'mark-all-like-this))
+  (global-set-key (kbd "C-S-2") 'mark-more-like-this))
+
+; Browse Kill ring
+(autoload 'browse-kill-ring "browse-kill-ring" "Browse Kill Ring" t)
+
+; Flymake shell mode
+(require 'flymake-shell nil t)
+(when (featurep 'flymake-shell)
+  (add-hook 'sh-set-shell-hook 'flymake-shell-load))
