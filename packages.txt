@@ -10,6 +10,7 @@ highlight-indentation
 inf-ruby
 lua-mode
 magit
+mark-multiple
 mark-more-like-this
 nose
 regex-tool

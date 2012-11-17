@@ -17,13 +17,16 @@
     (while files
       (load-file (concat dir (pop files))))))
 
-(defun my-short-hostname() 
+(defun my-short-hostname()
   (string-match "[0-9A-Za-z-]+" system-name)
   (substring system-name (match-beginning 0) (match-end 0))
   )
 
 ;; Some macros.
-(defmacro GUI (&rest x) (list 'if (not (null window-system)) (cons 'progn x))) 
+(defmacro GUI (&rest x) (list 'if (not (null window-system)) (cons 'progn x)))
+
+;Load autopackage install
+(load-file (concat my-init-directory "/install-packages.el"))
 
 ;Loading Packages
 (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
@@ -47,4 +50,3 @@
 ;;END
 (cd (expand-file-name "~/"))
 (put 'dired-find-alternate-file 'disabled nil)
-
