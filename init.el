@@ -25,9 +25,6 @@
 ;; Some macros.
 (defmacro GUI (&rest x) (list 'if (not (null window-system)) (cons 'progn x)))
 
-;Load autopackage install
-(load-file (concat my-init-directory "/install-packages.el"))
-
 ;Loading Packages
 (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
     (let* ((my-lisp-dir (expand-file-name (concat my-init-directory "/packages/")))

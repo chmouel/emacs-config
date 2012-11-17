@@ -1,49 +1,23 @@
-;Elscreen
-(if (and (featurep 'elscreen) window-system)
-     (progn
-       (setq elscreen-display-tab t)
-       (global-set-key (read-kbd-macro "M-1")
-                       (lambda () (interactive) (elscreen-goto 0)))
-       (global-set-key (read-kbd-macro "M-2")
-                       (lambda () (interactive) (elscreen-goto 1)))
-       (global-set-key (read-kbd-macro "M-3")
-                       (lambda () (interactive) (elscreen-goto 2)))
-       (global-set-key (read-kbd-macro "M-4")
-                       (lambda () (interactive) (elscreen-goto 3)))
-       (global-set-key (read-kbd-macro "M-5")
-                       (lambda () (interactive) (elscreen-goto 4)))
-       (global-set-key (read-kbd-macro "M-6")
-                       (lambda () (interactive) (elscreen-goto 5)))
-       (global-set-key (read-kbd-macro "M-7")
-                       (lambda () (interactive) (elscreen-goto 6)))
-       (global-set-key (read-kbd-macro "M-8")
-                       (lambda () (interactive) (elscreen-goto 7)))
-       (global-set-key (read-kbd-macro "M-9")
-                       (lambda () (interactive) (elscreen-goto 8)))
-       (global-set-key (read-kbd-macro "M-0")
-                       (lambda () (interactive) (elscreen-goto 9)))
-       (global-set-key '[(control home)] 'elscreen-previous)
-       (global-set-key '[(control end)] 'elscreen-next)
-       (define-key elscreen-map (read-kbd-macro "SPC") 'elscreen-next)
-       (define-key elscreen-map (read-kbd-macro "DEL") 'elscreen-previous)
-       (elscreen-create)
-       (elscreen-create)
-       (elscreen-create)
-       (elscreen-goto 0)
-       (require 'elscreen-dired)
-       )
-  )
-
-;Disable screen when not window-system
-(if  (and (featurep 'elscreen) (not window-system))
-    (setq elscreen-display-tab nil)
-  )
-
 ;RST
 (autoload 'rst-mode "rst" "RST" t)
 (push '("\\.rst\\'" . rst-mode) auto-mode-alist)
 
+;TodoTXT
+(autoload 'todotxt "todotxt" nil t)
+(global-set-key (kbd "<f12>") 'todotxt)
+(setq todotxt-file (expand-file-name "~/Dropbox/todo/todo.txt"))
+
+
+;Ensure package is installed
+(package-initialize)
+(defun my-ensure-installed (package)
+  (if (not (package-installed-p package))
+      (package-install package)))
+
 ; For Yas/Snippet
+(my-ensure-installed 'yasnippet)
+(my-ensure-installed 'yasnippet-bundle)
+(my-ensure-installed 'dropdown-list)
 (require 'yasnippet nil t) ;; not yasnippet-bundle
 (when (featurep 'yasnippet)
   (yas/global-mode 1)
@@ -54,46 +28,52 @@
 )
 
 ;Flymake
+(my-ensure-installed 'flymake-cursor)
 (eval-after-load "flymake"
   '(progn
      (require 'flymake-cursor)))
 
+; Flymake shell mode
+(my-ensure-installed 'flymake-shell)
+(eval-after-load "flymake"
+  '(progn
+     (require 'flymake-shell nil t)
+     (add-hook 'sh-set-shell-hook 'flymake-shell-load)))
+
 ;RegexTool
+(my-ensure-installed 'regex-tool)
 (autoload 'regex-tool "regex-tool" "REGEX Tool" t)
 
 ;Magit
+(my-ensure-installed 'magit)
 (autoload 'magit-status "magit" "Magit Status" t)
 (global-set-key (read-kbd-macro "C-c g") 'magit-status)
 
-;Todo-Txt
-(require 'todotxt nil t)
-(when (featurep 'todotxt)
-  (global-set-key (kbd "<f12>") 'todotxt)
-  (setq todotxt-file (expand-file-name "~/Dropbox/todo/todo.txt"))
-)
-
 ; Hightly more than 80
-(require 'highlight-80+ nil t)
+(my-ensure-installed 'highlight-80+)
+(autoload 'highlight-80+ "highlight-80+" nil t)
 
 ; Highlight Indentation
-(require 'highlight-indentation nil t)
+(my-ensure-installed 'highlight-indentation)
+(autoload 'highlight-indentation "highlight-indentation" nil t)
 
 ;Find find in GIT repo
+(my-ensure-installed 'find-file-in-git-repo)
 (require 'find-file-in-git-repo nil t)
-(when (featurep 'find-file-in-git-repo)
-  (global-set-key (kbd "C-c C-g") 'find-file-in-git-repo)
-  (global-set-key (kbd "C-S-f") 'find-file-in-git-repo)
-  )
-
-; Like eclispe F2
-(require 'mark-more-like-this nil t)
-(when (featurep 'mark-more-like-this)
-  (global-set-key (kbd "C-S-2") 'mark-more-like-this))
+(global-set-key (kbd "C-c C-g") 'find-file-in-git-repo)
+(global-set-key (kbd "C-S-f") 'find-file-in-git-repo)
 
 ; Browse Kill ring
+(my-ensure-installed 'browse-kill-ring)
 (autoload 'browse-kill-ring "browse-kill-ring" "Browse Kill Ring" t)
 
-; Flymake shell mode
-(require 'flymake-shell nil t)
-(when (featurep 'flymake-shell)
-  (add-hook 'sh-set-shell-hook 'flymake-shell-load))
+; Multiple cursors
+(setq mc/list-file "~/.emacs.d/auto-save-list/mc-lists.el")
+(my-ensure-installed 'multiple-cursors)
+(autoload 'mc/mark-next-like-this "multiple-cursors" "Multiple Cursors" t)
+(global-set-key (kbd "C-@") 'mc/mark-next-like-this)
+
+; Expand Region
+(my-ensure-installed 'expand-region)
+(autoload 'er/expand-region "expand-region" "Multiple Cursors" t)
+(global-set-key (kbd "C-=") 'er/expand-region)
