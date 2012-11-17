@@ -103,3 +103,6 @@
 ;Find find in GIT repo
 (autoload 'find-file-in-git-repo "find-file-in-git-repo" nil t)
 
+(require 'mark-more-like-this nil t)
+(when (featurep 'mark-more-like-this)
+  (global-set-key (kbd "C-c r") 'mark-all-like-this))
