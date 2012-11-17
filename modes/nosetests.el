@@ -7,6 +7,33 @@
 
 (defvar nosetests-arg "-sx")
 
+(defun inner-testable ()
+  (save-excursion
+    (re-search-backward
+     "^ \\{0,4\\}\\(class\\|def\\)[ \t]+\\([a-zA-Z0-9_]+\\)" nil t)
+    (buffer-substring-no-properties (match-beginning 2) (match-end 2))))
+
+(defun outer-testable ()
+  (save-excursion
+    (re-search-backward
+     "^\\(class\\|def\\)[ \t]+\\([a-zA-Z0-9_]+\\)" nil t)
+    (let ((result
+            (buffer-substring-no-properties (match-beginning 2) (match-end 2))))
+
+      (cons
+       (buffer-substring-no-properties (match-beginning 1) (match-end 1))
+       result))))
+
+(defun nose-py-testable ()
+  (let* ((inner-obj (inner-testable))
+         (outer (outer-testable))
+         ;; elisp can't return multiple values
+         (outer-def (car outer))
+         (outer-obj (cdr outer)))
+    (cond ((equal outer-def "def") outer-obj)
+          ((equal inner-obj outer-obj) outer-obj)
+          (t (format "%s.%s" outer-obj inner-obj)))))
+
 (defun nosetests-get-command (&optional withcd)
   (let (topdir test-path current-function cmd)
     (setq topdir (file-truename (or (locate-dominating-file
@@ -14,7 +41,7 @@
     (setq test-path (substring (file-truename
                                 (buffer-file-name))
                                (length topdir)))
-    (setq current-function (python-info-current-defun))
+    (setq current-function (nose-py-testable))
     (if (not current-function)
         (error "No function at point"))
 
