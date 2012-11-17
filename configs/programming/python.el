@@ -1,6 +1,6 @@
 (setq python-command (executable-find "python"))
 
-(dolist (x '("pychecker" "pylint"))
+(dolist (x '("flake8" "pychecker" "pylint"))
   (if (executable-find x)
       (setq python-check-command (executable-find x)))
   )
