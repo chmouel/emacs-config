@@ -2,7 +2,7 @@
 (if (and (featurep 'elscreen) window-system)
      (progn
        (setq elscreen-display-tab t)
-       (global-set-key (read-kbd-macro "M-1") 
+       (global-set-key (read-kbd-macro "M-1")
                        (lambda () (interactive) (elscreen-goto 0)))
        (global-set-key (read-kbd-macro "M-2")
                        (lambda () (interactive) (elscreen-goto 1)))
@@ -44,10 +44,6 @@
 (push '("\\.rst\\'" . rst-mode) auto-mode-alist)
 
 ; For Yas/Snippet
-(require 'python)
-(require 'cc-mode)
-
-;Yasnippet
 (require 'yasnippet nil t) ;; not yasnippet-bundle
 (when (featurep 'yasnippet)
   (yas/global-mode 1)
@@ -61,7 +57,7 @@
 (eval-after-load "flymake"
   '(progn
      (require 'flymake-cursor)))
-     
+
 ;LUA-MODE
 (autoload 'lua-mode "lua-mode" "Lua Mode" t)
 
@@ -75,17 +71,9 @@
 (autoload 'magit-status "magit" "Magit Status" t)
 (global-set-key (read-kbd-macro "C-c g") 'magit-status)
 
-;GIT Commit
-(require 'git-commit)
-
 ;Puppet Mode
 (autoload 'puppet-mode "puppet-mode" "Major mode for editing puppet manifests")
 (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
-
-; Lua Mode
-(require 'lua-mode nil t)
-
-(require 'pastie nil t)
 
 ;Todo-Txt
 (require 'todotxt nil t)
@@ -101,7 +89,11 @@
 (require 'highlight-indentation nil t)
 
 ;Find find in GIT repo
-(autoload 'find-file-in-git-repo "find-file-in-git-repo" nil t)
+(require 'find-file-in-git-repo nil t)
+(when (featurep 'find-file-in-git-repo)
+  (global-set-key (kbd "C-c C-g") 'find-file-in-git-repo)
+  (global-set-key (kbd "C-S-f") 'find-file-in-git-repo)
+  )
 
 (require 'mark-more-like-this nil t)
 (when (featurep 'mark-more-like-this)
