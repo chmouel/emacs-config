@@ -66,6 +66,7 @@
  '(eshell-directory-name "~/.emacs.d/auto-save-list/eshell/")
  '(eshell-modules-list (quote (eshell-alias eshell-banner eshell-basic eshell-cmpl eshell-dirs eshell-glob eshell-hist eshell-ls eshell-pred eshell-prompt eshell-rebind eshell-script)))
  '(flymake-check-file-limit nil)
+ '(flymake-cursor-error-display-delay 0.1)
  '(flymake-start-syntax-check-on-newline nil)
  '(font-use-system-font t)
  '(gnus-init-file "~/.emacs.d/gnus/init.el")
@@ -170,5 +171,5 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(magit-item-highlight ((t (:weight bold))) t)
- '(which-func ((t (:weight bold))) t))
+ '(magit-item-highlight ((t (:weight bold))))
+ '(which-func ((t (:weight bold)))))
