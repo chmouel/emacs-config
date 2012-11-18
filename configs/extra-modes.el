@@ -81,6 +81,7 @@
 ; Anything!!!
 (my-ensure-installed 'anything)
 (my-ensure-installed 'anything-config)
+(my-ensure-installed 'anything-git-goto)
 (require 'anything nil t)
 (require 'anything-config nil t)
 (require 'anything-git-goto nil t)
@@ -91,7 +92,9 @@
      anything-c-source-git-goto
      anything-c-source-bookmarks
      anything-c-source-imenu
-     anything-c-source-recentf
+     ;anything-c-source-recentf
      )
    " *my-anything*"))
+(define-key anything-map (kbd "C-S-p") 'anything-previous-source)
+(define-key anything-map (kbd "C-S-n") 'anything-next-source)
 (global-set-key (read-kbd-macro "C-z") 'my-anything)

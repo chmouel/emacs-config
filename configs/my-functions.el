@@ -119,21 +119,6 @@
  (defvar newline-and-indent t
    "Modify the behavior of the open-*-line functions to cause them to autoindent.")
 
-;Increase/Decrease opacity
-(defun my-increase-opacity()
-  (interactive)
-  (let ((increase (+ 5 (car (frame-parameter nil 'alpha)))))
-    (if (> increase 99)(setq increase 99))
-    (set-frame-parameter (selected-frame) 'alpha (values increase 75)))
-)
-
-(defun my-decrease-opacity()
-  (interactive)
-  (let ((decrease (- (car (frame-parameter nil 'alpha)) 5)))
-    (if (< decrease 20)(setq decrease 20))
-    (set-frame-parameter (selected-frame) 'alpha (values decrease 75)))
-)
-
 ; if no selection just comment line or comment selection
 (defun my-comment-line-or-region ()
   (interactive "*")
@@ -149,12 +134,6 @@
 (global-set-key (read-kbd-macro "C-;") 'my-comment-line-or-region)
 (global-set-key (read-kbd-macro "M-;") 'comment-dwim)
 
-;Hides the disturbing '^M' showing up in files containing mixed UNIX and DOS line endings.
-(defun my-hide-ctrl-M ()
-  (interactive)
-  (setq buffer-display-table (make-display-table))
-  (aset buffer-display-table ?\^M []))
-
 ;Hack dired to launch files with 'l' key.
 ;http://omniorthogonal.blogspot.com/2008/05/useful-emacs-dired-launch-hack.html
 (defun my-dired-launch-command ()
@@ -165,47 +144,3 @@
      (darwin "open"))
    nil
    (dired-get-marked-files t current-prefix-arg)))
-
-
-(defun my-devstack-remote()
-  (interactive)
-  (let (replacement)
-    (setq replacement
-          (cond
-           ((string-match "/swift/" (buffer-file-name))
-            "/var/lib/lxc/shared/GIT/openstack/swift")
-           (t (expand-file-name "~/GIT/openstack"))))
-    (find-file
-     (replace-regexp-in-string "^.*/opt/stack" replacement (buffer-file-name)))
-    ))
-
-(defun my-devstack-local()
-  (interactive)
-  (let (replacement)
-    (setq replacement
-          (cond
-           ((string-match "/var/lib/lxc.*swift/" (buffer-file-name))
-            (replace-regexp-in-string "/var/lib/lxc/shared/GIT/openstack/swift" "swift" (buffer-file-name)))
-           ((string-match ".*openstack/swift/swift" (buffer-file-name))
-            (replace-regexp-in-string ".*openstack/swift/swift" "swift" (buffer-file-name)))
-          (t (replace-regexp-in-string ".*GIT/openstack/" "" (buffer-file-name)))))
-    (find-file (concat "/devstack:./" replacement))))
-
-
-(defun my-devstack-edit()
-  (interactive)
-  (if (buffer-file-name)
-      (progn
-        (if (file-remote-p (buffer-file-name))
-            (my-devstack-remote)
-          (my-devstack-local)))))
-
-(global-set-key (read-kbd-macro "C-~") 'my-devstack-edit)
-
-(defun recentf-ido-find-file ()
-  "Find a recent file using Ido."
-  (interactive)
-  (let ((file (ido-completing-read "Choose recent file: " recentf-list nil t)))
-    (when file
-      (find-file file))))
-(global-set-key (read-kbd-macro "C-S-o") 'recentf-ido-find-file)
