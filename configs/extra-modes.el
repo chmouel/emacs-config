@@ -77,3 +77,21 @@
 (my-ensure-installed 'expand-region)
 (autoload 'er/expand-region "expand-region" "Multiple Cursors" t)
 (global-set-key (kbd "C-=") 'er/expand-region)
+
+; Anything!!!
+(my-ensure-installed 'anything)
+(my-ensure-installed 'anything-config)
+(require 'anything nil t)
+(require 'anything-config nil t)
+(require 'anything-git-goto nil t)
+(defun my-anything ()
+  (interactive)
+  (anything-other-buffer
+   '(anything-c-source-buffers
+     anything-c-source-git-goto
+     anything-c-source-bookmarks
+     anything-c-source-imenu
+     anything-c-source-recentf
+     )
+   " *my-anything*"))
+(global-set-key (read-kbd-macro "C-z") 'my-anything)

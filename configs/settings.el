@@ -17,8 +17,6 @@
 (global-set-key (read-kbd-macro "M-q") 'fill-region)
 (global-set-key (read-kbd-macro "M-l") 'downcase-word)
 (global-set-key (read-kbd-macro "C-x C-b")    'list-buffers)
-(global-set-key (read-kbd-macro "C-z") 'ido-switch-buffer)
-(global-set-key (read-kbd-macro "C-`") 'ido-switch-buffer)
 (global-set-key (read-kbd-macro "C-~") 'ibuffer)
 (global-set-key (read-kbd-macro "C-M-o") 'other-frame)
 
