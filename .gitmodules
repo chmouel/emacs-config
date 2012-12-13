@@ -1,0 +1,21 @@
+[submodule "packages/yasnippet"]
+	path = packages/yasnippet
+	url = https://github.com/capitaomorte/yasnippet.git
+[submodule "packages/flymake-cursor"]
+	path = packages/flymake-cursor
+	url = https://github.com/illusori/emacs-flymake-cursor
+[submodule "packages/flymake-shell"]
+	path = packages/flymake-shell
+	url = https://github.com/purcell/flymake-shell
+[submodule "packages/magit"]
+	path = packages/magit
+	url = https://github.com/magit/magit
+[submodule "packages/browse-kill-ring"]
+	path = packages/browse-kill-ring
+	url = https://github.com/T-J-Teru/browse-kill-ring
+[submodule "packages/multiple-cursors"]
+	path = packages/multiple-cursors
+	url = https://github.com/magnars/multiple-cursors.el.git
+[submodule "packages/expand-region"]
+	path = packages/expand-region
+	url = https://github.com/magnars/expand-region.el

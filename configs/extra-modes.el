@@ -15,9 +15,7 @@
       (package-install package)))
 
 ; For Yas/Snippet
-(my-ensure-installed 'yasnippet)
-(my-ensure-installed 'yasnippet-bundle)
-(my-ensure-installed 'dropdown-list)
+(push "~/.emacs.d/packages/yasnippet" load-path)
 (require 'yasnippet nil t) ;; not yasnippet-bundle
 (when (featurep 'yasnippet)
   (yas/global-mode 1)
@@ -28,13 +26,13 @@
 )
 
 ;Flymake
-(my-ensure-installed 'flymake-cursor)
+(push "~/.emacs.d/packages/yasnippet" load-path)
 (eval-after-load "flymake"
   '(progn
      (require 'flymake-cursor)))
 
 ; Flymake shell mode
-(my-ensure-installed 'flymake-shell)
+(push "~/.emacs.d/packages/flymake-shell" load-path)
 (eval-after-load "flymake"
   '(progn
      (require 'flymake-shell nil t)
@@ -45,17 +43,13 @@
 (autoload 'regex-tool "regex-tool" "REGEX Tool" t)
 
 ;Magit
-(my-ensure-installed 'magit)
+(push "~/.emacs.d/packages/magit" load-path)
 (autoload 'magit-status "magit" "Magit Status" t)
 (global-set-key (read-kbd-macro "C-c g") 'magit-status)
 
 ; Hightly more than 80
 (my-ensure-installed 'highlight-80+)
 (autoload 'highlight-80+ "highlight-80+" nil t)
-
-; Highlight Indentation
-(my-ensure-installed 'highlight-indentation)
-(autoload 'highlight-indentation "highlight-indentation" nil t)
 
 ;Find find in GIT repo
 (my-ensure-installed 'find-file-in-git-repo)
@@ -64,17 +58,17 @@
 (global-set-key (kbd "C-S-f") 'find-file-in-git-repo)
 
 ; Browse Kill ring
-(my-ensure-installed 'browse-kill-ring)
+(push "~/.emacs.d/packages/browse-kill-ring" load-path)
 (autoload 'browse-kill-ring "browse-kill-ring" "Browse Kill Ring" t)
 
 ; Multiple cursors
+(push "~/.emacs.d/packages/multiple-cursors" load-path)
 (setq mc/list-file "~/.emacs.d/auto-save-list/mc-lists.el")
-(my-ensure-installed 'multiple-cursors)
 (autoload 'mc/mark-next-like-this "multiple-cursors" "Multiple Cursors" t)
 (global-set-key (kbd "C-@") 'mc/mark-next-like-this)
 
 ; Expand Region
-(my-ensure-installed 'expand-region)
+(push "~/.emacs.d/packages/expand-region" load-path)
 (autoload 'er/expand-region "expand-region" "Multiple Cursors" t)
 (global-set-key (kbd "C-=") 'er/expand-region)
 
@@ -92,7 +86,7 @@
      anything-c-source-git-goto
      anything-c-source-bookmarks
      anything-c-source-imenu
-     ;anything-c-source-recentf
+     anything-c-source-recentf
      )
    " *my-anything*"))
 (define-key anything-map (kbd "C-S-p") 'anything-previous-source)
