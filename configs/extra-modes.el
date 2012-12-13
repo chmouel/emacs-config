@@ -31,13 +31,6 @@
   '(progn
      (require 'flymake-cursor)))
 
-; Flymake shell mode
-(push "~/.emacs.d/packages/flymake-shell" load-path)
-(eval-after-load "flymake"
-  '(progn
-     (require 'flymake-shell nil t)
-     (add-hook 'sh-set-shell-hook 'flymake-shell-load)))
-
 ;RegexTool
 (my-ensure-installed 'regex-tool)
 (autoload 'regex-tool "regex-tool" "REGEX Tool" t)
