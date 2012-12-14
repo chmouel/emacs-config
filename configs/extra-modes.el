@@ -85,3 +85,8 @@
 (define-key anything-map (kbd "C-S-p") 'anything-previous-source)
 (define-key anything-map (kbd "C-S-n") 'anything-next-source)
 (global-set-key (read-kbd-macro "C-z") 'my-anything)
+
+
+;Google Contacts
+(push "~/.emacs.d/packages/google-contacts/" load-path)
+(my-ensure-installed 'oauth2)

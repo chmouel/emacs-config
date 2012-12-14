@@ -120,6 +120,7 @@
  '(make-backup-files nil)
  '(max-specpdl-size 50000)
  '(mm-inline-text-html-with-w3m-keymap nil)
+ '(oauth2-token-file "~/.emacs.d/auto-save-list/oauth2.plstore")
  '(org-startup-folded nil)
  '(package-archives (quote (("gnu" . "http://elpa.gnu.org/packages/") ("elpa" . "http://tromey.com/elpa/") ("marmalade" . "http://marmalade-repo.org/packages/"))))
  '(package-user-dir "~/.emacs.d/packages")
@@ -163,6 +164,7 @@
  '(wdired-enable t)
  '(woman-use-own-frame nil)
  '(x-select-enable-clipboard t)
+ '(yas-wrap-around-region t)
  '(yas/trigger-key "C-M-SPC")
  '(yas/wrap-around-region t)
  '(zoneinfo-style-world-list (quote (("Europe/London" "London") ("America/Chicago" "San Antonio") ("Europe/Paris" "Paris")))))
@@ -172,4 +174,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(magit-item-highlight ((t (:weight bold))) t)
- '(which-func ((t (:weight bold))) t))
+ '(which-func ((t (:weight bold)))))
