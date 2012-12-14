@@ -16,3 +16,6 @@
 [submodule "packages/expand-region"]
 	path = packages/expand-region
 	url = https://github.com/magnars/expand-region.el
+[submodule "packages/google-contacts"]
+	path = packages/google-contacts
+	url = http://git.naquadah.org/git/google-contacts.el.git

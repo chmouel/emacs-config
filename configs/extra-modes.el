@@ -80,8 +80,8 @@
      anything-c-source-bookmarks
      anything-c-source-imenu
      anything-c-source-recentf
-     )
-   " *my-anything*"))
+     anything-c-source-time-world)
+   "*my-anything*"))
 (define-key anything-map (kbd "C-S-p") 'anything-previous-source)
 (define-key anything-map (kbd "C-S-n") 'anything-next-source)
 (global-set-key (read-kbd-macro "C-z") 'my-anything)

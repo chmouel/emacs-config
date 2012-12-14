@@ -31,7 +31,7 @@
  '(display-time-24hr-format t)
  '(display-time-default-load-average nil)
  '(display-time-mode t)
- '(display-time-world-list (quote (("Europe/London" "London") ("Europe/Paris" "Paris") ("America/Chicago" "San Antonio"))))
+ '(display-time-world-list (quote (("Europe/London" "London") ("Europe/Paris" "Paris") ("America/Chicago" "San Antonio") ("America/Los_Angeles" "San-Francisco") ("Australia/Sydney" "Sydney"))))
  '(doc-view-continuous t)
  '(ediff-window-setup-function (quote ediff-setup-windows-plain))
  '(elscreen-tab-width 23)
