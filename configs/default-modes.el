@@ -105,7 +105,7 @@
 ; Flyspell mode
 (add-hook 'log-edit-mode-hook 'flyspell-mode)
 
-;
+; Make execustable scripts.
 (add-hook 'after-save-hook
   'executable-make-buffer-file-executable-if-script-p)
 
@@ -121,4 +121,8 @@
 
 (eval-after-load "view" '(my-view-vi-keys-map view-mode-map))
 (eval-after-load "man" '(my-view-vi-keys-map Man-mode-map))
-;(eval-after-load "help" '(my-view-vi-keys-map help-mode-map))
+
+; M-z redefine to zap-up-to-char
+(autoload 'zap-up-to-char "misc"
+  "Kill up to, but not including ARGth occurrence of CHAR.")
+(global-set-key (kbd "M-z") 'zap-up-to-char)
