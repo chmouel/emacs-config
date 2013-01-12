@@ -19,3 +19,21 @@
 [submodule "packages/google-contacts"]
 	path = packages/google-contacts
 	url = http://git.naquadah.org/git/google-contacts.el.git
+[submodule "packages/emacs-jedi"]
+	path = packages/emacs-jedi
+	url = https://github.com/tkf/emacs-jedi
+[submodule "packages/emacs-epc"]
+	path = packages/emacs-epc
+	url = https://github.com/kiwanami/emacs-epc
+[submodule "emacs-deferred"]
+	path = packages/emacs-deferred
+	url = https://github.com/kiwanami/emacs-deferred
+[submodule "packages/emacs-ctable"]
+	path = packages/emacs-ctable
+	url = https://github.com/kiwanami/emacs-ctable
+[submodule "packages/auto-complete"]
+	path = packages/auto-complete
+	url = https://github.com/auto-complete/auto-complete.git
+[submodule "packages/popup-el"]
+	path = packages/popup-el
+	url = https://github.com/auto-complete/popup-el
