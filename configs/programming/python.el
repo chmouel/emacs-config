@@ -24,6 +24,7 @@
   (flymake-mode 't)
   (local-set-key '[(control c)(\[)] 'flymake-goto-prev-error)
   (local-set-key '[(control c)(\])] 'flymake-goto-next-error)
+  (local-set-key (kbd "C-S-y") 'nosetests-compile-module)
   (local-set-key (kbd "C-S-t") 'nosetests-copy-shell-comand)
   (local-set-key (kbd "C-S-r") 'nosetests-compile)
   (which-func-mode 't)

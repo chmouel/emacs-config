@@ -34,28 +34,37 @@
           ((equal inner-obj outer-obj) outer-obj)
           (t (format "%s.%s" outer-obj inner-obj)))))
 
-(defun nosetests-get-command (&optional withcd)
+(defun nosetests-get-command (&optional withcd module)
   (let (topdir test-path current-function cmd)
     (setq topdir (file-truename (or (locate-dominating-file
                                      (buffer-file-name) "setup.py") "./")))
     (setq test-path (substring (file-truename
                                 (buffer-file-name))
                                (length topdir)))
-    (setq current-function (nose-py-testable))
-    (if (not current-function)
-        (error "No function at point"))
+    (when (not module)
+      (setq current-function (nose-py-testable))
+      (if (not current-function)
+          (error "No function at point")))
 
     (setq cmd "")
     (if withcd
         (setq cmd (concat "cd " topdir ";")))
     (concat cmd "nosetests "
-            nosetests-arg " " test-path ":"
-            current-function)))
+            nosetests-arg " " test-path
+            (if (not module)
+                (concat ":" current-function)))
+    ))
 
 (defun nosetests-compile ()
   (interactive)
   (let (cmd)
     (setq cmd (nosetests-get-command t))
+    (compile cmd)))
+
+(defun nosetests-compile-module ()
+  (interactive)
+  (let (cmd)
+    (setq cmd (nosetests-get-command t t))
     (compile cmd)))
 
 (defun nosetests-copy-shell-comand ()
