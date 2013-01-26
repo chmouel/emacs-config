@@ -29,8 +29,13 @@
 (global-set-key (read-kbd-macro "C-2")      'split-window-vertically)
 
 ;;Redefine {for/back}ward paragraphs to just 4 lines
-(global-set-key '[(control down)](lambda () (interactive) (forward-line '5)))
-(global-set-key '[(control up)](lambda () (interactive) (previous-line '5)))
+(global-set-key '[(control down)] (lambda ()
+                                    (interactive)
+                                    (ignore-errors (next-logical-line 5))))
+
+(global-set-key '[(control up)] (lambda ()
+                                    (interactive)
+                                    (ignore-errors (previous-logical-line 5))))
 
 ;C-up/down onn console
 (when (not window-system)
