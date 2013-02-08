@@ -1,3 +1,5 @@
+(require 'nosetests)
+
 (setq python-command (executable-find "python"))
 
 (dolist (x '("flake8" "pychecker" "pylint"))
@@ -5,7 +7,7 @@
       (setq python-check-command (executable-find x)))
   )
 
-(require 'nosetests)
+;FLYMAKE
 (require 'flymake)
 (defun flymake-pyflakes-init ()
   (when (not (file-remote-p (buffer-file-name)))
@@ -15,8 +17,23 @@
                         temp-file
                         (file-name-directory buffer-file-name))))
       (list "flake8" (list local-file)))))
-(push '("\\.py\\'" flymake-pyflakes-init) flymake-allowed-file-name-masks)
-(push '("bin/swift\\'" flymake-pyflakes-init) flymake-allowed-file-name-masks)
+
+(defun flymake-get-file-name-mode-and-masks (file-name)
+  "Return the corresponding entry from `flymake-allowed-file-name-masks'."
+  (unless (stringp file-name)
+    (error "Invalid file-name"))
+  (let ((fnm flymake-allowed-file-name-masks)
+        (mode-and-masks nil)
+        (matcher nil))
+    (while (and (not mode-and-masks) fnm)
+      (setq matcher (car (car fnm)))
+      (if (or (and (stringp matcher) (string-match matcher file-name))
+              (and (symbolp matcher) (equal matcher major-mode)))
+          (setq mode-and-masks (cdr (car fnm))))
+      (setq fnm (cdr fnm)))
+    (flymake-log 3 "file %s, init=%s" file-name (car mode-and-masks))
+    mode-and-masks))
+(add-to-list 'flymake-allowed-file-name-masks '(python-mode flymake-pyflakes-init))
 
 (defun my-python-mode-hook()
   (when "highlight-80+" (highlight-80+-mode))
@@ -24,6 +41,7 @@
   (flymake-mode 't)
   (local-set-key '[(control c)(\[)] 'flymake-goto-prev-error)
   (local-set-key '[(control c)(\])] 'flymake-goto-next-error)
+  (local-set-key '[(control c)(control k)] 'mark-defun)
   (local-set-key (kbd "C-S-y") 'nosetests-compile-module)
   (local-set-key (kbd "C-S-t") 'nosetests-copy-shell-comand)
   (local-set-key (kbd "C-S-r") 'nosetests-compile)
