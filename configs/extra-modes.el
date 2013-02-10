@@ -38,6 +38,7 @@
 ;Magit
 (push "~/.emacs.d/packages/magit" load-path)
 (autoload 'magit-status "magit" "Magit Status" t)
+(autoload 'magit-read-top-dir "magit" "Magit Status" t)
 (global-set-key (read-kbd-macro "C-c g") 'magit-status)
 (global-set-key (read-kbd-macro "C-S-o") '(lambda ()(interactive) (dired (magit-read-top-dir nil))))
 
