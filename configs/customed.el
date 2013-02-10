@@ -117,6 +117,7 @@
  '(kill-do-not-save-duplicates t)
  '(ls-lisp-dirs-first t)
  '(ls-lisp-use-insert-directory-program nil)
+ '(magit-commit-signoff t)
  '(make-backup-files nil)
  '(max-specpdl-size 50000)
  '(mm-inline-text-html-with-w3m-keymap nil)
@@ -173,5 +174,5 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(magit-item-highlight ((t (:weight bold))) t)
+ '(magit-item-highlight ((t (:weight bold))))
  '(which-func ((t (:weight bold)))))
