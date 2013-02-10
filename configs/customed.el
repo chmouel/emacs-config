@@ -118,6 +118,7 @@
  '(ls-lisp-dirs-first t)
  '(ls-lisp-use-insert-directory-program nil)
  '(magit-commit-signoff t)
+ '(magit-completing-read-function (quote magit-ido-completing-read))
  '(make-backup-files nil)
  '(max-specpdl-size 50000)
  '(mm-inline-text-html-with-w3m-keymap nil)
