@@ -39,6 +39,7 @@
 (push "~/.emacs.d/packages/magit" load-path)
 (autoload 'magit-status "magit" "Magit Status" t)
 (global-set-key (read-kbd-macro "C-c g") 'magit-status)
+(global-set-key (read-kbd-macro "C-S-o") '(lambda ()(interactive) (dired (magit-read-top-dir nil))))
 
 ; Hightly more than 80
 (my-ensure-installed 'highlight-80+)
@@ -82,6 +83,7 @@
      anything-c-source-recentf
      anything-c-source-time-world)
    "*my-anything*"))
+
 (define-key anything-map (kbd "C-S-p") 'anything-previous-source)
 (define-key anything-map (kbd "C-S-n") 'anything-next-source)
 (global-set-key (read-kbd-macro "C-z") 'my-anything)
