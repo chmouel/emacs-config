@@ -60,12 +60,24 @@
 (push "~/.emacs.d/packages/multiple-cursors" load-path)
 (setq mc/list-file "~/.emacs.d/auto-save-list/mc-lists.el")
 (autoload 'mc/mark-next-like-this "multiple-cursors" "Multiple Cursors" t)
-(global-set-key (kbd "C-@") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-@") 'mc/mark-all-words-like-this)
 
 ; Expand Region
 (push "~/.emacs.d/packages/expand-region" load-path)
 (autoload 'er/expand-region "expand-region" "Multiple Cursors" t)
 (global-set-key (kbd "C-=") 'er/expand-region)
+
+
+; Anything with Magit
+(defvar anything-c-source-magit-repos
+  '((name . "Magit Repos")
+    (init . (lambda ()
+              (require 'magit)))
+    (candidates . (lambda () (magit-list-repos magit-repo-dirs)))
+    (action
+     ("Open Dir" . dired)
+     ("Magit" . magit-status))
+  "See (info \"(emacs)magit\")."))
 
 ; Anything!!!
 (my-ensure-installed 'anything)
@@ -79,6 +91,7 @@
   (anything-other-buffer
    '(anything-c-source-buffers
      anything-c-source-git-goto
+     anything-c-source-magit-repos
      anything-c-source-bookmarks
      anything-c-source-imenu
      anything-c-source-recentf
@@ -88,3 +101,11 @@
 (define-key anything-map (kbd "C-S-p") 'anything-previous-source)
 (define-key anything-map (kbd "C-S-n") 'anything-next-source)
 (global-set-key (read-kbd-macro "C-z") 'my-anything)
+
+;Ibuffer extras
+(my-ensure-installed 'ibuffer-vc)
+(add-hook 'ibuffer-hook
+          (lambda ()
+            (ibuffer-vc-set-filter-groups-by-vc-root)
+            (unless (eq ibuffer-sorting-mode 'alphabetic)
+              (ibuffer-do-sort-by-alphabetic))))
