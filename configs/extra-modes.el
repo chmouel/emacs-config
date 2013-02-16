@@ -67,6 +67,9 @@
 (autoload 'er/expand-region "expand-region" "Multiple Cursors" t)
 (global-set-key (kbd "C-=") 'er/expand-region)
 
+;Flymake new
+(push "~/.emacs.d/packages/emacs-flymake" load-path)
+(load "flymake")
 
 ; Anything with Magit
 (defvar anything-c-source-magit-repos

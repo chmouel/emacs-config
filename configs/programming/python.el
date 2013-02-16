@@ -1,44 +1,34 @@
 (require 'nosetests)
+(require 'flymake-easy)
 
 (setq python-command (executable-find "python"))
 
-(dolist (x '("flake8" "pychecker" "pylint"))
-  (if (executable-find x)
-      (setq python-check-command (executable-find x)))
-  )
+(defconst flymake-python-pyflakes-err-line-patterns
+  '(("^\\(.*?\\.py\\):\\([0-9]+\\): \\(.*\\)$" 1 2 nil 3)
+    ;; flake8
+    ("^\\(.*?\\.py\\):\\([0-9]+\\):\\([0-9]+\\): \\(.*\\)$" 1 2 3 4)))
 
-;FLYMAKE
-(require 'flymake)
-(defun flymake-pyflakes-init ()
-  (when (not (file-remote-p (buffer-file-name)))
-    (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                       'flymake-create-temp-inplace))
-           (local-file (file-relative-name
-                        temp-file
-                        (file-name-directory buffer-file-name))))
-      (list "flake8" (list local-file)))))
+(defvar flymake-python-pyflakes-executable "/usr/local/share/python/flake8.fake"
+  "Pyflakes executable to use for syntax checking.")
 
-(defun flymake-get-file-name-mode-and-masks (file-name)
-  "Return the corresponding entry from `flymake-allowed-file-name-masks'."
-  (unless (stringp file-name)
-    (error "Invalid file-name"))
-  (let ((fnm flymake-allowed-file-name-masks)
-        (mode-and-masks nil)
-        (matcher nil))
-    (while (and (not mode-and-masks) fnm)
-      (setq matcher (car (car fnm)))
-      (if (or (and (stringp matcher) (string-match matcher file-name))
-              (and (symbolp matcher) (equal matcher major-mode)))
-          (setq mode-and-masks (cdr (car fnm))))
-      (setq fnm (cdr fnm)))
-    (flymake-log 3 "file %s, init=%s" file-name (car mode-and-masks))
-    mode-and-masks))
-(add-to-list 'flymake-allowed-file-name-masks '(python-mode flymake-pyflakes-init))
+(defun flymake-python-pyflakes-command (filename)
+  "Construct a command that flymake can use to syntax-check FILENAME."
+  (list flymake-python-pyflakes-executable filename))
+
+;;;###autoload
+(defun flymake-python-pyflakes-load ()
+  "Configure flymake mode to check the current buffer's python syntax using pyflakes."
+  (interactive)
+  (flymake-easy-load 'flymake-python-pyflakes-command
+                     flymake-python-pyflakes-err-line-patterns
+                     'inplace
+                     "py"
+                     "^W"))
 
 (defun my-python-mode-hook()
   (when "highlight-80+" (highlight-80+-mode))
   ;(when "highlight-indentation" (highlight-indentation))
-  (flymake-mode 't)
+  (flymake-python-pyflakes-load)
   (local-set-key '[(control c)(\[)] 'flymake-goto-prev-error)
   (local-set-key '[(control c)(\])] 'flymake-goto-next-error)
   (local-set-key '[(control c)(control k)] 'mark-defun)
@@ -48,7 +38,7 @@
   (which-func-mode 't)
   (local-set-key '[(meta q)] 'python-fill-paragraph)
   (set (make-local-variable 'my-compile-command) (concat python-check-command " \"" buffer-file-name "\""))
-  (set (make-local-variable 'my-compile-run-command) (concat (executable-find python-command) " -E \"" buffer-file-name "\""))
+  (set (make-local-variable 'my-compile-run-command) (concat python-shell-interpreter " -E \"" buffer-file-name "\""))
   (my-programming-common-hook)
   (local-set-key '[(control meta p)] (lambda () (interactive) (progn (insert "self."))))
   )
