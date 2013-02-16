@@ -28,6 +28,7 @@
 (defun my-python-mode-hook()
   (when "highlight-80+" (highlight-80+-mode))
   (markit-mode)
+  (auto-complete-mode)
   (flymake-python-pyflakes-load)
   (local-set-key '[(control c)(\[)] 'flymake-goto-prev-error)
   (local-set-key '[(control c)(\])] 'flymake-goto-next-error)

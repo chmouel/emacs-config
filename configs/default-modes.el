@@ -27,9 +27,9 @@
 
 ;Hippy-Expand
 (setq hippie-expand-try-functions-list
-      '(try-complete-file-name-partially
+      '(try-expand-dabbrev
+        try-complete-file-name-partially
         try-complete-file-name
-        try-expand-dabbrev
         try-expand-dabbrev-all-buffers
         try-expand-all-abbrevs
         try-expand-list

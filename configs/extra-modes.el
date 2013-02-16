@@ -59,7 +59,7 @@
 ; Multiple cursors
 (push "~/.emacs.d/packages/multiple-cursors" load-path)
 (setq mc/list-file "~/.emacs.d/auto-save-list/mc-lists.el")
-(autoload 'mc/mark-next-like-this "multiple-cursors" "Multiple Cursors" t)
+(autoload 'mc/mark-all-words-like-this "multiple-cursors" "Multiple Cursors" t)
 (global-set-key (kbd "C-@") 'mc/mark-all-words-like-this)
 
 ; Expand Region
@@ -116,4 +116,10 @@
 ;
 (push "~/.emacs.d/packages/markit" load-path)
 (require 'markit)
-(global-set-key (read-kbd-macro "C-\"") 'markit-mark-region-exclude)
+(global-set-key (read-kbd-macro "C-\"") 'markit-mark-region-include)
+(global-set-key (read-kbd-macro "C-\'") 'markit-mark-region-exclude)
+
+;
+(push "~/.emacs.d/packages/popup-el" load-path)
+(push "~/.emacs.d/packages/auto-complete" load-path)
+(require 'auto-complete)

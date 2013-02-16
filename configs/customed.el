@@ -5,6 +5,10 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(*pastie-restricted* t)
+ '(ac-comphist-file "~/.emacs.d/auto-save-list/ac-comphist.dat")
+ '(ac-dictionary-directories (quote ("~/.emacs.d/dict")))
+ '(ac-dictionary-files (quote ("~/.emacs.d/packages/auto-complete/dict/")))
+ '(ac-trigger-key "M-TAB")
  '(ack-executable "/usr/bin/ack-grep")
  '(all-christian-calendar-holidays t)
  '(anything-c-adaptive-history-file "~/.emacs.d/auto-save-list/anything-c-adaptive-history")

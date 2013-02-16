@@ -33,10 +33,10 @@
 	url = https://github.com/kiwanami/emacs-ctable
 [submodule "packages/auto-complete"]
 	path = packages/auto-complete
-	url = https://github.com/auto-complete/auto-complete.git
+	url = https://github.com/auto-complete/auto-complete
 [submodule "packages/popup-el"]
 	path = packages/popup-el
-	url = https://github.com/auto-complete/popup-el
+	url = https://github.com/auto-complete/popup-el.git
 [submodule "packages/emacs-flymake"]
 	path = packages/emacs-flymake
 	url = https://github.com/illusori/emacs-flymake.git
