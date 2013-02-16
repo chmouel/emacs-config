@@ -112,3 +112,8 @@
             (ibuffer-vc-set-filter-groups-by-vc-root)
             (unless (eq ibuffer-sorting-mode 'alphabetic)
               (ibuffer-do-sort-by-alphabetic))))
+
+;
+(push "~/.emacs.d/packages/markit" load-path)
+(require 'markit)
+(global-set-key (read-kbd-macro "C-\"") 'markit-mark-region-exclude)
