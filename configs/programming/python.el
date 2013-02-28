@@ -1,23 +1,18 @@
 (require 'nosetests)
 (require 'flymake-easy)
+(require 'outline-magic)
 
 (setq python-command (executable-find "python"))
+(setq flymake-python-pyflakes-executable "/usr/local/share/python/flake8.fake")
 
 (defconst flymake-python-pyflakes-err-line-patterns
   '(("^\\(.*?\\.py\\):\\([0-9]+\\): \\(.*\\)$" 1 2 nil 3)
-    ;; flake8
     ("^\\(.*?\\.py\\):\\([0-9]+\\):\\([0-9]+\\): \\(.*\\)$" 1 2 3 4)))
 
-(defvar flymake-python-pyflakes-executable "/usr/local/share/python/flake8.fake"
-  "Pyflakes executable to use for syntax checking.")
-
 (defun flymake-python-pyflakes-command (filename)
-  "Construct a command that flymake can use to syntax-check FILENAME."
   (list flymake-python-pyflakes-executable filename))
 
-;;;###autoload
 (defun flymake-python-pyflakes-load ()
-  "Configure flymake mode to check the current buffer's python syntax using pyflakes."
   (interactive)
   (flymake-easy-load 'flymake-python-pyflakes-command
                      flymake-python-pyflakes-err-line-patterns
@@ -25,14 +20,26 @@
                      "py"
                      "^W"))
 
+(defun py-outline-level ()
+  (let (buffer-invisibility-spec)
+    (save-excursion
+      (skip-chars-forward "    ")
+      (current-column))))
+
 (defun my-python-mode-hook()
+  (outline-minor-mode t)
+  (setq outline-regexp "[ \t]*# \\|[ \t]+\\(class\\|def\\|if\\|elif\\|else\\|while\\|for\\|try\\|except\\|with\\) ")
+  (setq outline-level 'py-outline-level)
+  (define-key outline-minor-mode-map [M-down] 'outline-move-subtree-down)
+  (define-key outline-minor-mode-map [M-up] 'outline-move-subtree-up)
+
   (when "highlight-80+" (highlight-80+-mode))
   (markit-mode)
   (auto-complete-mode)
   (flymake-python-pyflakes-load)
   (local-set-key '[(control c)(\[)] 'flymake-goto-prev-error)
   (local-set-key '[(control c)(\])] 'flymake-goto-next-error)
-  (local-set-key '[(control c)(control k)] 'mark-defun)
+  (local-set-key '[(control c)(control k)] 'outline-mark-subtree)
   (local-set-key (kbd "C-S-y") 'nosetests-compile-module)
   (local-set-key (kbd "C-S-t") 'nosetests-copy-shell-comand)
   (local-set-key (kbd "C-S-r") 'nosetests-compile)

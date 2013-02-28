@@ -59,8 +59,8 @@
 ; Multiple cursors
 (push "~/.emacs.d/packages/multiple-cursors" load-path)
 (setq mc/list-file "~/.emacs.d/auto-save-list/mc-lists.el")
-(autoload 'mc/mark-all-words-like-this "multiple-cursors" "Multiple Cursors" t)
-(global-set-key (kbd "C-@") 'mc/mark-all-words-like-this)
+(autoload 'mc/mark-all-like-this-dwim "multiple-cursors" "Multiple Cursors" t)
+(global-set-key (kbd "C-@") 'mc/mark-all-like-this-dwim)
 
 ; Expand Region
 (push "~/.emacs.d/packages/expand-region" load-path)
@@ -123,3 +123,7 @@
 (push "~/.emacs.d/packages/popup-el" load-path)
 (push "~/.emacs.d/packages/auto-complete" load-path)
 (require 'auto-complete)
+
+;
+(push "~/.emacs.d/packages/ace-jump-mode" load-path)
+(require 'ace-jump-mode)
