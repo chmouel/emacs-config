@@ -127,3 +127,4 @@
 ;
 (push "~/.emacs.d/packages/ace-jump-mode" load-path)
 (require 'ace-jump-mode)
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
