@@ -43,6 +43,3 @@
 [submodule "packages/markit"]
 	path = packages/markit
 	url = https://github.com/daimrod/markit
-[submodule "packages/ace-jump-mode"]
-	path = packages/ace-jump-mode
-	url = https://github.com/winterTTr/ace-jump-mode.git
