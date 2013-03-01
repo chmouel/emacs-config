@@ -25,8 +25,6 @@
  '(compilation-ask-about-save nil)
  '(completion-ignored-extensions (quote (".svn/" "CVS/" ".o" "~" ".bin" ".lbin" ".so" ".a" ".ln" ".blg" ".bbl" ".elc" ".pyc" ".pyo" ".gitignore" ".class")))
  '(completion-styles (quote (basic partial-completion emacs22 initials)))
- '(custom-enabled-themes (quote (wombat)))
- '(custom-safe-themes (quote ("72c9c92db951bec31260726c1d8a70e7d295b871f751976c2d152e3690b4e48b" default)))
  '(default-major-mode (quote text-mode) t)
  '(delete-by-moving-to-trash t)
  '(diff-switches "-uw")
@@ -180,4 +178,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(magit-item-highlight ((t (:weight bold))))
- '(which-func ((t (:weight bold)))))
+ '(which-func ((t (:weight bold))) t))
