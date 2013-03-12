@@ -3,6 +3,7 @@
 (require 'outline-magic)
 
 (setq python-command (executable-find "python"))
+(setq python-shell-interpreter (executable-find "ipython"))
 (setq flymake-python-pyflakes-executable "/usr/local/share/python/flake8.fake")
 
 (defconst flymake-python-pyflakes-err-line-patterns
