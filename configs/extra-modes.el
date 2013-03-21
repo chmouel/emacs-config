@@ -132,3 +132,7 @@
 ;
 (push "~/.emacs.d/packages/emacs-git-gutter" load-path)
 (require 'git-gutter)
+
+;
+(my-ensure-installed 'ack-and-a-half)
+(define-key global-map (kbd "C-S-g") 'ack-and-a-half)
