@@ -25,6 +25,9 @@
  '(compilation-ask-about-save nil)
  '(completion-ignored-extensions (quote (".svn/" "CVS/" ".o" "~" ".bin" ".lbin" ".so" ".a" ".ln" ".blg" ".bbl" ".elc" ".pyc" ".pyo" ".gitignore" ".class")))
  '(completion-styles (quote (basic partial-completion emacs22 initials)))
+ '(cycbuf-buffer-sort-function (quote cycbuf-sort-by-recency))
+ '(cycbuf-dont-show-regexp (quote ("^ " "^\\*cycbuf\\*$" "^\\*Messages\\*#")))
+ '(cycbuf-mode-name-replacements (quote (("Fundamental" "Fund.") ("Lisp Interaction" "Lisp I.") ("Python" "Py"))))
  '(default-major-mode (quote text-mode) t)
  '(delete-by-moving-to-trash t)
  '(diff-switches "-uw")
@@ -88,6 +91,7 @@
  '(ibuffer-show-empty-filter-groups nil)
  '(ibuffer-truncate-lines nil)
  '(ibuffer-use-other-window nil)
+ '(ido-enable-flex-matching t)
  '(ido-enable-last-directory-history nil)
  '(ido-enable-tramp-completion nil)
  '(ido-everywhere t)
@@ -177,5 +181,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(magit-item-highlight ((t (:weight bold))))
- '(which-func ((t (:weight bold))) t))
+ '(cycbuf-current-face ((t (:background "grey" :foreground "black" :weight bold))))
+ '(cycbuf-header-face ((t (:background "black" :foreground "yellow" :weight bold))))
+ '(magit-item-highlight ((t (:weight bold))) t)
+ '(which-func ((t (:weight bold)))))

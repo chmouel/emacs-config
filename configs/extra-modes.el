@@ -40,7 +40,7 @@
 (autoload 'magit-status "magit" "Magit Status" t)
 (autoload 'magit-read-top-dir "magit" "Magit Status" t)
 (global-set-key (read-kbd-macro "C-c g") 'magit-status)
-(global-set-key (read-kbd-macro "C-S-o") '(lambda ()(interactive) (dired (magit-read-top-dir nil))))
+(global-set-key (read-kbd-macro "C-S-o") '(lambda ()(interactive) (find-file (magit-read-top-dir nil))))
 
 ; Hightly more than 80
 (my-ensure-installed 'highlight-80+)
@@ -104,6 +104,7 @@
 (define-key anything-map (kbd "C-S-p") 'anything-previous-source)
 (define-key anything-map (kbd "C-S-n") 'anything-next-source)
 (global-set-key (read-kbd-macro "C-z") 'my-anything)
+(global-set-key (kbd "C-x C-b") 'anything-for-buffers)
 
 ;Ibuffer extras
 (my-ensure-installed 'ibuffer-vc)
@@ -136,3 +137,15 @@
 ;
 (my-ensure-installed 'ack-and-a-half)
 (define-key global-map (kbd "C-S-g") 'ack-and-a-half)
+
+;
+(my-ensure-installed 'switch-window)
+(autoload 'switch-window "switch-window" "Switch Windows" t)
+(global-set-key (kbd "C-<tab>") 'switch-window)
+
+;
+(my-ensure-installed 'cycbuf)
+(autoload 'cycbuf-switch-to-next-buffer "cycbuf" "Switch Windows" t)
+(autoload 'cycbuf-switch-to-previous-buffer "cycbuf" "Switch Windows" t)
+(global-set-key (kbd "C-S-<down>") 'cycbuf-switch-to-next-buffer)
+(global-set-key (kbd "C-S-<up>") 'cycbuf-switch-to-previous-buffer)
