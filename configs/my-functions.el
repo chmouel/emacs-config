@@ -149,7 +149,6 @@
 ;; Remap goto-line to show temporary the line number.
 ;; http://whattheemacsd.com//key-bindings.el-01.html
 (global-set-key [remap goto-line] 'goto-line-with-feedback)
-
 (defun goto-line-with-feedback ()
   "Show line numbers temporarily, while prompting for the line number input"
   (interactive)
@@ -159,30 +158,11 @@
         (goto-line (read-number "Goto line: ")))
     (linum-mode -1)))
 
-
-;; Switching between horizontal to vertical windows
-;; http://whattheemacsd.com/buffer-defuns.el-03.html
-(defun toggle-window-split ()
+;;
+(defun smart-open-line ()
+  "Insert an empty line after the current line.
+Position the cursor at its beginning, according to the current mode."
   (interactive)
-  (if (= (count-windows) 2)
-      (let* ((this-win-buffer (window-buffer))
-             (next-win-buffer (window-buffer (next-window)))
-             (this-win-edges (window-edges (selected-window)))
-             (next-win-edges (window-edges (next-window)))
-             (this-win-2nd (not (and (<= (car this-win-edges)
-                                         (car next-win-edges))
-                                     (<= (cadr this-win-edges)
-                                         (cadr next-win-edges)))))
-             (splitter
-              (if (= (car this-win-edges)
-                     (car (window-edges (next-window))))
-                  'split-window-horizontally
-                'split-window-vertically)))
-        (delete-other-windows)
-        (let ((first-win (selected-window)))
-          (funcall splitter)
-          (if this-win-2nd (other-window 1))
-          (set-window-buffer (selected-window) this-win-buffer)
-          (set-window-buffer (next-window) next-win-buffer)
-          (select-window first-win)
-          (if this-win-2nd (other-window 1))))))
+  (move-end-of-line nil)
+  (newline-and-indent))
+(global-set-key [(shift return)] 'smart-open-line)

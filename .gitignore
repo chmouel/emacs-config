@@ -10,3 +10,4 @@ hosts/*
 tramp
 /elpa/archives/gnu/archive-contents
 /packages/archives/gnu/archive-contents
+*.yas-compiled-snippets.el
