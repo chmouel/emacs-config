@@ -1,11 +1,9 @@
 ; HELM
 (push "~/.emacs.d/packages/helm" load-path)
 (push "~/.emacs.d/packages/helm-ls-git" load-path)
-(push "~/.emacs.d/packages/emacs-helm-ack" load-path)
 
 (require 'helm-config)
 (require 'helm-ls-git)
-(require 'helm-ack)
 
 (defun my-helm()
   (interactive)
