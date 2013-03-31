@@ -39,6 +39,7 @@
  '(display-time-world-list (quote (("Europe/London" "London") ("Europe/Paris" "Paris") ("America/Chicago" "San Antonio") ("America/Los_Angeles" "San-Francisco") ("Australia/Sydney" "Sydney"))))
  '(doc-view-continuous t)
  '(ediff-window-setup-function (quote ediff-setup-windows-plain))
+ '(electric-indent-mode t)
  '(elscreen-tab-width 23)
  '(emerge-diff-options "--ignore-all-space")
  '(enable-local-variables :all)
@@ -181,7 +182,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(cycbuf-current-face ((t (:background "grey" :foreground "black" :weight bold))))
- '(cycbuf-header-face ((t (:background "black" :foreground "yellow" :weight bold))))
+ '(cycbuf-current-face ((t (:background "grey" :foreground "black" :weight bold))) t)
+ '(cycbuf-header-face ((t (:background "black" :foreground "yellow" :weight bold))) t)
  '(magit-item-highlight ((t (:weight bold))) t)
  '(which-func ((t (:weight bold)))))
