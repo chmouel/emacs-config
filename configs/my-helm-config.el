@@ -1,15 +1,13 @@
 ; HELM
 (push "~/.emacs.d/packages/helm" load-path)
-(push "~/.emacs.d/packages/helm-ls-git" load-path)
-
 (require 'helm-config)
-(require 'helm-ls-git)
+(require 'helm-git-goto)
 
 (defun my-helm()
   (interactive)
   (require 'helm-files)
   (helm-other-buffer '(helm-source-buffers-list
-                       helm-source-ls-git
+                       helm-c-source-git-goto
                        helm-source-browse-code
                        helm-source-magit-repos
                        helm-source-bookmarks
@@ -34,4 +32,6 @@
 (define-key helm-map (kbd "C-S-p") 'helm-previous-source)
 (define-key helm-map (kbd "C-S-n") 'helm-next-source)
 (global-set-key (read-kbd-macro "C-z") 'my-helm)
+
 (global-set-key (kbd "C-x C-b") 'helm-buffers-list)
+(global-set-key (kbd "C-S-b") 'helm-browse-code)
