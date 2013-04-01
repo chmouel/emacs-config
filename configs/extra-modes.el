@@ -106,7 +106,6 @@
 ;
 (my-ensure-installed 'switch-window)
 (autoload 'switch-window "switch-window" "Switch Windows" t)
-(global-set-key (kbd "C-<tab>") 'switch-window)
 
 ;
 (my-ensure-installed 'cycbuf)
