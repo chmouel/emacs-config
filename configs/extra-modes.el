@@ -113,3 +113,8 @@
 (autoload 'cycbuf-switch-to-previous-buffer "cycbuf" "Switch Windows" t)
 (global-set-key (kbd "C-S-<down>") 'cycbuf-switch-to-next-buffer)
 (global-set-key (kbd "C-S-<up>") 'cycbuf-switch-to-previous-buffer)
+
+;JSON Mode
+(my-ensure-installed 'json-mode)
+(autoload 'json-mode "json-mode" "JSON Mode" t)
+(add-to-list 'auto-mode-alist '("\\.json$" . json-mode))
