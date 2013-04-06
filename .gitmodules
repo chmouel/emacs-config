@@ -52,3 +52,6 @@
 [submodule "packages/helm"]
 	path = packages/helm
 	url = https://github.com/emacs-helm/helm.git
+[submodule "packages/flycheck"]
+	path = packages/flycheck
+	url = https://github.com/lunaryorn/flycheck

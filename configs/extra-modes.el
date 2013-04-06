@@ -25,12 +25,6 @@
        (setq yas/prompt-functions '(yas/dropdown-prompt))))
 )
 
-;Flymake
-(push "~/.emacs.d/packages/yasnippet" load-path)
-(eval-after-load "flymake"
-  '(progn
-     (require 'flymake-cursor)))
-
 ;RegexTool
 (my-ensure-installed 'regex-tool)
 (autoload 'regex-tool "regex-tool" "REGEX Tool" t)
@@ -66,10 +60,6 @@
 (push "~/.emacs.d/packages/expand-region" load-path)
 (autoload 'er/expand-region "expand-region" "Multiple Cursors" t)
 (global-set-key (kbd "C-=") 'er/expand-region)
-
-;Flymake new
-(push "~/.emacs.d/packages/emacs-flymake" load-path)
-(load "flymake")
 
 ;Ibuffer extras
 (my-ensure-installed 'ibuffer-vc)
@@ -111,3 +101,9 @@
 (my-ensure-installed 'json-mode)
 (autoload 'json-mode "json-mode" "JSON Mode" t)
 (add-to-list 'auto-mode-alist '("\\.json$" . json-mode))
+
+;Flycheck
+(my-ensure-installed 's)
+(my-ensure-installed 'dash)
+(push "~/.emacs.d/packages/flycheck" load-path)
+(autoload 'flycheck-mode "flycheck" "Flycheck Mode" t)
