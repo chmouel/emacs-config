@@ -36,6 +36,13 @@
 (global-set-key '[(control up)] (lambda ()
                                     (interactive)
                                     (ignore-errors (previous-logical-line 5))))
+(global-set-key '[(control shift n)] (lambda ()
+                                    (interactive)
+                                    (ignore-errors (next-logical-line 5))))
+
+(global-set-key '[(control shift p)] (lambda ()
+                                    (interactive)
+                                    (ignore-errors (previous-logical-line 5))))
 
 ;C-up/down onn console
 (when (not window-system)
