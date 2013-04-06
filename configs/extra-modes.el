@@ -107,13 +107,6 @@
 (my-ensure-installed 'switch-window)
 (autoload 'switch-window "switch-window" "Switch Windows" t)
 
-;
-(my-ensure-installed 'cycbuf)
-(autoload 'cycbuf-switch-to-next-buffer "cycbuf" "Switch Windows" t)
-(autoload 'cycbuf-switch-to-previous-buffer "cycbuf" "Switch Windows" t)
-(global-set-key (kbd "C-S-<down>") 'cycbuf-switch-to-next-buffer)
-(global-set-key (kbd "C-S-<up>") 'cycbuf-switch-to-previous-buffer)
-
 ;JSON Mode
 (my-ensure-installed 'json-mode)
 (autoload 'json-mode "json-mode" "JSON Mode" t)
