@@ -4,7 +4,7 @@
 
 (setq python-command (executable-find "python"))
 (setq python-shell-interpreter (executable-find "ipython"))
-(setq flymake-python-pyflakes-executable "/usr/local/share/python/flake8.fake")
+(setq flymake-python-pyflakes-executable "flake8")
 
 (defconst flymake-python-pyflakes-err-line-patterns
   '(("^\\(.*?\\.py\\):\\([0-9]+\\): \\(.*\\)$" 1 2 nil 3)
