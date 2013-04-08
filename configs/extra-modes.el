@@ -111,3 +111,6 @@
 (my-ensure-installed 'json-mode)
 (autoload 'json-mode "json-mode" "JSON Mode" t)
 (add-to-list 'auto-mode-alist '("\\.json$" . json-mode))
+
+(my-ensure-installed 'github-browse-file)
+(autoload 'github-browse-file "github-browse-file" "Github browse file." t)
