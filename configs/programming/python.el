@@ -11,6 +11,7 @@
       (current-column))))
 
 (defun my-python-mode-hook()
+  (set (make-local-variable 'my-compile-command) (concat "flake8 \"" buffer-file-name "\""))
   (outline-minor-mode t)
   (setq outline-regexp "[ \t]*# \\|[ \t]+\\(class\\|def\\|if\\|elif\\|else\\|while\\|for\\|try\\|except\\|with\\) ")
   (setq outline-level 'py-outline-level)

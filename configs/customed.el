@@ -38,7 +38,6 @@
  '(display-time-world-list (quote (("Europe/London" "London") ("Europe/Paris" "Paris") ("America/Chicago" "San Antonio") ("America/Los_Angeles" "San-Francisco") ("Australia/Sydney" "Sydney"))))
  '(doc-view-continuous t)
  '(ediff-window-setup-function (quote ediff-setup-windows-plain))
- '(electric-indent-mode t)
  '(elscreen-tab-width 23)
  '(emerge-diff-options "--ignore-all-space")
  '(enable-local-variables :all)

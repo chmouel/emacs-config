@@ -1,4 +1,5 @@
 (defun my-programming-common-hook()
+  (local-set-key (kbd "RET") 'newline-and-indent)
   (yas/minor-mode 't)
   (local-set-key '[(meta return)] 'compile)
   (local-set-key '[(control meta return)] (lambda () (interactive) (compile my-compile-command)))
