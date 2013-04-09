@@ -7,6 +7,7 @@
 
 (fset 'perl-mode 'cperl-mode)
 (defun my-cperl-mode-hook ()
+;  (flymake-mode)
   (set (make-local-variable 'my-compile-command) (concat "perl -Mstrict -wc \"" buffer-file-name "\""))
   (set (make-local-variable 'my-compile-run-command) (concat "perl \"" buffer-file-name "\""))
   (set (make-local-variable 'comment-column) 40)
