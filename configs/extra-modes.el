@@ -107,3 +107,7 @@
 (my-ensure-installed 'dash)
 (push "~/.emacs.d/packages/flycheck" load-path)
 (autoload 'flycheck-mode "flycheck" "Flycheck Mode" t)
+
+; Github browse file
+(my-ensure-installed 'github-browse-file)
+(autoload 'github-browse-file "github-browse-file" "Github browse file." t)

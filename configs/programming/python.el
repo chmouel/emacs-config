@@ -3,6 +3,7 @@
 
 (setq python-command (executable-find "python"))
 (setq python-shell-interpreter (executable-find "ipython"))
+(setq python-check-command "flake8")
 
 (defun py-outline-level ()
   (let (buffer-invisibility-spec)
