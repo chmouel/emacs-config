@@ -103,10 +103,6 @@
 (my-ensure-installed 'ack-and-a-half)
 (define-key global-map (kbd "C-S-g") 'ack-and-a-half)
 
-;
-(my-ensure-installed 'switch-window)
-(autoload 'switch-window "switch-window" "Switch Windows" t)
-
 ;JSON Mode
 (my-ensure-installed 'json-mode)
 (autoload 'json-mode "json-mode" "JSON Mode" t)
@@ -115,3 +111,8 @@
 ; Github browse file
 (my-ensure-installed 'github-browse-file)
 (autoload 'github-browse-file "github-browse-file" "Github browse file." t)
+
+;window-number-meta-mode
+(my-ensure-installed 'window-number)
+(autoload 'window-number-meta-mode "window-number")
+(window-number-meta-mode 't)
