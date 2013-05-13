@@ -52,7 +52,8 @@
 
 ;
 ;Duplicate current line down
-(global-set-key '[(control meta d)] 'my-duplicate-line-or-region) (defun my-duplicate-region (beg end &optional sep)
+(global-set-key '[(control meta d)] 'my-duplicate-line-or-region)
+(defun my-duplicate-region (beg end &optional sep)
   "Duplicate the region"
   (interactive "*r")
   (let ((p (point)))
@@ -158,11 +159,24 @@
         (goto-line (read-number "Goto line: ")))
     (linum-mode -1)))
 
-;;
+; Insert an empty line after the current line.
+; Position the cursor at its beginning, according to the current mode.
 (defun smart-open-line ()
-  "Insert an empty line after the current line.
-Position the cursor at its beginning, according to the current mode."
   (interactive)
   (move-end-of-line nil)
   (newline-and-indent))
 (global-set-key [(shift return)] 'smart-open-line)
+
+; Kill to the beginning of line (i.e: reverse c-k)
+(global-set-key (kbd "C-<backspace>") (lambda ()
+                                        (interactive)
+                                        (kill-line 0)
+                                        (indent-according-to-mode)))
+
+
+;Kill whole line but stay at the same place.
+(global-set-key (kbd "C-S-k") (lambda ()
+                                (interactive)
+                                (let ((p (point)))
+                                  (kill-whole-line)
+                                  (goto-char p))))
