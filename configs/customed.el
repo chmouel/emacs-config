@@ -186,5 +186,5 @@
  ;; If there is more than one, they won't work right.
  '(cycbuf-current-face ((t (:background "grey" :foreground "black" :weight bold))) t)
  '(cycbuf-header-face ((t (:background "black" :foreground "yellow" :weight bold))) t)
- '(magit-item-highlight ((t (:weight bold))))
+ '(magit-item-highlight ((t (:weight bold))) t)
  '(which-func ((t (:weight bold))) t))
