@@ -1,3 +1,31 @@
+(global-set-key '[(f11)] 'switch-to-irc)
+(defun switch-to-irc (&optional arg)
+  (interactive "P")
+  (let (candidate
+        (alist '(("#enovance-priv"))))
+    (catch 'none-found
+      (dolist (item alist)
+        (let (last
+              (regexp (nth 0 item))
+              (optional (nth 1 item))
+              (test (nth 2 item)))
+          (dolist (buf (buffer-list))
+            (when (and (string-match regexp (buffer-name buf))
+                       (> (buffer-size buf) 0))
+              (setq last buf)))
+          (cond ((and last (or (not test) (funcall test)))
+                 (setq candidate last))
+                (optional
+                 nil)
+                (t
+                 (throw 'none-found t))))))
+    (cond (candidate
+           (switch-to-buffer candidate))
+          (t
+           (znc-erc "OFTC"))
+          (t
+           (error "No candidate found")))))
+
 ;Switch to Gnus
 (global-set-key '[(f7)] 'switch-to-gnus)
 (defun switch-to-gnus (&optional arg)
@@ -180,3 +208,13 @@
                                 (let ((p (point)))
                                   (kill-whole-line)
                                   (goto-char p))))
+
+
+; https://github.com/jedrz/.emacs.d/blob/master/defuns/misc-defuns.el
+(defun my-hippie-expand-lines ()
+  "Try to expand entire line."
+  (interactive)
+  (let ((hippie-expand-try-functions-list '(try-expand-line
+                                            try-expand-line-all-buffers)))
+    (hippie-expand nil)))
+(global-set-key (kbd "C-?") 'my-hippie-expand-lines)
