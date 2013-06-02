@@ -31,9 +31,6 @@
 [submodule "packages/emacs-ctable"]
 	path = packages/emacs-ctable
 	url = https://github.com/kiwanami/emacs-ctable
-[submodule "packages/auto-complete"]
-	path = packages/auto-complete
-	url = https://github.com/auto-complete/auto-complete
 [submodule "packages/popup-el"]
 	path = packages/popup-el
 	url = https://github.com/auto-complete/popup-el.git
