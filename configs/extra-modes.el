@@ -116,10 +116,3 @@
 (my-ensure-installed 'window-number)
 (autoload 'window-number-meta-mode "window-number")
 (window-number-meta-mode 't)
-
-(my-ensure-installed 'window-number)
-(eval-after-load "erc"
-  '(require 'erc-hl-nicks))
-
-(autoload 'znc-all "znc" "JSON Mode" t)
-(autoload 'znc-erc "znc" "JSON Mode" t)
