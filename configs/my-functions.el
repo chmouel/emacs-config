@@ -1,64 +1,3 @@
-(global-set-key '[(f11)] 'switch-to-irc)
-(defun switch-to-irc (&optional arg)
-  (interactive "P")
-  (let (candidate
-        (alist '(("#enovance-priv"))))
-    (catch 'none-found
-      (dolist (item alist)
-        (let (last
-              (regexp (nth 0 item))
-              (optional (nth 1 item))
-              (test (nth 2 item)))
-          (dolist (buf (buffer-list))
-            (when (and (string-match regexp (buffer-name buf))
-                       (> (buffer-size buf) 0))
-              (setq last buf)))
-          (cond ((and last (or (not test) (funcall test)))
-                 (setq candidate last))
-                (optional
-                 nil)
-                (t
-                 (throw 'none-found t))))))
-    (cond (candidate
-           (switch-to-buffer candidate))
-          (t
-           (znc-erc "OFTC"))
-          (t
-           (error "No candidate found")))))
-
-;Switch to Gnus
-(global-set-key '[(f7)] 'switch-to-gnus)
-(defun switch-to-gnus (&optional arg)
-  (interactive "P")
-  (let (candidate
-        (alist '(("^\\*\\(mail\\|\\(wide \\)?reply\\)" t)
-                 ("^\\*Group")
-                 ("^\\*Summary")
-                 ("^\\*Article" nil (lambda ()
-                                      (buffer-live-p gnus-article-current-summary))))))
-    (catch 'none-found
-      (dolist (item alist)
-        (let (last
-              (regexp (nth 0 item))
-              (optional (nth 1 item))
-              (test (nth 2 item)))
-          (dolist (buf (buffer-list))
-            (when (and (string-match regexp (buffer-name buf))
-                       (> (buffer-size buf) 0))
-              (setq last buf)))
-          (cond ((and last (or (not test) (funcall test)))
-                 (setq candidate last))
-                (optional
-                 nil)
-                (t
-                 (throw 'none-found t))))))
-    (cond (candidate
-           (switch-to-buffer candidate))
-          (t
-           (gnus))
-          (t
-           (error "No candidate found")))))
-
 ;; I-search with initial contents
 (global-set-key '[(control *)] 'isearch-forward-at-point)
 (defvar isearch-initial-string nil)
@@ -120,17 +59,6 @@
     (forward-char col)
     )
   )
-
- ;; behave like vi's o command
- (defun open-next-line (arg)
-   "Move to the next line and then opens a line.
- See also `newline-and-indent'."
-   (interactive "p")
-   (end-of-line)
-   (open-line arg)
-   (next-line 1)
-   (when newline-and-indent
-     (indent-according-to-mode)))
 
  ;; behave like vi's O command
  (defun open-previous-line (arg)
@@ -218,3 +146,10 @@
                                             try-expand-line-all-buffers)))
     (hippie-expand nil)))
 (global-set-key (kbd "C-?") 'my-hippie-expand-lines)
+
+;http://emacsredux.com/blog/2013/05/30/joining-lines/
+(defun my-top-join-line ()
+  "Join the current line with the line beneath it."
+  (interactive)
+  (delete-indentation 1))
+(global-set-key (kbd "C-S-j") 'my-top-join-line)
