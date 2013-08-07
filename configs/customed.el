@@ -24,6 +24,7 @@
  '(compilation-ask-about-save nil)
  '(completion-ignored-extensions (quote (".svn/" "CVS/" ".o" "~" ".bin" ".lbin" ".so" ".a" ".ln" ".blg" ".bbl" ".elc" ".pyc" ".pyo" ".gitignore" ".class")))
  '(completion-styles (quote (basic partial-completion emacs22 initials)))
+ '(ctags-update-other-options (quote ("--exclude='*.pyc'" "--exclude='*.elc'" "--exclude='*.class'" "--exclude='.git'" "--exclude='.svn'" "--exclude='SCCS'" "--exclude='RCS'" "--exclude='CVS'" "--exclude='EIFGEN'" "--exclude='.tox'" "--exclude='.venv'" "--python-kinds='-i'")))
  '(cycbuf-buffer-sort-function (quote cycbuf-sort-by-recency))
  '(cycbuf-dont-show-regexp (quote ("^ " "^\\*cycbuf\\*$" "^\\*Messages\\*#")))
  '(cycbuf-mode-name-replacements (quote (("Fundamental" "Fund.") ("Lisp Interaction" "Lisp I.") ("Python" "Py"))))
@@ -198,6 +199,8 @@
  ;; If there is more than one, they won't work right.
  '(cycbuf-current-face ((t (:background "grey" :foreground "black" :weight bold))) t)
  '(cycbuf-header-face ((t (:background "black" :foreground "yellow" :weight bold))) t)
+ '(ediff-even-diff-B ((t (:foreground "green"))))
+ '(ediff-odd-diff-B ((t (:background "#41423f" :foreground "grey"))))
  '(erc-input-face ((t (:foreground "white"))) t)
  '(erc-my-nick-face ((t (:foreground "DarkSlateGray3" :weight bold))) t)
  '(erc-notice-face ((t (:foreground "Grey" :weight bold))) t)

@@ -1,3 +1,5 @@
+(my-ensure-installed 'flymake-php)
+
 (push "~/.emacs.d/packages/php-mode" load-path)
 (autoload 'php-mode "php-mode" "PHP Mode" t)
 (setq auto-mode-alist (cons '("\\.php\\'" . php-mode) auto-mode-alist))
@@ -11,6 +13,7 @@
   (c-toggle-auto-newline 1)
 
   (my-programming-common-hook)
+  (flymake-php-load)
 
   (local-set-key '[(tab)] 'indent-for-tab-command)
   (local-set-key '[(control c)(control v)] 'browse-url-of-buffer)

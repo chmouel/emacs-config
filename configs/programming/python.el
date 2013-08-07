@@ -32,6 +32,7 @@
 
 (defun my-python-mode-hook()
   (set (make-local-variable 'my-compile-command) (concat "flake8 \"" buffer-file-name "\""))
+  (turn-on-ctags-auto-update-mode)
   (outline-minor-mode t)
   (setq outline-regexp "[ \t]*# \\|[ \t]+\\(class\\|def\\|if\\|elif\\|else\\|while\\|for\\|try\\|except\\|with\\) ")
   (setq outline-level 'py-outline-level)
@@ -48,7 +49,7 @@
   (flymake-python-pyflakes-load)
   (local-set-key '[(control c)(\[)] 'flymake-goto-prev-error)
   (local-set-key '[(control c)(\])] 'flymake-goto-next-error)
-  (which-func-mode 't)
+;  (which-func-mode 't)
   (local-set-key '[(meta q)] 'python-fill-paragraph)
   (set (make-local-variable 'my-compile-command) (concat python-check-command " \"" buffer-file-name "\""))
   (set (make-local-variable 'my-compile-run-command) (concat python-shell-interpreter " -E \"" buffer-file-name "\""))

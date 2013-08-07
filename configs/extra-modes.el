@@ -112,7 +112,20 @@
 (my-ensure-installed 'github-browse-file)
 (autoload 'github-browse-file "github-browse-file" "Github browse file." t)
 
-;window-number-meta-mode
+; window-number-meta-mode
 (my-ensure-installed 'window-number)
 (autoload 'window-number-meta-mode "window-number")
 (window-number-meta-mode 't)
+
+; perspective
+(my-ensure-installed 'perspective)
+(require 'perspective)
+
+; Yascroll
+(my-ensure-installed 'yascroll)
+(global-yascroll-bar-mode 't)
+
+; Ctags
+(my-ensure-installed 'ctags-update)
+(autoload 'turn-on-ctags-auto-update-mode "ctags-update" "turn on `ctags-auto-update-mode'." t)
+(autoload 'ctags-update "ctags-update" "update TAGS using ctags" t)
