@@ -191,7 +191,7 @@
  '(yas-wrap-around-region t)
  '(yas/trigger-key "C-M-SPC")
  '(yas/wrap-around-region t)
- '(zoneinfo-style-world-list (quote (("Europe/London" "London") ("America/Chicago" "San Antonio") ("Europe/Paris" "Paris")))))
+ '(zoneinfo-style-world-list (quote (("Europe/London" "London") ("America/Montreal" "Montreal") ("America/Los-Angeles" "San Francisco") ("Europe/Paris" "Paris")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

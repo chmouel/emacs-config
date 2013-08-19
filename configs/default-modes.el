@@ -94,7 +94,6 @@
  (define-key ido-completion-map " " 'ido-next-match)
  )
 (add-hook 'ido-setup-hook 'my-ido-local-keys)
-(global-set-key (read-kbd-macro "C-`") 'ido-switch-buffer)
 
 ;Comit mode
 (add-hook 'comint-mode-hook

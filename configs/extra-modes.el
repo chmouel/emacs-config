@@ -49,7 +49,7 @@
 ;Find find in GIT repo
 (my-ensure-installed 'find-file-in-git-repo)
 (require 'find-file-in-git-repo nil t)
-(global-set-key (kbd "C-c C-g") 'find-file-in-git-repo)
+(global-set-key (read-kbd-macro "C-`") 'find-file-in-git-repo)
 (global-set-key (kbd "C-S-f") 'find-file-in-git-repo)
 
 ; Browse Kill ring

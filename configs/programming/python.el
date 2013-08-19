@@ -33,6 +33,7 @@
 (defun my-python-mode-hook()
   (set (make-local-variable 'my-compile-command) (concat "flake8 \"" buffer-file-name "\""))
   (turn-on-ctags-auto-update-mode)
+  (flyspell-prog-mode)
   (outline-minor-mode t)
   (setq outline-regexp "[ \t]*# \\|[ \t]+\\(class\\|def\\|if\\|elif\\|else\\|while\\|for\\|try\\|except\\|with\\) ")
   (setq outline-level 'py-outline-level)
