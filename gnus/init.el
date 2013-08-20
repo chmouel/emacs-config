@@ -1,3 +1,23 @@
+(setq gnus-parameters
+      '(("^gerrit\\.*"
+         (highlight-words .  ((": \\(FAILURE\\)" 1 1 error)
+                              (": \\(SUCCESS\\)" 1 1 success)
+                              (": \\(SKIPPED\\)" 1 1 warning)
+                              (": \\(UNSTABLE\\)" 1 1 warning)
+                              ("Gerrit-.*:" 0 0 button)
+                              ("Patch Set [[:digit:]]+: Looks good to me (core reviewer); Approved" 0 0 success)
+                              ("Patch Set [[:digit:]]+: Looks good to me (core reviewer)" 0 0 success)
+                              ("Patch Set [[:digit:]]+: Looks good to me, but someone else must approve" 0 0 success)
+                              ("Patch Set [[:digit:]]+: Doesn't seem to work" 0 0 error)
+                              ("Patch Set [[:digit:]]+: Do not merge" 0 0 error)
+                              ("Patch Set [[:digit:]]+: I would prefer that you didn't merge this" 0 0 error)
+                              ("Patch Set [[:digit:]]+: Works for me" 0 0 success)
+                              ("Patch Set [[:digit:]]+: Verified" 0 0 success)
+                              ("Patch Set [[:digit:]]+: Approved" 0 0 success)
+                              ("^.+ has uploaded a new change for review." 0 0 bold)
+                              ("Jenkins has submitted this change and it was merged." 0 0 success))))
+        ))
+
 ;Load Files
 (if (file-exists-p (concat my-init-directory "/gnus/filter.el"))
   (load-file (concat my-init-directory "/gnus/filter.el")))
@@ -12,7 +32,7 @@
  gnus-kill-files-directory "~/Gnus/News"
  gnus-registry-cache-file "~/Gnus/config/gnus.registry.eld"
  gnus-startup-file "~/Gnus/config/newsrc"
- mail-source-directory "~/Gnus/Mail" 
+ mail-source-directory "~/Gnus/Mail"
  nnmail-message-id-cache-file "~/Gnus/config/nnmail-cache"
  )
 
@@ -23,10 +43,10 @@
  read-mail-command 'gnus
  gnus-expert-user t
  gnus-visible-headers "^From:\\|^Subject:\\|^Date:\\|^Newsgroups:\\|^X-Mailer:\\|^X-Newsreader:\\|^Organization:\\|^Followup-To:\\|^User-Agent:\\|^To:\\|^Cc:"
- gnus-sorted-header-list '("^From:" "^Subject:" "^Newsgroups:" 
-						   "^To:" "^Cc:"  "^Followup-To:" "^Date:" 
-						   "^X-Mailer:" "^X-Newsreader:" 
-						   "^User-Agent:" 
+ gnus-sorted-header-list '("^From:" "^Subject:" "^Newsgroups:"
+						   "^To:" "^Cc:"  "^Followup-To:" "^Date:"
+						   "^X-Mailer:" "^X-Newsreader:"
+						   "^User-Agent:"
 						   "^Organization:^Approved:")
 
  gnus-group-line-format "%1M%1S%5y: %(%-50,50G%)\n"
@@ -34,15 +54,15 @@
  )
 
 ;USE K-J for navigation evil
-(defun my-gnus-summary-mode-hook () 
-  (local-set-key '[(j)] 'gnus-summary-next-article) 
-  (local-set-key '[(k)] 'gnus-summary-prev-article) 
+(defun my-gnus-summary-mode-hook ()
+  (local-set-key '[(j)] 'gnus-summary-next-article)
+  (local-set-key '[(k)] 'gnus-summary-prev-article)
   )
 (add-hook 'gnus-summary-mode-hook 'my-gnus-summary-mode-hook)
 
-(setq gnus-thread-sort-functions '(gnus-thread-sort-by-number 
-                                   gnus-thread-sort-by-date 
-								   gnus-thread-sort-by-subject 
+(setq gnus-thread-sort-functions '(gnus-thread-sort-by-number
+                                   gnus-thread-sort-by-date
+								   gnus-thread-sort-by-subject
 								   gnus-thread-sort-by-total-score))
 
 ;HighLine

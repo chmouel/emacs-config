@@ -204,6 +204,7 @@
  '(erc-input-face ((t (:foreground "white"))) t)
  '(erc-my-nick-face ((t (:foreground "DarkSlateGray3" :weight bold))) t)
  '(erc-notice-face ((t (:foreground "Grey" :weight bold))) t)
+ '(gnus-signature ((t (:slant normal))))
  '(magit-item-highlight ((t (:weight bold))))
  '(powerline-active1 ((t (:inherit mode-line :background "light sea green"))))
  '(which-func ((t (:weight bold))) t))
