@@ -1,23 +1,3 @@
-(setq gnus-parameters
-      '(("^gerrit\\.*"
-         (highlight-words .  ((": \\(FAILURE\\)" 1 1 error)
-                              (": \\(SUCCESS\\)" 1 1 success)
-                              (": \\(SKIPPED\\)" 1 1 warning)
-                              (": \\(UNSTABLE\\)" 1 1 warning)
-                              ("Gerrit-.*:" 0 0 button)
-                              ("Patch Set [[:digit:]]+: Looks good to me (core reviewer); Approved" 0 0 success)
-                              ("Patch Set [[:digit:]]+: Looks good to me (core reviewer)" 0 0 success)
-                              ("Patch Set [[:digit:]]+: Looks good to me, but someone else must approve" 0 0 success)
-                              ("Patch Set [[:digit:]]+: Doesn't seem to work" 0 0 error)
-                              ("Patch Set [[:digit:]]+: Do not merge" 0 0 error)
-                              ("Patch Set [[:digit:]]+: I would prefer that you didn't merge this" 0 0 error)
-                              ("Patch Set [[:digit:]]+: Works for me" 0 0 success)
-                              ("Patch Set [[:digit:]]+: Verified" 0 0 success)
-                              ("Patch Set [[:digit:]]+: Approved" 0 0 success)
-                              ("^.+ has uploaded a new change for review." 0 0 bold)
-                              ("Jenkins has submitted this change and it was merged." 0 0 success))))
-        ))
-
 ;Load Files
 (if (file-exists-p (concat my-init-directory "/gnus/filter.el"))
   (load-file (concat my-init-directory "/gnus/filter.el")))
@@ -53,10 +33,23 @@
  gnus-topic-display-empty-topics nil
  )
 
-;USE K-J for navigation evil
+; Browse OpenStack review when found
+(defun my-gnus-article-browse-review ()
+  (interactive)
+  (let (review-url)
+    (save-excursion
+      (set-buffer gnus-article-buffer)
+      (goto-char (point-min))
+      (while (re-search-forward (concat "^\\(To view, visit \\)?\\(https://review.openstack.org/[0-9]+\\|https://bugs.launchpad.net/bugs/[0-9]+\\)") nil t)
+          (browse-url (match-string-no-properties 2))))))
+
 (defun my-gnus-summary-mode-hook ()
+  (local-set-key (read-kbd-macro "M-k") 'my-gnus-article-browse-review)
+  (local-set-key '[(\\)] 'my-gnus-article-browse-review)
+  ;USE K-J for navigation is evil and that evil is ca
   (local-set-key '[(j)] 'gnus-summary-next-article)
   (local-set-key '[(k)] 'gnus-summary-prev-article)
+
   )
 (add-hook 'gnus-summary-mode-hook 'my-gnus-summary-mode-hook)
 
@@ -99,3 +92,33 @@
     (propertize
      (format "%s %d" name total-number-of-articles)
      'face topic-face)))
+
+; Group parameters.
+(setq gnus-parameters
+      '(("^gerrit\\.*"
+         (highlight-words .  ((": \\(FAILURE\\)" 1 1 error)
+                              (": \\(SUCCESS\\)" 1 1 success)
+                              (": \\(SKIPPED\\)" 1 1 warning)
+                              (": \\(UNSTABLE\\)" 1 1 warning)
+                              ("http://logs.openstack.org/.*/check/\\([^/]+\\)/.*FAILURE" 1 1 error)
+                              ("Gerrit-.*:" 0 0 button)
+                              ("Patch Set [[:digit:]]+: Looks good to me (core reviewer); Approved" 0 0 success)
+                              ("Patch Set [[:digit:]]+: Looks good to me (core reviewer)" 0 0 success)
+                              ("Patch Set [[:digit:]]+: Looks good to me, but someone else must approve" 0 0 success)
+                              ("Patch Set [[:digit:]]+: Doesn't seem to work" 0 0 error)
+                              ("Patch Set [[:digit:]]+: Do not merge" 0 0 error)
+                              ("Patch Set [[:digit:]]+: I would prefer that you didn't merge this" 0 0 error)
+                              ("Patch Set [[:digit:]]+: Works for me" 0 0 success)
+                              ("Patch Set [[:digit:]]+: Verified" 0 0 success)
+                              ("Patch Set [[:digit:]]+: Approved" 0 0 success)
+                              ("^.+ has uploaded a new change for review." 0 0 bold)
+                              ("Jenkins has submitted this change and it was merged." 0 0 success))))
+        ))
+
+
+; eNovance
+(setq gnus-posting-styles
+      '((".*"
+         (name "Chmouel Boudjnah")
+         (address "chmouel@enovance.com")
+         (organization "eNovance"))))

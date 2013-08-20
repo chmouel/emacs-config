@@ -129,3 +129,6 @@
 (my-ensure-installed 'ctags-update)
 (autoload 'turn-on-ctags-auto-update-mode "ctags-update" "turn on `ctags-auto-update-mode'." t)
 (autoload 'ctags-update "ctags-update" "update TAGS using ctags" t)
+
+;
+(my-ensure-installed 'openstack-cgit-browse-file)
