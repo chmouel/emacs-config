@@ -44,7 +44,7 @@
           (browse-url (match-string-no-properties 2))))))
 
 (defun my-gnus-summary-mode-hook ()
-  (local-set-key (read-kbd-macro "M-k") 'my-gnus-article-browse-review)
+  (local-set-key (read-kbd-macro "M-k") 'gnus-summary-kill-same-subject-and-select)
   (local-set-key '[(\\)] 'my-gnus-article-browse-review)
   ;USE K-J for navigation is evil and that evil is ca
   (local-set-key '[(j)] 'gnus-summary-next-article)
