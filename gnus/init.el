@@ -36,12 +36,12 @@
 ; Browse OpenStack review when found
 (defun my-gnus-article-browse-review ()
   (interactive)
-  (let (review-url)
-    (save-excursion
-      (set-buffer gnus-article-buffer)
-      (goto-char (point-min))
-      (while (re-search-forward (concat "^\\(To view, visit \\)?\\(https://review.openstack.org/[0-9]+\\|https://bugs.launchpad.net/bugs/[0-9]+\\)") nil t)
-          (browse-url (match-string-no-properties 2))))))
+  (save-excursion
+    (set-buffer gnus-article-buffer)
+    (goto-char (point-min))
+    (while (re-search-forward
+            (concat "^\\(To view, visit \\)?\\(https://review.openstack.org/[0-9]+\\|https://bugs.launchpad.net/bugs/[0-9]+\\)") nil t)
+          (browse-url (match-string-no-properties 2)))))
 
 (defun my-gnus-summary-mode-hook ()
   (local-set-key (read-kbd-macro "M-k") 'gnus-summary-kill-same-subject-and-select)
@@ -95,6 +95,7 @@
 
 ; Group parameters.
 (setq gnus-parameters
+      ; Those come with the excelent jd's gnus configuration.
       '(("^gerrit\\.*"
          (highlight-words .  ((": \\(FAILURE\\)" 1 1 error)
                               (": \\(SUCCESS\\)" 1 1 success)
