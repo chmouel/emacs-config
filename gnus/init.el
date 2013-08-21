@@ -36,12 +36,11 @@
 ; Browse OpenStack review when found
 (defun my-gnus-article-browse-review ()
   (interactive)
-  (save-excursion
-    (set-buffer gnus-article-buffer)
-    (goto-char (point-min))
+  (gnus-with-article-buffer
+    (article-goto-body)
     (while (re-search-forward
             (concat "^\\(To view, visit \\)?\\(https://review.openstack.org/[0-9]+\\|https://bugs.launchpad.net/bugs/[0-9]+\\)") nil t)
-          (browse-url (match-string-no-properties 2)))))
+      (browse-url (match-string-no-properties 2)))))
 
 (defun my-gnus-summary-mode-hook ()
   (local-set-key (read-kbd-macro "M-k") 'gnus-summary-kill-same-subject-and-select)
@@ -64,6 +63,14 @@
 (add-hook 'gnus-group-mode-hook 'my-setup-hl-line)
 (defun my-setup-hl-line () (hl-line-mode 1) (setq cursor-type 'hbar) )
 (setq cursor-type 't)
+(set-face-attribute 'hl-line nil
+                      :background "red"
+                      :foreground "white"
+                      :box nil)
+(set-face-attribute 'hl-line-face nil
+                    :background "red"
+                    :foreground "white"
+                    :box nil)
 
 ; Colorfull
 (require 'gnus-cite)
@@ -102,6 +109,7 @@
                               (": \\(SKIPPED\\)" 1 1 warning)
                               (": \\(UNSTABLE\\)" 1 1 warning)
                               ("http://logs.openstack.org/.*/check/\\([^/]+\\)/.*FAILURE" 1 1 error)
+                              ("Gerrit-Project: \\(.*\\)" 1 1 font-lock-comment-face)
                               ("Gerrit-.*:" 0 0 button)
                               ("Patch Set [[:digit:]]+: Looks good to me (core reviewer); Approved" 0 0 success)
                               ("Patch Set [[:digit:]]+: Looks good to me (core reviewer)" 0 0 success)
