@@ -91,13 +91,8 @@
 (require 'auto-complete)
 
 ;
-(push "~/.emacs.d/packages/ace-jump-mode" load-path)
-(require 'ace-jump-mode)
-(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
-
-;
-(push "~/.emacs.d/packages/emacs-git-gutter" load-path)
-(require 'git-gutter)
+(my-ensure-installed 'git-gutter)
+(autoload 'git-gutter "git-gutter" "Git Gutter" t)
 
 ;
 (my-ensure-installed 'ack-and-a-half)
