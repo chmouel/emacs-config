@@ -15,8 +15,7 @@
       (package-install package)))
 
 ; For Yas/Snippet
-(push "~/.emacs.d/packages/yasnippet" load-path)
-(require 'yasnippet nil t) ;; not yasnippet-bundle
+(my-ensure-installed 'yasnippet)
 (when (featurep 'yasnippet)
   (yas/global-mode 1)
   (eval-after-load "yasnippet"
@@ -26,7 +25,7 @@
 )
 
 ;Flymake
-(push "~/.emacs.d/packages/yasnippet" load-path)
+(my-ensure-installed 'flymake-cursor)
 (eval-after-load "flymake"
   '(progn
      (require 'flymake-cursor)))
@@ -36,9 +35,7 @@
 (autoload 'regex-tool "regex-tool" "REGEX Tool" t)
 
 ;Magit
-(push "~/.emacs.d/packages/magit" load-path)
-(autoload 'magit-status "magit" "Magit Status" t)
-(autoload 'magit-read-top-dir "magit" "Magit Status" t)
+(my-ensure-installed 'magit)
 (global-set-key (read-kbd-macro "C-c g") 'magit-status)
 (global-set-key (read-kbd-macro "C-S-o") '(lambda ()(interactive) (find-file (magit-read-top-dir nil))))
 
@@ -48,23 +45,19 @@
 
 ;Find find in GIT repo
 (my-ensure-installed 'find-file-in-git-repo)
-(require 'find-file-in-git-repo nil t)
 (global-set-key (read-kbd-macro "C-`") 'find-file-in-git-repo)
 (global-set-key (kbd "C-S-f") 'find-file-in-git-repo)
 
 ; Browse Kill ring
-(push "~/.emacs.d/packages/browse-kill-ring" load-path)
-(autoload 'browse-kill-ring "browse-kill-ring" "Browse Kill Ring" t)
+(my-ensure-installed 'browse-kill-ring)
 
 ; Multiple cursors
-(push "~/.emacs.d/packages/multiple-cursors" load-path)
+(my-ensure-installed 'multiple-cursors)
 (setq mc/list-file "~/.emacs.d/auto-save-list/mc-lists.el")
-(autoload 'mc/mark-all-like-this-dwim "multiple-cursors" "Multiple Cursors" t)
 (global-set-key (kbd "C-@") 'mc/mark-all-like-this-dwim)
 
 ; Expand Region
-(push "~/.emacs.d/packages/expand-region" load-path)
-(autoload 'er/expand-region "expand-region" "Multiple Cursors" t)
+(my-ensure-installed 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
 
 ;Flymake new
@@ -78,16 +71,9 @@
             (ibuffer-vc-set-filter-groups-by-vc-root)
             (unless (eq ibuffer-sorting-mode 'alphabetic)
               (ibuffer-do-sort-by-alphabetic))))
-
 ;
-(push "~/.emacs.d/packages/markit" load-path)
-(require 'markit)
-(global-set-key (read-kbd-macro "C-\"") 'markit-mark-region-include)
-(global-set-key (read-kbd-macro "C-\'") 'markit-mark-region-exclude)
-
-;
-(push "~/.emacs.d/packages/popup-el" load-path)
-(push "~/.emacs.d/packages/auto-complete" load-path)
+(my-ensure-installed 'auto-complete)
+(my-ensure-installed 'popup)
 (require 'auto-complete)
 
 ;
@@ -127,3 +113,13 @@
 
 ;
 (my-ensure-installed 'openstack-cgit-browse-file)
+
+;; timestamps
+(my-ensure-installed 'powerline)
+(powerline-default-theme)
+
+(set-face-attribute 'mode-line nil
+                    :background "OliveDrab3"
+                    :box nil)
+(set-face-attribute 'mode-line-inactive nil
+                    :box nil)

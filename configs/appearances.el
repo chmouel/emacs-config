@@ -23,3 +23,4 @@
 
 ;Non Customizables
 (setq ring-bell-function 'ignore)
+

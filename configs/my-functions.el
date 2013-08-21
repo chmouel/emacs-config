@@ -186,3 +186,11 @@
 	    "[[:space:]]+"
 	    "+"
 	    keywords))))
+
+; From http://www.emacswiki.org/emacs/FullScreen#toc23
+(defun my-toggle-fullscreen ()
+  "Toggle full screen"
+  (interactive)
+  (set-frame-parameter
+     nil 'fullscreen
+     (when (not (frame-parameter nil 'fullscreen)) 'fullboth)))
