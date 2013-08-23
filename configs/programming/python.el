@@ -41,7 +41,6 @@
   (define-key outline-minor-mode-map [M-up] 'outline-move-subtree-up)
   (set (make-local-variable 'flymake-info-line-regexp) "^H")
   (when "highlight-80+" (highlight-80+-mode))
-  (markit-mode)
   (auto-complete-mode)
   (local-set-key '[(control c)(control k)] 'outline-mark-subtree)
   (local-set-key (kbd "C-S-y") 'nosetests-compile-module)
