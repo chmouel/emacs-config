@@ -16,6 +16,8 @@
 
 ; For Yas/Snippet
 (my-ensure-installed 'yasnippet)
+(autoload 'yas/hippie-try-expand "yasnippet" nil t)
+(autoload 'yas/minor-mode "yasnippet" nil t)
 (when (featurep 'yasnippet)
   (yas/global-mode 1)
   (eval-after-load "yasnippet"
@@ -36,6 +38,7 @@
 
 ;Magit
 (my-ensure-installed 'magit)
+(autoload 'magit-read-top-dir "magit" nil t)
 (global-set-key (read-kbd-macro "C-c g") 'magit-status)
 (global-set-key (read-kbd-macro "C-S-o") '(lambda ()(interactive) (find-file (magit-read-top-dir nil))))
 
@@ -45,6 +48,7 @@
 
 ;Find find in GIT repo
 (my-ensure-installed 'find-file-in-git-repo)
+(autoload 'find-file-in-git-repo "find-file-in-git-repo" "Find File in Git Repo" t)
 (global-set-key (read-kbd-macro "C-`") 'find-file-in-git-repo)
 (global-set-key (kbd "C-S-f") 'find-file-in-git-repo)
 
@@ -78,7 +82,6 @@
 
 ;
 (my-ensure-installed 'git-gutter)
-(autoload 'git-gutter "git-gutter" "Git Gutter" t)
 
 ;
 (my-ensure-installed 'ack-and-a-half)
@@ -86,12 +89,10 @@
 
 ;JSON Mode
 (my-ensure-installed 'json-mode)
-(autoload 'json-mode "json-mode" "JSON Mode" t)
 (add-to-list 'auto-mode-alist '("\\.json$" . json-mode))
 
 ; Github browse file
 (my-ensure-installed 'github-browse-file)
-(autoload 'github-browse-file "github-browse-file" "Github browse file." t)
 
 ; window-number-meta-mode
 (my-ensure-installed 'window-number)
@@ -108,8 +109,6 @@
 
 ; Ctags
 (my-ensure-installed 'ctags-update)
-(autoload 'turn-on-ctags-auto-update-mode "ctags-update" "turn on `ctags-auto-update-mode'." t)
-(autoload 'ctags-update "ctags-update" "update TAGS using ctags" t)
 
 ;
 (my-ensure-installed 'openstack-cgit-browse-file)

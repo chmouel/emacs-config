@@ -28,7 +28,9 @@
 						   "^X-Mailer:" "^X-Newsreader:"
 						   "^User-Agent:"
 						   "^Organization:^Approved:")
-
+ ; from jd
+ gnus-summary-line-format (concat "%z%U%R %~(max-right 17)~(pad-right 17)&user-date;  "
+                                  "%~(max-right 20)~(pad-right 20)f %B%s\n")
  gnus-group-line-format "%1M%1S%5y: %(%-50,50G%)\n"
  gnus-topic-display-empty-topics nil
  )
@@ -45,7 +47,8 @@
 (defun my-gnus-summary-mode-hook ()
   (local-set-key (read-kbd-macro "M-k") 'gnus-summary-kill-same-subject-and-select)
   (local-set-key '[(\\)] 'my-gnus-article-browse-review)
-  ;USE K-J for navigation is evil and that evil is ca
+  ; USE K-J for navigation is evil and that evil is called gmail who
+  ; drained me away from my beloved gnus for too long.
   (local-set-key '[(j)] 'gnus-summary-next-article)
   (local-set-key '[(k)] 'gnus-summary-prev-article)
 
@@ -64,13 +67,18 @@
 (defun my-setup-hl-line () (hl-line-mode 1) (setq cursor-type 'hbar) )
 (setq cursor-type 't)
 (set-face-attribute 'hl-line nil
-                      :background "red"
-                      :foreground "white"
-                      :box nil)
+                    :background "red"
+                    :foreground "white"
+                    :box nil)
 (set-face-attribute 'hl-line-face nil
                     :background "red"
                     :foreground "white"
                     :box nil)
+(set-face-attribute 'highlight nil
+                    :background "yellow"
+                    :foreground "red"
+                    :box nil)
+
 
 ; Colorfull
 (require 'gnus-cite)
@@ -124,10 +132,51 @@
                               ("Jenkins has submitted this change and it was merged." 0 0 success))))
         ))
 
-
 ; eNovance
 (setq gnus-posting-styles
       '((".*"
          (name "Chmouel Boudjnah")
          (address "chmouel@enovance.com")
          (organization "eNovance"))))
+
+
+;
+(push "~/.emacs.d/packages/bbdb/lisp/" load-path)
+(require 'bbdb-loaddefs)
+(bbdb-initialize 'gnus 'message)
+(setq
+    bbdb-offer-save 1                        ;; 1 means save-without-asking
+    bbdb-use-pop-up t                        ;; allow popups for addresses
+    bbdb-electric-p t                        ;; be disposable with SPC
+    bbdb-popup-target-lines  1               ;; very small
+    bbdb-dwim-net-address-allow-redundancy t ;; always use full name
+    bbdb-quiet-about-name-mismatches 2       ;; show name-mismatches 2 secs
+
+    bbdb-always-add-address t                ;; add new addresses to existing...
+                                             ;; ...contacts automatically
+    bbdb-canonicalize-redundant-nets-p t     ;; x@foo.bar.cx => x@bar.cx
+
+    bbdb-completion-type nil                 ;; complete on anything
+
+    bbdb-complete-name-allow-cycling t       ;; cycle through matches
+                                             ;; this only works partially
+
+    bbbd-message-caching-enabled t           ;; be fast
+    bbdb-use-alternate-names t               ;; use AKA
+
+
+    bbdb-elided-display t                    ;; single-line addresses
+
+    ;; auto-create addresses from mail
+    bbdb/mail-auto-create-p 'bbdb-ignore-some-messages-hook
+    )
+
+(setq bbdb-ignore-message-alist
+      '(("From" . "mailer-daemon")
+        ("From" . "bugs.launchpad.net")
+        ("From" . "postmaster.twitter.com")
+        ("From" . "plus.google.com")
+        (("To" "From") . "review@openstack.org")))
+
+
+(add-hook 'gnus-startup-hook 'bbdb-insinuate-gnus)

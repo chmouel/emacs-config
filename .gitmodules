@@ -1,3 +1,6 @@
 [submodule "packages/emacs-flymake"]
 	path = packages/emacs-flymake
 	url = https://github.com/illusori/emacs-flymake.git
+[submodule "packages/bbdb"]
+	path = packages/bbdb
+	url = git://git.savannah.nongnu.org/bbdb.git
