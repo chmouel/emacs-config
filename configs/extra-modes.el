@@ -36,11 +36,6 @@
 (my-ensure-installed 'regex-tool)
 (autoload 'regex-tool "regex-tool" "REGEX Tool" t)
 
-;Magit
-(my-ensure-installed 'magit)
-(autoload 'magit-read-top-dir "magit" nil t)
-(global-set-key (read-kbd-macro "C-c g") 'magit-status)
-
 ; Hightly more than 80
 (my-ensure-installed 'highlight-80+)
 (autoload 'highlight-80+ "highlight-80+" nil t)
