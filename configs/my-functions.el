@@ -77,7 +77,6 @@
  ;; behave like vi's O command
  (defun open-previous-line (arg)
    "Open a new line before the current one.
-
   See also `newline-and-indent'."
    (interactive "p")
    (beginning-of-line)
