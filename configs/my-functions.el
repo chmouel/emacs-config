@@ -1,3 +1,17 @@
+;; Magit and git quick open files for projects.
+(defun my-magit-open-directory-and-file ()
+  "Open quickly a magit directory and open a git file in there"
+  (interactive)
+  (let ((default-directory (magit-read-top-dir nil)))
+    (find-file-in-git-repo)))
+(global-set-key (read-kbd-macro "C-S-p") 'my-magit-open-directory-and-file)
+
+(defun my-magit-open-repository ()
+  "Open quickly a magit directory."
+  (interactive)
+  (dired (magit-read-top-dir nil)))
+(global-set-key (read-kbd-macro "C-S-o") 'my-magit-open-repository)
+
 ;; I-search with initial contents
 (global-set-key '[(control *)] 'isearch-forward-at-point)
 (defvar isearch-initial-string nil)

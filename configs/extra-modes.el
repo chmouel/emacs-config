@@ -40,7 +40,6 @@
 (my-ensure-installed 'magit)
 (autoload 'magit-read-top-dir "magit" nil t)
 (global-set-key (read-kbd-macro "C-c g") 'magit-status)
-(global-set-key (read-kbd-macro "C-S-o") '(lambda ()(interactive) (find-file (magit-read-top-dir nil))))
 
 ; Hightly more than 80
 (my-ensure-installed 'highlight-80+)
