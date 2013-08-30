@@ -67,16 +67,16 @@
 (defun my-setup-hl-line () (hl-line-mode 1) (setq cursor-type 'hbar) )
 (setq cursor-type 't)
 (set-face-attribute 'hl-line nil
-                    :background "red"
-                    :foreground "white"
+                    :background "#abd7f0"
+                    :foreground "black"
                     :box nil)
 (set-face-attribute 'hl-line-face nil
-                    :background "red"
-                    :foreground "white"
+                    :background "#abd7f0"
+                    :foreground "black"
                     :box nil)
 (set-face-attribute 'highlight nil
-                    :background "yellow"
-                    :foreground "red"
+                    :background "#abd7f0"
+                    :foreground "black"
                     :box nil)
 
 
@@ -177,6 +177,3 @@
         ("From" . "postmaster.twitter.com")
         ("From" . "plus.google.com")
         (("To" "From") . "review@openstack.org")))
-
-
-(add-hook 'gnus-startup-hook 'bbdb-insinuate-gnus)
