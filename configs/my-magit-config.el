@@ -2,6 +2,7 @@
 (my-ensure-installed 'magit)
 (autoload 'magit-read-top-dir "magit" nil t)
 (global-set-key (read-kbd-macro "C-c g") 'magit-status)
+
 (eval-after-load "vc-git"
   '(progn
      (define-derived-mode vc-git-log-edit-mode log-edit-mode "Log-Edit/git"
@@ -20,12 +21,12 @@
          (toggle-save-place 0)))))
 
 ;; Magit and git quick open files for projects.
-(defun my-magit-open-directory-and-file ()
+(defun my-magit-open-directory-and-files ()
   "Open quickly a magit directory and open a git file in there"
   (interactive)
   (let ((default-directory (magit-read-top-dir nil)))
     (find-file-in-git-repo)))
-(global-set-key (read-kbd-macro "C-S-p") 'my-magit-open-directory-and-file)
+(global-set-key (read-kbd-macro "C-S-i") 'my-magit-open-directory-and-files)
 
 (defun my-magit-open-repository ()
   "Open quickly a magit directory."
