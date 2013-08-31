@@ -40,12 +40,6 @@
 (my-ensure-installed 'highlight-80+)
 (autoload 'highlight-80+ "highlight-80+" nil t)
 
-;Find find in GIT repo
-(my-ensure-installed 'find-file-in-git-repo)
-(autoload 'find-file-in-git-repo "find-file-in-git-repo" "Find File in Git Repo" t)
-(global-set-key (read-kbd-macro "C-`") 'find-file-in-git-repo)
-(global-set-key (kbd "C-S-f") 'find-file-in-git-repo)
-
 ; Browse Kill ring
 (my-ensure-installed 'browse-kill-ring)
 
