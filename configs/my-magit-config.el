@@ -41,7 +41,7 @@
   "Open quickly a magit directory and open a git file in there"
   (interactive)
   (let ((default-directory (magit-read-top-dir nil)))
-    (magit-find-file)))
+    (my-magit-find-file)))
 (global-set-key (read-kbd-macro "C-S-i") 'my-magit-open-directory-and-files)
 
 (defun my-magit-open-repository ()
