@@ -16,6 +16,11 @@
  nnmail-message-id-cache-file "~/Gnus/config/nnmail-cache"
  )
 
+; Install gerrit-download
+(Package 'gerrit-download
+  (autoload 'gerrit-download-insinuate-gnus "gerrit-download")
+  (add-hook 'gnus-startup-hook 'gerrit-download-insinuate-gnus))
+
 ;Settings
 (setq
  mail-user-agent 'gnus-user-agent
