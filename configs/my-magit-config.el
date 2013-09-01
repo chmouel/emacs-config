@@ -41,7 +41,7 @@
   "Open quickly a magit directory and open a git file in there"
   (interactive)
   (let ((default-directory (magit-read-top-dir nil)))
-    (my-magit-find-file)))
+    (magit-find-file-completing-read)))
 (global-set-key (read-kbd-macro "C-S-i") 'my-magit-open-directory-and-files)
 
 (defun my-magit-open-repository ()
@@ -50,24 +50,7 @@
   (dired (magit-read-top-dir nil)))
 (global-set-key (read-kbd-macro "C-S-o") 'my-magit-open-repository)
 
-(defun my-magit-find-file ()
-  "Change find-file-in-git-repo to use magit functions.
-And make it a bit more robust along the way."
-  (interactive)
-  (let* ((repo (magit-git-string "rev-parse" "--git-dir"))
-         default-directory files)
-    (if repo
-        (setq default-directory (file-name-as-directory
-                                 (expand-file-name
-                                  (convert-standard-filename "../") repo)))
-      (setq default-directory (magit-read-top-dir nil)))
-    (setq files (magit-git-lines "ls-files"))
-    (find-file
-     (concat (magit-completing-read
-              "Find in GIT: "
-              (remove-if
-               (lambda (x) (string= "" x)) files))))))
-
 ;Find find in GIT repo
-(global-set-key (read-kbd-macro "C-`") 'my-magit-find-file)
-(global-set-key (kbd "C-S-f") 'my-magit-find-file)
+(Package 'magit-find-file
+  (global-set-key (read-kbd-macro "C-`") 'magit-find-file-completing-read)
+  (global-set-key (kbd "C-S-f") 'magit-find-file-completing-read))
