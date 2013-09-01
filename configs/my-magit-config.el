@@ -15,6 +15,13 @@
   ad-do-it
   (jump-to-register :magit-fullscreen))
 
+;; these two force a new line to be inserted into a commit window,
+;; which stops the invalid style showing up.
+;; From: http://git.io/rPBE0Q
+(defun magit-commit-mode-init ()
+  (when (looking-at "\n")
+    (open-line 1)))
+(add-hook 'git-commit-mode-hook 'magit-commit-mode-init)
 
 ; Make vc-git commit mode have the fancy stuff from git-commit
 ; mode. there is prob a better way to do that.
