@@ -19,7 +19,6 @@
 (global-set-key (read-kbd-macro "M-l") 'downcase-word)
 (global-set-key (read-kbd-macro "C-x C-b")    'ibuffer-list-buffers)
 (global-set-key (read-kbd-macro "C-~") 'ibuffer)
-(global-set-key (read-kbd-macro "C-M-o") 'other-frame)
 
 ;;Prefer BS style cycling (not used)
 (global-set-key '[(control x)(left)]        'switch-to-prev-buffer)
