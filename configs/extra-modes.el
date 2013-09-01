@@ -12,16 +12,18 @@
 (if (fboundp 'package-initialize)
     (package-initialize))
 
+;Macros for easy package.
 (defmacro Package (package &rest body)
   "Install a package if not installed and execute body"
   (declare (indent 1) (debug t))
   `(let ((package-dest ,package))
      (if (fboundp 'package-install)
-         (progn
-           (if (not (package-installed-p package-dest))
-               (package-install package-dest))
-           (if (package-installed-p package-dest)
-               (progn ,@body))))))
+         (condition-case err
+             (progn
+               (if (not (package-installed-p package-dest))
+                   (package-install package-dest))
+               (progn ,@body))
+           (message (car err))))))
 
 ; For Yas/Snippet
 (Package 'yasnippet
