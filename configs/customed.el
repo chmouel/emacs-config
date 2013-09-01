@@ -203,6 +203,7 @@
  '(rcirc-track-minor-mode t)
  '(read-mail-command (quote gnus))
  '(reb-re-syntax (quote sregex))
+ '(recent-addresses-file "~/.emacs.d/auto-save-list/recent-addresses")
  '(recentf-auto-cleanup (quote mode))
  '(recentf-exclude
    (quote
@@ -258,8 +259,8 @@
  ;; If there is more than one, they won't work right.
  '(cycbuf-current-face ((t (:background "grey" :foreground "black" :weight bold))) t)
  '(cycbuf-header-face ((t (:background "black" :foreground "yellow" :weight bold))) t)
- '(ediff-even-diff-B ((t (:foreground "green"))) t)
- '(ediff-odd-diff-B ((t (:background "#41423f" :foreground "grey"))) t)
+ '(ediff-even-diff-B ((t (:foreground "green"))))
+ '(ediff-odd-diff-B ((t (:background "#41423f" :foreground "grey"))))
  '(erc-input-face ((t (:foreground "white"))) t)
  '(erc-my-nick-face ((t (:foreground "DarkSlateGray3" :weight bold))) t)
  '(erc-notice-face ((t (:foreground "Grey" :weight bold))) t)
