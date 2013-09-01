@@ -84,8 +84,7 @@
 (Package 'git-gutter)
 
 ; Ack and Half.
-(Package 'ack-and-a-half
-  (define-key global-map (kbd "C-S-g") 'ack-and-a-half))
+(Package 'ack-and-a-half)
 
 ;JSON Mode
 (Package 'json-mode

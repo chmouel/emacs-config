@@ -1,7 +1,9 @@
 ;Magit
 (Package 'magit
  (autoload 'magit-read-top-dir "magit" nil t)
- (global-set-key (read-kbd-macro "C-c g") 'magit-status))
+ (global-set-key (read-kbd-macro "C-c g") 'magit-status)
+ (define-key global-map (kbd "C-S-g") 'magit-grep))
+ )
 
 ; Make vc-git commit mode have the fancy stuff from git-commit
 ; mode. there is prob a better way to do that.
@@ -30,11 +32,6 @@
                     (magit-git-output
                      '("log" "--no-merges" "-n1" "--pretty=format:%h"))))))
 (add-hook 'magit-status-mode-hook 'my-magit-status-mode-hook)
-
-(eval-after-load "gnus"
-  (progn
-    (require 'gerrit-download)
-    (add-hook 'gnus-startup-hook 'gerrit-download-insinuate-gnus)))
 
 ;; Magit and git quick open files for projects.
 (defun my-magit-open-directory-and-files ()
