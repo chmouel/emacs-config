@@ -5,6 +5,17 @@
  (define-key global-map (kbd "C-S-g") 'magit-grep))
  )
 
+;; from: http://whattheemacsd.com/setup-magit.el-01.html
+(defadvice magit-status (around magit-fullscreen activate)
+  (window-configuration-to-register :magit-fullscreen)
+  ad-do-it
+  (delete-other-windows))
+
+(defadvice magit-quit-window (around magit-restore-screen activate)
+  ad-do-it
+  (jump-to-register :magit-fullscreen))
+
+
 ; Make vc-git commit mode have the fancy stuff from git-commit
 ; mode. there is prob a better way to do that.
 (eval-after-load "vc-git"
