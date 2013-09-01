@@ -1,7 +1,7 @@
 ;Eldoc-Mode
 
 (defun my-emacs-lisp-mode-hook ()
-  (auto-complete-mode-maybe)
+  (company-mode)
   (local-set-key (read-kbd-macro "C-x C-e") 'eval-buffer)
   (eldoc-mode t)
   (my-programming-common-hook)
