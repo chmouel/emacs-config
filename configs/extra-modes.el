@@ -87,18 +87,11 @@
 (autoload 'window-number-meta-mode "window-number")
 (window-number-meta-mode 't)
 
-; perspective
-(my-ensure-installed 'perspective)
-(require 'perspective)
-
 ; Yascroll
 (my-ensure-installed 'yascroll)
 (global-yascroll-bar-mode 't)
 
-; Ctags
-(my-ensure-installed 'ctags-update)
-
-;
+; Openstack browse current file.
 (my-ensure-installed 'openstack-cgit-browse-file)
 
 ;; timestamps
@@ -110,3 +103,10 @@
                     :box nil)
 (set-face-attribute 'mode-line-inactive nil
                     :box nil)
+
+;Boorkmarks
+(my-ensure-installed 'bm)
+(global-set-key (read-kbd-macro "C-S-t") 'bm-toggle)
+
+;Company mode
+(my-ensure-installed 'company)
