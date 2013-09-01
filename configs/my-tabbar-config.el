@@ -2,7 +2,7 @@
 ;; change faces for better-looking tabs (and more obvious selected tab!)
 ;; full face specification to avoid inheriting from the frame font
 ;; or from mode-line
-(my-ensure-installed 'tabbar)
+(Package 'tabbar)
 (require 'tabbar)
 (set-face-attribute 'tabbar-default nil
 		    :inherit nil

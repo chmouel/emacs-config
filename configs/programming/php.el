@@ -1,5 +1,5 @@
-(my-ensure-installed 'flymake-php)
-(my-ensure-installed 'php-mode)
+(Package 'flymake-php)
+(Package 'php-mode)
 
 (setq auto-mode-alist (cons '("\\.php\\'" . php-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.inc\\'" . php-mode) auto-mode-alist))

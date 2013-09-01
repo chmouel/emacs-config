@@ -1,7 +1,7 @@
 ;Magit
-(my-ensure-installed 'magit)
-(autoload 'magit-read-top-dir "magit" nil t)
-(global-set-key (read-kbd-macro "C-c g") 'magit-status)
+(Package 'magit
+ (autoload 'magit-read-top-dir "magit" nil t)
+ (global-set-key (read-kbd-macro "C-c g") 'magit-status))
 
 ; Make vc-git commit mode have the fancy stuff from git-commit
 ; mode. there is prob a better way to do that.
