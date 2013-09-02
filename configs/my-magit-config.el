@@ -23,6 +23,14 @@
     (open-line 1)))
 (add-hook 'git-commit-mode-hook 'magit-commit-mode-init)
 
+; From http://is.gd/rXEajP
+(defun magit-maybe-commit (&optional show-options)
+  "Runs magit-commit unless prefix is passed"
+  (interactive "P")
+  (if show-options
+      (magit-key-mode-popup-committing)
+    (magit-commit)))
+
 ; Make vc-git commit mode have the fancy stuff from git-commit
 ; mode. there is prob a better way to do that.
 (eval-after-load "vc-git"
