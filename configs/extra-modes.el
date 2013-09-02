@@ -2,11 +2,11 @@
 (autoload 'rst-mode "rst" "RST" t)
 (push '("\\.rst\\'" . rst-mode) auto-mode-alist)
 
-;TodoTXT
-(autoload 'todotxt "todotxt" nil t)
-(global-set-key (kbd "<f12>") 'todotxt)
-(setq todotxt-file (expand-file-name "~/Dropbox/todo/todo.txt"))
-
+;Bcycle
+(autoload 'bcycle-previous-buffer 'bcycle)
+(autoload 'bcycle-next-buffer 'bcycle)
+(global-set-key '[(control x)(left)]        'bcycle-previous-buffer)
+(global-set-key '[(control x)(right)]       'bcycle-next-buffer)
 
 ;Ensure package is installed
 (if (fboundp 'package-initialize)
