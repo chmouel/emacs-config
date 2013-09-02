@@ -1,9 +1,7 @@
 ;Magit
 (Package 'magit
  (autoload 'magit-read-top-dir "magit" nil t)
- (global-set-key (read-kbd-macro "C-c g") 'magit-status)
- (define-key global-map (kbd "C-S-g") 'magit-grep))
- )
+ (global-set-key (read-kbd-macro "C-c g") 'magit-status))
 
 ;; from: http://whattheemacsd.com/setup-magit.el-01.html
 (defadvice magit-status (around magit-fullscreen activate)
