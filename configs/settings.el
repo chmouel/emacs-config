@@ -20,10 +20,6 @@
 (global-set-key (read-kbd-macro "C-x C-b")    'ibuffer-list-buffers)
 (global-set-key (read-kbd-macro "C-~") 'ibuffer)
 
-;;Prefer BS style cycling (not used)
-(global-set-key '[(control x)(left)]        'switch-to-prev-buffer)
-(global-set-key '[(control x)(right)]       'switch-to-next-buffer)
-
 ;;No need digits
 (global-set-key (read-kbd-macro "C-1")      'delete-other-windows)
 (global-set-key (read-kbd-macro "C-2")      'split-window-vertically)
