@@ -121,3 +121,28 @@
 
 ;Company mode
 (Package 'company)
+
+;Ido Vertical mode
+(Package 'ido-vertical-mode
+  (ido-vertical-mode 1)
+  (setq ido-max-prospects 5))
+
+;;; smex - IDO completion for M-x
+(Package 'smex
+  (global-set-key (read-kbd-macro "M-x") 'smex))
+
+;ag a C ack replacement
+(Package 'ag
+  (setq ag-reuse-buffers t)
+   (define-key global-map (kbd "C-S-g") 'ag-project))
+
+; flx-ido - advanced flex matching for ido
+(Package 'flx-ido
+  (setq gc-cons-threshold 20000000)
+  (flx-ido-mode 1))
+
+; Visualize undo
+(Package 'undo-tree)
+
+; To be used properly.
+(Package 'test-case-mode)

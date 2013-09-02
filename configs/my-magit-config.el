@@ -42,6 +42,7 @@
        (when (fboundp 'toggle-save-place)
          (toggle-save-place 0)))))
 
+; Show HEAD commit.
 (defun my-magit-status-mode-hook()
   (local-set-key (read-kbd-macro "C-^")
                  (lambda()
