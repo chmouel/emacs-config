@@ -32,7 +32,6 @@
 
 (defun my-python-mode-hook()
   (set (make-local-variable 'my-compile-command) (concat "flake8 \"" buffer-file-name "\""))
-  (turn-on-ctags-auto-update-mode)
   (flyspell-prog-mode)
   (outline-minor-mode t)
   (setq outline-regexp "[ \t]*# \\|[ \t]+\\(class\\|def\\|if\\|elif\\|else\\|while\\|for\\|try\\|except\\|with\\) ")
@@ -41,7 +40,7 @@
   (define-key outline-minor-mode-map [M-up] 'outline-move-subtree-up)
   (set (make-local-variable 'flymake-info-line-regexp) "^H")
   (when "highlight-80+" (highlight-80+-mode))
-  (auto-complete-mode)
+  (company-mode)
   (local-set-key '[(control c)(control k)] 'outline-mark-subtree)
   (local-set-key (kbd "C-S-y") 'nosetests-compile-module)
   (local-set-key (kbd "C-S-t") 'nosetests-copy-shell-comand)
