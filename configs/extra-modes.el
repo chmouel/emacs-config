@@ -3,8 +3,8 @@
 (push '("\\.rst\\'" . rst-mode) auto-mode-alist)
 
 ;Bcycle
-(autoload 'bcycle-previous-buffer 'bcycle)
-(autoload 'bcycle-next-buffer 'bcycle)
+(autoload 'bcycle-previous-buffer "bcycle")
+(autoload 'bcycle-next-buffer "bcycle")
 (global-set-key '[(control x)(left)]        'bcycle-previous-buffer)
 (global-set-key '[(control x)(right)]       'bcycle-next-buffer)
 
