@@ -21,6 +21,16 @@
     (open-line 1)))
 (add-hook 'git-commit-mode-hook 'magit-commit-mode-init)
 
+;; Close popup when commiting - this stops the commit window
+;; hanging around
+;; From: http://git.io/rPBE0Q
+(defadvice git-commit-commit (after delete-window activate)
+  (delete-window))
+
+;; Close popup when cancelling commit
+(defadvice git-commit-abort (after delete-window activate)
+  (delete-window))
+
 ; From http://is.gd/rXEajP
 (defun magit-maybe-commit (&optional show-options)
   "Runs magit-commit unless prefix is passed"
