@@ -19,6 +19,7 @@
 (global-set-key (read-kbd-macro "M-l") 'downcase-word)
 (global-set-key (read-kbd-macro "C-x C-b")    'ibuffer-list-buffers)
 (global-set-key (read-kbd-macro "C-~") 'ibuffer)
+(global-set-key (kbd "C-S-j") 'jump-to-register)
 
 ;;No need digits
 (global-set-key (read-kbd-macro "C-1")      'delete-other-windows)
