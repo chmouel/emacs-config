@@ -1,9 +1,10 @@
 ;Eldoc-Mode
-(Package 'smartparens
-  (set-face-attribute 'sp-pair-overlay-face nil
-                      :background "steelblue3"
-                      :foreground "white"
-                      :box nil)  )
+(Package 'smartparens)
+;; (eval-after-load "smartparens"
+;;   (set-face-attribute 'sp-pair-overlay-face nil
+;;                       :background "steelblue3"
+;;                       :foreground "white"
+;;                       :box nil))
 
 (defun my-emacs-lisp-mode-hook ()
   (smartparens-mode)
