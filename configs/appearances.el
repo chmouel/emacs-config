@@ -5,7 +5,7 @@
                   "%b"))))
 (when (featurep 'tool-bar) (tool-bar-mode -1))
 (when (featurep 'scroll-bar) (scroll-bar-mode -1))
-(when (featurep 'fringe) (fringe-mode 1))
+;(when (featurep 'fringe) (fringe-mode 'minimal))
 (when (featurep 'menu-bar)(menu-bar-mode -1))
 
 ;Line Spacing by default
@@ -23,4 +23,3 @@
 
 ;Non Customizables
 (setq ring-bell-function 'ignore)
-

@@ -32,7 +32,7 @@
     ("--exclude='*.pyc'" "--exclude='*.elc'" "--exclude='*.class'" "--exclude='.git'" "--exclude='.svn'" "--exclude='SCCS'" "--exclude='RCS'" "--exclude='CVS'" "--exclude='EIFGEN'" "--exclude='.tox'" "--exclude='.venv'" "--python-kinds='-i'")))
  '(custom-safe-themes
    (quote
-    ("61a83dbf3d3722d70abee8fb6dbc3566766ff86c098c2a925f2ccfd4d5b3a756" "1c1e6b2640daffcd23b1f7dd5385ca8484a060aec901b677d0ec0cf2927f7cde" "1f3304214265481c56341bcee387ef1abb684e4efbccebca0e120be7b1a13589" "fc6e906a0e6ead5747ab2e7c5838166f7350b958d82e410257aeeb2820e8a07a" default)))
+    ("62b86b142b243071b5adb4d48a0ab89aefd3cf79ee3adc0bb297ea873b36d23f" "61a83dbf3d3722d70abee8fb6dbc3566766ff86c098c2a925f2ccfd4d5b3a756" "1c1e6b2640daffcd23b1f7dd5385ca8484a060aec901b677d0ec0cf2927f7cde" "1f3304214265481c56341bcee387ef1abb684e4efbccebca0e120be7b1a13589" "fc6e906a0e6ead5747ab2e7c5838166f7350b958d82e410257aeeb2820e8a07a" default)))
  '(cycbuf-buffer-sort-function (quote cycbuf-sort-by-recency))
  '(cycbuf-dont-show-regexp (quote ("^ " "^\\*cycbuf\\*$" "^\\*Messages\\*#")))
  '(cycbuf-mode-name-replacements
@@ -268,9 +268,10 @@
  '(erc-input-face ((t (:foreground "white"))) t)
  '(erc-my-nick-face ((t (:foreground "DarkSlateGray3" :weight bold))) t)
  '(erc-notice-face ((t (:foreground "Grey" :weight bold))) t)
- '(gnus-signature ((t (:slant normal))))
+ '(gnus-signature ((t (:slant normal))) t)
  '(hl-line-face ((t (:background "red"))) t)
- '(magit-item-highlight ((t (:weight bold))))
+ '(magit-item-highlight ((t (:weight bold))) t)
  '(powerline-active1 ((t (:inherit mode-line :background "light sea green"))))
  '(powerline-active2 ((t (:inherit mode-line :background "grey40" :foreground "white"))))
+ '(twittering-username-face ((t (:foreground "red"))) t)
  '(which-func ((t (:weight bold))) t))

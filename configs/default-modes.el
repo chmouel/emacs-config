@@ -38,9 +38,6 @@
         try-complete-lisp-symbol-partially
         try-complete-lisp-symbol))
 
-;Org-Mode
-(push '("\\.org$" . org-mode) auto-mode-alist)
-
 ;Isearch with occur
 (defun my-isearch-occur ()
   (interactive)
