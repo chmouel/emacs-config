@@ -193,3 +193,17 @@
   (set-frame-parameter
      nil 'fullscreen
      (when (not (frame-parameter nil 'fullscreen)) 'fullboth)))
+
+; Quickly try a lisp on the web downloading and evaluating it.
+; From me.
+(defun my-try-el(url)
+  "Quickly try a lisp file downloading and evaluating it"
+  (interactive "sEmacs lisp url to retrieve: ")
+  (progn
+    (switch-to-buffer (url-retrieve-synchronously url))
+    (save-excursion
+      (goto-char (point-min))
+      (delete-region (point) (search-forward "\n\n" nil t)))
+    (eval-current-buffer)
+    (emacs-lisp-mode)
+    (font-lock-fontify-buffer)))
