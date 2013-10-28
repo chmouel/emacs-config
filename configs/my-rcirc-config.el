@@ -65,8 +65,3 @@
     (goto-char rcirc-prompt-end-marker)))
 
 (add-hook 'rcirc-print-hooks 'my-switch-to-buffer-on-privmsg)
-
-
-; Notification
-(require 'rcirc-notify)
-(rcirc-notify-add-hooks)
