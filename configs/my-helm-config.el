@@ -8,7 +8,6 @@
   (require 'helm-files)
   (helm-other-buffer '(helm-source-buffers-list
                        helm-c-source-git-goto
-                       helm-source-browse-code
                        helm-source-magit-repos
                        helm-source-bookmarks
                        helm-source-ctags
