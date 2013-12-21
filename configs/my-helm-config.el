@@ -32,5 +32,5 @@
 (define-key helm-map (kbd "C-S-n") 'helm-next-source)
 (global-set-key (read-kbd-macro "C-z") 'my-helm)
 
-(global-set-key (kbd "C-x C-b") 'helm-buffers-list)
-(global-set-key (kbd "C-S-b") 'helm-browse-code)
+;(global-set-key (kbd "C-x C-b") 'helm-buffers-list)
+;(global-set-key (kbd "C-S-b") 'helm-browse-code)
