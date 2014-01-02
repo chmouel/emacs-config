@@ -30,17 +30,12 @@
   (autoload 'yas/hippie-try-expand "yasnippet" nil t)
   (autoload 'yas/minor-mode "yasnippet" nil t)
   (when (featurep 'yasnippet)
+    (yas-reload-all)
     (yas/global-mode 1)
     (eval-after-load "yasnippet"
       '(progn
          (require 'dropdown-list)
          (setq yas/prompt-functions '(yas/dropdown-prompt))))))
-
-;Flymake
-(Package 'flymake-cursor
-  (eval-after-load "flymake"
-    '(progn
-       (require 'flymake-cursor))))
 
 ;RegexTool
 (Package 'regex-tool
@@ -61,10 +56,6 @@
 ; Expand Region
 (Package 'expand-region
   (global-set-key (kbd "C-=") 'er/expand-region))
-
-;Flymake new
-(push "~/.emacs.d/packages/emacs-flymake" load-path)
-(require 'flymake)
 
 ;Ibuffer extras
 (Package 'ibuffer-vc
@@ -144,5 +135,5 @@
 ; Visualize undo
 (Package 'undo-tree)
 
-; To be used properly.
-(Package 'test-case-mode)
+; Flycheck
+(Package 'flycheck)
