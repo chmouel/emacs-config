@@ -11,7 +11,6 @@
   (my-programming-common-hook)
   (c-toggle-auto-newline)
   (c-set-style "cc-mode")
-  (yas/minor-mode 't)
   )
 (add-hook 'c++-mode-hook 'my-c++-mode-hook)
 (add-hook 'c-mode-hook 'my-c++-mode-hook)

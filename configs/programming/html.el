@@ -3,7 +3,6 @@
 
 (defun my-html-mode-hook()
   (require 'html-inlined)
-  (yas/minor-mode 't)
   (local-set-key (kbd "RET") 'newline-and-indent)
   (html-inlined-add-key-to-modes)
   (local-set-key '[(control c)(control v)] 'browse-url-of-buffer)

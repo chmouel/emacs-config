@@ -27,10 +27,8 @@
 
 ; For Yas/Snippet
 (Package 'yasnippet
-  (autoload 'yas/hippie-try-expand "yasnippet" nil t)
-  (autoload 'yas/minor-mode "yasnippet" nil t)
+  (require 'yasnippet)
   (when (featurep 'yasnippet)
-    (yas-reload-all)
     (yas/global-mode 1)
     (eval-after-load "yasnippet"
       '(progn
@@ -137,3 +135,6 @@
 
 ; Flycheck
 (Package 'flycheck)
+
+(provide 'extras-modes)
+;;; extra-modes.el ends here
