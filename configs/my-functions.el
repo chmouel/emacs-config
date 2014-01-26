@@ -216,6 +216,4 @@
   (interactive "*r")
   (let ((fill-column (point-max)))
     (fill-region beg end)))
-
-;; Handy key definition
 (define-key global-map "\C-\M-Q" 'unfill-region)
