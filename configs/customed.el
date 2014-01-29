@@ -107,19 +107,14 @@
  '(eshell-modules-list
    (quote
     (eshell-alias eshell-banner eshell-basic eshell-cmpl eshell-dirs eshell-glob eshell-hist eshell-ls eshell-pred eshell-prompt eshell-rebind eshell-script)))
- '(flycheck-disabled-checkers (quote (emacs-lisp emacs-lisp-checkdoc)))
- '(flycheck-display-errors-delay 0.2)
- '(flycheck-highlighting-mode (quote lines))
  '(flymake-check-file-limit nil)
  '(flymake-cursor-error-display-delay 0.1)
  '(flymake-start-syntax-check-on-newline nil)
  '(font-use-system-font t)
- '(global-flycheck-mode t nil (flycheck))
  '(gnus-init-file "~/.emacs.d/gnus/init.el")
  '(grep-scroll-output t)
  '(grep-window-height 10)
  '(gud-tooltip-echo-area t)
- '(helm-adaptative-mode t nil (helm-adaptative))
  '(helm-boring-buffer-regexp-list
    (quote
     ("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf")))

@@ -3,6 +3,9 @@
 (require 'helm-config)
 (require 'helm-git-goto)
 
+(Package helm
+    (helm-adaptative-mode))
+
 (defun my-helm()
   (interactive)
   (require 'helm-files)

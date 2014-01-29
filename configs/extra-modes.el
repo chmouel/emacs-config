@@ -134,7 +134,12 @@
 (Package 'undo-tree)
 
 ; Flycheck
-(Package 'flycheck)
+(Package 'flycheck
+  (setq flycheck-disabled-checkers '(emacs-lisp emacs-lisp-checkdoc)
+        flycheck-display-errors-delay 0.2
+        flycheck-highlighting-mode 'lines)
+  (global-flycheck-mode t)
+)
 
 (provide 'extras-modes)
 ;;; extra-modes.el ends here
