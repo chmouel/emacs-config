@@ -1,10 +1,7 @@
 ; HELM
-(push "~/.emacs.d/packages/helm" load-path)
-(require 'helm-config)
-(require 'helm-git-goto)
-
-(Package helm
-    (helm-adaptative-mode))
+(Package 'helm
+  (require 'helm-config)
+  (require 'helm-git-goto))
 
 (defun my-helm()
   (interactive)
