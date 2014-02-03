@@ -54,7 +54,6 @@
          (progn
            (window-configuration-to-register :rcirc-pre)
            (jump-to-register :rcirc)))))
-(global-set-key (read-kbd-macro "C-S-k") 'my-jump-rcirc)
 
 ; Switch to buffer on private messages.
 (defun my-switch-to-buffer-on-privmsg (proc sender response target text)
