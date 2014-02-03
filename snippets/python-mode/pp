@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: pp
+# binding: C-c p
+# --
+from pprint import pprint as p
+p($0)
