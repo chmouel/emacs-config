@@ -72,9 +72,6 @@
 ; Git Gutter.
 (Package 'git-gutter)
 
-; Ack and Half.
-(Package 'ack-and-a-half)
-
 ;JSON Mode
 (Package 'json-mode
   (add-to-list 'auto-mode-alist '("\\.json$" . json-mode)))
