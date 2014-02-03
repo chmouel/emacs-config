@@ -124,3 +124,6 @@
 (autoload 'zap-up-to-char "misc"
   "Kill up to, but not including ARGth occurrence of CHAR.")
 (global-set-key (kbd "M-z") 'zap-up-to-char)
+
+; Ediff
+(setq emerge-diff-options "--ignore-all-space")
