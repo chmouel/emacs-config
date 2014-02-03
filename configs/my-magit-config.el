@@ -29,5 +29,6 @@
 
 ;Find find in GIT repo
 (Package 'magit-find-file
+  (add-hook 'magit-mode-hook '(lambda () (interactive) (local-set-key '[(\`)] 'magit-find-file-completing-read)))
   (global-set-key (read-kbd-macro "C-`") 'magit-find-file-completing-read)
   (global-set-key (kbd "C-S-f") 'magit-find-file-completing-read))
