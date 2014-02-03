@@ -32,7 +32,7 @@
     ("--exclude='*.pyc'" "--exclude='*.elc'" "--exclude='*.class'" "--exclude='.git'" "--exclude='.svn'" "--exclude='SCCS'" "--exclude='RCS'" "--exclude='CVS'" "--exclude='EIFGEN'" "--exclude='.tox'" "--exclude='.venv'" "--python-kinds='-i'")))
  '(custom-safe-themes
    (quote
-    ("62b86b142b243071b5adb4d48a0ab89aefd3cf79ee3adc0bb297ea873b36d23f" "61a83dbf3d3722d70abee8fb6dbc3566766ff86c098c2a925f2ccfd4d5b3a756" "1c1e6b2640daffcd23b1f7dd5385ca8484a060aec901b677d0ec0cf2927f7cde" "1f3304214265481c56341bcee387ef1abb684e4efbccebca0e120be7b1a13589" "fc6e906a0e6ead5747ab2e7c5838166f7350b958d82e410257aeeb2820e8a07a" default)))
+    ("ab04c00a7e48ad784b52f34aa6bfa1e80d0c3fcacc50e1189af3651013eb0d58" "a0feb1322de9e26a4d209d1cfa236deaf64662bb604fa513cca6a057ddf0ef64" "7153b82e50b6f7452b4519097f880d968a6eaf6f6ef38cc45a144958e553fbc6" "f0ea6118d1414b24c2e4babdc8e252707727e7b4ff2e791129f240a2b3093e32" "2affb26fb9a1b9325f05f4233d08ccbba7ec6e0c99c64681895219f964aac7af" "9370aeac615012366188359cb05011aea721c73e1cb194798bc18576025cabeb" "62b86b142b243071b5adb4d48a0ab89aefd3cf79ee3adc0bb297ea873b36d23f" "61a83dbf3d3722d70abee8fb6dbc3566766ff86c098c2a925f2ccfd4d5b3a756" "1c1e6b2640daffcd23b1f7dd5385ca8484a060aec901b677d0ec0cf2927f7cde" "1f3304214265481c56341bcee387ef1abb684e4efbccebca0e120be7b1a13589" "fc6e906a0e6ead5747ab2e7c5838166f7350b958d82e410257aeeb2820e8a07a" default)))
  '(cycbuf-buffer-sort-function (quote cycbuf-sort-by-recency))
  '(cycbuf-dont-show-regexp (quote ("^ " "^\\*cycbuf\\*$" "^\\*Messages\\*#")))
  '(cycbuf-mode-name-replacements
@@ -60,7 +60,7 @@
  '(ediff-window-setup-function (quote ediff-setup-windows-plain))
  '(elscreen-tab-width 23)
  '(emacs-lock-default-locking-mode (quote kill))
- '(emerge-diff-options "--ignore-all-space")
+ '(emerge-diff-options "--ignore-all-space" t)
  '(enable-local-variables :all)
  '(erc-away-nickname "chmouel_away")
  '(erc-current-nick-highlight-type (quote all))
@@ -107,6 +107,7 @@
  '(eshell-modules-list
    (quote
     (eshell-alias eshell-banner eshell-basic eshell-cmpl eshell-dirs eshell-glob eshell-hist eshell-ls eshell-pred eshell-prompt eshell-rebind eshell-script)))
+ '(flycheck-check-syntax-automatically (quote (save new-line mode-enabled)))
  '(flycheck-disabled-checkers (quote (emacs-lisp emacs-lisp-checkdoc)))
  '(flycheck-display-errors-delay 0.2)
  '(flycheck-highlighting-mode (quote lines))
@@ -115,6 +116,7 @@
  '(flymake-start-syntax-check-on-newline nil)
  '(font-use-system-font t)
  '(global-flycheck-mode t nil (flycheck))
+ '(global-git-gutter-mode t)
  '(gnus-init-file "~/.emacs.d/gnus/init.el")
  '(grep-scroll-output t)
  '(grep-window-height 10)
@@ -268,8 +270,8 @@
  ;; If there is more than one, they won't work right.
  '(cycbuf-current-face ((t (:background "grey" :foreground "black" :weight bold))) t)
  '(cycbuf-header-face ((t (:background "black" :foreground "yellow" :weight bold))) t)
- '(ediff-even-diff-B ((t (:foreground "green"))) t)
- '(ediff-odd-diff-B ((t (:background "#41423f" :foreground "grey"))) t)
+ '(ediff-even-diff-B ((t (:foreground "green"))))
+ '(ediff-odd-diff-B ((t (:background "#41423f" :foreground "grey"))))
  '(erc-input-face ((t (:foreground "white"))) t)
  '(erc-my-nick-face ((t (:foreground "DarkSlateGray3" :weight bold))) t)
  '(erc-notice-face ((t (:foreground "Grey" :weight bold))) t)
