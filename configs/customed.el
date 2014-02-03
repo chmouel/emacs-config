@@ -121,7 +121,6 @@
  '(grep-scroll-output t)
  '(grep-window-height 10)
  '(gud-tooltip-echo-area t)
- '(helm-adaptative-mode t nil (helm-adaptative))
  '(helm-boring-buffer-regexp-list
    (quote
     ("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf")))
