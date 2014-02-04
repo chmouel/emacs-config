@@ -49,6 +49,12 @@
             (concat "^\\(To view, visit \\)?\\(https://review.openstack.org/[0-9]+\\|https://bugs.launchpad.net/bugs/[0-9]+\\)") nil t)
       (browse-url (match-string-no-properties 2)))))
 
+(defun my-gnus-article-browse-message-id ()
+     (interactive)
+     (gnus-with-article-headers
+       (let ((messageid (message-fetch-field "Message-ID")))
+         (browse-url (concat "http://mid.gmane.org/" messageid)))))
+
 (defun my-gnus-summary-mode-hook ()
   (local-set-key (read-kbd-macro "M-k") 'gnus-summary-kill-same-subject-and-select)
   (local-set-key '[(\\)] 'my-gnus-article-browse-review)
