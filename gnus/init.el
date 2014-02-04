@@ -27,7 +27,7 @@
  mail-host-address "chmouel.com"
  read-mail-command 'gnus
  gnus-expert-user t
- gnus-visible-headers "^From:\\|^Subject:\\|^Date:\\|^Newsgroups:\\|^X-Mailer:\\|^X-Newsreader:\\|^Organization:\\|^Followup-To:\\|^User-Agent:\\|^To:\\|^Cc:"
+ gnus-visible-headers "^From:\\|^Subject:\\|^Date:\\|^Newsgroups:\\|^X-Mailer:\\|^X-Newsreader:\\|^Organization:\\|^Message-Id\\|^Followup-To:\\|^User-Agent:\\|^To:\\|^Cc:"
  gnus-sorted-header-list '("^From:" "^Subject:" "^Newsgroups:"
 						   "^To:" "^Cc:"  "^Followup-To:" "^Date:"
 						   "^X-Mailer:" "^X-Newsreader:"
@@ -57,6 +57,7 @@
 
 (defun my-gnus-summary-mode-hook ()
   (local-set-key (read-kbd-macro "M-k") 'gnus-summary-kill-same-subject-and-select)
+  (local-set-key '[(\])] 'my-gnus-article-browse-message-id)
   (local-set-key '[(\\)] 'my-gnus-article-browse-review)
   ; USE K-J for navigation is evil and that evil is called gmail who
   ; drained me away from my beloved gnus for too long.
