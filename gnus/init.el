@@ -52,7 +52,7 @@
 (defun my-gnus-article-browse-message-id ()
      (interactive)
      (gnus-with-article-headers
-       (let ((messageid (message-fetch-field "Message-ID")))
+       (let ((messageid (message-fetch-field "message-id")))
          (browse-url (concat "http://mid.gmane.org/" messageid)))))
 
 (defun my-gnus-summary-mode-hook ()
