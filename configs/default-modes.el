@@ -68,11 +68,6 @@
 (add-hook 'shell-mode-hook '(lambda () (toggle-truncate-lines 1)))
 (setq comint-prompt-read-only t)
 
-;AutoInsert
-(auto-insert-mode 't)
-(setq auto-insert-alist
-      '((python-mode . "python.py")))
-
 ;Iswitchb
 (require 'iswitchb)
 (defun my-iswitchb-local-keys ()

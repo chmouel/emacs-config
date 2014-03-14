@@ -1,6 +1,7 @@
 ;Magit
 (Package 'magit
   (autoload 'magit-read-top-dir "magit" nil t)
+  (autoload 'magit-get-top-dir "magit" nil t)
   (global-set-key (read-kbd-macro "C-c g") 'magit-status)
 
   ;; Full screen magit.

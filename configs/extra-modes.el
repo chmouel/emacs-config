@@ -25,13 +25,31 @@
                (progn ,@body))
            (message (car err))))))
 
-; For Yas/Snippet
+
+; Yassnippet
+(defun yas--expand-by-uuid (mode uuid)
+  "Exapnd snippet template in MODE by its UUID"
+  (yas/expand-snippet
+   (yas--template-content
+    (yas--get-template-by-uuid mode uuid))))
+
+(defun yas--magit-email-or-default ()
+  "Get email from GIT or use default"
+  (if (magit-get-top-dir ".")
+      (magit-get "user.email")
+    user-mail-address))
+
 (Package 'yasnippet
   (require 'yasnippet)
   (when (featurep 'yasnippet)
     (yas/global-mode 1)
     (eval-after-load "yasnippet"
       '(progn
+         (require 'autoinsert)
+         (auto-insert-mode)
+         (setq auto-insert-query nil)
+         (define-auto-insert "\.py"
+           '(lambda () (yas--expand-by-uuid 'python-mode "header")))
          (require 'dropdown-list)
          (setq yas/prompt-functions '(yas/dropdown-prompt))))))
 
