@@ -6,10 +6,8 @@
 (global-set-key '[(control next)]           'end-of-buffer)
 (global-set-key '[(control prior)]          'beginning-of-buffer)
 (global-set-key '[(control tab)]            'other-window)
-(global-set-key '[(control x)(control =)]   'ediff-buffers)
 (global-set-key '[(control c)(\])] 'next-error)
 (global-set-key '[(control c)(\[)] 'previous-error)
-(global-set-key (read-kbd-macro "C-M-g") 'grep)
 (global-set-key (read-kbd-macro "C-M-b") 'bookmark-jump)
 (global-set-key (read-kbd-macro "C-x C-k") (lambda () (interactive) (kill-buffer nil)))
 (global-set-key (read-kbd-macro "C-x f") 'find-file-at-point)
@@ -18,8 +16,6 @@
 (global-set-key (read-kbd-macro "M-q") 'fill-region)
 (global-set-key (read-kbd-macro "M-l") 'downcase-word)
 (global-set-key (read-kbd-macro "C-x C-b")    'ibuffer-list-buffers)
-(global-set-key (read-kbd-macro "C-~") 'ibuffer)
-(global-set-key (kbd "C-S-j") 'jump-to-register)
 
 ;;No need digits
 (global-set-key (read-kbd-macro "C-1")      'delete-other-windows)
@@ -31,13 +27,6 @@
                                     (ignore-errors (next-logical-line 5))))
 
 (global-set-key '[(control up)] (lambda ()
-                                    (interactive)
-                                    (ignore-errors (previous-logical-line 5))))
-(global-set-key '[(control shift n)] (lambda ()
-                                    (interactive)
-                                    (ignore-errors (next-logical-line 5))))
-
-(global-set-key '[(control shift p)] (lambda ()
                                     (interactive)
                                     (ignore-errors (previous-logical-line 5))))
 
@@ -57,9 +46,3 @@
 
 ;Unset
 (global-unset-key "\C-x\C-z")
-
-; Minibuffer
-(define-key minibuffer-local-map
-  (read-kbd-macro "C-p") 'previous-history-element)
-(define-key minibuffer-local-map
-  (read-kbd-macro "C-n") 'next-history-element)
