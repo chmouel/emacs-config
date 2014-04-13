@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
-# name: pp
-# binding: C-c p
+# key: pp
+# name: Pretty Print
 # --
 from pprint import pprint as p
 p($0)
