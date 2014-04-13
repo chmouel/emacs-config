@@ -50,8 +50,6 @@
          (setq auto-insert-query nil)
          (define-auto-insert "\.py"
            '(lambda () (yas--expand-by-uuid 'python-mode "header")))
-         (define-auto-insert "\.sh"
-           '(lambda () (yas--expand-by-uuid 'python-mode "header")))
          (require 'dropdown-list)
          (setq yas/prompt-functions '(yas/dropdown-prompt))))))
 
@@ -121,7 +119,8 @@
 ;;    (powerline-default-theme))
 (Package 'smart-mode-line
   (setq sml/theme 'light)
-  (sml/setup))
+  (sml/setup)
+  (add-to-list 'sml/replacer-regexp-list '("^~/GIT/OpenStack/" ":OpenStack:")))
 
 ;Boorkmarks
 (Package 'bm
