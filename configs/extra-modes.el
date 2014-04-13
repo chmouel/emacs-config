@@ -50,6 +50,8 @@
          (setq auto-insert-query nil)
          (define-auto-insert "\.py"
            '(lambda () (yas--expand-by-uuid 'python-mode "header")))
+         (define-auto-insert "\.sh"
+           '(lambda () (yas--expand-by-uuid 'python-mode "header")))
          (require 'dropdown-list)
          (setq yas/prompt-functions '(yas/dropdown-prompt))))))
 
@@ -94,6 +96,10 @@
 (Package 'json-mode
   (add-to-list 'auto-mode-alist '("\\.json$" . json-mode)))
 
+;Zop-to-char
+(Package 'zop-to-char
+  (global-set-key (kbd "M-z") 'zop-to-char))
+
 ; window-number-meta-mode
 (Package 'window-number
   (autoload 'window-number-meta-mode "window-number")
@@ -110,14 +116,12 @@
 ; Openstack browse current file.
 (Package 'openstack-cgit-browse-file)
 
-;; timestamps
-(Package 'powerline
-  (powerline-default-theme)
-  (set-face-attribute 'mode-line nil
-                      :background "OliveDrab3"
-                      :box nil)
-  (set-face-attribute 'mode-line-inactive nil
-                      :box nil))
+;; ;; timestamps
+;; (Package 'powerline
+;;    (powerline-default-theme))
+(Package 'smart-mode-line
+  (setq sml/theme 'light)
+  (sml/setup))
 
 ;Boorkmarks
 (Package 'bm
