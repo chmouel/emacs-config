@@ -1,25 +1,12 @@
 (require 'message)
 
-(setq 
+(setq
  message-auto-save-directory "~/Gnus/Mail/drafts"
  message-directory "~/Gnus/Mail"
 )
 
 
 (push '("\\.eml\\'" . message-mode) auto-mode-alist)
-
-(GUI
- (set-face-foreground 'message-header-name "gold1")
- (set-face-foreground 'message-header-to "PaleGreen")
- (set-face-foreground 'message-header-other "PaleGreen")
- (set-face-foreground 'message-header-subject "PaleGreen")
- (set-face-foreground 'message-header-cc "PaleGreen")
- (set-face-foreground 'message-separator "WhiteSmoke")
- (set-face-foreground 'message-cited-text "Hotpink")
- (set-face-attribute 'message-header-subject nil :weight 'bold)
- (set-face-attribute 'message-header-other nil :weight 'bold)
- )
-
 
 ;;Messages
 (defun my-message-mode-hook()
@@ -55,4 +42,3 @@
 	  (if (not (eolp))(insert "\n"))
 	  ))
 )
-

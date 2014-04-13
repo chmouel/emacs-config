@@ -79,19 +79,6 @@
 (add-hook 'gnus-group-mode-hook 'my-setup-hl-line)
 (defun my-setup-hl-line () (hl-line-mode 1) (setq cursor-type 'hbar) )
 (setq cursor-type 't)
-(set-face-attribute 'hl-line nil
-                    :background "#abd7f0"
-                    :foreground "black"
-                    :box nil)
-(set-face-attribute 'hl-line-face nil
-                    :background "#abd7f0"
-                    :foreground "black"
-                    :box nil)
-(set-face-attribute 'highlight nil
-                    :background "#abd7f0"
-                    :foreground "black"
-                    :box nil)
-
 
 ; Colorfull
 (require 'gnus-cite)
