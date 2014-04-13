@@ -1,4 +1,6 @@
-(require 'nosetests)
+(autoload 'nosetests-compile "nosetests" "Noses Testing" t)
+(autoload 'nosetests-compile-module "nosetests" "Noses Testing" t)
+(autoload 'nosetests-copy-shell-comand "nosetests" "Noses Testing" t)
 (require 'outline-magic)
 
 ;Ipython3
@@ -24,9 +26,13 @@
   (define-key outline-minor-mode-map [M-up] 'outline-move-subtree-up)
   (when "highlight-80+" (highlight-80+-mode))
   (local-set-key '[(control c)(control k)] 'outline-mark-subtree)
-  (local-set-key (kbd "C-S-y") 'nosetests-compile-module)
+  ;; (local-set-key (kbd "C-S-y") 'nosetests-compile-module)
+  ;; (local-set-key (kbd "C-S-t") 'nosetests-copy-shell-comand)
+  ;; (local-set-key (kbd "C-S-r") 'nosetests-compile)
+  (local-set-key (kbd "C-S-y") 'tox-current-class)
   (local-set-key (kbd "C-S-t") 'nosetests-copy-shell-comand)
-  (local-set-key (kbd "C-S-r") 'nosetests-compile)
+  (local-set-key (kbd "C-S-r") 'tox-current-test)
+
   (local-set-key (kbd "C-S-w") (lambda () (interactive) (kill-new (python-info-current-defun))))
   (flycheck-mode)
   (local-set-key '[(control c)(\[)] 'flycheck-previous-error)
