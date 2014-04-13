@@ -6,6 +6,7 @@
 ;; that would launch the current test with nose in a compile buffer.
 
 (defvar nosetests-arg "-sx")
+(defvar nosetests-executable "nosetests")
 
 (defun inner-testable ()
   (save-excursion
@@ -34,6 +35,13 @@
           ((equal inner-obj outer-obj) outer-obj)
           (t (format "%s.%s" outer-obj inner-obj)))))
 
+(defun nosetests-get-executable (topdir &optional env)
+  (if (null env)
+      (setq env "py27"))
+  (let ((n (concat topdir ".tox/" env "/py27/bin/" nosetests-executable)))
+    (if (file-exists-p n) n
+      nosetests-executable)))
+
 (defun nosetests-get-command (&optional withcd module)
   (let (topdir test-path current-function cmd)
     (setq topdir (file-truename (or (locate-dominating-file
@@ -45,11 +53,10 @@
       (setq current-function (nose-py-testable))
       (if (not current-function)
           (error "No function at point")))
-
     (setq cmd "")
     (if withcd
         (setq cmd (concat "cd " topdir ";")))
-    (concat cmd "nosetests "
+    (concat cmd (nosetests-get-executable topdir) " "
             nosetests-arg " " test-path
             (if (not module)
                 (concat ":" current-function)))
