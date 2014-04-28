@@ -11,10 +11,10 @@
  '(ac-trigger-key "M-TAB")
  '(ack-and-a-half-arguments (quote ("--ignore-dir .tox" "-k" "--ignore-dir vendor/")))
  '(ack-executable "/usr/bin/ack-grep")
- '(alert-default-style (quote notifier))
+ '(alert-default-style (quote notifier) t)
  '(all-christian-calendar-holidays t)
  '(auto-install-directory "~/.emacs.d/modes/")
- '(battery-mode-line-format "--[%b%p%%]")
+ '(battery-mode-line-format "--[%b%p%%]" t)
  '(bc-bookmark-file "~/.emacs.d/auto-save-list/breadcrumb.el")
  '(bookmark-save-flag 1)
  '(c-basic-offset 4)
@@ -31,7 +31,7 @@
     ("--exclude='*.pyc'" "--exclude='*.elc'" "--exclude='*.class'" "--exclude='.git'" "--exclude='.svn'" "--exclude='SCCS'" "--exclude='RCS'" "--exclude='CVS'" "--exclude='EIFGEN'" "--exclude='.tox'" "--exclude='.venv'" "--python-kinds='-i'")))
  '(custom-safe-themes
    (quote
-    ("ed81411169b1b3e3d4cfc39b09d68ea13e0ff7708dc5b9d0bedb319e071968ad" "5e3fc08bcadce4c6785fc49be686a4a82a356db569f55d411258984e952f194a" "ab04c00a7e48ad784b52f34aa6bfa1e80d0c3fcacc50e1189af3651013eb0d58" "a0feb1322de9e26a4d209d1cfa236deaf64662bb604fa513cca6a057ddf0ef64" "7153b82e50b6f7452b4519097f880d968a6eaf6f6ef38cc45a144958e553fbc6" "f0ea6118d1414b24c2e4babdc8e252707727e7b4ff2e791129f240a2b3093e32" "2affb26fb9a1b9325f05f4233d08ccbba7ec6e0c99c64681895219f964aac7af" "9370aeac615012366188359cb05011aea721c73e1cb194798bc18576025cabeb" "62b86b142b243071b5adb4d48a0ab89aefd3cf79ee3adc0bb297ea873b36d23f" "61a83dbf3d3722d70abee8fb6dbc3566766ff86c098c2a925f2ccfd4d5b3a756" "1c1e6b2640daffcd23b1f7dd5385ca8484a060aec901b677d0ec0cf2927f7cde" "1f3304214265481c56341bcee387ef1abb684e4efbccebca0e120be7b1a13589" "fc6e906a0e6ead5747ab2e7c5838166f7350b958d82e410257aeeb2820e8a07a" default)))
+    ("2b5aa66b7d5be41b18cc67f3286ae664134b95ccc4a86c9339c886dfd736132d" "b1f685c871220e3008b5e1dec076bc2e24dc4b6c65e64a79bfb2ea5ff7e17978" "ed81411169b1b3e3d4cfc39b09d68ea13e0ff7708dc5b9d0bedb319e071968ad" "5e3fc08bcadce4c6785fc49be686a4a82a356db569f55d411258984e952f194a" "ab04c00a7e48ad784b52f34aa6bfa1e80d0c3fcacc50e1189af3651013eb0d58" "a0feb1322de9e26a4d209d1cfa236deaf64662bb604fa513cca6a057ddf0ef64" "7153b82e50b6f7452b4519097f880d968a6eaf6f6ef38cc45a144958e553fbc6" "f0ea6118d1414b24c2e4babdc8e252707727e7b4ff2e791129f240a2b3093e32" "2affb26fb9a1b9325f05f4233d08ccbba7ec6e0c99c64681895219f964aac7af" "9370aeac615012366188359cb05011aea721c73e1cb194798bc18576025cabeb" "62b86b142b243071b5adb4d48a0ab89aefd3cf79ee3adc0bb297ea873b36d23f" "61a83dbf3d3722d70abee8fb6dbc3566766ff86c098c2a925f2ccfd4d5b3a756" "1c1e6b2640daffcd23b1f7dd5385ca8484a060aec901b677d0ec0cf2927f7cde" "1f3304214265481c56341bcee387ef1abb684e4efbccebca0e120be7b1a13589" "fc6e906a0e6ead5747ab2e7c5838166f7350b958d82e410257aeeb2820e8a07a" default)))
  '(cycbuf-buffer-sort-function (quote cycbuf-sort-by-recency))
  '(cycbuf-dont-show-regexp (quote ("^ " "^\\*cycbuf\\*$" "^\\*Messages\\*#")))
  '(cycbuf-mode-name-replacements
@@ -167,7 +167,6 @@
  '(ispell-extra-args (quote ("--sug-mode=ultra")))
  '(ispell-message-dictionary-alist (quote (("^To:[^\\n,]+\\\\.fr[ \\t\\n,>]" . "francais"))))
  '(ispell-program-name "aspell")
- '(iswitchb-mode nil)
  '(jabber-alert-message-hooks (quote (jabber-message-echo jabber-message-scroll)))
  '(jabber-alert-presence-hooks (quote (jabber-presence-update-roster)))
  '(jabber-connection-type (quote starttls))

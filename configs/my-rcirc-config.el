@@ -1,43 +1,28 @@
-(defun rcirc-detach-buffer ()
-  (interactive)
-  (let ((buffer (current-buffer)))
-    (when (and (rcirc-buffer-process)
-           (eq (process-status (rcirc-buffer-process)) 'open))
-      (with-rcirc-server-buffer
-        (setq rcirc-buffer-alist
-              (rassq-delete-all buffer rcirc-buffer-alist)))
-      (rcirc-update-short-buffer-names)
-      (if (rcirc-channel-p rcirc-target)
-          (rcirc-send-string (rcirc-buffer-process)
-                             (concat "DETACH " rcirc-target))))
-    (setq rcirc-target nil)
-    (kill-buffer buffer)))
+(defun-rcirc-command reconnect (arg)
+  "Reconnect the server process."
+  (interactive "i")
+  (if (buffer-live-p rcirc-server-buffer)
+      (with-current-buffer rcirc-server-buffer
+	(let ((reconnect-buffer (current-buffer))
+	      (server (or rcirc-server rcirc-default-server))
+	      (port (if (boundp 'rcirc-port) rcirc-port rcirc-default-port))
+	      (nick (or rcirc-nick rcirc-default-nick))
+	      channels)
+	  (dolist (buf (buffer-list))
+	    (with-current-buffer buf
+	      (when (equal reconnect-buffer rcirc-server-buffer)
+		(remove-hook 'change-major-mode-hook
+			     'rcirc-change-major-mode-hook)
+                (let ((server-plist (cdr (assoc-string server rcirc-server-alist))))
+                  (when server-plist
+                    (setq channels (plist-get server-plist :channels))))
+		  )))
+	  (if process (delete-process process))
+	  (rcirc-connect server port nick
+			 nil
+			 nil
+			 channels)))))
 
-(eval-after-load 'rcirc
-  '(defun-rcirc-command reconnect (arg)
-     "Reconnect the server process."
-     (interactive "i")
-     (unless process
-       (error "There's no process for this target"))
-     (let* ((server (car (process-contact process)))
-	    (port (process-contact process :service))
-	    (nick (rcirc-nick process))
-	    channels query-buffers)
-       (dolist (buf (buffer-list))
-	 (with-current-buffer buf
-	   (when (eq process (rcirc-buffer-process))
-	     (remove-hook 'change-major-mode-hook
-			  'rcirc-change-major-mode-hook)
-	     (if (rcirc-channel-p rcirc-target)
-		 (setq channels (cons rcirc-target channels))
-	       (setq query-buffers (cons buf query-buffers))))))
-       (delete-process process)
-       (rcirc-connect server port nick
-		      rcirc-default-user-name
-		      rcirc-default-full-name
-		      channels))))
-
-(define-key rcirc-mode-map [(control x) (control k)] 'rcirc-detach-buffer)
 
 (defun my-jump-rcirc(&optional arg)
   "Jump to rcirc back and forth saving window configuration"
@@ -62,5 +47,16 @@
              (not (rcirc-channel-p target)))
     (switch-to-buffer (rcirc-get-buffer proc target))
     (goto-char rcirc-prompt-end-marker)))
-
 (add-hook 'rcirc-print-hooks 'my-switch-to-buffer-on-privmsg)
+
+(add-hook 'rcirc-mode-hook
+          (lambda ()
+            (set (make-local-variable 'scroll-conservatively)
+                 8192)))
+
+(setq rcirc-debug-flag t)
+(setq rcirc-time-format "%Y-%m-%d %H:%M ")
+
+
+(Package 'rcirc-alertify
+  (rcirc-alertify-enable))
