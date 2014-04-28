@@ -114,9 +114,7 @@
 ; Openstack browse current file.
 (Package 'openstack-cgit-browse-file)
 
-;; ;; timestamps
-;; (Package 'powerline
-;;    (powerline-default-theme))
+; Smart mode line
 (Package 'smart-mode-line
   (setq sml/theme 'light)
   (sml/setup)
@@ -158,6 +156,11 @@
         flycheck-highlighting-mode 'lines)
   (global-flycheck-mode t)
 )
+
+; Line
+(Package 'main-line
+  (require 'main-line))
+
 
 (provide 'extras-modes)
 ;;; extra-modes.el ends here
