@@ -44,7 +44,7 @@
          (setq auto-insert-query nil)
          (define-auto-insert "\.py"
            '(lambda () (yas--expand-by-uuid 'python-mode "header")))
-         (require 'dropdown-list)
+         (Package 'dropdown-list)
          (setq yas/prompt-functions '(yas/dropdown-prompt))))))
 
 ;RegexTool
