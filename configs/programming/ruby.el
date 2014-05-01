@@ -2,8 +2,9 @@
 
 (when (fboundp 'ruby-mode)
   (setq auto-mode-alist (append '(("\\.rb$" . ruby-mode)) auto-mode-alist))
-  (autoload 'run-ruby "inf-ruby" "Run an inferior Ruby process")
-  (autoload 'inf-ruby-keys "inf-ruby" "Set local key defs for inf-ruby in ruby-mode")
+  (Package 'inf-ruby
+    (autoload 'run-ruby "inf-ruby" "Run an inferior Ruby process")
+    (autoload 'inf-ruby-keys "inf-ruby" "Set local key defs for inf-ruby in ruby-mode"))
 
   (defun my-ruby-mode-hook()
     (inf-ruby-keys)
@@ -21,7 +22,7 @@
     )
   (add-hook 'ruby-mode-hook 'my-ruby-mode-hook)
 
-  (setq 
+  (setq
    ruby-program-name "irb --inf-ruby-mode --simple-prompt"
    interpreter-mode-alist (append '(("ruby" . ruby-mode)) interpreter-mode-alist)
    inferior-ruby-first-prompt-pattern ">> "
