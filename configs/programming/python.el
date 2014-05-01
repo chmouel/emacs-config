@@ -1,7 +1,7 @@
 (autoload 'nosetests-compile "nosetests" "Noses Testing" t)
 (autoload 'nosetests-compile-module "nosetests" "Noses Testing" t)
 (autoload 'nosetests-copy-shell-comand "nosetests" "Noses Testing" t)
-(require 'outline-magic)
+(Package 'outline-magic)
 
 ;Ipython3
 (setq
