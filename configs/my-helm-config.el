@@ -1,13 +1,13 @@
 ; HELM
 (Package 'helm
   (require 'helm-config)
-  (require 'helm-git-goto))
+  (Package 'helm-git-files))
 
 (defun my-helm()
   (interactive)
   (require 'helm-files)
   (helm-other-buffer '(helm-source-buffers-list
-                       helm-c-source-git-goto
+                       helm-git-files:all-source
                        helm-source-magit-repos
                        helm-source-bookmarks
                        helm-source-ctags
