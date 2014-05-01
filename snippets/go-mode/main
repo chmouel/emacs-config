@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: main
+# key: main
+# --
+package main
+
+func main() {
+   ${1:fmt.Printf("Hello, 世界\n")}
+   $0
+}
