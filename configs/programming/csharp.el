@@ -1,14 +1,10 @@
-;Csharp
-(autoload 'csharp-mode "csharp-mode"  "Major mode for editing C# code." t)
-(setq auto-mode-alist (cons '( "\\.cs\\'" . csharp-mode ) auto-mode-alist ))
-
 (defun my-csharp-mode-hook ()
   (or (file-exists-p "makefile") (file-exists-p "Makefile")
       (set (make-local-variable 'compile-command)
 	   (concat "mcs /nologo /target:exe \"" buffer-file-name "\"")
 	   ))
   (set (make-local-variable 'compile-run-command) 'compile-command)
-  
+
   (my-programming-common-hook)
 
   (local-set-key '[(f9)]
@@ -27,4 +23,8 @@
   (define-abbrev-table 'csharp-mode-abbrev-table ())
   )
 
-(add-hook 'csharp-mode-hook 'my-csharp-mode-hook)
+;Csharp
+(Package 'csharp-mode
+  (add-hook 'csharp-mode-hook 'my-csharp-mode-hook)
+  (autoload 'csharp-mode "csharp-mode"  "Major mode for editing C# code." t)
+  (setq auto-mode-alist (cons '( "\\.cs\\'" . csharp-mode ) auto-mode-alist )))
