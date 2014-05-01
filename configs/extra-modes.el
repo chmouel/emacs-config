@@ -116,7 +116,8 @@
 
 ; Smart mode line
 (Package 'smart-mode-line
-  (setq sml/theme 'light)
+  (setq sml/theme 'dark)
+  (load-theme 'alect-dark)
   (sml/setup)
   (add-to-list 'sml/replacer-regexp-list '("^~/GIT/OpenStack/" ":OpenStack:")))
 
