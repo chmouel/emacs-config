@@ -6,6 +6,8 @@
 (defun my-helm()
   (interactive)
   (require 'helm-files)
+  (define-key helm-map (kbd "C-S-p") 'helm-previous-source)
+  (define-key helm-map (kbd "C-S-n") 'helm-next-source)
   (helm-other-buffer '(helm-source-buffers-list
                        helm-git-files:all-source
                        helm-source-magit-repos
@@ -28,9 +30,4 @@
 (setq helm-c-adaptive-history-file
     "~/.emacs.d/auto-save-list/anything-c-adaptive-history")
 
-(define-key helm-map (kbd "C-S-p") 'helm-previous-source)
-(define-key helm-map (kbd "C-S-n") 'helm-next-source)
 (global-set-key (read-kbd-macro "C-z") 'my-helm)
-
-;(global-set-key (kbd "C-x C-b") 'helm-buffers-list)
-;(global-set-key (kbd "C-S-b") 'helm-browse-code)
