@@ -1,4 +1,5 @@
 (require 'message)
+(Package 'message-x)
 
 (setq
  message-auto-save-directory "~/Gnus/Mail/drafts"
