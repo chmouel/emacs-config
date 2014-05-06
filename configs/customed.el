@@ -111,6 +111,8 @@
  '(flycheck-display-errors-delay 0.2)
  '(flycheck-highlighting-mode (quote lines))
  '(font-use-system-font t)
+ '(git-gutter:added-sign " ")
+ '(git-gutter:deleted-sign " ")
  '(global-flycheck-mode t nil (flycheck))
  '(global-git-gutter-mode t)
  '(gnus-init-file "~/.emacs.d/gnus/init.el")
