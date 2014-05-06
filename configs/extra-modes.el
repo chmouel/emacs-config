@@ -2,24 +2,6 @@
 (autoload 'rst-mode "rst" "RST" t)
 (push '("\\.rst\\'" . rst-mode) auto-mode-alist)
 
-;Ensure package is installed
-(if (fboundp 'package-initialize)
-    (package-initialize))
-
-;Macros for easy package.
-(defmacro Package (package &rest body)
-  "Install a package if not installed and execute body"
-  (declare (indent 1) (debug t))
-  `(let ((package-dest ,package))
-     (if (fboundp 'package-install)
-         (condition-case err
-             (progn
-               (if (not (package-installed-p package-dest))
-                   (package-install package-dest))
-               (progn ,@body))
-           (message (car err))))))
-
-
 ; Yassnippet
 (defun yas--expand-by-uuid (mode uuid)
   "Exapnd snippet template in MODE by its UUID"

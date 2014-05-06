@@ -36,6 +36,24 @@
 (setq custom-file (concat my-init-directory "/configs/customed.el"))
 (load custom-file)
 
+;Ensure package is installed
+(if (fboundp 'package-initialize)
+    (package-initialize))
+
+;Macros for easy package.
+(defmacro Package (package &rest body)
+  "Install a package if not installed and execute body"
+  (declare (indent 1) (debug t))
+  `(let ((package-dest ,package))
+     (if (fboundp 'package-install)
+         (condition-case err
+             (progn
+               (if (not (package-installed-p package-dest))
+                   (package-install package-dest))
+               (progn ,@body))
+           (message (car err))))))
+
+
 ;Loading Configs files
 (my-load-dir (concat my-init-directory "/configs/"))
 (my-load-dir (concat my-init-directory "/configs/programming/"))
