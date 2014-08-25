@@ -31,7 +31,7 @@
     ("--exclude='*.pyc'" "--exclude='*.elc'" "--exclude='*.class'" "--exclude='.git'" "--exclude='.svn'" "--exclude='SCCS'" "--exclude='RCS'" "--exclude='CVS'" "--exclude='EIFGEN'" "--exclude='.tox'" "--exclude='.venv'" "--python-kinds='-i'")))
  '(custom-safe-themes
    (quote
-    ("04dd0236a367865e591927a3810f178e8d33c372ad5bfef48b5ce90d4b476481" "2b5aa66b7d5be41b18cc67f3286ae664134b95ccc4a86c9339c886dfd736132d" "b1f685c871220e3008b5e1dec076bc2e24dc4b6c65e64a79bfb2ea5ff7e17978" "ed81411169b1b3e3d4cfc39b09d68ea13e0ff7708dc5b9d0bedb319e071968ad" "5e3fc08bcadce4c6785fc49be686a4a82a356db569f55d411258984e952f194a" "ab04c00a7e48ad784b52f34aa6bfa1e80d0c3fcacc50e1189af3651013eb0d58" "a0feb1322de9e26a4d209d1cfa236deaf64662bb604fa513cca6a057ddf0ef64" "7153b82e50b6f7452b4519097f880d968a6eaf6f6ef38cc45a144958e553fbc6" "f0ea6118d1414b24c2e4babdc8e252707727e7b4ff2e791129f240a2b3093e32" "2affb26fb9a1b9325f05f4233d08ccbba7ec6e0c99c64681895219f964aac7af" "9370aeac615012366188359cb05011aea721c73e1cb194798bc18576025cabeb" "62b86b142b243071b5adb4d48a0ab89aefd3cf79ee3adc0bb297ea873b36d23f" "61a83dbf3d3722d70abee8fb6dbc3566766ff86c098c2a925f2ccfd4d5b3a756" "1c1e6b2640daffcd23b1f7dd5385ca8484a060aec901b677d0ec0cf2927f7cde" "1f3304214265481c56341bcee387ef1abb684e4efbccebca0e120be7b1a13589" "fc6e906a0e6ead5747ab2e7c5838166f7350b958d82e410257aeeb2820e8a07a" default)))
+    ("6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" "3a727bdc09a7a141e58925258b6e873c65ccf393b2240c51553098ca93957723" "025354235e98db5e7fd9c1a74622ff53ad31b7bde537d290ff68d85665213d85" "d8a4e35ee1b219ccb8a8c15cdfed687fcc9d467c9c8b9b93bd25229b026e4703" "7a9f392481b6e2fb027ab9d8053ab36c0f23bf5cc1271206982339370d894c74" "04dd0236a367865e591927a3810f178e8d33c372ad5bfef48b5ce90d4b476481" "2b5aa66b7d5be41b18cc67f3286ae664134b95ccc4a86c9339c886dfd736132d" "b1f685c871220e3008b5e1dec076bc2e24dc4b6c65e64a79bfb2ea5ff7e17978" "ed81411169b1b3e3d4cfc39b09d68ea13e0ff7708dc5b9d0bedb319e071968ad" "5e3fc08bcadce4c6785fc49be686a4a82a356db569f55d411258984e952f194a" "ab04c00a7e48ad784b52f34aa6bfa1e80d0c3fcacc50e1189af3651013eb0d58" "a0feb1322de9e26a4d209d1cfa236deaf64662bb604fa513cca6a057ddf0ef64" "7153b82e50b6f7452b4519097f880d968a6eaf6f6ef38cc45a144958e553fbc6" "f0ea6118d1414b24c2e4babdc8e252707727e7b4ff2e791129f240a2b3093e32" "2affb26fb9a1b9325f05f4233d08ccbba7ec6e0c99c64681895219f964aac7af" "9370aeac615012366188359cb05011aea721c73e1cb194798bc18576025cabeb" "62b86b142b243071b5adb4d48a0ab89aefd3cf79ee3adc0bb297ea873b36d23f" "61a83dbf3d3722d70abee8fb6dbc3566766ff86c098c2a925f2ccfd4d5b3a756" "1c1e6b2640daffcd23b1f7dd5385ca8484a060aec901b677d0ec0cf2927f7cde" "1f3304214265481c56341bcee387ef1abb684e4efbccebca0e120be7b1a13589" "fc6e906a0e6ead5747ab2e7c5838166f7350b958d82e410257aeeb2820e8a07a" default)))
  '(cycbuf-buffer-sort-function (quote cycbuf-sort-by-recency))
  '(cycbuf-dont-show-regexp (quote ("^ " "^\\*cycbuf\\*$" "^\\*Messages\\*#")))
  '(cycbuf-mode-name-replacements
@@ -248,6 +248,10 @@
  '(user-full-name "Chmouel Boudjnah")
  '(user-mail-address "chmouel@chmouel.com")
  '(wdired-enable t)
+ '(weechat-auto-monitor-buffers t)
+ '(weechat-auto-monitor-new-buffers t)
+ '(weechat-initial-lines 200)
+ '(weechat-port-default 9001)
  '(window-number-meta-mode t)
  '(woman-use-own-frame nil)
  '(x-select-enable-clipboard t)
@@ -269,9 +273,9 @@
  '(cycbuf-header-face ((t (:background "black" :foreground "yellow" :weight bold))) t)
  '(ediff-even-diff-B ((t (:foreground "green"))))
  '(ediff-odd-diff-B ((t (:background "#41423f" :foreground "grey"))))
- '(erc-input-face ((t (:foreground "white"))) t)
- '(erc-my-nick-face ((t (:foreground "DarkSlateGray3" :weight bold))) t)
- '(erc-notice-face ((t (:foreground "Grey" :weight bold))) t)
+ '(erc-input-face ((t (:foreground "white"))))
+ '(erc-my-nick-face ((t (:foreground "DarkSlateGray3" :weight bold))))
+ '(erc-notice-face ((t (:foreground "Grey" :weight bold))))
  '(gnus-signature ((t (:slant normal))))
  '(hl-line-face ((t (:background "red"))) t)
  '(magit-item-highlight ((t (:weight bold))))

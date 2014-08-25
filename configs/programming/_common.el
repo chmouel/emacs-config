@@ -1,4 +1,7 @@
+(Package 'highlight-numbers)
+
 (defun my-programming-common-hook()
+  (highlight-numbers-mode 1)
   (local-set-key (kbd "RET") 'newline-and-indent)
   (local-set-key (kbd "C-C C-f") 'github-browse-file)
   (local-set-key '[(meta return)] 'compile)

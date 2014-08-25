@@ -110,3 +110,30 @@
 
 ; Ediff
 (setq emerge-diff-options "--ignore-all-space")
+
+
+;;; Eshell
+(eval-after-load 'esh-opt
+  (progn
+    (Package 'eshell-prompt-extras
+      (require 'eshell-prompt-extras)
+      (require 'em-unix))
+    (Package 'virtualenvwrapper
+      (require 'virtualenvwrapper)
+      (venv-initialize-eshell))
+    (setq eshell-prompt-regexp "^[^#\n|]*[#|] "
+          eshell-highlight-prompt nil
+          eshell-prompt-function 'epe-theme-lambda)
+    (add-hook 'eshell-mode-hook
+              (lambda ()
+                (setq pcomplete-cycle-completions nil))))
+  )
+
+
+;;   (progn
+;;     (require 'virtualenvwrapper)
+;;     (venv-initialize-eshell)
+;;     (require 'eshell-prompt-extras)
+;;     (setq eshell-prompt-regexp "^[^#\n|]*[#|] "
+;;           eshell-highlight-prompt nil
+;;           eshell-prompt-function 'epe-theme-lambda)))

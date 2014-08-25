@@ -57,6 +57,7 @@
 
 (defun my-gnus-summary-mode-hook ()
   ;(local-set-key (read-kbd-macro "M-k") 'gnus-summary-kill-same-subject-and-select)
+  (local-set-key '[(\[)] 'gnus-article-hide-citation-maybe)
   (local-set-key '[(\])] 'my-gnus-article-browse-message-id)
   (local-set-key '[(\\)] 'my-gnus-article-browse-review)
   ; USE K-J for navigation is evil and that evil is called gmail who
@@ -127,6 +128,7 @@
                               ("Patch Set [[:digit:]]+: I would prefer that you didn't merge this" 0 0 error)
                               ("Patch Set [[:digit:]]+: Works for me" 0 0 success)
                               ("Patch Set [[:digit:]]+: Verified" 0 0 success)
+                              ("Code-Review+[[:digit:]]+ Workflow+[[:digit:]]+" 0 0 success)
                               ("Patch Set [[:digit:]]+: Approved" 0 0 success)
                               ("^.+ has uploaded a new change for review." 0 0 bold)
                               ("Jenkins has submitted this change and it was merged." 0 0 success))))

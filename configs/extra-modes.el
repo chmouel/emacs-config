@@ -63,9 +63,6 @@
 ; Auto complete in words.
 (Package 'auto-complete)
 
-; Git Gutter.
-(Package 'git-gutter)
-
 ;JSON Mode
 (Package 'json-mode
   (add-to-list 'auto-mode-alist '("\\.json$" . json-mode)))
@@ -93,7 +90,6 @@
 ; Smart mode line
 (Package 'smart-mode-line
   (setq sml/theme 'dark)
-  (load-theme 'alect-dark)
   (sml/setup)
   (add-to-list 'sml/replacer-regexp-list '("^~/GIT/OpenStack/" ":OpenStack:")))
 
