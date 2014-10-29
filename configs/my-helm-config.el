@@ -1,7 +1,7 @@
 ; HELM
-(Package 'helm
-  (require 'helm-config)
-  (Package 'helm-git-files))
+;; (Package 'helm
+;;   (require 'helm-config)
+;;   (Package 'helm-git-files))
 
 (defun my-helm()
   (interactive)
@@ -30,4 +30,4 @@
 (setq helm-c-adaptive-history-file
     "~/.emacs.d/auto-save-list/anything-c-adaptive-history")
 
-(global-set-key (read-kbd-macro "C-z") 'my-helm)
+;(global-set-key (read-kbd-macro "C-z") 'my-helm)

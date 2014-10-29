@@ -43,7 +43,7 @@
 ; Multiple cursors
 (Package 'multiple-cursors
   (setq mc/list-file "~/.emacs.d/auto-save-list/mc-lists.el")
-  (global-set-key (kbd "C-@") 'mc/mark-all-like-this-dwim))
+  (global-set-key (kbd "C--") 'mc/mark-all-like-this-dwim))
 
 ; Expand Region
 (Package 'expand-region
@@ -109,24 +109,30 @@
 (Package 'smex
   (global-set-key (read-kbd-macro "M-x") 'smex))
 
-;ag a C ack replacement
-(Package 'ag
+;; ag a C ack replacement
+(Package 'ag                            ;
   (setq ag-reuse-buffers t)
    (define-key global-map (kbd "C-S-g") 'ag-project))
 
-; flx-ido - advanced flex matching for ido
+;; flx-ido - advanced flex matching for ido
 (Package 'flx-ido
   (setq gc-cons-threshold 20000000)
   (flx-ido-mode 1))
 
-; Visualize undo
+;; Visualize undo
 (Package 'undo-tree)
 
-; Flycheck
+;; Flycheck
 (Package 'flycheck
   (setq flycheck-disabled-checkers '(emacs-lisp emacs-lisp-checkdoc)
         flycheck-display-errors-delay 0.2
         flycheck-highlighting-mode 'lines)
   (global-flycheck-mode t))
 
+;; Comment dwim 2
+(Package 'comment-dwim-2
+  (global-set-key (kbd "M-;") 'comment-dwim-2))
+
+;;
 (provide 'extras-modes)
+

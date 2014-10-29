@@ -25,11 +25,10 @@
   (defun my-magit-open-repository ()
     "Open quickly a magit directory."
     (interactive)
-    (dired (magit-read-top-dir nil)))
+    (magit-status (magit-read-top-dir nil)))
   (global-set-key (read-kbd-macro "C-S-o") 'my-magit-open-repository))
 
 ;Find find in GIT repo
 (Package 'magit-find-file
   (add-hook 'magit-mode-hook '(lambda () (interactive) (local-set-key '[(\`)] 'magit-find-file-completing-read)))
-  (global-set-key (read-kbd-macro "C-`") 'magit-find-file-completing-read)
   (global-set-key (kbd "C-S-f") 'magit-find-file-completing-read))

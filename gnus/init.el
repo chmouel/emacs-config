@@ -68,11 +68,28 @@
   )
 (add-hook 'gnus-summary-mode-hook 'my-gnus-summary-mode-hook)
 
-(setq gnus-thread-sort-functions '(gnus-thread-sort-by-date
-                                   ;gnus-thread-sort-by-number
-                                   gnus-thread-sort-by-date
-								   gnus-thread-sort-by-subject
-								   gnus-thread-sort-by-total-score))
+;; (setq gnus-thread-sort-functions '(gnus-thread-sort-by-date
+;;                                    ;gnus-thread-sort-by-number
+;;                                    gnus-thread-sort-by-date
+;; 								   gnus-thread-sort-by-subject
+;; 								   gnus-thread-sort-by-total-score))
+
+
+  (setq-default
+     gnus-summary-line-format "%U%R%z %(%&user-date;  %-15,15f  %B%s%)\n"
+     gnus-summary-thread-gathering-function 'gnus-gather-threads-by-references
+     gnus-thread-sort-functions '(gnus-thread-sort-by-number (not gnus-thread-sort-by-date))
+     gnus-sum-thread-tree-false-root ""
+     gnus-sum-thread-tree-indent " "
+     gnus-sum-thread-tree-leaf-with-other "├► "
+     gnus-sum-thread-tree-root ""
+     gnus-sum-thread-tree-single-leaf "╰► "
+     gnus-sum-thread-tree-vertical "│")
+
+(defun my-article-mode-hook()
+  (set-fringe-style 1))
+(add-hook 'gnus-article-mode-hook 'my-article-mode-hook)
+
 
 ;HighLine
 (require 'hl-line)
@@ -127,7 +144,9 @@
                               ("Patch Set [[:digit:]]+: Do not merge" 0 0 error)
                               ("Patch Set [[:digit:]]+: I would prefer that you didn't merge this" 0 0 error)
                               ("Patch Set [[:digit:]]+: Works for me" 0 0 success)
-                              ("Patch Set [[:digit:]]+: Verified" 0 0 success)
+                              ("Patch Set [[:digit:]]+: Verified -[[:digit:]]+" 0 0 error)
+                              ("Patch Set [[:digit:]]+: Verified +[[:digit:]]+" 0 0 success)
+                              ("Code-Review+[[:digit:]]+" 0 0 success)
                               ("Code-Review+[[:digit:]]+ Workflow+[[:digit:]]+" 0 0 success)
                               ("Patch Set [[:digit:]]+: Approved" 0 0 success)
                               ("^.+ has uploaded a new change for review." 0 0 bold)

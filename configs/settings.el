@@ -17,6 +17,9 @@
 (global-set-key (read-kbd-macro "M-l") 'downcase-word)
 (global-set-key (read-kbd-macro "C-x C-b")    'ibuffer-list-buffers)
 
+; whitespace cleanup
+(global-set-key (read-kbd-macro "C-+")    'whitespace-cleanup)
+
 ;;No need digits
 (global-set-key (read-kbd-macro "C-1")      'delete-other-windows)
 (global-set-key (read-kbd-macro "C-2")      'split-window-vertically)

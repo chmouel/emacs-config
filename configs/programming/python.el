@@ -1,9 +1,11 @@
 (Package 'outline-magic)
 (Package 'fill-column-indicator)
 
+(autoload 'pan-run-all-until-fail "pan")
+(autoload 'pan-run-current-test "pan")
+
 ;Ipython3
 (setq
-
  python-shell-prompt-regexp "In \\[[0-9]+\\]: "
  python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
  python-shell-completion-setup-code "from IPython.core.completerlib import module_completion"
@@ -20,9 +22,8 @@
 
   (local-set-key '[(meta q)] 'fill-paragraph)
   
-  (local-set-key (kbd "C-S-y") 'tox-current-class)
-  (local-set-key (kbd "C-S-t") 'nosetests-copy-shell-comand)
-  (local-set-key (kbd "C-S-r") 'tox-current-test)
+  (local-set-key (kbd "C-S-y") 'pan-run-all-until-fail)
+  (local-set-key (kbd "C-S-r") 'pan-run-current-test)
   (local-set-key (kbd "C-S-w") (lambda () (interactive) (kill-new (python-info-current-defun))))
   
   (local-set-key '[(control c)(control k)] 'outline-mark-subtree)
