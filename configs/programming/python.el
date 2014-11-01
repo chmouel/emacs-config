@@ -23,6 +23,7 @@
   (local-set-key '[(meta q)] 'fill-paragraph)
   
   (local-set-key (kbd "C-S-y") 'pan-run-all-until-fail)
+  (local-set-key (read-kbd-macro "C-S-t") 'pan-choose-test-to-run)
   (local-set-key (kbd "C-S-r") 'pan-run-current-test)
   (local-set-key (kbd "C-S-w") (lambda () (interactive) (kill-new (python-info-current-defun))))
   
