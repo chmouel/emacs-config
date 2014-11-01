@@ -94,8 +94,7 @@
   (add-to-list 'sml/replacer-regexp-list '("^~/GIT/OpenStack/" ":OpenStack:")))
 
 ;Boorkmarks
-(Package 'bm
-  (global-set-key (read-kbd-macro "C-S-t") 'bm-toggle))
+(Package 'bm)
 
 ;Company mode
 (Package 'company)
