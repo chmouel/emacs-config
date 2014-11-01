@@ -19,8 +19,7 @@
   (fci-mode)
   (flycheck-mode)
   (anaconda-mode)
-
-  (local-set-key (kbd "C-.") 'anaconda-mode-goto)
+  (eldoc-mode)
   
   (define-key outline-minor-mode-map [M-down] 'outline-move-subtree-down)
   (define-key outline-minor-mode-map [M-up] 'outline-move-subtree-up)
