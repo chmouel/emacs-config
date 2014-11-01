@@ -1,6 +1,8 @@
 (Package 'outline-magic)
 (Package 'fill-column-indicator)
+(Package 'anaconda-mode)
 
+(autoload 'pan-choose-test-to-run "pan")
 (autoload 'pan-run-all-until-fail "pan")
 (autoload 'pan-run-current-test "pan")
 
@@ -16,7 +18,10 @@
   (outline-minor-mode t)
   (fci-mode)
   (flycheck-mode)
+  (anaconda-mode)
 
+  (local-set-key (kbd "C-.") 'anaconda-mode-goto)
+  
   (define-key outline-minor-mode-map [M-down] 'outline-move-subtree-down)
   (define-key outline-minor-mode-map [M-up] 'outline-move-subtree-up)
 
