@@ -27,8 +27,6 @@
   (local-set-key (kbd "C-S-r") 'pan-run-current-test)
   (local-set-key (kbd "C-S-w") (lambda () (interactive) (kill-new (python-info-current-defun))))
   
-  (local-set-key '[(control c)(control k)] 'outline-mark-subtree)
-  
   (local-set-key '[(control c)(\[)] 'flycheck-previous-error)
   (local-set-key '[(control c)(\])] 'flycheck-next-error)
   
