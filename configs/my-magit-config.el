@@ -28,6 +28,10 @@
     (magit-status (magit-read-top-dir nil)))
   (global-set-key (read-kbd-macro "C-S-o") 'my-magit-open-repository))
 
+(Package 'magit-gerrit)
+(eval-after-load "magit"
+  '(require 'magit-gerrit))
+
 ;Find find in GIT repo
 (Package 'magit-find-file
   (add-hook 'magit-mode-hook '(lambda () (interactive) (local-set-key '[(\`)] 'magit-find-file-completing-read)))
