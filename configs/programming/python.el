@@ -33,8 +33,6 @@
   (set (make-local-variable 'my-compile-run-command) (concat "python -E \"" buffer-file-name "\""))
   (set (make-local-variable 'my-compile-command) (concat "flake8 \"" buffer-file-name "\""))
   
-  (local-set-key '[(control meta p)] (lambda () (interactive) (progn (insert "self."))))
-  
   (my-programming-common-hook)
   )
 (add-hook 'python-mode-hook 'my-python-mode-hook)
