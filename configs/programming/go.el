@@ -11,5 +11,7 @@
   )
 
 
-(add-hook 'before-save-hook 'gofmt-before-save)
-(add-hook 'go-mode-hook 'my-go-mode-hook)
+(eval-after-load "go-mode"
+  (progn
+    (add-hook 'before-save-hook 'gofmt-before-save)
+    (add-hook 'go-mode-hook 'my-go-mode-hook)))
