@@ -77,7 +77,7 @@
 
 ;Comit mode
 (add-hook 'comint-mode-hook
-	  (lambda ()
+      (lambda ()
         (local-set-key
          '[(control meta l)]
          (lambda () (interactive)
@@ -128,12 +128,3 @@
               (lambda ()
                 (setq pcomplete-cycle-completions nil))))
   )
-
-
-;;   (progn
-;;     (require 'virtualenvwrapper)
-;;     (venv-initialize-eshell)
-;;     (require 'eshell-prompt-extras)
-;;     (setq eshell-prompt-regexp "^[^#\n|]*[#|] "
-;;           eshell-highlight-prompt nil
-;;           eshell-prompt-function 'epe-theme-lambda)))
