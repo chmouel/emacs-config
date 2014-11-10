@@ -132,6 +132,10 @@
 (Package 'comment-dwim-2
   (global-set-key (kbd "M-;") 'comment-dwim-2))
 
+;; Projectile
+(Package 'projectile
+  (projectile-global-mode)
+  (global-set-key (kbd "C-]") 'projectile-commander))
+
 ;;
 (provide 'extras-modes)
-
