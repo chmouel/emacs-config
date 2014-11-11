@@ -1,8 +1,9 @@
 (Package 'outline-magic)
 (Package 'fill-column-indicator)
 (Package 'anaconda-mode)
+(Package 'smart-shift)
 
-(autoload 'pan-choose-test-to-run "pan")
+(autoload 'pan-switch-test-func "pan")
 (autoload 'pan-run-all-until-fail "pan")
 (autoload 'pan-run-current-test "pan")
 
@@ -20,23 +21,25 @@
   (flycheck-mode)
   (anaconda-mode)
   (eldoc-mode)
-  
+  (smart-shift-mode-on)
+
   (define-key outline-minor-mode-map [M-down] 'outline-move-subtree-down)
   (define-key outline-minor-mode-map [M-up] 'outline-move-subtree-up)
 
   (local-set-key '[(meta q)] 'fill-paragraph)
-  
+
   (local-set-key (kbd "C-S-y") 'pan-run-all-until-fail)
-  (local-set-key (read-kbd-macro "C-S-t") 'pan-choose-test-to-run)
+  ;(local-set-key (read-kbd-macro "C-S-t") 'pan-choose-test-to-run)
+  (local-set-key (read-kbd-macro "C-\\") 'pan-switch-test-func)
   (local-set-key (kbd "C-S-r") 'pan-run-current-test)
   (local-set-key (kbd "C-S-w") (lambda () (interactive) (kill-new (python-info-current-defun))))
-  
+
   (local-set-key '[(control c)(\[)] 'flycheck-previous-error)
   (local-set-key '[(control c)(\])] 'flycheck-next-error)
-  
+
   (set (make-local-variable 'my-compile-run-command) (concat "python -E \"" buffer-file-name "\""))
   (set (make-local-variable 'my-compile-command) (concat "flake8 \"" buffer-file-name "\""))
-  
+
   (my-programming-common-hook)
   )
 (add-hook 'python-mode-hook 'my-python-mode-hook)
