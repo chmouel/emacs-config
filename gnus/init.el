@@ -90,6 +90,27 @@
   (set-fringe-style 1))
 (add-hook 'gnus-article-mode-hook 'my-article-mode-hook)
 
+;; Posting style in variable
+;; I define message-mode-custom-variables in my custom local file
+;; It looks like this for me :
+;; (setq message-mode-custom-variables '(("other@email.com"
+;;                                        (message-sendmail-extra-arguments
+;;                                         '("-a" "otheremail")))))
+;; You can specify more arbitary arguments than just one in there and it would
+;; work.
+(defun message-mode-setup-custom-variables()
+  (if (fboundp 'message-mode-custom-variables)
+      (let ((email
+             (mail-strip-quoted-names
+              (message-fetch-field "from"))))
+        (dolist (style message-mode-custom-variables)
+          (when (string= email (car style))
+            (dolist (setting (cdr style))
+              (set (make-local-variable (car setting))
+                   (car (cdr setting)))
+              ))))))
+(add-hook 'message-setup-hook 'message-mode-setup-custom-variables)
+
 
 ;HighLine
 (require 'hl-line)
@@ -152,15 +173,6 @@
                               ("^.+ has uploaded a new change for review." 0 0 bold)
                               ("Jenkins has submitted this change and it was merged." 0 0 success))))
         ))
-
-; eNovance
-(setq gnus-posting-styles
-      '((".*"
-         (name "Chmouel Boudjnah")
-         (address "chmouel@enovance.com")
-         (organization "eNovance"))))
-
-
 ;
 (push "~/.emacs.d/packages/bbdb/lisp/" load-path)
 (require 'bbdb-loaddefs)
