@@ -202,7 +202,9 @@
      ("melpa-unstable" . "http://melpa.org/packages/")
      ("melpa" . "http://stable.melpa.org/packages/"))))
  '(package-user-dir "~/.emacs.d/packages")
+ '(projectile-cache-file "~/.emacs.d/auto-save-list/projectile.cache")
  '(projectile-keymap-prefix "")
+ '(projectile-known-projects-file "~/.emacs.d/auto-save-list/projectile-bookmarks.eld")
  '(projectile-project-root-files
    (quote
     ("rebar.config" "project.clj" "SConstruct" "pom.xml" "build.sbt" "build.gradle" "Gemfile" "requirements.txt" "package.json" "gulpfile.js" "Gruntfile.js" "bower.json" "composer.json" "Cargo.toml" "mix.exs" "tox.ini")))
