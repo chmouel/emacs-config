@@ -1,0 +1,1 @@
+("~/GIT/perso/emacs-config/" "~/GIT/enovance/saladier/" "~/GIT/emacs/pan.el/" "~/GIT/openstack/python-ceilometerclient/" "/usr/local/" "~/GIT/openstack/keystone/" "~/GIT/openstack/ceilometer/" "~/GIT/emacs/isgd.el/" "~/tmp/cc/ga-cmd/" "~/tmp/cc/android/")
