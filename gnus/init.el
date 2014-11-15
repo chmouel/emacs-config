@@ -40,43 +40,49 @@
  gnus-topic-display-empty-topics nil
  )
 
-; Browse OpenStack review when found
-(defun my-gnus-article-browse-something ()
-  (interactive)
-  (gnus-with-article-buffer
-    (if (string-match "^nntp\\+news\.gwene\.org" gnus-newsgroup-name)
-        (browse-url
-         (replace-regexp-in-string
-          "\\(\<\\|\>\\)" ""
-          (with-current-buffer
-              gnus-original-article-buffer
-            (message-fetch-field "archived-at"))))
-      (progn
-        (article-goto-body)
-          (while
-              (re-search-forward
-               (rx (submatch
-                    (or (and "https://review.openstack.org/" (one-or-more (any digit)))
-                        (and "https://bugs.launchpad.net/bugs/" (one-or-more (any digit))))))
-               nil t)
-            (browse-url (match-string-no-properties 1)))))))
+(defun my-gnus-article-browse-nnrss-archived-at()
+  "Browse nnrss archived at url header"
+  (browse-url
+   (replace-regexp-in-string
+    "\\(\<\\|\>\\)" ""
+    (with-current-buffer
+        gnus-original-article-buffer
+      (message-fetch-field "archived-at"))))  )
+
+(defun my-gnus-artcile-browse-a-regexp-url()
+  "Browse some url that we want"
+  (article-goto-body)
+  (while
+      (re-search-forward
+       (rx
+        (submatch
+         (or (and
+              "https://review.openstack.org/" (one-or-more (any digit)))
+             (and
+              "https://bugs.launchpad.net/bugs/" (one-or-more (any digit))))))
+       nil t)
+    (browse-url (match-string-no-properties 1))))
 
 (defun my-gnus-article-browse-message-id ()
-     (interactive)
-     (gnus-with-article-headers
-       (let ((messageid (message-fetch-field "message-id")))
-         (browse-url (concat "http://mid.gmane.org/" messageid)))))
+  "Take the message id and browse it with gmane"
+  (browse-url (concat "http://mid.gmane.org/" (message-fetch-field "message-id"))))
+
+; Browse OpenStack review when found
+(defun my-gnus-article-browse-something (&optional prefix)
+  (interactive "P")
+  (gnus-with-article-buffer
+    (cond (prefix
+           (my-gnus-article-browse-message-id))
+          ((string-match "^nntp\\+news\.gwene\.org" gnus-newsgroup-name)
+           (my-gnus-article-browse-nnrss-archived-at))
+          (t
+           (my-gnus-artcile-browse-a-regexp-url)))))
 
 (defun my-gnus-summary-mode-hook ()
-  ;(local-set-key (read-kbd-macro "M-k") 'gnus-summary-kill-same-subject-and-select)
+  ;;; [ will hide the comments of an article
   (local-set-key '[(\[)] 'gnus-article-hide-citation-maybe)
-  (local-set-key '[(\])] 'my-gnus-article-browse-message-id)
-  (local-set-key '[(\\)] 'my-gnus-article-browse-something)
-  ; USE K-J for navigation is evil and that evil is called gmail who
-  ; drained me away from my beloved gnus for too long.
-  ;(local-set-key '[(j)] 'gnus-summary-next-article)
-  ;(local-set-key '[(k)] 'gnus-summary-prev-article)
-
+  ;;; ] will browse urls or whatever in the article
+  (local-set-key '[(\])] 'my-gnus-article-browse-something)
   )
 (add-hook 'gnus-summary-mode-hook 'my-gnus-summary-mode-hook)
 
