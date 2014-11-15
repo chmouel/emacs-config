@@ -99,7 +99,7 @@
 ;; You can specify more arbitary arguments than just one in there and it would
 ;; work.
 (defun message-mode-setup-custom-variables()
-  (if (fboundp 'message-mode-custom-variables)
+  (if (boundp 'message-mode-custom-variables)
       (let ((email
              (mail-strip-quoted-names
               (message-fetch-field "from"))))
