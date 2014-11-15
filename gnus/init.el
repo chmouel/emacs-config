@@ -41,13 +41,23 @@
  )
 
 ; Browse OpenStack review when found
-(defun my-gnus-article-browse-review ()
+(defun my-gnus-article-browse-something ()
   (interactive)
   (gnus-with-article-buffer
-    (article-goto-body)
-    (while (re-search-forward
-            (concat "^\\(To view, visit \\)?\\(https://review.openstack.org/[0-9]+\\|https://bugs.launchpad.net/bugs/[0-9]+\\)") nil t)
-      (browse-url (match-string-no-properties 2)))))
+    (if (string-match "^nntp\\+news\.gwene\.org" gnus-newsgroup-name)
+        (browse-url
+         (replace-regexp-in-string
+          "\\(\<\\|\>\\)" ""
+          (with-current-buffer
+              gnus-original-article-buffer
+            (message-fetch-field "archived-at"))))
+      (progn
+        (article-goto-body)
+          (while
+              (re-search-forward
+               (concat
+                "^\\(To view, visit \\)?\\(https://review.openstack.org/[0-9]+\\|https://bugs.launchpad.net/bugs/[0-9]+\\)") nil t)
+            (browse-url (match-string-no-properties 2)))))))
 
 (defun my-gnus-article-browse-message-id ()
      (interactive)
@@ -59,7 +69,7 @@
   ;(local-set-key (read-kbd-macro "M-k") 'gnus-summary-kill-same-subject-and-select)
   (local-set-key '[(\[)] 'gnus-article-hide-citation-maybe)
   (local-set-key '[(\])] 'my-gnus-article-browse-message-id)
-  (local-set-key '[(\\)] 'my-gnus-article-browse-review)
+  (local-set-key '[(\\)] 'my-gnus-article-browse-something)
   ; USE K-J for navigation is evil and that evil is called gmail who
   ; drained me away from my beloved gnus for too long.
   ;(local-set-key '[(j)] 'gnus-summary-next-article)
