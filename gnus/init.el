@@ -55,9 +55,11 @@
         (article-goto-body)
           (while
               (re-search-forward
-               (concat
-                "^\\(To view, visit \\)?\\(https://review.openstack.org/[0-9]+\\|https://bugs.launchpad.net/bugs/[0-9]+\\)") nil t)
-            (browse-url (match-string-no-properties 2)))))))
+               (rx (submatch
+                    (or (and "https://review.openstack.org/" (one-or-more (any digit)))
+                        (and "https://bugs.launchpad.net/bugs/" (one-or-more (any digit))))))
+               nil t)
+            (browse-url (match-string-no-properties 1)))))))
 
 (defun my-gnus-article-browse-message-id ()
      (interactive)
