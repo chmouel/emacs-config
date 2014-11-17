@@ -14,7 +14,7 @@
  '(alert-default-style (quote notifier))
  '(all-christian-calendar-holidays t)
  '(auto-install-directory "~/.emacs.d/modes/")
- '(battery-mode-line-format "--[%b%p%%]")
+ '(battery-mode-line-format "--[%b%p%%]" t)
  '(bc-bookmark-file "~/.emacs.d/auto-save-list/breadcrumb.el")
  '(bookmark-save-flag 1)
  '(c-basic-offset 4)
