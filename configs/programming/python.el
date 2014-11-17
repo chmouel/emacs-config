@@ -1,7 +1,6 @@
 (Package 'outline-magic)
 (Package 'fill-column-indicator)
 (Package 'anaconda-mode)
-(Package 'smart-shift)
 
 (autoload 'pan-switch-test-func "pan")
 (autoload 'pan-run-all-until-fail "pan")
@@ -21,7 +20,6 @@
   (flycheck-mode)
   (anaconda-mode)
   (eldoc-mode)
-  (smart-shift-mode-on)
 
   (define-key outline-minor-mode-map [M-down] 'outline-move-subtree-down)
   (define-key outline-minor-mode-map [M-up] 'outline-move-subtree-up)
