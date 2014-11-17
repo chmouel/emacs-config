@@ -133,8 +133,11 @@
   (global-set-key (kbd "M-;") 'comment-dwim-2))
 
 ; Pabbrev
-(Package 'pabbrev
-  (global-pabbrev-mode))
+(Package 'pabbrev)
+
+; Smartshift
+(Package 'smart-shift
+  (global-smart-shift-mode))
 
 ;;
 (provide 'extras-modes)
