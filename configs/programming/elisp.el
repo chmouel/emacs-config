@@ -1,8 +1,10 @@
 ;Eldoc-Mode
 (Package 'smartparens)
+(Package 'aggressive-indent)
 
 (defun my-emacs-lisp-mode-hook ()
   (smartparens-mode)
+  (aggressive-indent-mode t)
   (company-mode)
   (local-set-key (read-kbd-macro "C-x C-e") 'eval-buffer)
   (turn-on-eldoc-mode)
