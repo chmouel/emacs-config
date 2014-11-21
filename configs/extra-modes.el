@@ -139,5 +139,7 @@
 (Package 'smart-shift
   (global-smart-shift-mode))
 
+(Package 'visual-regexp
+  (define-key global-map (kbd "C-c r") 'vr/replace))
 ;;
 (provide 'extras-modes)
