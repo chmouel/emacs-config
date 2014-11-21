@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: note
+# key: nt
+# --
+`(yas-with-comment "NOTE(chmou): ")`
