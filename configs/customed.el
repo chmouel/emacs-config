@@ -14,7 +14,7 @@
  '(alert-default-style (quote notifier))
  '(all-christian-calendar-holidays t)
  '(auto-install-directory "~/.emacs.d/modes/")
- '(battery-mode-line-format "--[%b%p%%]" t)
+ '(battery-mode-line-format "--[%b%p%%]")
  '(bc-bookmark-file "~/.emacs.d/auto-save-list/breadcrumb.el")
  '(bookmark-save-flag 1)
  '(c-basic-offset 4)
@@ -195,12 +195,7 @@
  '(mm-inline-text-html-with-w3m-keymap nil)
  '(oauth2-token-file "~/.emacs.d/auto-save-list/oauth2.plstore")
  '(org-startup-folded nil)
- '(package-archives
-   (quote
-    (("gnu" . "http://elpa.gnu.org/packages/")
-     ("marmalade" . "http://marmalade-repo.org/packages/")
-     ("melpa-unstable" . "http://melpa.org/packages/")
-     ("melpa" . "http://stable.melpa.org/packages/"))))
+ '(package-archives (quote (("melpa-unstable" . "http://melpa.org/packages/"))))
  '(package-user-dir "~/.emacs.d/packages")
  '(projectile-cache-file "~/.emacs.d/auto-save-list/projectile.cache")
  '(projectile-keymap-prefix "")
