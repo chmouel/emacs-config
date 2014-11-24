@@ -1,6 +1,6 @@
-(Package 'outline-magic)
 (Package 'fill-column-indicator)
 (Package 'anaconda-mode)
+(Package 'hungry-delete)
 
 (autoload 'pan-switch-test-func "pan")
 (autoload 'pan-run-all-until-fail "pan")
@@ -15,19 +15,16 @@
  python-shell-completion-string-code "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
 
 (defun my-python-mode-hook()
-  (outline-minor-mode t)
   (fci-mode)
   (flycheck-mode)
   (anaconda-mode)
   (eldoc-mode)
-
-  (define-key outline-minor-mode-map [M-down] 'outline-move-subtree-down)
-  (define-key outline-minor-mode-map [M-up] 'outline-move-subtree-up)
+  (hungry-delete-mode)
 
   (local-set-key '[(meta q)] 'fill-paragraph)
 
   (local-set-key (kbd "C-S-y") 'pan-run-all-until-fail)
-  ;(local-set-key (read-kbd-macro "C-S-t") 'pan-choose-test-to-run)
+                                        ;(local-set-key (read-kbd-macro "C-S-t") 'pan-choose-test-to-run)
   (local-set-key (read-kbd-macro "C-\\") 'pan-switch-test-func)
   (local-set-key (kbd "C-S-r") 'pan-run-current-test)
   (local-set-key (kbd "C-S-w") (lambda () (interactive) (kill-new (python-info-current-defun))))
