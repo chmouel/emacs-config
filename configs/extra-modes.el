@@ -47,9 +47,9 @@
 
 ; Expand Region
 (Package 'expand-region
-  (global-set-key (kbd "C-=") 'er/expand-region))
+  (global-set-key '[( meta up)] 'er/expand-region)
+  (global-set-key '[( meta down)] 'er/contract-region))
 
-;Ibuffer extras
 (Package 'ibuffer-vc
   (add-hook 'ibuffer-hook
             (lambda ()
@@ -57,13 +57,13 @@
               (unless (eq ibuffer-sorting-mode 'alphabetic)
                 (ibuffer-do-sort-by-alphabetic)))))
 
-; Popup for auto-complete and others
+;; Popup for auto-complete and others
 (Package 'popup)
 
-; Auto complete in words.
+;; Auto complete in words.
 (Package 'auto-complete)
 
-;JSON Mode
+;; JSON Mode
 (Package 'json-mode
   (add-to-list 'auto-mode-alist '("\\.json$" . json-mode)))
 
@@ -93,18 +93,18 @@
   (sml/setup)
   (add-to-list 'sml/replacer-regexp-list '("^~/GIT/OpenStack/" ":OpenStack:")))
 
-;Boorkmarks
+;; Boorkmarks
 (Package 'bm)
 
-;Company mode
+;;Company mode
 (Package 'company)
 
-;Ido Vertical mode
+;;Ido Vertical mode
 (Package 'ido-vertical-mode
   (ido-vertical-mode 1)
   (setq ido-max-prospects 5))
 
-;;; smex - IDO completion for M-x
+;; smex - IDO completion for M-x
 (Package 'smex
   (global-set-key (read-kbd-macro "M-x") 'smex))
 
@@ -139,6 +139,7 @@
 (Package 'smart-shift
   (global-smart-shift-mode))
 
+; VisualRegexp
 (Package 'visual-regexp
   (define-key global-map (kbd "C-c r") 'vr/replace))
 ;;
