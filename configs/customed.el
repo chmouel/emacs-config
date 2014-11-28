@@ -22,6 +22,7 @@
  '(canlock-password "38ebb79c7f0ece35d1103834941558b48e754833")
  '(company-idle-delay 0.3)
  '(compilation-ask-about-save nil)
+ '(compilation-scroll-output t)
  '(completion-ignored-extensions
    (quote
     (".svn/" "CVS/" ".o" "~" ".bin" ".lbin" ".so" ".a" ".ln" ".blg" ".bbl" ".elc" ".pyc" ".pyo" ".gitignore" ".class")))
