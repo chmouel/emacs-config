@@ -25,7 +25,7 @@
   (defun my-magit-open-repository ()
     "Open quickly a magit directory."
     (interactive)
-    (magit-status (magit-read-top-dir nil)))
+    (dired (magit-read-top-dir nil)))
   (global-set-key (read-kbd-macro "C-S-o") 'my-magit-open-repository))
 
 (Package 'magit-gerrit)

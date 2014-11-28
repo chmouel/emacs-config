@@ -6,7 +6,11 @@
 (autoload 'pan-run-all-until-fail "pan")
 (autoload 'pan-run-current-test "pan")
 
-;Ipython3
+(Package 'company-anaconda
+  (eval-after-load 'company
+    '(add-to-list 'company-backends 'company-anaconda)))
+
+;; Ipython
 (setq
  python-shell-prompt-regexp "In \\[[0-9]+\\]: "
  python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
@@ -18,6 +22,7 @@
   (fci-mode)
   (flycheck-mode)
   (anaconda-mode)
+  (company-mode)
   (eldoc-mode)
   (hungry-delete-mode)
 
