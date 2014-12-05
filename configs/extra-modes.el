@@ -1,8 +1,8 @@
-;RST
+;;RST
 (autoload 'rst-mode "rst" "RST" t)
 (push '("\\.rst\\'" . rst-mode) auto-mode-alist)
 
-; Yassnippet
+;; Yassnippet
 (defun yas--expand-by-uuid (mode uuid)
   "Exapnd snippet template in MODE by its UUID"
   (yas/expand-snippet
@@ -67,27 +67,27 @@
 (Package 'json-mode
   (add-to-list 'auto-mode-alist '("\\.json$" . json-mode)))
 
-;Zop-to-char
+;;Zop-to-char
 (Package 'zop-to-char
   (global-set-key (kbd "M-z") 'zop-to-char))
 
-; window-number-meta-mode
+;; window-number-meta-mode
 (Package 'window-number
   (autoload 'window-number-meta-mode "window-number")
   (window-number-meta-mode 't))
 
-; Yascroll
+;; Yascroll
 (Package 'yascroll
   (if (fboundp 'global-yascroll-bar-mode)
       (global-yascroll-bar-mode 't)))
 
-; Github browse current file
+;; Github browse current file
 (Package 'github-browse-file)
 
-; Openstack browse current file.
+;; Openstack browse current file.
 (Package 'openstack-cgit-browse-file)
 
-; Smart mode line
+;; Smart mode line
 (Package 'smart-mode-line
   (setq sml/theme 'dark)
   (sml/setup)
@@ -111,7 +111,7 @@
 ;; ag a C ack replacement
 (Package 'ag                            ;
   (setq ag-reuse-buffers t)
-   (define-key global-map (kbd "C-S-g") 'ag-project))
+  (define-key global-map (kbd "C-S-g") 'ag-project))
 
 ;; flx-ido - advanced flex matching for ido
 (Package 'flx-ido
@@ -132,15 +132,16 @@
 (Package 'comment-dwim-2
   (global-set-key (kbd "M-;") 'comment-dwim-2))
 
-; Pabbrev
+;; Pabbrev
 (Package 'pabbrev)
 
-; Smartshift
+;; Smartshift
 (Package 'smart-shift
   (global-smart-shift-mode))
 
-; VisualRegexp
-(Package 'visual-regexp
-  (define-key global-map (kbd "C-c r") 'vr/replace))
-;;
+;; VisualRegexp
+(Package 'zoom-window
+  (define-key global-map (kbd "C-S-v") 'zoom-window-zoom))
+
+
 (provide 'extras-modes)
