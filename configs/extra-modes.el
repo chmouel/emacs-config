@@ -29,26 +29,27 @@
          (Package 'dropdown-list)
          (setq yas/prompt-functions '(yas/dropdown-prompt))))))
 
-;RegexTool
+;; RegexTool
 (Package 'regex-tool
   (autoload 'regex-tool "regex-tool" "REGEX Tool" t))
 
-; Hightly more than 80
+;; Hightly more than 80
 (Package 'highlight-80+
   (autoload 'highlight-80+ "highlight-80+" nil t))
 
-; Browse Kill ring
+;; Browse Kill ring
 (Package 'browse-kill-ring)
 
-; Multiple cursors
+;; Multiple cursors
 (Package 'multiple-cursors
   (setq mc/list-file "~/.emacs.d/auto-save-list/mc-lists.el")
-  (global-set-key (kbd "C--") 'mc/mark-all-like-this-dwim))
+  (global-set-key (kbd "C-c .") 'mc/mark-all-like-this))
 
-; Expand Region
+;; Expand Region
 (Package 'expand-region
-  (global-set-key '[( meta up)] 'er/expand-region)
-  (global-set-key '[( meta down)] 'er/contract-region))
+  (global-set-key '[(meta up)] 'er/expand-region)
+  (global-set-key '[(control =)] 'er/expand-region)
+  (global-set-key '[(meta down)] 'er/contract-region))
 
 (Package 'ibuffer-vc
   (add-hook 'ibuffer-hook
@@ -141,7 +142,6 @@
 
 ;; VisualRegexp
 (Package 'zoom-window
-  (define-key global-map (kbd "C-S-v") 'zoom-window-zoom))
-
+  (global-set-key (kbd "C-x C-z") 'zoom-window-zoom))
 
 (provide 'extras-modes)
