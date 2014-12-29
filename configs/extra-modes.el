@@ -144,4 +144,12 @@
 (Package 'zoom-window
   (global-set-key (kbd "C-x C-z") 'zoom-window-zoom))
 
+
+;; Isearch
+(Package 'isearch-dabbrev
+  (eval-after-load "isearch"
+    '(progn
+       (require 'isearch-dabbrev)
+       (define-key isearch-mode-map (kbd "<tab>") 'isearch-dabbrev-expand))))
+
 (provide 'extras-modes)
