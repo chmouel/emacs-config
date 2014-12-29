@@ -4,7 +4,10 @@
 # --
 package main
 
+import (
+   "fmt"
+)
+
 func main() {
-   ${1:fmt.Printf("Hello, 世界\n")}
    $0
 }

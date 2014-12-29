@@ -58,6 +58,7 @@
      ("Australia/Sydney" "Sydney"))))
  '(doc-view-continuous t)
  '(ediff-window-setup-function (quote ediff-setup-windows-plain))
+ '(electric-pair-mode t)
  '(elscreen-tab-width 23)
  '(emacs-lock-default-locking-mode (quote kill))
  '(emerge-diff-options "--ignore-all-space" t)
