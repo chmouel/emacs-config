@@ -140,16 +140,20 @@
 (Package 'smart-shift
   (global-smart-shift-mode))
 
-;; VisualRegexp
+;; Zoom Window
 (Package 'zoom-window
   (global-set-key (kbd "C-x C-z") 'zoom-window-zoom))
 
-
 ;; Isearch
-(Package 'isearch-dabbrev
-  (eval-after-load "isearch"
-    '(progn
-       (require 'isearch-dabbrev)
-       (define-key isearch-mode-map (kbd "<tab>") 'isearch-dabbrev-expand))))
+;; (Package 'isearch-dabbrev
+;;   (eval-after-load "isearch"
+;;     '(progn
+;;        (require 'isearch-dabbrev)
+;;        (define-key isearch-mode-map (kbd "<tab>") 'isearch-dabbrev-expand))))
+
+;; Phi-Seach
+(Package 'phi-search
+  (global-set-key (kbd "C-s") 'phi-search)
+  (global-set-key (kbd "C-r") 'phi-search-backward))
 
 (provide 'extras-modes)
