@@ -108,28 +108,6 @@
   (set-fringe-style 1))
 (add-hook 'gnus-article-mode-hook 'my-article-mode-hook)
 
-;; Posting style in variable
-;; I define message-mode-custom-variables in my custom local file
-;; It looks like this for me :
-;; (setq message-mode-custom-variables '(("other@email.com"
-;;                                        (message-sendmail-extra-arguments
-;;                                         '("-a" "otheremail")))))
-;; You can specify more arbitary arguments than just one in there and it would
-;; work.
-(defun message-mode-setup-custom-variables()
-  (if (boundp 'message-mode-custom-variables)
-      (let ((email
-             (mail-strip-quoted-names
-              (message-fetch-field "from"))))
-        (dolist (style message-mode-custom-variables)
-          (when (string= email (car style))
-            (dolist (setting (cdr style))
-              (set (make-local-variable (car setting))
-                   (car (cdr setting)))
-              ))))))
-(add-hook 'message-setup-hook 'message-mode-setup-custom-variables)
-
-
 ;HighLine
 (require 'hl-line)
 (add-hook 'gnus-summary-mode-hook 'my-setup-hl-line)
@@ -219,3 +197,31 @@
         ("From" . "postmaster.twitter.com")
         ("From" . "plus.google.com")
         (("To" "From") . "review@openstack.org")))
+
+
+;;JD-Gnus desktop notifications
+(when (string-equal system-type "darwin")
+  (defun jd:xml-unescape-string (string)
+    (with-temp-buffer
+      (insert string)
+      (dolist (substitution '(("&amp;" . "&")
+                              ("&lt;" . "<")
+                              ("&gt;". ">")
+                              ("&apos;" . "'")
+                              ("&quot;" . "\"")))
+        (goto-char (point-min))
+        (while (search-forward (car substitution) nil t)
+          (replace-match (cdr substitution) t t nil)))
+      (buffer-string)))
+  (defun notifications-notify (&rest params)
+    (let ((title (plist-get params :title))
+          (body (plist-get params :body)))
+      (call-process "terminal-notifier" nil nil nil
+                    "terminal-notifier"
+                    "-contentImage" (or (plist-get params :image-path) "")
+                    "-appIcon" (or (plist-get params :app-icon) "")
+                    "-message" (jd:xml-unescape-string body)
+                    "-title" (jd:xml-unescape-string title)
+                    "-activate" "org.gnu.Emacs"
+                    "-sender" "org.gnu.Emacs"))))
+(add-hook 'gnus-after-getting-new-news-hook 'gnus-notifications)
