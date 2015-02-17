@@ -119,9 +119,6 @@
   (setq gc-cons-threshold 20000000)
   (flx-ido-mode 1))
 
-;; Visualize undo
-(Package 'undo-tree)
-
 ;; Flycheck
 (Package 'flycheck
   (setq flycheck-disabled-checkers '(emacs-lisp emacs-lisp-checkdoc)
@@ -140,20 +137,11 @@
 (Package 'smart-shift
   (global-smart-shift-mode))
 
-;; Zoom Window
-(Package 'zoom-window
-  (global-set-key (kbd "C-x C-z") 'zoom-window-zoom))
-
 ;; Isearch
-;; (Package 'isearch-dabbrev
-;;   (eval-after-load "isearch"
-;;     '(progn
-;;        (require 'isearch-dabbrev)
-;;        (define-key isearch-mode-map (kbd "<tab>") 'isearch-dabbrev-expand))))
-
-;; Phi-Seach
-(Package 'phi-search
-  (global-set-key (kbd "C-s") 'phi-search)
-  (global-set-key (kbd "C-r") 'phi-search-backward))
+(Package 'isearch-dabbrev
+  (eval-after-load "isearch"
+    '(progn
+       (require 'isearch-dabbrev)
+       (define-key isearch-mode-map (kbd "<tab>") 'isearch-dabbrev-expand))))
 
 (provide 'extras-modes)
