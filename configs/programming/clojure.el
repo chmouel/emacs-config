@@ -1,4 +1,4 @@
-(Package 'cider)
+;(Package 'cider)
 
 (defun my-clojure-mode-hook ()
   (my-programming-common-hook)
@@ -7,4 +7,4 @@
                    (interactive)
                    (clojure-load-file
                     (buffer-file-name)))))
-(add-hook 'clojure-mode-hook 'my-clojure-mode-hook)
+;(add-hook 'clojure-mode-hook 'my-clojure-mode-hook)
