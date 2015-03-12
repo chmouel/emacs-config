@@ -22,11 +22,6 @@
 (add-hook 'message-mode-hook 'my-message-mode-hook)
 
 ;Switch Email Adresses
-(defvar my-email-adresses
-  '(("chmouel@openstack.org")
-    ("chmouel@chmouel.com")
-    ("chmouel.boudjnah@rackspace.co.uk"))
-  )
 (defun my-email-adress-switch ()
   (interactive)
   (save-excursion

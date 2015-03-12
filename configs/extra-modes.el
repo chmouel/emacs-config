@@ -144,4 +144,7 @@
        (require 'isearch-dabbrev)
        (define-key isearch-mode-map (kbd "<tab>") 'isearch-dabbrev-expand))))
 
+(Package 'google-this
+  (global-set-key (kbd "s--") 'google-this))
+
 (provide 'extras-modes)

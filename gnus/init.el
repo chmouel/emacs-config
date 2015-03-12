@@ -86,11 +86,10 @@
   )
 (add-hook 'gnus-summary-mode-hook 'my-gnus-summary-mode-hook)
 
-;; (setq gnus-thread-sort-functions '(gnus-thread-sort-by-date
-;;                                    ;gnus-thread-sort-by-number
-;;                                    gnus-thread-sort-by-date
-;; 								   gnus-thread-sort-by-subject
-;; 								   gnus-thread-sort-by-total-score))
+(setq gnus-thread-sort-functions '(gnus-thread-sort-by-score
+                                   gnus-thread-sort-by-date
+								   gnus-thread-sort-by-subject
+								   gnus-thread-sort-by-total-score))
 
 
   (setq-default
