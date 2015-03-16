@@ -119,6 +119,7 @@
  '(git-gutter:deleted-sign " ")
  '(global-git-gutter-mode t)
  '(gnus-init-file "~/.emacs.d/gnus/init.el")
+ '(gnus-notifications-use-gravatar nil)
  '(gnus-topic-indent-level 4)
  '(gnus-user-agent (quote (gnus emacs)))
  '(grep-scroll-output t)
