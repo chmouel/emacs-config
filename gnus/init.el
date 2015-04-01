@@ -33,12 +33,20 @@
 						   "^X-Mailer:" "^X-Newsreader:"
 						   "^User-Agent:"
 						   "^Organization:^Approved:")
- ; from jd
+                                        ; from jd
  gnus-summary-line-format (concat "%z%U%R %~(max-right 17)~(pad-right 17)&user-date;  "
                                   "%~(max-right 20)~(pad-right 20)f %B%s\n")
  gnus-group-line-format "%1M%1S%5y: %(%-50,50G%)\n"
  gnus-topic-display-empty-topics nil
- )
+ gnus-summary-line-format "%U%R%z %(%&user-date;  %-15,15f  %B%s%)\n"
+ gnus-summary-thread-gathering-function 'gnus-gather-threads-by-references
+ gnus-thread-sort-functions '(gnus-thread-sort-by-number (not gnus-thread-sort-by-date))
+ gnus-sum-thread-tree-false-root ""
+ gnus-sum-thread-tree-indent " "
+ gnus-sum-thread-tree-leaf-with-other "├► "
+ gnus-sum-thread-tree-root ""
+ gnus-sum-thread-tree-single-leaf "╰► "
+ gnus-sum-thread-tree-vertical "│")
 
 (defun my-gnus-article-browse-nnrss-archived-at()
   "Browse nnrss archived at url header"
@@ -56,16 +64,19 @@
       (re-search-forward
        (rx
         (submatch
-         (or (and
-              "https://review.openstack.org/" (one-or-more (any digit)))
-             (and
-              "https://bugs.launchpad.net/bugs/" (one-or-more (any digit))))))
-       nil t)
+         (or
+          (and "https://review.openstack.org/"
+               (one-or-more (any digit)))
+          (and
+           "https://bugs.launchpad.net/bugs/"
+           (one-or-more (any digit)))))) nil t)
     (browse-url (match-string-no-properties 1))))
 
 (defun my-gnus-article-browse-message-id ()
   "Take the message id and browse it with gmane"
-  (browse-url (concat "http://mid.gmane.org/" (message-fetch-field "message-id"))))
+  (browse-url
+   (concat "http://mid.gmane.org/"
+           (message-fetch-field "message-id"))))
 
 ; Browse OpenStack review when found
 (defun my-gnus-article-browse-something (&optional prefix)
@@ -79,29 +90,16 @@
            (my-gnus-artcile-browse-a-regexp-url)))))
 
 (defun my-gnus-summary-mode-hook ()
-  ;;; [ will hide the comments of an article
   (local-set-key '[(\[)] 'gnus-article-hide-citation-maybe)
-  ;;; ] will browse urls or whatever in the article
-  (local-set-key '[(\])] 'my-gnus-article-browse-something)
-  )
+  (local-set-key '[(\])] 'my-gnus-article-browse-something))
+
 (add-hook 'gnus-summary-mode-hook 'my-gnus-summary-mode-hook)
+
 
 (setq gnus-thread-sort-functions '(gnus-thread-sort-by-score
                                    gnus-thread-sort-by-date
 								   gnus-thread-sort-by-subject
 								   gnus-thread-sort-by-total-score))
-
-
-  (setq-default
-     gnus-summary-line-format "%U%R%z %(%&user-date;  %-15,15f  %B%s%)\n"
-     gnus-summary-thread-gathering-function 'gnus-gather-threads-by-references
-     gnus-thread-sort-functions '(gnus-thread-sort-by-number (not gnus-thread-sort-by-date))
-     gnus-sum-thread-tree-false-root ""
-     gnus-sum-thread-tree-indent " "
-     gnus-sum-thread-tree-leaf-with-other "├► "
-     gnus-sum-thread-tree-root ""
-     gnus-sum-thread-tree-single-leaf "╰► "
-     gnus-sum-thread-tree-vertical "│")
 
 (defun my-article-mode-hook()
   (set-fringe-style 1))
@@ -144,7 +142,7 @@
 
 ; Group parameters.
 (setq gnus-parameters
-      ; Those come with the excelent jd's gnus configuration.
+                                        ; Those come with the excelent jd's gnus configuration.
       '(("^gerrit\\.*"
          (highlight-words .  (("Build failed" 0 0 error)
                               ("Jenkins has submitted this change and it was merged." 0 0 success)
@@ -159,43 +157,28 @@
                               (".*\\(\\(Code-Review\\|Verified\\)-[[:digit:]]+\\).*" 1 1 error)
                               (".*\\(\\(Code-Review\\|Verified\\)\\+[[:digit:]]+\\).*" 1 1 success)
                               )))))
-;
-(push "~/.emacs.d/packages/bbdb/lisp/" load-path)
-(require 'bbdb-loaddefs)
-(bbdb-initialize 'gnus 'message)
-(setq
-    bbdb-offer-save 1                        ;; 1 means save-without-asking
-    bbdb-use-pop-up t                        ;; allow popups for addresses
-    bbdb-electric-p t                        ;; be disposable with SPC
-    bbdb-popup-target-lines  1               ;; very small
-    bbdb-dwim-net-address-allow-redundancy t ;; always use full name
-    bbdb-quiet-about-name-mismatches 2       ;; show name-mismatches 2 secs
+;;
+(Package 'bbdb
+  (bbdb-initialize 'gnus 'message)
+  (bbdb-mua-auto-update-init 'gnus 'message)
 
-    bbdb-always-add-address t                ;; add new addresses to existing...
-                                             ;; ...contacts automatically
-    bbdb-canonicalize-redundant-nets-p t     ;; x@foo.bar.cx => x@bar.cx
+  (add-hook 'message-setup-hook 'bbdb-mail-aliases)
 
-    bbdb-completion-type nil                 ;; complete on anything
-
-    bbdb-complete-name-allow-cycling t       ;; cycle through matches
-                                             ;; this only works partially
-
-    bbbd-message-caching-enabled t           ;; be fast
-    bbdb-use-alternate-names t               ;; use AKA
-
-
-    bbdb-elided-display t                    ;; single-line addresses
-
-    ;; auto-create addresses from mail
-    bbdb/mail-auto-create-p 'bbdb-ignore-some-messages-hook
-    )
-
-(setq bbdb-ignore-message-alist
-      '(("From" . "mailer-daemon")
-        ("From" . "bugs.launchpad.net")
-        ("From" . "postmaster.twitter.com")
-        ("From" . "plus.google.com")
-        (("To" "From") . "review@openstack.org")))
+  (setq bbdb-offer-save 1                        ;; 1 means save-without-asking
+        bbdb-update-records-p 'create            ;; Auto-create
+        bbdb-snarf-rule-default 'mail            ;; Just snarf with mail by default
+        bbdb-completion-display-record nil       ;; Don't display bbdb after completion
+        bbdb-mail-avoid-redundancy nil           ;; always use full name
+        bbdb-add-name 2                          ;; show name-mismatches for 2 secs
+        bbdb-add-mails t                         ;; add new addresses to existing...
+        bbdb-canonicalize-redundant-mails t      ;; x@foo.bar.cx => x@bar.cx
+        bbdb-completion-list t                   ;; complete on anything
+        bbdb-complete-mail-allow-cycling  t      ;; cycle through matches
+        bbdb-phone-style nil                     ;; No north american
+        bbdb-mua-pop-up-window-size 2
+        bbdb-mua-pop-up nil
+        bbdb-mua-update-interactive-p '(query . query)
+        bbdb-pop-up-layout 'one-line))
 
 
 ;;JD-Gnus desktop notifications
