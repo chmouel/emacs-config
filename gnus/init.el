@@ -13,40 +13,40 @@
  gnus-registry-cache-file "~/Gnus/config/gnus.registry.eld"
  gnus-startup-file "~/Gnus/config/newsrc"
  mail-source-directory "~/Gnus/Mail"
- nnmail-message-id-cache-file "~/Gnus/config/nnmail-cache"
- )
+ nnmail-message-id-cache-file "~/Gnus/config/nnmail-cache")
 
-; Install gerrit-download
+;; Install gerrit-download
 (Package 'gerrit-download
   (autoload 'gerrit-download-insinuate-gnus "gerrit-download")
   (add-hook 'gnus-startup-hook 'gerrit-download-insinuate-gnus))
 
-;Settings
-(setq
- mail-user-agent 'gnus-user-agent
- mail-host-address "chmouel.com"
- read-mail-command 'gnus
- gnus-expert-user t
- gnus-visible-headers "^From:\\|^Subject:\\|^Date:\\|^Newsgroups:\\|^X-Mailer:\\|^X-Newsreader:\\|^Organization:\\|^Message-Id\\|^Followup-To:\\|^User-Agent:\\|^To:\\|^Cc:"
- gnus-sorted-header-list '("^From:" "^Subject:" "^Newsgroups:"
-						   "^To:" "^Cc:"  "^Followup-To:" "^Date:"
-						   "^X-Mailer:" "^X-Newsreader:"
-						   "^User-Agent:"
-						   "^Organization:^Approved:")
+;;Settings
+(setq gnus-read-newsrc-file nil
+      gnus-save-newsrc-file nil
+      mail-user-agent 'gnus-user-agent
+      mail-host-address "chmouel.com"
+      read-mail-command 'gnus
+      gnus-expert-user t
+      gnus-visible-headers "^From:\\|^Subject:\\|^Date:\\|^Newsgroups:\\|^X-Mailer:\\|^X-Newsreader:\\|^Organization:\\|^Message-Id\\|^Followup-To:\\|^User-Agent:\\|^To:\\|^Cc:"
+      gnus-sorted-header-list '("^From:" "^Subject:" "^Newsgroups:"
+                                "^To:" "^Cc:"  "^Followup-To:" "^Date:"
+                                "^X-Mailer:" "^X-Newsreader:"
+                                "^User-Agent:"
+                                "^Organization:^Approved:")
                                         ; from jd
- gnus-summary-line-format (concat "%z%U%R %~(max-right 17)~(pad-right 17)&user-date;  "
-                                  "%~(max-right 20)~(pad-right 20)f %B%s\n")
- gnus-group-line-format "%1M%1S%5y: %(%-50,50G%)\n"
- gnus-topic-display-empty-topics nil
- gnus-summary-line-format "%U%R%z %(%&user-date;  %-15,15f  %B%s%)\n"
- gnus-summary-thread-gathering-function 'gnus-gather-threads-by-references
- gnus-thread-sort-functions '(gnus-thread-sort-by-number (not gnus-thread-sort-by-date))
- gnus-sum-thread-tree-false-root ""
- gnus-sum-thread-tree-indent " "
- gnus-sum-thread-tree-leaf-with-other "├► "
- gnus-sum-thread-tree-root ""
- gnus-sum-thread-tree-single-leaf "╰► "
- gnus-sum-thread-tree-vertical "│")
+      gnus-summary-line-format (concat "%z%U%R %~(max-right 17)~(pad-right 17)&user-date;  "
+                                       "%~(max-right 20)~(pad-right 20)f %B%s\n")
+      gnus-group-line-format "%1M%1S%5y: %(%-50,50G%)\n"
+      gnus-topic-display-empty-topics nil
+      gnus-summary-line-format "%U%R%z %(%&user-date;  %-15,15f  %B%s%)\n"
+      gnus-summary-thread-gathering-function 'gnus-gather-threads-by-references
+      gnus-thread-sort-functions '(gnus-thread-sort-by-number (not gnus-thread-sort-by-date))
+      gnus-sum-thread-tree-false-root ""
+      gnus-sum-thread-tree-indent " "
+      gnus-sum-thread-tree-leaf-with-other "├► "
+      gnus-sum-thread-tree-root ""
+      gnus-sum-thread-tree-single-leaf "╰► "
+      gnus-sum-thread-tree-vertical "│")
 
 (defun my-gnus-article-browse-nnrss-archived-at()
   "Browse nnrss archived at url header"
@@ -207,3 +207,7 @@
                     "-activate" "org.gnu.Emacs"
                     "-sender" "org.gnu.Emacs"))))
 (add-hook 'gnus-after-getting-new-news-hook 'gnus-notifications)
+
+;; Gravatar
+(require 'gnus-gravatar)
+(add-hook 'gnus-article-prepare-hook 'gnus-treat-from-gravatar)
