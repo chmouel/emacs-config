@@ -2,8 +2,6 @@
   (local-set-key (kbd "C-c i") 'go-goto-imports)
   (local-set-key (kbd "C-c C-r") 'go-remove-unused-imports)
 
-  (if (not (featurep 'company-go))
-      (require 'company-go))
   (add-to-list 'company-backends 'company-go)
   (company-mode)
 
@@ -19,9 +17,6 @@
   (set (make-local-variable 'my-compile-run-command) (concat "go run \"" buffer-file-name "\""))
   (my-programming-common-hook))
 
-;; (add-hook 'go-mode-hook 'my-go-mode-hook)
-
-;; (eval-after-load 'go-mode
-;;   (progn
-;;     (add-hook 'before-save-hook 'gofmt-before-save)
-;;     (add-hook 'go-mode-hook 'my-go-mode-hook)))
+(add-hook 'go-mode-hook 'my-go-mode-hook)
+(add-hook 'before-save-hook 'gofmt-before-save)
+(add-hook 'go-mode-hook 'my-go-mode-hook)
