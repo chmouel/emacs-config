@@ -1,12 +1,12 @@
 ;;Chmouel Boudjnah <chmouel@chmouel.com>
-;Initializations variables
+;; Initializations variables
 (defvar my-init-directory "~/.emacs.d")
 
-;Initializations Config
+;; Initializations Config
 (push (expand-file-name (concat my-init-directory "/modes/")) load-path)
 (push (expand-file-name (concat my-init-directory "/modes/local")) load-path)
 
-;Initializations functions
+;; Initializations functions
 (defun my-load-file(file)
   (let* ((dir (concat my-init-directory "/configs") )
 		 (fpath (concat dir "/" file ".el")))
@@ -25,22 +25,22 @@
 ;; Some macros.
 (defmacro GUI (&rest x) (list 'if (not (null window-system)) (cons 'progn x)))
 
-;Loading Packages
+;; Loading Packages
 (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
     (let* ((my-lisp-dir (expand-file-name (concat my-init-directory "/packages/")))
-	   (default-directory my-lisp-dir))
+           (default-directory my-lisp-dir))
       (setq load-path (cons my-lisp-dir load-path))
       (normal-top-level-add-subdirs-to-load-path)))
 
-;Custome customize (lol)
+;; Custome customize (lol so funny!)
 (setq custom-file (concat my-init-directory "/configs/customed.el"))
 (load custom-file)
 
-;Ensure package is installed
+;; Ensure package is installed
 (if (fboundp 'package-initialize)
     (package-initialize))
 
-;Macros for easy package.
+;; Macros for easy package.
 (defmacro Package (package &rest body)
   "Install a package if not installed and execute body"
   (declare (indent 1) (debug t))
@@ -54,16 +54,13 @@
            (message (car err))))))
 
 
-;Loading Configs files
+;; Loading Configs files
 (my-load-dir (concat my-init-directory "/configs/"))
 (my-load-dir (concat my-init-directory "/configs/programming/"))
 
-;Loading Host
+;; Loading Host
 (if (file-exists-p (downcase (concat my-init-directory "/hosts/" (my-short-hostname) ".el")))
     (load-file (downcase (concat my-init-directory "/hosts/" (my-short-hostname) ".el"))))
 
-;;END
+;; END
 (cd (expand-file-name "~/"))
-(put 'dired-find-alternate-file 'disabled nil)
-(put 'set-goal-column 'disabled nil)
-(put 'scroll-left 'disabled nil)
