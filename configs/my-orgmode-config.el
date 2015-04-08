@@ -15,9 +15,8 @@
 (setq org-capture-templates
       '(("t" "Todo" entry (file+headline (concat org-directory "/gtd.org") "Tasks")
          "* TODO %?\n  %i\n  %a")
-        ("j" "Journal" entry (file+datetree (concat org-directory  "/journal.org"))
-         "* %?\nEntered on %U\n  %i\n  %a")))
-
+        ("l" "Link" entry (file+headline  (concat org-directory "/links.org") "Links to Read")
+         "* %?\n %i")))
 
 (defun my-org-mode-hook ()
   (auto-fill-mode)
