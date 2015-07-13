@@ -1,7 +1,7 @@
 ;Magit
 (Package 'magit
-  (autoload 'magit-read-top-dir "magit" nil t)
-  (autoload 'magit-get-top-dir "magit" nil t)
+  (autoload 'magit-read-repository "magit" nil t)
+  (autoload 'magit-toplevel "magit" nil t)
   (global-set-key (read-kbd-macro "C-c g") 'magit-status)
 
   (setq magit-last-seen-setup-instructions "1.4.0")
@@ -17,7 +17,7 @@
   (defun my-magit-open-repository ()
     "Open quickly a magit directory."
     (interactive)
-    (dired (magit-read-top-dir nil)))
+    (dired (magit-read-repository nil)))
   (global-set-key (read-kbd-macro "C-S-o") 'my-magit-open-repository))
 
 ;;Find find in GIT repo
