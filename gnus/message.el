@@ -17,11 +17,18 @@
 (when (featurep 'lbdb)
   (define-key message-mode-map (kbd "C--") 'lbdb))
 
+(defun my-change-ispell-local-to-francais ()
+  (interactive)
+  (progn
+    (ispell-change-dictionary "francais")
+    (ispell-message)))
+
 ;;Messages
 (defun my-message-mode-hook()
   (my-change-background-on-upstream-ml)
   (footnote-mode)
   (flyspell-mode)
+  (local-set-key (kbd "C-$") 'my-change-ispell-local-to-francais)
   (local-set-key '[(control return)] 'my-email-adress-switch)
   (local-set-key (kbd "C-M-m") 'expand-abbrev)
   (local-set-key (read-kbd-macro "M-;") 'boxquote-region)
