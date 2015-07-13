@@ -14,3 +14,4 @@ tramp
 *.yas-compiled-snippets.el
 smex-items
 url
+request
