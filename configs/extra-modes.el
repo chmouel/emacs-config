@@ -144,7 +144,16 @@
        (require 'isearch-dabbrev)
        (define-key isearch-mode-map (kbd "<tab>") 'isearch-dabbrev-expand))))
 
+;; Toggle control-x-1 to restore after
+(Package 'zygospore
+  (global-set-key (kbd "C-1") 'zygospore-toggle-delete-other-windows)
+  (global-set-key (kbd "C-x 1") 'zygospore-toggle-delete-other-windows))
+
+;;
 (Package 'google-this
   (global-set-key (kbd "s--") 'google-this))
+
+
+
 
 (provide 'extras-modes)
