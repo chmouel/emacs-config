@@ -3,17 +3,16 @@
   (load-file (concat my-init-directory "/gnus/filter.el")))
 
 ;Default paths
-(setq
- gnus-agent-directory "~/Gnus/agent"
- gnus-article-save-directory "~/Gnus/News"
- gnus-cache-directory "~/Gnus/News/cache"
- gnus-directory "~/Gnus/News"
- gnus-home-directory "~/Gnus"
- gnus-kill-files-directory "~/Gnus/News"
- gnus-registry-cache-file "~/Gnus/config/gnus.registry.eld"
- gnus-startup-file "~/Gnus/config/newsrc"
- mail-source-directory "~/Gnus/Mail"
- nnmail-message-id-cache-file "~/Gnus/config/nnmail-cache")
+(setq gnus-agent-directory "~/Gnus/agent"
+      gnus-article-save-directory "~/Gnus/News"
+      gnus-cache-directory "~/Gnus/News/cache"
+      gnus-directory "~/Gnus/News"
+      gnus-home-directory "~/Gnus"
+      gnus-kill-files-directory "~/Gnus/News"
+      gnus-registry-cache-file "~/Gnus/config/gnus.registry.eld"
+      gnus-startup-file "~/Gnus/config/newsrc"
+      mail-source-directory "~/Gnus/Mail"
+      nnmail-message-id-cache-file "~/Gnus/config/nnmail-cache")
 
 ;; Install gerrit-download
 (Package 'gerrit-download
@@ -112,7 +111,7 @@
 (defun my-setup-hl-line () (hl-line-mode 1) (setq cursor-type 'hbar) )
 (setq cursor-type 't)
 
-; Colorfull
+; Colours!
 (require 'gnus-cite)
 (require 'mail-parse)
 
