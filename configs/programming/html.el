@@ -2,9 +2,7 @@
 (setq auto-mode-alist (cons '( "\\.tmpl\\'" . html-mode ) auto-mode-alist ))
 
 (defun my-html-mode-hook()
-  (require 'html-inlined)
   (local-set-key (kbd "RET") 'newline-and-indent)
-  (html-inlined-add-key-to-modes)
   (local-set-key '[(control c)(control v)] 'browse-url-of-buffer)
   (local-set-key '[(control c)(control w)] 'sgml-validate)
   )
