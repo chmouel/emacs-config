@@ -154,6 +154,4 @@
   (global-set-key (kbd "s--") 'google-this))
 
 
-
-
 (provide 'extras-modes)
