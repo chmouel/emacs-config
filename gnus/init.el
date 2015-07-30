@@ -20,7 +20,9 @@
   (add-hook 'gnus-startup-hook 'gerrit-download-insinuate-gnus))
 
 ;;Settings
-(setq gnus-read-newsrc-file nil
+(setq gnus-summary-ignore-duplicates t
+      setq gnus-suppress-duplicates t
+      gnus-read-newsrc-file nil
       gnus-save-newsrc-file nil
       mail-user-agent 'gnus-user-agent
       mail-host-address "chmouel.com"
