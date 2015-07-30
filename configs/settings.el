@@ -23,7 +23,6 @@
 (global-set-key (read-kbd-macro "C-+")    'whitespace-cleanup)
 
 ;; No need digits
-(global-set-key (read-kbd-macro "C-1")      'delete-other-windows)
 (global-set-key (read-kbd-macro "C-2")      'split-window-vertically)
 
 ;; Redefine {for/back}ward paragraphs to just 4 lines
