@@ -112,7 +112,6 @@
 ;; ag a C ack replacement
 (Package 'ag                            ;
   (setq ag-reuse-buffers t)
-;;;###autoload
   (defun my-ag-here (string)
     (interactive (list (read-from-minibuffer "Search string: " (ag/dwim-at-point))))
     (ag/search string (expand-file-name ".")))
