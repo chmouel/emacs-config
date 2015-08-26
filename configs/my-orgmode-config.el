@@ -23,6 +23,5 @@
 (defun my-org-mode-hook ()
   (auto-fill-mode)
   (electric-indent-mode)
-  (flyspell-mode)
-  (global-set-key '[(control tab)]            'other-window))
+  (flyspell-mode))
 (add-hook 'org-mode-hook 'my-org-mode-hook)
