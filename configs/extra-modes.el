@@ -115,7 +115,6 @@
   (defun my-ag-here (string)
     (interactive (list (read-from-minibuffer "Search string: " (ag/dwim-at-point))))
     (ag/search string (expand-file-name ".")))
-
   (define-key global-map (kbd "C-S-g") 'my-ag-here))
 
 ;; flx-ido - advanced flex matching for ido

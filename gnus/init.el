@@ -21,7 +21,7 @@
 
 ;;Settings
 (setq gnus-summary-ignore-duplicates t
-      setq gnus-suppress-duplicates t
+      gnus-suppress-duplicates t
       gnus-read-newsrc-file nil
       gnus-save-newsrc-file nil
       mail-user-agent 'gnus-user-agent
@@ -103,6 +103,7 @@
 								   gnus-thread-sort-by-total-score))
 
 (defun my-article-mode-hook()
+  (local-set-key (kbd "C-o") (lambda ()(interactive) (org-capture nil "o")))
   (set-fringe-style 1))
 (add-hook 'gnus-article-mode-hook 'my-article-mode-hook)
 

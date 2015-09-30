@@ -197,6 +197,7 @@
  '(magit-commit-signoff t)
  '(magit-completing-read-function (quote magit-ido-completing-read))
  '(magit-expand-staged-on-commit (quote full))
+ '(magit-log-arguments (quote ("--graph" "--decorate" "--no-merges")))
  '(magit-log-auto-more t)
  '(make-backup-files nil)
  '(max-specpdl-size 50000)
