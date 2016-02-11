@@ -4,6 +4,9 @@
   (autoload 'magit-toplevel "magit" nil t)
   (global-set-key (read-kbd-macro "C-c g") 'magit-status)
 
+  (eval-after-load "magit"
+    '(magit-define-popup-switch 'magit-log-popup ?m "Omit merge commits" "--no-merges"))
+
   (setq magit-last-seen-setup-instructions "1.4.0")
 
   ;; Magit and git quick open files for projects.
@@ -13,6 +16,7 @@
     (let ((default-directory (magit-read-top-dir nil)))
       (magit-find-file-completing-read)))
   (global-set-key (read-kbd-macro "C-S-i") 'my-magit-open-directory-and-files)
+
 
   (defun my-magit-open-repository ()
     "Open quickly a magit directory."
