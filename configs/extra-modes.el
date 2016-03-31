@@ -47,8 +47,15 @@
 
 ;; Expand Region
 (Package 'expand-region
+  (setq er/try-expand-list
+        '(er/mark-word er/mark-symbol
+                       er/mark-symbol-with-prefix
+                       er/mark-inside-quotes
+                       er/mark-outside-quotes
+                       er/mark-inside-pairs
+                       er/mark-outside-pairs
+                       er/mark-url er/mark-email))
   (global-set-key '[(meta up)] 'er/expand-region)
-  (global-set-key '[(control =)] 'er/expand-region)
   (global-set-key '[(meta down)] 'er/contract-region))
 
 (Package 'ibuffer-vc
