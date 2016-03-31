@@ -8,13 +8,17 @@
   (Package 'go-direx
     (local-set-key (kbd "C-`") 'go-direx-switch-to-buffer))
 
+  (Package 'toggle-quotes
+    (global-set-key (kbd "C-'") 'toggle-quotes))
+
+
   (Package 'go-eldoc
     (go-eldoc-setup))
 
   (local-set-key (kbd "M-.") 'godef-jump)
 
   (set (make-local-variable 'my-compile-command) (concat "go test \"" buffer-file-name "\""))
-  (set (make-local-variable 'my-compile-run-command) (concat "go run \"" buffer-file-name "\""))
+  (set (make-local-variable 'my-compile-run-command) (concat "go run *.go"))
   (my-programming-common-hook))
 
 (add-hook 'go-mode-hook 'my-go-mode-hook)
