@@ -1,3 +1,6 @@
+(Package 'go-playground
+  (setq go-playground-basedir "~/tmp/goplay"))
+
 (defun my-go-mode-hook ()
   (local-set-key (kbd "C-c i") 'go-goto-imports)
   (local-set-key (kbd "C-c C-r") 'go-remove-unused-imports)
@@ -7,10 +10,6 @@
 
   (Package 'go-direx
     (local-set-key (kbd "C-`") 'go-direx-switch-to-buffer))
-
-  (Package 'toggle-quotes
-    (global-set-key (kbd "C-'") 'toggle-quotes))
-
 
   (Package 'go-eldoc
     (go-eldoc-setup))
