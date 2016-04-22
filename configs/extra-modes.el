@@ -43,7 +43,7 @@
 ;; Multiple cursors
 (Package 'multiple-cursors
   (setq mc/list-file "~/.emacs.d/auto-save-list/mc-lists.el")
-  (global-set-key (kbd "C-c .") 'mc/mark-all-like-this))
+  (global-set-key (kbd "C-c .") 'mc/mark-all-like-this-dwim))
 
 ;; Expand Region
 (Package 'expand-region
