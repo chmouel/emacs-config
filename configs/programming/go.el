@@ -1,4 +1,5 @@
 (Package 'go-playground
+  (setq go-playground-ask-for-file-name t)
   (setq go-playground-basedir "~/tmp/goplay"))
 
 (defun my-go-mode-hook ()
@@ -13,6 +14,8 @@
 
   (Package 'go-eldoc
     (go-eldoc-setup))
+
+  (set (make-local-variable 'flycheck-disabled-checkers) '(go-golint))
 
   (local-set-key (kbd "M-.") 'godef-jump)
 
