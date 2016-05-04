@@ -90,8 +90,8 @@
 (global-set-key (read-kbd-macro "C-;") 'my-comment-line-or-region)
 (global-set-key (read-kbd-macro "M-;") 'comment-dwim)
 
-;Hack dired to launch files with 'l' key.
-;http://omniorthogonal.blogspot.com/2008/05/useful-emacs-dired-launch-hack.html
+;; Hack dired to launch files with 'l' key.
+;; http://omniorthogonal.blogspot.com/2008/05/useful-emacs-dired-launch-hack.html
 (defun my-dired-launch-command ()
   (interactive)
   (dired-do-shell-command
@@ -114,22 +114,22 @@
         (goto-line (read-number "Goto line: ")))
     (linum-mode -1)))
 
-; Insert an empty line after the current line.
-; Position the cursor at its beginning, according to the current mode.
+;; Insert an empty line after the current line.
+;; Position the cursor at its beginning, according to the current mode.
 (defun smart-open-line ()
   (interactive)
   (move-end-of-line nil)
   (newline-and-indent))
 (global-set-key [(shift return)] 'smart-open-line)
 
-; Kill to the beginning of line (i.e: reverse c-k)
+;; Kill to the beginning of line (i.e: reverse c-k)
 (global-set-key (kbd "C-<backspace>") (lambda ()
                                         (interactive)
                                         (kill-line 0)
                                         (indent-according-to-mode)))
 
 
-;Kill whole line but stay at the same place.
+;; Kill whole line but stay at the same place.
 (global-set-key (kbd "C-S-k") (lambda ()
                                 (interactive)
                                 (let ((p (point)))
@@ -137,23 +137,15 @@
                                   (goto-char p))))
 
 
-; https://github.com/jedrz/.emacs.d/blob/master/defuns/misc-defuns.el
-(defun my-hippie-expand-lines ()
-  "Try to expand entire line."
-  (interactive)
-  (let ((hippie-expand-try-functions-list '(try-expand-line
-                                            try-expand-line-all-buffers)))
-    (hippie-expand nil)))
-(global-set-key (kbd "C-?") 'my-hippie-expand-lines)
 
-;http://emacsredux.com/blog/2013/05/30/joining-lines/
+;; http://emacsredux.com/blog/2013/05/30/joining-lines/
 (defun my-top-join-line ()
   "Join the current line with the line beneath it."
   (interactive)
   (delete-indentation 1))
 (global-set-key (kbd "C-S-j") 'my-top-join-line)
 
-;http://emacsredux.com/blog/2013/05/22/smarter-navigation-to-the-beginning-of-a-line/
+;; http://emacsredux.com/blog/2013/05/22/smarter-navigation-to-the-beginning-of-a-line/
 (defun smarter-move-beginning-of-line (arg)
   (interactive "^p")
   (setq arg (or arg 1))
