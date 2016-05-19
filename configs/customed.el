@@ -126,6 +126,7 @@
  '(gnus-notifications-use-gravatar nil)
  '(gnus-topic-indent-level 4)
  '(gnus-user-agent (quote (gnus emacs)))
+ '(go-playground-ask-for-file-name t)
  '(gofmt-command "goimports")
  '(grep-scroll-output t)
  '(grep-window-height 10)

@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: errnil
-# key: errnil
-# --
-if err != nil {
-    log.Fatal(err)
-}$0
