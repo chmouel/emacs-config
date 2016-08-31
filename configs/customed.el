@@ -126,7 +126,7 @@
  '(gnus-notifications-use-gravatar nil)
  '(gnus-topic-indent-level 4)
  '(gnus-user-agent (quote (gnus emacs)))
- '(go-playground-ask-for-file-name t)
+ '(go-playground-ask-for-file-name t t)
  '(gofmt-command "goimports")
  '(grep-scroll-output t)
  '(grep-window-height 10)
@@ -212,7 +212,7 @@
      ("GNU" . "http://elpa.gnu.org/packages/"))))
  '(package-selected-packages
    (quote
-    (esqlite go-direx go-errcheck gore-mode go-snippets go-playground golint go-rename toggle-quotes zygospore zop-to-char zlc zerodark-theme zenburn-theme yasnippet yascroll yaml-mode window-number wgrep web virtualenvwrapper use-package try transpose-frame tox tablist tabbar smex smartparens smart-shift smart-mode-line shorten rpm-spec-mode request-deferred regex-tool recent-addresses rcirc-color rcirc-alertify queue python-docstring pyfmt powerline php-mode phi-search perspective per-buffer-theme pcsv pcache pastie paren-completer paredit pacmacs packed package-safe-delete pabbrev outline-magic org-magit org-download org-context org-cliplink org-bullets openstack-cgit-browse-file neotree names multiple-cursors message-x marmalade markdown-mode+ magit-find-file lui logito lcs langtool json-rpc json-mode jabber ivy isgd isearch-dabbrev inf-ruby ido-vertical-mode ido-completing-read+ ibuffer-vc hungry-delete htmlize highlight-numbers highlight-80+ helm-spotify google-this google-contacts go-eldoc gnus-desktop-notify github-browse-file gerrit-download fringe-helper flycheck flx-ido find-file-in-git-repo fill-column-indicator fakir expand-region esxml es-lib erc-hl-nicks edebug-x dropdown-list dockerfile-mode db csv-mode csharp-mode company-go company-anaconda comment-dwim-2 browse-kill-ring boxquote bm bitly bbdb auto-complete anything-git-goto ansible alect-themes aggressive-indent ag afternoon-theme)))
+    (evil esqlite go-direx go-errcheck gore-mode go-snippets go-playground golint go-rename toggle-quotes zygospore zerodark-theme zenburn-theme yasnippet yascroll yaml-mode window-number wgrep web virtualenvwrapper use-package try transpose-frame tox tablist tabbar smex smartparens smart-shift smart-mode-line shorten rpm-spec-mode request-deferred regex-tool recent-addresses rcirc-color rcirc-alertify queue python-docstring pyfmt powerline php-mode phi-search perspective per-buffer-theme pcsv pcache pastie paren-completer paredit pacmacs packed package-safe-delete pabbrev outline-magic org-magit org-download org-context org-cliplink org-bullets openstack-cgit-browse-file neotree names multiple-cursors message-x marmalade markdown-mode+ magit-find-file lui logito lcs langtool json-rpc json-mode jabber ivy isgd isearch-dabbrev inf-ruby ido-vertical-mode ido-completing-read+ ibuffer-vc hungry-delete htmlize highlight-numbers highlight-80+ google-this google-contacts go-eldoc gnus-desktop-notify github-browse-file gerrit-download fringe-helper flycheck flx-ido find-file-in-git-repo fill-column-indicator fakir expand-region esxml es-lib erc-hl-nicks edebug-x dropdown-list dockerfile-mode db csv-mode csharp-mode company-go company-anaconda comment-dwim-2 browse-kill-ring boxquote bm bitly bbdb auto-complete anything-git-goto ansible alect-themes aggressive-indent ag afternoon-theme)))
  '(package-user-dir "~/.emacs.d/packages")
  '(projectile-cache-file "~/.emacs.d/auto-save-list/projectile.cache")
  '(projectile-keymap-prefix "")

@@ -5,7 +5,7 @@
 (defun my-go-mode-hook ()
   (local-set-key (kbd "C-c i") 'go-goto-imports)
   (local-set-key (kbd "C-c C-r") 'go-remove-unused-imports)
-
+  (local-set-key (kbd "C-c d") 'godoc-at-point)
   (add-to-list 'company-backends 'company-go)
   (company-mode)
 
@@ -19,7 +19,7 @@
 
   (local-set-key (kbd "M-.") 'godef-jump)
 
-  (set (make-local-variable 'my-compile-command) (concat "go test \"" buffer-file-name "\""))
+  (set (make-local-variable 'my-compile-command) (concat "go test -v"))
   (set (make-local-variable 'my-compile-run-command) (concat "go run *.go"))
   (my-programming-common-hook))
 
