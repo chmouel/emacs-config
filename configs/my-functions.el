@@ -186,7 +186,7 @@
     (emacs-lisp-mode)
     (font-lock-fontify-buffer)))
 
-;http://www.emacswiki.org/emacs/UnfillRegion
+;; http://www.emacswiki.org/emacs/UnfillRegion
 (defun unfill-region (beg end)
   "Unfill the region, joining text paragraphs into a single
     logical line.  This is useful, e.g., for use with
@@ -196,7 +196,7 @@
     (fill-region beg end)))
 (define-key global-map "\C-\M-Q" 'unfill-region)
 
-;https://github.com/milkypostman/dotemacs/blob/master/init.el
+;; https://github.com/milkypostman/dotemacs/blob/master/init.el
 (defun my-rotate-windows ()
   "Rotate your windows"
   (interactive)
@@ -223,7 +223,7 @@
              (setq i (1+ i)))))))
 
 
-; Emacswiki
+;; Emacswiki
 (defun copy-line (arg)
   "Copy lines (as many as prefix argument) in the kill ring"
   (interactive "p")
@@ -232,3 +232,14 @@
   (message "%d line%s copied" arg (if (= 1 arg) "" "s")))
 
 (define-key global-map (kbd "C-S-SPC") 'copy-line)
+
+;; https://stackoverflow.com/questions/1587972/how-to-display-indentation-guides-in-emacs/4459159#4459159
+(defun aj-toggle-fold ()
+  "Toggle fold all lines larger than indentation on current line"
+  (interactive)
+  (let ((col 1))
+    (save-excursion
+      (back-to-indentation)
+      (setq col (+ 1 (current-column)))
+      (set-selective-display
+       (if selective-display nil (or col 1))))))
