@@ -128,7 +128,7 @@
 
 ;; Flycheck
 (Package 'flycheck
-  (setq flycheck-disabled-checkers '(emacs-lisp emacs-lisp-checkdoc)
+  (setq flycheck-disabled-checkers '(html-tidy xml-xmlint emacs-lisp emacs-lisp-checkdoc)
         flycheck-display-errors-delay 0.2
         flycheck-highlighting-mode 'lines)
   (global-flycheck-mode t))
@@ -162,9 +162,10 @@
 
 ;;
 (Package 'highlight-indentation
-    (eval-after-load "highlight-indentation"
-      '(progn
-         (set-face-background 'highlight-indentation-face "#e3e3d3")
-         (set-face-background 'highlight-indentation-current-column-face "#c3b3b3"))))
+  (eval-after-load "highlight-indentation"
+    '(progn
+       (set-face-background 'highlight-indentation-face "#e3e3d3")
+       (set-face-background 'highlight-indentation-current-column-face "#c3b3b3"))))
 
+;;Web-mode
 (provide 'extras-modes)
