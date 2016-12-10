@@ -6,14 +6,16 @@
   (local-set-key (kbd "C-c i") 'go-goto-imports)
   (local-set-key (kbd "C-c C-r") 'go-remove-unused-imports)
   (local-set-key (kbd "C-c d") 'godoc-at-point)
+  (local-set-key (kbd "C-S-r") 'go-test-current-test)
+
   (add-to-list 'company-backends 'company-go)
   (company-mode)
 
-  (Package 'go-direx
-    (local-set-key (kbd "C-`") 'go-direx-switch-to-buffer))
-
   (Package 'go-eldoc
     (go-eldoc-setup))
+
+  (Package 'go-guru
+    (go-guru-hl-identifier-mode))
 
   (set (make-local-variable 'flycheck-disabled-checkers) '(go-golint))
 
