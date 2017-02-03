@@ -64,3 +64,4 @@
 
 ;; END
 (cd (expand-file-name "~/"))
+(put 'downcase-region 'disabled nil)

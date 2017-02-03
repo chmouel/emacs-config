@@ -1,14 +1,40 @@
 ;Editing HTML
-(setq auto-mode-alist (cons '( "\\.tmpl\\'" . html-mode ) auto-mode-alist ))
+(setq auto-mode-alist (cons '( "\\.tmpl\\'" . web-mode ) auto-mode-alist ))
+(setq auto-mode-alist (cons '( "\\.html\\'" . web-mode ) auto-mode-alist ))
+(setq auto-mode-alist (cons '( "\\.htm\\'" . web-mode ) auto-mode-alist ))
 
 (defun my-html-mode-hook()
+  (flycheck-mode -1)
   (local-set-key (kbd "RET") 'newline-and-indent)
   (local-set-key '[(control c)(control v)] 'browse-url-of-buffer)
   (local-set-key '[(control c)(control w)] 'sgml-validate)
   )
 (add-hook 'sgml-mode-hook 'my-html-mode-hook)
 
-;CSS
+(Package 'web-mode
+  (eval-after-load "web-mode"
+    '(progn
+       (defun my-web-mode-hook ()
+         "Hooks for Web mode."
+         (my-html-mode-hook)
+         (local-set-key '[(meta .)] 'web-mode-element-content-select)
+         (local-set-key '[(control meta /)] 'web-mode-element-close)
+         (local-set-key '[(meta /)] 'hippie-expand)
+         (setq web-mode-attr-indent-offset t
+               web-mode-css-indent-offset 2
+               web-mode-markup-indent-offset 2))
+       (add-hook 'web-mode-hook  'my-web-mode-hook)
+       (add-to-list 'auto-mode-alist '("\\.tmpl\\'" . web-mode))
+       (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+       (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+       (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+       (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+       (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+       (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+       (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode)))))
+
+
+                                        ;CSS
 (defvar hexcolour-keywords
   '(("#[abcdef[:digit:]]\\{6\\}"
      (0 (put-text-property
