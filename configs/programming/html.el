@@ -16,11 +16,15 @@
     '(progn
        (defun my-web-mode-hook ()
          "Hooks for Web mode."
+         (auto-complete-mode)
+         (yas-activate-extra-mode 'html-mode)
          (my-html-mode-hook)
-         (local-set-key '[(meta .)] 'web-mode-element-content-select)
-         (local-set-key '[(control meta /)] 'web-mode-element-close)
+         (local-set-key '[(control x) (.)] 'web-mode-element-content-select)
+         (local-set-key '[(control x) (/)] 'web-mode-element-close)
          (local-set-key '[(meta /)] 'hippie-expand)
-         (setq web-mode-attr-indent-offset t
+         (local-set-key '[(control =)] 'web-mode-tag-match)
+         (local-set-key '[(control +)] 'web-mode-surround)
+         (setq web-mode-attr-indent-offset 2
                web-mode-css-indent-offset 2
                web-mode-markup-indent-offset 2))
        (add-hook 'web-mode-hook  'my-web-mode-hook)
