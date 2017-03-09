@@ -3,11 +3,15 @@
   (setq go-playground-basedir "~/tmp/goplay"))
 
 (defun my-go-mode-hook ()
+  (autoload 'go-test--get-current-test-info "gotest" "" nil)
+
   (local-set-key (kbd "C-c i") 'go-goto-imports)
   (local-set-key (kbd "C-c C-r") 'go-remove-unused-imports)
   (local-set-key (kbd "C-c d") 'godoc-at-point)
-  (local-set-key (kbd "C-S-r") 'go-test-current-test)
-
+  (local-set-key (kbd "C-S-w") (lambda () (interactive) (kill-new (go-test--get-current-test))))
+  (local-set-key (kbd "s-t") 'ff-find-other-file)
+  (if (string-match "_test\\'" (file-name-sans-extension buffer-file-name))
+      (local-set-key (kbd "C-S-r") '(lambda ()(interactive)(compile (concat "go test -run " (cadr (go-test--get-current-test-info)) "$")))))
   (add-to-list 'company-backends 'company-go)
   (company-mode)
 
@@ -22,8 +26,8 @@
   (local-set-key (kbd "M-.") 'godef-jump)
 
   (set (make-local-variable 'my-compile-command) (concat "go test -v"))
-  (set (make-local-variable 'my-compile-run-command) (concat "go run *.go"))
-  (my-programming-common-hook))
+  (my-programming-common-hook)
+  )
 
 (add-hook 'go-mode-hook 'my-go-mode-hook)
 (add-hook 'before-save-hook 'gofmt-before-save)
