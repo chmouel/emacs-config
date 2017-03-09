@@ -19,6 +19,7 @@
  python-shell-completion-string-code "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
 
 (defun my-python-mode-hook()
+  ;;(py-yapf-enable-on-save)
   (fci-mode)
   (flycheck-mode)
   (anaconda-mode)
