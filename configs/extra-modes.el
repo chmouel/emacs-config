@@ -116,9 +116,18 @@
   (setq ag-reuse-buffers t)
   (autoload 'ag "ag" nil t)
   (autoload 'ag/dwim-at-point "ag" nil t)
+  (defun my-ag-repo (string)
+    (interactive
+     (list (read-from-minibuffer
+            "Search string: "
+            (ag/dwim-at-point))))
+    (let ((gitdir (magit-toplevel ".")))
+      (if gitdir
+          (ag/search string gitdir))))
   (defun my-ag-here (string)
     (interactive (list (read-from-minibuffer "Search string: " (ag/dwim-at-point))))
     (ag/search string (expand-file-name ".")))
+  (define-key global-map (kbd "C-S-h") 'my-ag-repo)
   (define-key global-map (kbd "C-S-g") 'my-ag-here))
 
 ;; flx-ido - advanced flex matching for ido
