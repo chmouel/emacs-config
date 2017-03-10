@@ -10,7 +10,7 @@
   (local-set-key (kbd "C-c d") 'godoc-at-point)
   (local-set-key (kbd "C-S-w") (lambda () (interactive) (kill-new (go-test--get-current-test))))
   (local-set-key (kbd "s-t") 'ff-find-other-file)
-  (if (string-match "_test\\'" (file-name-sans-extension buffer-file-name))
+  (if (and buffer-file-name (string-match "_test\\'" (file-name-sans-extension buffer-file-name)))
       (local-set-key (kbd "C-S-r") '(lambda ()(interactive)(compile (concat "go test -run " (cadr (go-test--get-current-test-info)) "$")))))
   (add-to-list 'company-backends 'company-go)
   (company-mode)
