@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: trans
+# key: trans
+# --
+{{ $0 | translate }}
