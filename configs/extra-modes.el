@@ -109,6 +109,7 @@
 
 ;; smex - IDO completion for M-x
 (Package 'smex
+  (setq smex-save-file (locate-user-emacs-file "auto-save-list/smex-items"))
   (global-set-key (read-kbd-macro "M-x") 'smex))
 
 ;; ag a C ack replacement
@@ -175,6 +176,13 @@
     '(progn
        (set-face-background 'highlight-indentation-face "#e3e3d3")
        (set-face-background 'highlight-indentation-current-column-face "#c3b3b3"))))
+
+(Package 'wgrep-ag
+  (eval-after-load "wgrep"
+    '(progn
+       (autoload 'wgrep-ag-setup "wgrep-ag")
+       (add-hook 'ag-mode-hook 'wgrep-ag-setup))))
+
 
 ;;Web-mode
 (provide 'extras-modes)
