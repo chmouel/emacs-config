@@ -24,8 +24,7 @@
   (set (make-local-variable 'flycheck-disabled-checkers) '(go-golint))
 
   (local-set-key (kbd "M-.") 'godef-jump)
-
-  (set (make-local-variable 'my-compile-command) (concat "go test -v"))
+  (local-set-key '[(control return)] 'recompile)
   (my-programming-common-hook)
   )
 
