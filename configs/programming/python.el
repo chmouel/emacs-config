@@ -1,5 +1,7 @@
 (Package 'fill-column-indicator)
-(Package 'anaconda-mode)
+(Package 'anaconda-mode
+  (setq anaconda-mode-installation-directory
+        (locate-user-emacs-file "auto-save-list/anaconda-mode")))
 (Package 'hungry-delete)
 
 (autoload 'pan-switch-test-func "pan")
