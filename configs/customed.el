@@ -197,6 +197,7 @@
    (quote
     (("1.6.0_16" . "/usr/lib/jvm/java-6-sun")
      ("1.6.0_0" . "/usr/lib/jvm/java-6-openjdk"))))
+ '(js-indent-level 2)
  '(kill-do-not-save-duplicates t)
  '(ls-lisp-dirs-first t)
  '(ls-lisp-use-insert-directory-program nil)
@@ -242,6 +243,7 @@
     (".*/\\.news.*" ".*/\\.bbdb.*" ".*bookmarks.bmk.*" "/usr/share/emacs/.*/etc/.*" ".*loaddefs.el$")) t)
  '(recentf-save-file "~/.emacs.d/auto-save-list/recent-file-list.el")
  '(regex-tool-backend (quote perl))
+ '(request-storage-directory "~/.emacs.d/auto-save-list/request")
  '(require-final-newline (quote visit-save))
  '(rst-level-face-base-color "dark slate gray")
  '(safe-local-variable-values (quote ((c-hanging-comment-ender-p))))
