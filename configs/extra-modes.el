@@ -70,10 +70,6 @@
 (Package 'json-mode
   (add-to-list 'auto-mode-alist '("\\.json$" . json-mode)))
 
-;;Zop-to-char
-(Package 'zop-to-char
-  (global-set-key (kbd "M-z") 'zop-to-char))
-
 ;; window-number-meta-mode
 (Package 'window-number
   (autoload 'window-number-meta-mode "window-number")
