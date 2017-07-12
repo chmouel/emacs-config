@@ -1,3 +1,7 @@
+(Package 'jsx-mode
+  (add-to-list 'auto-mode-alist '("\\.jsx\\'" . jsx-mode))
+  (autoload 'jsx-mode "jsx-mode" "JSX mode" t))
+
 (Package 'js2-mode
   (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
 
