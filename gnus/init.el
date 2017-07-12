@@ -15,8 +15,9 @@
       nnmail-message-id-cache-file "~/Gnus/config/nnmail-cache")
 
 ;; Install gerrit-download
-(Package 'gerrit-download
-  (autoload 'gerrit-download-insinuate-gnus "gerrit-download")
+(use-package gerrit-download
+  :commands (gerrit-download-insinuate-gnus)
+  :config
   (add-hook 'gnus-startup-hook 'gerrit-download-insinuate-gnus))
 
 ;;Settings
@@ -160,7 +161,8 @@
                               (".*\\(\\(Code-Review\\|Verified\\)\\+[[:digit:]]+\\).*" 1 1 success)
                               )))))
 ;;
-(Package 'bbdb
+(use-package bbdb
+  :config
   (bbdb-initialize 'gnus 'message)
   (bbdb-mua-auto-update-init 'gnus 'message)
 

@@ -1,4 +1,4 @@
-(Package 'highlight-numbers)
+(use-package highlight-numbers)
 
 (autoload 'toggle-quotes "toggle-quotes")
 

@@ -1,4 +1,5 @@
-(Package 'go-playground
+(use-package go-playground
+  :init
   (setq go-playground-ask-file-name t)
   (setq go-playground-basedir "~/tmp/goplay"))
 
@@ -16,11 +17,9 @@
 
   (company-mode)
 
-  (Package 'go-eldoc
-    (go-eldoc-setup))
+  (use-package go-eldoc :config (go-eldoc-setup))
 
-  (Package 'go-guru
-    (go-guru-hl-identifier-mode))
+  (use-package go-guru :config (go-guru-hl-identifier-mode))
 
   (set (make-local-variable 'flycheck-disabled-checkers) '(go-golint))
 

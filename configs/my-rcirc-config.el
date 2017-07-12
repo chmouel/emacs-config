@@ -32,5 +32,6 @@
 (setq rcirc-time-format "%Y-%m-%d %H:%M ")
 
 
-(Package 'rcirc-alertify
+(use-package rcirc-alertify
+  :config
   (rcirc-alertify-enable))

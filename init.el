@@ -40,19 +40,7 @@
 (if (fboundp 'package-initialize)
     (package-initialize))
 
-;; Macros for easy package.
-(defmacro Package (package &rest body)
-  "Install a package if not installed and execute body"
-  (declare (indent 1) (debug t))
-  `(let ((package-dest ,package))
-     (if (fboundp 'package-install)
-         (condition-case err
-             (progn
-               (if (not (package-installed-p package-dest))
-                   (package-install package-dest))
-               (progn ,@body))
-           (message (car err))))))
-
+;; use-package
 (if (not (fboundp 'use-package))
     (package-install 'use-package))
 (require 'use-package)

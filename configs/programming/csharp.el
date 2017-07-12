@@ -24,7 +24,8 @@
   )
 
 ;Csharp
-(Package 'csharp-mode
-  (add-hook 'csharp-mode-hook 'my-csharp-mode-hook)
-  (autoload 'csharp-mode "csharp-mode"  "Major mode for editing C# code." t)
-  (setq auto-mode-alist (cons '( "\\.cs\\'" . csharp-mode ) auto-mode-alist )))
+(use-package csharp-mode
+  :commands (csharp-mode)
+  :mode "\\.cs\\'"
+  :config
+  (add-hook 'csharp-mode-hook 'my-csharp-mode-hook))

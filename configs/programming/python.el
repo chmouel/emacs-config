@@ -1,14 +1,16 @@
-(Package 'fill-column-indicator)
-(Package 'anaconda-mode
+(use-package fill-column-indicator)
+(use-package anaconda-mode
+  :init
   (setq anaconda-mode-installation-directory
         (locate-user-emacs-file "auto-save-list/anaconda-mode")))
-(Package 'hungry-delete)
+(use-package hungry-delete)
 
 (autoload 'pan-switch-test-func "pan")
 (autoload 'pan-run-all-until-fail "pan")
 (autoload 'pan-run-current-test "pan")
 
-(Package 'company-anaconda
+(use-package company-anaconda
+  :config
   (eval-after-load 'company
     '(add-to-list 'company-backends 'company-anaconda)))
 
