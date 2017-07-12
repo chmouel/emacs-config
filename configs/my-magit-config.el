@@ -53,5 +53,20 @@
 
 ;;Find find in GIT repo
 (Package 'magit-find-file
-  (add-hook 'magit-mode-hook '(lambda () (interactive) (local-set-key '[(\`)] 'magit-find-file-completing-read)))
+  (eval-after-load "magit-find-file"
+    '(progn
+       (setq my-magit-find-file-skip-vendor-pattern nil)
+       (defun my-magit-find-file-without-vendor (res)
+         (--remove
+          (and
+           my-magit-find-file-skip-vendor-pattern
+           (string-match
+            my-magit-find-file-skip-vendor-pattern it))
+          res))
+       (advice-add 'magit-find-file-files :filter-return
+                   #'my-magit-find-file-without-vendor)))
+  (add-hook
+   'magit-mode-hook
+   '(lambda () (interactive)
+      (local-set-key '[(\`)] 'magit-find-file-completing-read)))
   (global-set-key (kbd "C-S-f") 'magit-find-file-completing-read))
