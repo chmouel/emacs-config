@@ -53,6 +53,10 @@
                (progn ,@body))
            (message (car err))))))
 
+(if (not (fboundp 'use-package))
+    (package-install 'use-package))
+(require 'use-package)
+(setq use-package-always-ensure t)
 
 ;; Loading Configs files
 (my-load-dir (concat my-init-directory "/configs/"))

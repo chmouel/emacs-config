@@ -15,45 +15,40 @@
       (magit-get "user.email")
     user-mail-address))
 
-(Package 'yasnippet
-  (require 'yasnippet)
-  (when (featurep 'yasnippet)
-    (yas/global-mode 1)
-    (eval-after-load "yasnippet"
-      '(progn
-         (require 'autoinsert)
-         (auto-insert-mode)
-         (setq auto-insert-query nil)
-         (define-auto-insert "\.py"
-           '(lambda () (yas--expand-by-uuid 'python-mode "header")))
-         (Package 'dropdown-list)
-         (setq yas/prompt-functions '(yas/dropdown-prompt))))))
+(use-package yasnippet
+  :config
+  (yas/global-mode 1)
+  (require 'autoinsert)
+  (auto-insert-mode)
+  (setq auto-insert-query nil)
+  (define-auto-insert "\.py"
+    '(lambda () (yas--expand-by-uuid 'python-mode "header")))
+  (use-package dropdown-list)
+  (setq yas/prompt-functions '(yas/dropdown-prompt)))
 
 ;; RegexTool
-(Package 'regex-tool
-  (autoload 'regex-tool "regex-tool" "REGEX Tool" t))
+(use-package regex-tool :commands (regex-tool))
 
 ;; Hightly more than 80
-(Package 'highlight-80+
-  (autoload 'highlight-80+ "highlight-80+" nil t))
+(use-package highlight-80+ :commands  (highlight-80+))
 
 ;; Browse Kill ring
-(Package 'browse-kill-ring)
+(use-package browse-kill-ring)
 
 ;; Multiple cursors
-(Package 'multiple-cursors
-  (setq mc/list-file "~/.emacs.d/auto-save-list/mc-lists.el")
-  (global-set-key (kbd "C-c .") 'mc/mark-all-like-this-dwim))
+(use-package multiple-cursors
+  :bind (("C-c ." . mc/mark-all-like-this-dwim))
+  :config (setq mc/list-file "~/.emacs.d/auto-save-list/mc-lists.el"))
 
 ;; Expand Region
-(Package 'expand-region
-  (eval-after-load "expand-region"
-    '(progn
-       (setq er/try-expand-list (remove 'er/mark-comment er/try-expand-list))))
-  (global-set-key '[(meta up)] 'er/expand-region)
-  (global-set-key '[(meta down)] 'er/contract-region))
+(use-package expand-region
+  :config (setq er/try-expand-list (remove 'er/mark-comment er/try-expand-list))
+  :bind (("M-<up>" . er/expand-region)
+         ("M-<down>" . er/contract-region)))
 
-(Package 'ibuffer-vc
+;; Ibuffer-VC
+(use-package ibuffer-vc
+  :init
   (add-hook 'ibuffer-hook
             (lambda ()
               (ibuffer-vc-set-filter-groups-by-vc-root)
@@ -61,56 +56,52 @@
                 (ibuffer-do-sort-by-alphabetic)))))
 
 ;; Popup for auto-complete and others
-(Package 'popup)
+(use-package popup)
 
 ;; Auto complete in words.
-(Package 'auto-complete)
+(use-package auto-complete)
 
 ;; JSON Mode
-(Package 'json-mode
-  (add-to-list 'auto-mode-alist '("\\.json$" . json-mode)))
+(use-package json-mode :mode "\\.json\\'")
 
 ;; window-number-meta-mode
-(Package 'window-number
-  (autoload 'window-number-meta-mode "window-number")
-  (window-number-meta-mode 't))
+(use-package window-number
+  :config (window-number-meta-mode 1))
 
 ;; Yascroll
-(Package 'yascroll
-  (if (fboundp 'global-yascroll-bar-mode)
-      (global-yascroll-bar-mode 't)))
+(use-package yascroll :config (global-yascroll-bar-mode 't))
 
 ;; Github browse current file
-(Package 'github-browse-file)
-
-;; Openstack browse current file.
-(Package 'openstack-cgit-browse-file)
+(use-package github-browse-file)
 
 ;; Smart power bar that look fruitful
-(Package 'micgoline
-  (require 'micgoline))
+(use-package micgoline :config (require 'micgoline))
 
 ;; Boorkmarks
-(Package 'bm)
+(use-package bm)
 
 ;;Company mode
-(Package 'company)
+(use-package company)
 
 ;;Ido Vertical mode
-(Package 'ido-vertical-mode
+(use-package ido-vertical-mode
+  :config
   (ido-vertical-mode 1)
   (setq ido-max-prospects 5))
 
 ;; smex - IDO completion for M-x
-(Package 'smex
+(use-package smex
+  :config
   (setq smex-save-file (locate-user-emacs-file "auto-save-list/smex-items"))
-  (global-set-key (read-kbd-macro "M-x") 'smex))
+  :bind (("M-x" . smex)))
 
 ;; ag a C ack replacement
-(Package 'ag                            ;
+(use-package ag                            ;
+  :commands (ag ag/dwim-at-point)
+  :bind   (("C-S-h" . my-ag-repo)
+           ("C-S-g" . my-ag-here))
+  :config
   (setq ag-reuse-buffers t)
-  (autoload 'ag "ag" nil t)
-  (autoload 'ag/dwim-at-point "ag" nil t)
   (defun my-ag-repo (string)
     (interactive
      (list (read-from-minibuffer
@@ -121,62 +112,48 @@
           (ag/search string gitdir))))
   (defun my-ag-here (string)
     (interactive (list (read-from-minibuffer "Search string: " (ag/dwim-at-point))))
-    (ag/search string (expand-file-name ".")))
-  (define-key global-map (kbd "C-S-h") 'my-ag-repo)
-  (define-key global-map (kbd "C-S-g") 'my-ag-here))
+    (ag/search string (expand-file-name "."))))
 
 ;; flx-ido - advanced flex matching for ido
-(Package 'flx-ido
+(use-package flx-ido
+  :config
   (setq gc-cons-threshold 20000000)
   (flx-ido-mode 1))
 
 ;; Flycheck
-(Package 'flycheck
-  (setq flycheck-disabled-checkers '(html-tidy xml-xmlint emacs-lisp emacs-lisp-checkdoc)
+(use-package flycheck
+  :config
+  (setq flycheck-disabled-checkers
+        '(html-tidy xml-xmlint emacs-lisp emacs-lisp-checkdoc)
         flycheck-display-errors-delay 0.2
         flycheck-highlighting-mode 'lines)
   (global-flycheck-mode t))
 
-;; Comment dwim 2
-(Package 'comment-dwim-2
-  (global-set-key (kbd "M-;") 'comment-dwim-2))
-
-;; Pabbrev
-(Package 'pabbrev)
+;; Comment dwim
+(use-package comment-dwim-2 :bind (("M-;" . comment-dwim-2)))
 
 ;; Smartshift
-(Package 'smart-shift
-  (global-smart-shift-mode))
+(use-package smart-shift :config (global-smart-shift-mode))
 
 ;; Isearch
-(Package 'isearch-dabbrev
-  (eval-after-load "isearch"
-    '(progn
-       (require 'isearch-dabbrev)
-       (define-key isearch-mode-map (kbd "<tab>") 'isearch-dabbrev-expand))))
+(use-package isearch-dabbrev
+  :bind (:map isearch-mode-map ("<tab>" . isearch-dabbrev-expand)))
 
 ;; Toggle control-x-1 to restore after
-(Package 'zygospore
-  (global-set-key (kbd "C-1") 'zygospore-toggle-delete-other-windows)
-  (global-set-key (kbd "C-x 1") 'zygospore-toggle-delete-other-windows))
+(use-package zygospore :bind
+  (("C-1" . zygospore-toggle-delete-other-windows)
+   ("C-x 1" . zygospore-toggle-delete-other-windows)))
 
 ;;
-(Package 'google-this
-  (global-set-key (kbd "s--") 'google-this))
+(use-package google-this :bind (("S--" . google-this)))
 
 ;;
-(Package 'highlight-indentation
-  (eval-after-load "highlight-indentation"
-    '(progn
-       (set-face-background 'highlight-indentation-face "#e3e3d3")
-       (set-face-background 'highlight-indentation-current-column-face "#c3b3b3"))))
+(use-package highlight-indentation
+  :config
+  (set-face-background 'highlight-indentation-face "#e3e3d3")
+  (set-face-background 'highlight-indentation-current-column-face "#c3b3b3"))
 
-(Package 'wgrep-ag
-  (eval-after-load "wgrep"
-    '(progn
-       (autoload 'wgrep-ag-setup "wgrep-ag")
-       (add-hook 'ag-mode-hook 'wgrep-ag-setup))))
-
+(use-package wgrep-ag :commands (wgrep-ag-setup wgrep-ag-setup))
 
 ;;Web-mode
 (provide 'extras-modes)
