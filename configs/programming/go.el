@@ -1,5 +1,5 @@
 (Package 'go-playground
-  (setq go-playground-ask-for-file-name t)
+  (setq go-playground-ask-file-name t)
   (setq go-playground-basedir "~/tmp/goplay"))
 
 (defun my-go-mode-hook ()
@@ -13,6 +13,7 @@
   (if (and buffer-file-name (string-match "_test\\'" (file-name-sans-extension buffer-file-name)))
       (local-set-key (kbd "C-S-r") '(lambda ()(interactive)(compile (concat "go test -run " (cadr (go-test--get-current-test-info)) "$")))))
   (add-to-list 'company-backends 'company-go)
+
   (company-mode)
 
   (Package 'go-eldoc
