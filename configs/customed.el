@@ -34,7 +34,7 @@
     ("--exclude='*.pyc'" "--exclude='*.elc'" "--exclude='*.class'" "--exclude='.git'" "--exclude='.svn'" "--exclude='SCCS'" "--exclude='RCS'" "--exclude='CVS'" "--exclude='EIFGEN'" "--exclude='.tox'" "--exclude='.venv'" "--python-kinds='-i'")))
  '(custom-safe-themes
    (quote
-    ("b8b5c353e73470377f2111fddb0ea652d35ce98e0a27a5c592d2ab9f66855106" "e80932ca56b0f109f8545576531d3fc79487ca35a9a9693b62bf30d6d08c9aaf" "dbb1b3ee0d815ca51437ab423812df36202b5f381c21024a96a001b6099950c1" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "024b0033a950d6a40bbbf2b1604075e6c457d40de0b52debe3ae994f88c09a4a" "1e194b1010c026b1401146e24a85e4b7c545276845fc38b8c4b371c8338172ad" "7fbb8d064286706fb1e319c9d3c0a8eafc2efe6b19380aae9734c228b05350ae" "675693b537a1164a82a4f16c9e479432586a1493bac4bb427ee8e56a0aff8a72" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" "3a727bdc09a7a141e58925258b6e873c65ccf393b2240c51553098ca93957723" "025354235e98db5e7fd9c1a74622ff53ad31b7bde537d290ff68d85665213d85" "d8a4e35ee1b219ccb8a8c15cdfed687fcc9d467c9c8b9b93bd25229b026e4703" "7a9f392481b6e2fb027ab9d8053ab36c0f23bf5cc1271206982339370d894c74" "04dd0236a367865e591927a3810f178e8d33c372ad5bfef48b5ce90d4b476481" "2b5aa66b7d5be41b18cc67f3286ae664134b95ccc4a86c9339c886dfd736132d" "b1f685c871220e3008b5e1dec076bc2e24dc4b6c65e64a79bfb2ea5ff7e17978" "ed81411169b1b3e3d4cfc39b09d68ea13e0ff7708dc5b9d0bedb319e071968ad" "5e3fc08bcadce4c6785fc49be686a4a82a356db569f55d411258984e952f194a" "ab04c00a7e48ad784b52f34aa6bfa1e80d0c3fcacc50e1189af3651013eb0d58" "a0feb1322de9e26a4d209d1cfa236deaf64662bb604fa513cca6a057ddf0ef64" "7153b82e50b6f7452b4519097f880d968a6eaf6f6ef38cc45a144958e553fbc6" "f0ea6118d1414b24c2e4babdc8e252707727e7b4ff2e791129f240a2b3093e32" "2affb26fb9a1b9325f05f4233d08ccbba7ec6e0c99c64681895219f964aac7af" "9370aeac615012366188359cb05011aea721c73e1cb194798bc18576025cabeb" "62b86b142b243071b5adb4d48a0ab89aefd3cf79ee3adc0bb297ea873b36d23f" "61a83dbf3d3722d70abee8fb6dbc3566766ff86c098c2a925f2ccfd4d5b3a756" "1c1e6b2640daffcd23b1f7dd5385ca8484a060aec901b677d0ec0cf2927f7cde" "1f3304214265481c56341bcee387ef1abb684e4efbccebca0e120be7b1a13589" "fc6e906a0e6ead5747ab2e7c5838166f7350b958d82e410257aeeb2820e8a07a" default)))
+    ("707227acad0cf8d4db55dcf1e574b3644b68eab8aca4a8ce6635c8830bc72144" "78559045fb299f3542c232166ad635c59cf0c6578d80a58b885deafe98a36c66" "44c566df0e1dfddc60621711155b1be4665dd3520b290cb354f8270ca57f8788" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "0b7ee9bac81558c11000b65100f29b09488ff9182c083fb303c7f13fd0ec8d2b" "47d606c282b8e29b580221520a7c5c0ad068e8602326df718cd83dfc739109e9" "b8b5c353e73470377f2111fddb0ea652d35ce98e0a27a5c592d2ab9f66855106" "e80932ca56b0f109f8545576531d3fc79487ca35a9a9693b62bf30d6d08c9aaf" "dbb1b3ee0d815ca51437ab423812df36202b5f381c21024a96a001b6099950c1" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "024b0033a950d6a40bbbf2b1604075e6c457d40de0b52debe3ae994f88c09a4a" "1e194b1010c026b1401146e24a85e4b7c545276845fc38b8c4b371c8338172ad" "7fbb8d064286706fb1e319c9d3c0a8eafc2efe6b19380aae9734c228b05350ae" "675693b537a1164a82a4f16c9e479432586a1493bac4bb427ee8e56a0aff8a72" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" "3a727bdc09a7a141e58925258b6e873c65ccf393b2240c51553098ca93957723" "025354235e98db5e7fd9c1a74622ff53ad31b7bde537d290ff68d85665213d85" "d8a4e35ee1b219ccb8a8c15cdfed687fcc9d467c9c8b9b93bd25229b026e4703" "7a9f392481b6e2fb027ab9d8053ab36c0f23bf5cc1271206982339370d894c74" "04dd0236a367865e591927a3810f178e8d33c372ad5bfef48b5ce90d4b476481" "2b5aa66b7d5be41b18cc67f3286ae664134b95ccc4a86c9339c886dfd736132d" "b1f685c871220e3008b5e1dec076bc2e24dc4b6c65e64a79bfb2ea5ff7e17978" "ed81411169b1b3e3d4cfc39b09d68ea13e0ff7708dc5b9d0bedb319e071968ad" "5e3fc08bcadce4c6785fc49be686a4a82a356db569f55d411258984e952f194a" "ab04c00a7e48ad784b52f34aa6bfa1e80d0c3fcacc50e1189af3651013eb0d58" "a0feb1322de9e26a4d209d1cfa236deaf64662bb604fa513cca6a057ddf0ef64" "7153b82e50b6f7452b4519097f880d968a6eaf6f6ef38cc45a144958e553fbc6" "f0ea6118d1414b24c2e4babdc8e252707727e7b4ff2e791129f240a2b3093e32" "2affb26fb9a1b9325f05f4233d08ccbba7ec6e0c99c64681895219f964aac7af" "9370aeac615012366188359cb05011aea721c73e1cb194798bc18576025cabeb" "62b86b142b243071b5adb4d48a0ab89aefd3cf79ee3adc0bb297ea873b36d23f" "61a83dbf3d3722d70abee8fb6dbc3566766ff86c098c2a925f2ccfd4d5b3a756" "1c1e6b2640daffcd23b1f7dd5385ca8484a060aec901b677d0ec0cf2927f7cde" "1f3304214265481c56341bcee387ef1abb684e4efbccebca0e120be7b1a13589" "fc6e906a0e6ead5747ab2e7c5838166f7350b958d82e410257aeeb2820e8a07a" default)))
  '(cycbuf-buffer-sort-function (quote cycbuf-sort-by-recency))
  '(cycbuf-dont-show-regexp (quote ("^ " "^\\*cycbuf\\*$" "^\\*Messages\\*#")))
  '(cycbuf-mode-name-replacements
@@ -120,7 +120,7 @@
  '(flycheck-disabled-checkers
    (quote
     (html-tidy xml-xmlint emacs-lisp emacs-lisp-checkdoc javascript-eslint)))
- '(flycheck-display-errors-delay 0.2)
+ '(flycheck-display-errors-delay 0.1)
  '(flycheck-highlighting-mode (quote lines))
  '(font-use-system-font t)
  '(git-gutter:added-sign " ")
@@ -179,6 +179,7 @@
  '(igrep-options "-I")
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
+ '(ispell-dictionary "francais")
  '(ispell-extra-args (quote ("--sug-mode=ultra")))
  '(ispell-message-dictionary-alist (quote (("^To:[^\\n,]+\\\\.fr[ \\t\\n,>]" . "francais"))))
  '(ispell-program-name "aspell")
@@ -218,7 +219,7 @@
      ("GNU" . "http://elpa.gnu.org/packages/"))))
  '(package-selected-packages
    (quote
-    (py-yapf js2-mode jsfmt go-add-tags wgrep-ag evil-matchit flycheck-gometalinter go-stacktracer js-auto-beautify visual-fill-column gore-mode go-direx go-guru highlight-indentation evil esqlite go-errcheck go-snippets go-playground golint go-rename toggle-quotes zygospore zerodark-theme zenburn-theme yasnippet yascroll yaml-mode window-number wgrep web virtualenvwrapper use-package try transpose-frame tox tablist tabbar smex smartparens smart-shift smart-mode-line shorten rpm-spec-mode request-deferred regex-tool recent-addresses rcirc-color rcirc-alertify queue python-docstring pyfmt powerline php-mode phi-search perspective pcsv pcache pastie paren-completer paredit pacmacs packed package-safe-delete pabbrev outline-magic openstack-cgit-browse-file names multiple-cursors message-x marmalade markdown-mode+ magit-find-file lui logito lcs json-rpc json-mode ivy isgd isearch-dabbrev inf-ruby ido-vertical-mode ido-completing-read+ ibuffer-vc hungry-delete htmlize highlight-numbers highlight-80+ google-this google-contacts go-eldoc github-browse-file fringe-helper flycheck flx-ido find-file-in-git-repo fill-column-indicator fakir expand-region esxml es-lib dropdown-list dockerfile-mode db csv-mode csharp-mode company-go company-anaconda comment-dwim-2 browse-kill-ring boxquote bm bitly bbdb auto-complete anything-git-goto alect-themes aggressive-indent ag)))
+    (aok micgoline avk-emacs-themes github-modern-theme madhat2r-theme gist zop-to-char jsx-mode gerrit-download idomenu py-yapf js2-mode jsfmt go-add-tags wgrep-ag evil-matchit flycheck-gometalinter go-stacktracer js-auto-beautify visual-fill-column gore-mode go-direx go-guru highlight-indentation evil esqlite go-errcheck go-snippets go-playground golint go-rename toggle-quotes zygospore zerodark-theme zenburn-theme yasnippet yascroll yaml-mode window-number wgrep web virtualenvwrapper use-package try transpose-frame tox tablist tabbar smex smartparens smart-shift smart-mode-line shorten rpm-spec-mode request-deferred regex-tool recent-addresses rcirc-color rcirc-alertify queue python-docstring pyfmt powerline php-mode phi-search perspective pcsv pcache pastie paren-completer paredit pacmacs packed package-safe-delete pabbrev outline-magic openstack-cgit-browse-file names multiple-cursors message-x marmalade markdown-mode+ magit-find-file lui logito lcs json-rpc json-mode ivy isgd isearch-dabbrev inf-ruby ido-vertical-mode ido-completing-read+ ibuffer-vc hungry-delete htmlize highlight-numbers highlight-80+ google-this google-contacts go-eldoc github-browse-file fringe-helper flycheck flx-ido find-file-in-git-repo fill-column-indicator fakir expand-region esxml es-lib dropdown-list dockerfile-mode db csv-mode csharp-mode company-go company-anaconda comment-dwim-2 browse-kill-ring boxquote bm bitly bbdb auto-complete anything-git-goto alect-themes aggressive-indent ag)))
  '(package-user-dir "~/.emacs.d/packages")
  '(projectile-cache-file "~/.emacs.d/auto-save-list/projectile.cache")
  '(projectile-keymap-prefix "")
@@ -266,7 +267,8 @@
  '(tabbar-scroll-left-button (quote ((" <") " ")))
  '(tabbar-scroll-right-button (quote ((" ") "")))
  '(tags-revert-without-query t)
- '(tramp-chunksize 500)
+ '(tramp-chunksize 500 nil (tramp))
+ '(tramp-mode t nil (tramp))
  '(tramp-persistency-file-name "~/.emacs.d/auto-save-list/tramp")
  '(url-cookie-file "~/.emacs.d/auto-save-list/cookies")
  '(use-file-dialog nil)
