@@ -86,11 +86,9 @@
 ;; Openstack browse current file.
 (Package 'openstack-cgit-browse-file)
 
-;; Smart mode line
-(Package 'smart-mode-line
-  (setq sml/theme 'dark)
-  (sml/setup)
-  (add-to-list 'sml/replacer-regexp-list '("^~/GIT/OpenStack/" ":OpenStack:")))
+;; Smart power bar that look fruitful
+(Package 'micgoline
+  (require 'micgoline))
 
 ;; Boorkmarks
 (Package 'bm)
