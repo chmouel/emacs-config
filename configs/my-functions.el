@@ -1,24 +1,4 @@
-;; I-search with initial contents
-(global-set-key '[(control *)] 'isearch-forward-at-point)
-(defvar isearch-initial-string nil)
-(defun isearch-set-initial-string ()
-  (remove-hook 'isearch-mode-hook 'isearch-set-initial-string)
-  (setq isearch-string isearch-initial-string)
-  (isearch-search-and-update))
-(defun isearch-forward-at-point (&optional regexp-p no-recursive-edit)
-      "Interactive search forward for the symbol at point."
-      (interactive "P\np")
-      (if regexp-p (isearch-forward regexp-p no-recursive-edit)
-        (let* ((end (progn (skip-syntax-forward "w_") (point)))
-               (begin (progn (skip-syntax-backward "w_") (point))))
-          (if (eq begin end)
-              (isearch-forward regexp-p no-recursive-edit)
-            (setq isearch-initial-string (buffer-substring begin end))
-            (add-hook 'isearch-mode-hook 'isearch-set-initial-string)
-            (isearch-forward regexp-p no-recursive-edit)))))
-
-;
-;Duplicate current line down
+;; Duplicate current line down
 (global-set-key '[(control meta d)] 'my-duplicate-line-or-region)
 (defun my-duplicate-region (beg end &optional sep)
   "Duplicate the region"

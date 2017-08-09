@@ -15,6 +15,7 @@
       (local-set-key (kbd "C-S-r") '(lambda ()(interactive)(compile (concat "go test -run " (cadr (go-test--get-current-test-info)) "$")))))
   (add-to-list 'company-backends 'company-go)
 
+  (subword-mode)
   (company-mode)
 
   (use-package go-eldoc :config (go-eldoc-setup))
