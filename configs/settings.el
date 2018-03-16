@@ -2,10 +2,8 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;KeyBinding
-(global-set-key '[(control meta l)]
-                (lambda () (interactive) (switch-to-buffer (other-buffer))))
-(global-set-key '[(control next)]
-                'end-of-buffer)
+(global-set-key '[(control meta l)] (lambda () (interactive) (switch-to-buffer (other-buffer))))
+(global-set-key '[(control next)] 'end-of-buffer)
 (global-set-key '[(control prior)] 'beginning-of-buffer)
 (global-set-key '[(control tab)] 'other-window)
 (global-set-key '[(control c)(\])] 'next-error)
@@ -13,7 +11,6 @@
 (global-set-key (read-kbd-macro "C-M-b") 'bookmark-jump)
 (global-set-key (read-kbd-macro "C-x C-k") (lambda () (interactive) (kill-buffer nil)))
 (global-set-key (read-kbd-macro "C-x f") 'find-file-at-point)
-(global-set-key (read-kbd-macro "C-M-/") 'dabbrev-expand)
 (global-set-key (read-kbd-macro "M-/") 'hippie-expand)
 (global-set-key (read-kbd-macro "M-q") 'fill-region)
 (global-set-key (read-kbd-macro "M-l") 'downcase-word)

@@ -23,7 +23,6 @@
  python-shell-completion-string-code "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
 
 (defun my-python-mode-hook()
-  ;;(py-yapf-enable-on-save)
   (fci-mode)
   (flycheck-mode)
   (anaconda-mode)
@@ -34,7 +33,6 @@
   (local-set-key '[(meta q)] 'fill-paragraph)
 
   (local-set-key (kbd "C-S-y") 'pan-run-all-until-fail)
-                                        ;(local-set-key (read-kbd-macro "C-S-t") 'pan-choose-test-to-run)
   (local-set-key (read-kbd-macro "C-\\") 'pan-switch-test-func)
   (local-set-key (kbd "C-S-r") 'pan-run-current-test)
   (local-set-key (kbd "C-S-w") (lambda () (interactive) (kill-new (python-info-current-defun))))
@@ -42,9 +40,7 @@
   (local-set-key '[(control c)(\[)] 'flycheck-previous-error)
   (local-set-key '[(control c)(\])] 'flycheck-next-error)
 
-  (set (make-local-variable 'my-compile-run-command) (concat "python -E \"" buffer-file-name "\""))
-  (set (make-local-variable 'my-compile-command) (concat "flake8 \"" buffer-file-name "\""))
-
-  (my-programming-common-hook)
+  (setq-local compile-command (concat python-shell-interpreter " -E \"" buffer-file-name "\""))
+  (local-set-key '[(control return)] 'recompile)
   )
 (add-hook 'python-mode-hook 'my-python-mode-hook)

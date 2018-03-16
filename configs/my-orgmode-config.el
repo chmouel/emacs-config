@@ -9,18 +9,11 @@
 
 (require 'the-org-mode-expansions)
 
-(define-key global-map "\C-cc" 'org-capture)
+(define-key global-map "\C-cc" (lambda () (interactive) (org-capture nil "d")))
+(define-key global-map (kbd "<f12>") (lambda () (interactive) (org-capture-goto-last-stored)))
 
 (setq org-link-abbrev-alist
       '(("lp" . "https://bugs.launchpad.org/+bug/")))
-
-(setq org-capture-templates
-      '(("t" "Todo" entry
-         (file+headline (concat org-directory "/gtd.org") "Tasks")
-         "* TODO %?\n  %i\n  %a")
-        ("l" "Link" entry
-         (file+headline  (concat org-directory "/links.org") "Links to Read")
-         "* %?\n %i")))
 
 (defvar org-electric-pairs '((?\' . ?\')(?\* . ?\*) (?/ . ?/) (?= . ?=)
                              (?\_ . ?\_) (?~ . ?~) (?+ . ?+)) "Electric pairs for org-mode.")
@@ -44,7 +37,7 @@
 
 (dolist (k
          '("<S-down>" "<S-up>" "<S-left>"
-           "<S-right>" "<C-TAB>" "<M-up>"
-           "<M-down>"))
+           "<S-right>" "<M-up>" "[C-Tab]"
+           "<M-down>" "<M-right>" "<M-left>"))
   (define-key org-mode-map (kbd k) nil))
 (add-hook 'org-mode-hook 'my-org-mode-hook)

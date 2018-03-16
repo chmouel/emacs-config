@@ -2,9 +2,10 @@
   :commands (magit-read-repository magit-toplevel)
   :bind (("C-c g"  . magit-status))
   :config
+  (global-git-commit-mode)
   (magit-define-popup-switch 'magit-log-popup ?m "Omit merge commits" "--no-merges"))
 
-;open files for projects.
+;;open files for projects.
 (defun my-magit-open-directory-and-files ()
   "Open quickly a magit directory and open a git file in there"
   (interactive)

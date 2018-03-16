@@ -155,5 +155,9 @@
 
 (use-package wgrep-ag :commands (wgrep-ag-setup wgrep-ag-setup))
 
+(use-package dumb-jump
+  :bind
+  (("C-S-d" . dumb-jump-go)))
+
 ;;Web-mode
 (provide 'extras-modes)

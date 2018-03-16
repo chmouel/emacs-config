@@ -15,6 +15,12 @@
  '(ack-and-a-half-arguments (quote ("--ignore-dir .tox" "-k" "--ignore-dir vendor/")))
  '(ack-executable "/usr/bin/ack-grep")
  '(all-christian-calendar-holidays t)
+ '(atomic-chrome-buffer-frame-height 80)
+ '(atomic-chrome-buffer-open-style (quote split))
+ '(atomic-chrome-url-major-mode-alist
+   (quote
+    (("https://github.com/.*/issues/.*" . markdown-mode)
+     ("https://mail.google.com/.*" . message-mode))))
  '(auto-install-directory "~/.emacs.d/modes/")
  '(battery-mode-line-format "--[%b%p%%]" t)
  '(bc-bookmark-file "~/.emacs.d/auto-save-list/breadcrumb.el")
@@ -179,7 +185,7 @@
  '(igrep-options "-I")
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
- '(ispell-dictionary "francais")
+ '(ispell-dictionary "english")
  '(ispell-extra-args (quote ("--sug-mode=ultra")))
  '(ispell-message-dictionary-alist (quote (("^To:[^\\n,]+\\\\.fr[ \\t\\n,>]" . "francais"))))
  '(ispell-program-name "aspell")
@@ -211,6 +217,7 @@
  '(max-specpdl-size 50000)
  '(mm-inline-text-html-with-w3m-keymap nil)
  '(oauth2-token-file "~/.emacs.d/auto-save-list/oauth2.plstore")
+ '(org-agenda-files nil)
  '(org-src-fontify-natively t)
  '(org-startup-folded nil)
  '(package-archives
@@ -219,7 +226,7 @@
      ("GNU" . "http://elpa.gnu.org/packages/"))))
  '(package-selected-packages
    (quote
-    (nov avy es-windows yaml-tomato es-mode flycheck-color-mode-line magit-gh-pulls commenter aok micgoline avk-emacs-themes github-modern-theme madhat2r-theme gist zop-to-char jsx-mode gerrit-download idomenu py-yapf js2-mode jsfmt go-add-tags wgrep-ag flycheck-gometalinter go-stacktracer js-auto-beautify visual-fill-column gore-mode go-direx go-guru highlight-indentation esqlite go-errcheck go-snippets go-playground golint go-rename toggle-quotes zygospore zerodark-theme zenburn-theme yasnippet yascroll yaml-mode window-number wgrep web virtualenvwrapper use-package try transpose-frame tox tablist tabbar smex smartparens smart-shift smart-mode-line shorten rpm-spec-mode request-deferred regex-tool recent-addresses rcirc-color rcirc-alertify queue python-docstring pyfmt powerline php-mode phi-search perspective pcsv pcache pastie paren-completer paredit pacmacs packed package-safe-delete pabbrev outline-magic openstack-cgit-browse-file names multiple-cursors message-x marmalade markdown-mode+ magit-find-file lui logito lcs json-rpc json-mode ivy isgd isearch-dabbrev inf-ruby ido-vertical-mode ido-completing-read+ ibuffer-vc hungry-delete htmlize highlight-numbers highlight-80+ google-this google-contacts go-eldoc github-browse-file fringe-helper flycheck flx-ido find-file-in-git-repo fill-column-indicator fakir expand-region esxml es-lib dropdown-list dockerfile-mode db csv-mode csharp-mode company-go company-anaconda comment-dwim-2 browse-kill-ring boxquote bm bitly bbdb anything-git-goto alect-themes aggressive-indent ag)))
+    (dumb-jump floobits atomic-chrome groovy-mode jenkins the-org-mode-expansions kubernetes flycheck-yamllint nov avy es-windows yaml-tomato es-mode flycheck-color-mode-line magit-gh-pulls commenter aok micgoline avk-emacs-themes github-modern-theme madhat2r-theme gist zop-to-char jsx-mode gerrit-download idomenu py-yapf js2-mode jsfmt go-add-tags wgrep-ag flycheck-gometalinter go-stacktracer js-auto-beautify visual-fill-column gore-mode go-direx go-guru highlight-indentation esqlite go-errcheck go-snippets go-playground golint go-rename toggle-quotes zygospore zerodark-theme zenburn-theme yasnippet yascroll yaml-mode window-number wgrep web virtualenvwrapper use-package try transpose-frame tox tablist tabbar smex smartparens smart-shift smart-mode-line shorten rpm-spec-mode request-deferred regex-tool recent-addresses rcirc-color rcirc-alertify queue python-docstring pyfmt powerline php-mode phi-search perspective pcsv pcache pastie paren-completer paredit pacmacs packed package-safe-delete pabbrev outline-magic openstack-cgit-browse-file names multiple-cursors message-x marmalade markdown-mode+ magit-find-file lui logito lcs json-rpc json-mode ivy isgd isearch-dabbrev inf-ruby ido-vertical-mode ido-completing-read+ ibuffer-vc hungry-delete htmlize highlight-numbers highlight-80+ google-this google-contacts go-eldoc github-browse-file fringe-helper flycheck flx-ido find-file-in-git-repo fill-column-indicator fakir expand-region esxml es-lib dropdown-list dockerfile-mode db csv-mode csharp-mode company-go company-anaconda comment-dwim-2 browse-kill-ring boxquote bm bitly bbdb anything-git-goto alect-themes aggressive-indent ag)))
  '(package-user-dir "~/.emacs.d/packages")
  '(projectile-cache-file "~/.emacs.d/auto-save-list/projectile.cache")
  '(projectile-keymap-prefix "")
