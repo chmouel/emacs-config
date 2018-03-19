@@ -5,13 +5,13 @@
                                         "%b"))))
 (when (featurep 'tool-bar) (tool-bar-mode -1))
 (when (featurep 'scroll-bar) (scroll-bar-mode -1))
-;(when (featurep 'fringe) (fringe-mode 'minimal))
-(when (featurep 'menu-bar)(menu-bar-mode -1))
+;;(when (featurep 'fringe) (fringe-mode 'minimal))
+;;(when (featurep 'menu-bar)(menu-bar-mode -1))
 
-;Line Spacing by default
+;;Line Spacing by default
 (setq-default line-spacing 2)
 
-;Modes
+;;Modes
 (put 'narrow-to-page 'disabled nil)
 (global-font-lock-mode 't)
 (delete-selection-mode 't)
@@ -21,5 +21,5 @@
 (if window-system
     (display-time-mode 't))
 
-;Non Customizables
+;;Non Customizables
 (setq ring-bell-function 'ignore)
