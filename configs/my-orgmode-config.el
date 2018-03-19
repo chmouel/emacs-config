@@ -41,3 +41,60 @@
            "<M-down>" "<M-right>" "<M-left>"))
   (define-key org-mode-map (kbd k) nil))
 (add-hook 'org-mode-hook 'my-org-mode-hook)
+
+;; Get the current chrome tab and insert the title and the issue number link in
+;; org format, gets the labels of the issue too via the github json api
+;; Leverage on https://github.com/rejeep/chrome-cli.el for getting current tab
+(defun my-github-parse-response (buffer)
+  "Parses the JSON response from a GitHub API call."
+  (let ((json-object-type 'plist))
+    (unwind-protect
+        (with-current-buffer buffer
+          (save-excursion
+            (url-http-parse-response)
+            (goto-char (point-min))
+            (search-forward "\n\n")
+            (json-read)))
+      (kill-buffer buffer))))
+
+(defun my-get-labels-info-gh(issuenumber)
+  (let* ((url
+          (format "https://api.github.com/repos/openshiftio/openshift.io/issues/%s" issuenumber))
+         (myt (my-github-parse-response (url-retrieve-synchronously url))))
+    (string-join
+     (mapcar
+      (lambda (x)
+        (if (string-match "^SEV" (plist-get x :name))
+            (concat ":" (plist-get x :name) ":")))
+      (plist-get myt :labels)))))
+
+(defun my-github-parse-response (buffer)
+  "Parses the JSON response from a GitHub API call."
+  (let ((json-object-type 'plist))
+    (unwind-protect
+        (with-current-buffer buffer
+          (save-excursion
+            (url-http-parse-response)
+            (goto-char (point-min))
+            (search-forward "\n\n")
+            (json-read)))
+      (kill-buffer buffer))))
+
+(defun my--org-insert-github-from-current-tab ()
+  (let* ((chrome-info (chrome-cli-tab))
+         (url (plist-get chrome-info :url))
+         (issuenumber (replace-regexp-in-string "https://github.com/.*/issues/" "" url))
+         (labels)
+         (title (concat (truncate-string-to-width (plist-get chrome-info :title) 50) "...")))
+    (if (not issuenumber)
+        (error "%s does not seem a github url" url))
+    (if (and title issuenumber)
+        (format "[[%s][#%s - %s]] %s" url issuenumber title (my-get-labels-info-gh issuenumber)))))
+
+(defun my-org-insert-github-from-current-tab()
+  (interactive)
+  (insert (my--org-insert-github-from-current-tab)))
+
+(defun my-org-capture-mode-hook ()
+  (local-set-key (kbd "C-=") 'my-org-insert-github-from-current-tab))
+(add-hook 'org-capture-mode-hook 'my-org-capture-mode-hook)
