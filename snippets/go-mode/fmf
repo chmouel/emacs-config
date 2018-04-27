@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: fmf
+# key: fmf
+# binding: M-P
+# --
+fmt.Printf("$0%s\n")
