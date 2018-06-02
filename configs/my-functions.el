@@ -90,9 +90,9 @@
   (interactive)
   (unwind-protect
       (progn
-        (linum-mode 1)
+        (display-line-numbers-mode 1)
         (goto-line (read-number "Goto line: ")))
-    (linum-mode -1)))
+    (display-line-numbers-mode -1)))
 
 ;; Insert an empty line after the current line.
 ;; Position the cursor at its beginning, according to the current mode.
