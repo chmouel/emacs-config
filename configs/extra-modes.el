@@ -1,7 +1,4 @@
-;;RST
-(autoload 'rst-mode "rst" "RST" t)
-(push '("\\.rst\\'" . rst-mode) auto-mode-alist)
-
+;; Dimnish commnand line
 (use-package diminish)
 
 ;; Yassnippet
@@ -43,7 +40,8 @@
 ;; Multiple cursors
 (use-package multiple-cursors
   :bind (("C-c ." . mc/mark-all-like-this-dwim))
-  :config (setq mc/list-file "~/.emacs.d/auto-save-list/mc-lists.el"))
+  :custom
+  (mc/list-file "~/.emacs.d/auto-save-list/mc-lists.el"))
 
 ;; Expand Region
 (use-package expand-region
@@ -80,9 +78,9 @@
 (use-package github-browse-file)
 
 (use-package powerline
-  :config
-  (setq powerline-display-mule-info nil
-        powerline-display-buffer-size nil))
+  :custom
+  (powerline-display-mule-info nil)
+  (powerline-display-buffer-size nil))
 ;; Smart power bar that look fruitful
 (use-package micgoline)
 
@@ -90,19 +88,19 @@
 (use-package bm)
 
 ;;Company mode
-(use-package company
-  :diminish company-mode)
+(use-package company :diminish company-mode)
 
 ;;Ido Vertical mode
 (use-package ido-vertical-mode
+  :custom
+  (ido-max-prospects 5)
   :config
-  (ido-vertical-mode 1)
-  (setq ido-max-prospects 5))
+  (ido-vertical-mode 1))
 
 ;; smex - IDO completion for M-x
 (use-package smex
-  :config
-  (setq smex-save-file (locate-user-emacs-file "auto-save-list/smex-items"))
+  :custom
+  (smex-save-file (locate-user-emacs-file "auto-save-list/smex-items"))
   :bind (("M-x" . smex)))
 
 ;; ag a C ack replacement
@@ -110,8 +108,9 @@
   :commands (ag ag/dwim-at-point)
   :bind   (("C-S-h" . my-ag-repo)
            ("C-S-g" . my-ag-here))
+  :custom
+  (ag-reuse-buffers t)
   :config
-  (setq ag-reuse-buffers t)
   (defun my-ag-repo (string)
     (require 'magit-process)
     (interactive
@@ -127,8 +126,9 @@
 
 ;; flx-ido - advanced flex matching for ido
 (use-package flx-ido
+  :custom
+  (gc-cons-threshold 20000000)
   :config
-  (setq gc-cons-threshold 20000000)
   (flx-ido-mode 1))
 
 ;; Flycheck

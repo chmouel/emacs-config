@@ -9,20 +9,33 @@
 (setq bookmark-default-file (concat my-init-directory "/auto-save-list/bookmarks.bmk"))
 
 ;; Dired
-(defun my-dired-mode-hook ()
-  (dired-omit-mode)
-  (when (featurep 'tooltip) (tooltip-mode 0))
-  (local-set-key '[(j)] 'dired-next-line)
-  (local-set-key '[(k)] 'dired-previous-line)
-  (local-set-key '[(s)] 'dired-up-directory)
-  (local-set-key '[(l)] 'my-dired-launch-command)
-  (local-set-key '[(backspace)] 'dired-up-directory)
-  (local-set-key '[(E)] 'wdired-change-to-wdired-mode)
-  (local-set-key '[(W)] 'browse-url-of-dired-file)
-  (local-set-key '[(mouse-1)] 'dired-advertised-find-file)
+(use-package "dired"
+  :ensure nil
+  :config
   (require 'dired-x)
-  )
-(add-hook 'dired-mode-hook 'my-dired-mode-hook)
+  :init
+  (defun my-dired-mode-hook ()
+    (dired-omit-mode)
+    (when (featurep 'tooltip) (tooltip-mode 0)))
+  (add-hook 'dired-mode-hook 'my-dired-mode-hook)
+  ;; Hack dired to launch files with 'l' key.
+  ;; http://omniorthogonal.blogspot.com/2008/05/useful-emacs-dired-launch-hack.html
+  (defun my-dired-launch-command ()
+    (interactive)
+    (dired-do-shell-command
+     (case system-type
+       (gnu/linux "gnome-open") ;right for gnome (ubuntu), not for other systems
+       (darwin "open"))
+     nil
+     (dired-get-marked-files t current-prefix-arg)))
+  :bind
+  (:map dired-mode-map
+        ("W" . browse-url-of-dired-file)
+        ("l" . my-dired-launch-command)
+        ("E" . wdired-change-to-wdired-mode)
+        ("s" . dired-up-directory)
+        ("j" . dired-previous-line)
+        ("k" . dired-next-line)))
 
 ;; Hippy-Expand
 (use-package hippie-exp                 ; Powerful expansion and completion
@@ -130,7 +143,6 @@
 (use-package server                     ; The server of `emacsclient'
   :init (server-mode)
   :diminish (server-buffer-clients . " ⓒ"))
-
 ;
 (use-package eldoc :diminish eldoc-mode)
 (use-package subword :diminish subword-mode)
@@ -138,11 +150,14 @@
 
 ;; Which-func
 (use-package which-func
+  :disabled t
   :init (which-function-mode)
+  :custom-face
+  (which-func ((((class color) (min-colors 89)) (:foreground "#ffffff" :background "SlateBlue2"))))
   :config
   (setq which-func-unknown "⊥" ; The default is really boring…
         which-func-format
-        `((:propertize (" " which-func-current)
+        `((:propertize ("" which-func-current "")
                        local-map ,which-func-keymap
                        face which-func
                        mouse-face mode-line-highlight

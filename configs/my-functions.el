@@ -48,18 +48,6 @@
 (global-set-key (read-kbd-macro "C-;") 'my-comment-line-or-region)
 (global-set-key (read-kbd-macro "M-;") 'comment-dwim)
 
-;; Hack dired to launch files with 'l' key.
-;; http://omniorthogonal.blogspot.com/2008/05/useful-emacs-dired-launch-hack.html
-(defun my-dired-launch-command ()
-  (interactive)
-  (dired-do-shell-command
-   (case system-type
-     (gnu/linux "gnome-open") ;right for gnome (ubuntu), not for other systems
-     (darwin "open"))
-   nil
-   (dired-get-marked-files t current-prefix-arg)))
-
-
 ;; Remap goto-line to show temporary the line number.
 ;; http://whattheemacsd.com//key-bindings.el-01.html
 (global-set-key [remap goto-line] 'goto-line-with-feedback)

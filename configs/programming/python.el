@@ -1,9 +1,10 @@
 (use-package fill-column-indicator)
 (use-package anaconda-mode
+  :diminish (anaconda-mode . "🐍")
   :init
   (setq anaconda-mode-installation-directory
         (locate-user-emacs-file "auto-save-list/anaconda-mode")))
-(use-package hungry-delete)
+(use-package hungry-delete :diminish hungry-delete-mode)
 
 (autoload 'pan-switch-test-func "pan")
 (autoload 'pan-run-all-until-fail "pan")
