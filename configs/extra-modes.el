@@ -2,6 +2,8 @@
 (autoload 'rst-mode "rst" "RST" t)
 (push '("\\.rst\\'" . rst-mode) auto-mode-alist)
 
+(use-package diminish)
+
 ;; Yassnippet
 (defun yas--expand-by-uuid (mode uuid)
   "Exapnd snippet template in MODE by its UUID"
@@ -17,6 +19,8 @@
     user-mail-address))
 
 (use-package yasnippet
+  ;; :diminish (yas-minor-mode . " Ⓨ")
+  :diminish yas-minor-mode
   :config
   (yas/global-mode 1)
   (require 'autoinsert)
@@ -75,14 +79,19 @@
 ;; Github browse current file
 (use-package github-browse-file)
 
+(use-package powerline
+  :config
+  (setq powerline-display-mule-info nil
+        powerline-display-buffer-size nil))
 ;; Smart power bar that look fruitful
-(use-package micgoline :config (require 'micgoline))
+(use-package micgoline)
 
 ;; Boorkmarks
 (use-package bm)
 
 ;;Company mode
-(use-package company)
+(use-package company
+  :diminish company-mode)
 
 ;;Ido Vertical mode
 (use-package ido-vertical-mode
@@ -104,6 +113,7 @@
   :config
   (setq ag-reuse-buffers t)
   (defun my-ag-repo (string)
+    (require 'magit-process)
     (interactive
      (list (read-from-minibuffer
             "Search string: "
@@ -124,10 +134,28 @@
 ;; Flycheck
 (use-package flycheck
   :config
-  (setq flycheck-disabled-checkers
-        '(html-tidy xml-xmlint emacs-lisp emacs-lisp-checkdoc)
-        flycheck-display-errors-delay 0.2
-        flycheck-highlighting-mode 'lines)
+  (defun my-flycheck-mode-line-status-text (&optional status)
+    (let ((text (pcase (or status flycheck-last-status-change)
+                  (`not-checked "")
+                  (`no-checker "")
+                  (`running "*")
+                  (`errored "!")
+                  (`finished
+                   (let-alist (flycheck-count-errors flycheck-current-errors)
+                     (if (or .error .warning)
+                         (format ":%s/%s" (or .error 0) (or .warning 0))
+                       "")))
+                  (`interrupted ".")
+                  (`suspicious "?"))))
+      (concat " " flycheck-mode-line-prefix text)))
+
+  (setq
+   flycheck-mode-line '(:eval (my-flycheck-mode-line-status-text))
+   flycheck-mode-line-prefix "👺"
+   flycheck-disabled-checkers
+   '(html-tidy xml-xmlint emacs-lisp emacs-lisp-checkdoc)
+   flycheck-display-errors-delay 0.2
+   flycheck-highlighting-mode 'lines)
   (global-flycheck-mode t))
 
 ;; Comment dwim
@@ -154,11 +182,27 @@
   (set-face-background 'highlight-indentation-face "#e3e3d3")
   (set-face-background 'highlight-indentation-current-column-face "#c3b3b3"))
 
+;; change ag interactivity
 (use-package wgrep-ag :commands (wgrep-ag-setup wgrep-ag-setup))
 
+;; dumb-jump everywhere move into stuff
 (use-package dumb-jump
   :bind
   (("C-S-d" . dumb-jump-go)))
+
+;; Drag stuff up and down
+(use-package drag-stuff
+  :ensure t
+  :diminish drag-stuff-mode
+  :init (drag-stuff-global-mode 1)
+  :bind (([(control x) (down)] . drag-stuff-down)
+         ([(control x) (up)] . drag-stuff-up)))
+
+;; emojis 😅
+(use-package emojify
+  :config
+  (advice-add #'format-mode-line :filter-return #'emojify-string)
+  (global-emojify-mode 1))
 
 ;;Web-mode
 (provide 'extras-modes)

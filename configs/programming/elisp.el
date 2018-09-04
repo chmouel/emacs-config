@@ -1,6 +1,7 @@
 ;Eldoc-Mode
-(use-package smartparens)
-(use-package aggressive-indent)
+(use-package smartparens :diminish smartparens-mode)
+(use-package aggressive-indent
+  :diminish aggressive-indent-mode)
 
 (defun my-emacs-lisp-mode-hook ()
   (smartparens-mode)

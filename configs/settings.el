@@ -11,7 +11,6 @@
 (global-set-key (read-kbd-macro "C-M-b") 'bookmark-jump)
 (global-set-key (read-kbd-macro "C-x C-k") (lambda () (interactive) (kill-buffer nil)))
 (global-set-key (read-kbd-macro "C-x f") 'find-file-at-point)
-(global-set-key (read-kbd-macro "M-/") 'hippie-expand)
 (global-set-key (read-kbd-macro "M-q") 'fill-region)
 (global-set-key (read-kbd-macro "M-l") 'downcase-word)
 (global-set-key (read-kbd-macro "C-x C-b")    'ibuffer-list-buffers)

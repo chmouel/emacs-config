@@ -5,8 +5,15 @@
                                         "%b"))))
 (when (featurep 'tool-bar) (tool-bar-mode -1))
 (when (featurep 'scroll-bar) (scroll-bar-mode -1))
-;;(when (featurep 'fringe) (fringe-mode 'minimal))
-;;(when (featurep 'menu-bar)(menu-bar-mode -1))
+(when (featurep 'menu-bar)(menu-bar-mode -1))
+
+;;; Buffer, Windows and Frames
+(setq frame-resize-pixelwise t          ; Resize by pixels
+      frame-title-format
+      '(:eval (if (buffer-file-name)
+                  (abbreviate-file-name (buffer-file-name)) "%b"))
+      ;; Size new windows proportionally wrt other windows
+      window-combination-resize t)
 
 ;;Line Spacing by default
 (setq-default line-spacing 2)

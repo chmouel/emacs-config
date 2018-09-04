@@ -23,7 +23,6 @@
 (use-package magit-find-file
   :bind
   (("C-S-f" . magit-find-file-completing-read))
-
   :config
   (setq my-magit-find-file-skip-vendor-pattern nil)
   (defun my-magit-find-file-without-vendor (res)

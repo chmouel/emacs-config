@@ -18,44 +18,22 @@
       (my-duplicate-region (point) (mark))
     (progn (my-duplicate-region (point-at-bol) (point-at-eol) "\n")(next-line))))
 
-;Down/UP the current line
-(global-set-key '[(control x) (up)] 'my-up-line)
-(global-set-key '[(control x) (down)] 'my-down-line)
-(defun my-down-line()
-  (interactive)
-  (let ((col (current-column)))
-    (forward-line 1)
-    (transpose-lines 1)
-    (forward-line -1)
-    (forward-char col)
-    )
-  )
-
-(defun my-up-line()
-  (interactive)
-  (let ((col (current-column)))
-    (transpose-lines 1)
-    (forward-line -2)
-    (forward-char col)
-    )
-  )
-
- ;; behave like vi's O command
- (defun open-previous-line (arg)
-   "Open a new line before the current one.
+;; behave like vi's O command
+(defun open-previous-line (arg)
+  "Open a new line before the current one.
   See also `newline-and-indent'."
-   (interactive "p")
-   (beginning-of-line)
-   (open-line arg)
-   (when newline-and-indent
-     (indent-according-to-mode)))
- (global-set-key (kbd "C-o") 'open-previous-line)
+  (interactive "p")
+  (beginning-of-line)
+  (open-line arg)
+  (when newline-and-indent
+    (indent-according-to-mode)))
+(global-set-key (kbd "C-o") 'open-previous-line)
 
- ;; autoindent open-*-lines
- (defvar newline-and-indent t
-   "Modify the behavior of the open-*-line functions to cause them to autoindent.")
+;; autoindent open-*-lines
+(defvar newline-and-indent t
+  "Modify the behavior of the open-*-line functions to cause them to autoindent.")
 
-; if no selection just comment line or comment selection
+                                        ; if no selection just comment line or comment selection
 (defun my-comment-line-or-region ()
   (interactive "*")
   (if (and mark-active transient-mark-mode)
