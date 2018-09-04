@@ -3,7 +3,9 @@
 (add-to-list 'auto-mode-alist '("\\.groovy" . groovy-mode))
 
 (defun my-groovy-mode-hook()
-  ;(local-set-key '[(control p)] (lambda () (interactive) (progn (insert "System.out.println(  );")(backward-char 3))))
+  (local-set-key '[(meta .)] 'dumb-jump-go)
+  (local-set-key '[(meta shift .)] 'dumb-jump-back)
+  (local-set-key '[(meta p)] (lambda () (interactive) (progn (insert "printLn(  );")(backward-char 3))))
   (set (make-local-variable 'my-compile-command) 'my-compile-run-command)
   (set (make-local-variable 'my-compile-run-command) (concat "groovy \"" buffer-file-name "\"" ))
   (my-programming-common-hook)

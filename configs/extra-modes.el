@@ -11,6 +11,7 @@
 
 (defun yas--magit-email-or-default ()
   "Get email from GIT or use default"
+  (require 'magit-process)
   (if (magit-toplevel ".")
       (magit-get "user.email")
     user-mail-address))
