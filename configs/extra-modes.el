@@ -204,5 +204,10 @@
   (advice-add #'format-mode-line :filter-return #'emojify-string)
   (global-emojify-mode 1))
 
+
+;; Match parenthesis like vim
+(use-package evil-matchit
+  :bind ("C-\\" . evilmi-jump-items))
+
 ;;Web-mode
 (provide 'extras-modes)
