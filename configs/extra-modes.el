@@ -106,22 +106,13 @@
 ;; ag a C ack replacement
 (use-package ag                            ;
   :commands (ag ag/dwim-at-point)
-  :bind   (("C-S-h" . my-ag-repo)
+  :bind   (("C-S-h" . ag-project)
            ("C-S-g" . my-ag-here))
   :custom
   (ag-reuse-buffers t)
   :config
-  (defun my-ag-repo (string)
-    (require 'magit-process)
-    (interactive
-     (list (read-from-minibuffer
-            "Search string: "
-            (ag/dwim-at-point))))
-    (let ((gitdir (magit-toplevel ".")))
-      (if gitdir
-          (ag/search string gitdir))))
   (defun my-ag-here (string)
-    (interactive (list (read-from-minibuffer "Search string: " (ag/dwim-at-point))))
+    (interactive (list (read-from-minibuffer "Search string here: " (ag/dwim-at-point))))
     (ag/search string (expand-file-name "."))))
 
 ;; flx-ido - advanced flex matching for ido
