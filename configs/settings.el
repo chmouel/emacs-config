@@ -14,6 +14,8 @@
 (global-set-key (read-kbd-macro "M-q") 'fill-region)
 (global-set-key (read-kbd-macro "M-l") 'downcase-word)
 (global-set-key (read-kbd-macro "C-x C-b")    'ibuffer-list-buffers)
+(global-set-key (kbd "M-n") (kbd "C-u 10 C-v"))
+(global-set-key (kbd "M-p") (kbd "C-u 10 M-v"))
 
 ;; whitespace cleanup
 (global-set-key (read-kbd-macro "C-+")    'whitespace-cleanup)

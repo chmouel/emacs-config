@@ -1,6 +1,5 @@
 (use-package highlight-numbers)
-
-(autoload 'toggle-quotes "toggle-quotes")
+(use-package toggle-quotes)
 
 (defun my-programming-common-hook()
   (highlight-numbers-mode 1)
@@ -12,4 +11,5 @@
   (if (fboundp 'my-compile-command)
       (local-set-key '[(control meta return)] (lambda () (interactive) (compile my-compile-command))))
   (if (fboundp 'my-compile-run-command)
-      (local-set-key '[(control return)] (lambda () (interactive) (compile my-compile-run-command)))))
+      (local-set-key '[(control return)] (lambda () (interactive) (compile my-compile-run-command)))
+    (local-set-key '[(control return)] 'recompile)))
