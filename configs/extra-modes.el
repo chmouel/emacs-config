@@ -111,6 +111,7 @@
   :custom
   (ag-reuse-buffers t)
   :config
+  (add-to-list 'ag-arguments "-z")
   (defun my-ag-here (string)
     (interactive (list (read-from-minibuffer "Search string here: " (ag/dwim-at-point))))
     (ag/search string (expand-file-name "."))))
