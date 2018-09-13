@@ -29,8 +29,21 @@
 ;;Find find in GIT repo
 (use-package magit-find-file
   :bind
-  (("C-S-f" . magit-find-file-completing-read))
+  (("C-S-f" . my-project-find-file-or-recent))
   :config
+  (defun my-project-find-file-or-recent(&optional argument)
+    (interactive "P")
+    (let ((toplevel (magit-toplevel)))
+      (unless toplevel (error "error: not a git project"))
+      (if argument
+          (progn
+            (setq toplevel
+                  (s-replace-regexp (s-concat "/\\(home\\|Users\\)/" user-login-name) "~" (magit-toplevel)))
+            (message toplevel)
+            (find-file (ido-completing-read
+                        "Recent in project: "
+                        (-distinct (--filter (s-prefix-p toplevel it) file-name-history)))))
+        (magit-find-file-completing-read))))
   (setq my-magit-find-file-skip-vendor-pattern nil)
   (defun my-magit-find-file-without-vendor (res)
     (--remove
