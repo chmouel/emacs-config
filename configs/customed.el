@@ -33,7 +33,7 @@
  '(canlock-password "38ebb79c7f0ece35d1103834941558b48e754833")
  '(company-idle-delay 0.3)
  '(compilation-ask-about-save nil)
- '(compilation-scroll-output t)
+ '(compilation-scroll-output (quote first-error))
  '(completion-ignored-extensions
    (quote
     (".svn/" "CVS/" ".o" "~" ".bin" ".lbin" ".so" ".a" ".ln" ".blg" ".bbl" ".elc" ".pyc" ".pyo" ".gitignore" ".class")))
@@ -135,9 +135,6 @@
  '(font-use-system-font t)
  '(fringe-mode (quote (1 . 1)) nil (fringe))
  '(gc-cons-threshold 20000000)
- '(git-commit-setup-hook
-   (quote
-    (git-commit-turn-on-flyspell magithub-bug-reference-mode-on git-commit-save-message git-commit-setup-changelog-support git-commit-turn-on-auto-fill git-commit-propertize-diff with-editor-usage-message)))
  '(git-gutter:added-sign " ")
  '(git-gutter:deleted-sign " ")
  '(github-browse-file--force-shaid t)
@@ -223,6 +220,7 @@
  '(kill-do-not-save-duplicates t)
  '(ls-lisp-dirs-first t)
  '(ls-lisp-use-insert-directory-program nil)
+ '(magit-commit-show-diff nil)
  '(magit-commit-signoff t)
  '(magit-completing-read-function (quote magit-ido-completing-read))
  '(magit-expand-staged-on-commit (quote full))
@@ -282,7 +280,6 @@
  '(savehist-mode t)
  '(server-use-tcp nil)
  '(server-window nil)
- '(show-paren-style (quote mixed))
  '(smex-save-file "~/.emacs.d/auto-save-list/smex-items")
  '(split-width-threshold nil)
  '(svn-status-display-full-path t)
