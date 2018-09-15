@@ -1,6 +1,7 @@
 (use-package magit
   :commands (magit-read-repository magit-toplevel)
-  :bind (("C-S-q"  . magit-status))
+  :bind (("s-g" . magit-file-popup)
+         ("C-S-q"  . magit-status))
   :config
   (global-git-commit-mode)
   (magit-define-popup-switch 'magit-log-popup ?m "Omit merge commits" "--no-merges"))
