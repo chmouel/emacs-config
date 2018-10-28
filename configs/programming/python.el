@@ -26,6 +26,9 @@
  python-shell-completion-string-code "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
 
 (defun my-python-mode-hook()
+  (setq flycheck-python-flake8-executable python-shell-interpreter)
+
+  ;; Ipython
   (fci-mode)
   (flycheck-mode)
   (anaconda-mode)
@@ -34,6 +37,7 @@
   (hungry-delete-mode)
 
   (local-set-key '[(meta q)] 'fill-paragraph)
+  (local-set-key (kbd "C-'") 'toggle-quotes)
 
   ;; (local-set-key (kbd "C-S-y") 'pan-run-all-until-fail)
   ;; (local-set-key (read-kbd-macro "C-\\") 'pan-switch-test-func)
