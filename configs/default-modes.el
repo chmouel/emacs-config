@@ -54,14 +54,32 @@
             try-complete-lisp-symbol-partially
             try-complete-lisp-symbol))))
 
-;; Isearch with occur
-(defun my-isearch-occur ()
-  (interactive)
-  (let ((case-fold-search isearch-case-fold-search))
-    (occur (if isearch-regexp isearch-string (regexp-quote isearch-string)))))
-(define-key isearch-mode-map (kbd "C-o") 'my-isearch-occur)
-(setq isearch-allow-scroll t)
-(diminish 'isearch-mode)
+;; Find files already opened
+(use-package isearch
+  :ensure nil
+  :defer t
+  :diminish isearch
+  :bind (([remap isearch-forward] . endless/isearch-symbol-with-prefix)
+         :map isearch-mode-map
+         ("C-." . isearch-forward-symbol-at-point)
+         ("C-o" . my-isearch-occur))
+  :init
+  (setq isearch-allow-scroll t)
+  :config
+  ;; http://endlessparentheses.com/quickly-search-for-occurrences-of-the-symbol-at-point.html
+  (defun endless/isearch-symbol-with-prefix (p)
+    "Like isearch, unless prefix argument is provided.
+With a prefix argument P, isearch for the symbol at point."
+    (interactive "P")
+    (let ((current-prefix-arg nil))
+      (call-interactively
+       (if p #'isearch-forward-symbol-at-point
+         #'isearch-forward))))
+
+  (defun my-isearch-occur ()
+    (interactive)
+    (let ((case-fold-search isearch-case-fold-search))
+      (occur (if isearch-regexp isearch-string (regexp-quote isearch-string))))))
 
 ;; Email With Message-mail
 (fset 'mail 'message-mail)
@@ -139,7 +157,7 @@
   (toggle-read-only))
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
-;                                       ;
+                                        ;                                       ;
 (use-package server                     ; The server of `emacsclient'
   :init (server-mode)
   :diminish (server-buffer-clients . " ⓒ"))
@@ -187,3 +205,15 @@ mouse-3: go to end"))))
   ;; Use mdfind as locate substitute on OS X, to utilize the Spotlight database
   (when-let (mdfind (and (eq system-type 'darwin) (executable-find "mdfind")))
     (setq locate-command mdfind)))
+
+;; Find files already opened
+(use-package "files"
+  :after ido
+  :ensure nil
+  :defer t
+  :chords ("=-" . my-ido-already-open)
+  :bind (("C-c g" . my-ido-already-open))
+  :config
+  (defun my-ido-already-open()
+    (interactive)
+    (find-file (ido-completing-read "Open history: " file-name-history))))
