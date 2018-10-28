@@ -1,6 +1,11 @@
 (use-package magit
   :commands (magit-read-repository magit-toplevel)
+  :chords (("op" . my-magit-open-directory-and-files)
+           ("oi" . my-magit-open-repository))
   :bind (("s-S-v" . my-magit-stage-all-and-commit)
+         ("s-i" . my-magit-and-ag)
+         ("s-o" . my-magit-open-directory-and-files)
+         ("s-p" . my-magit-open-repository)
          ("s-g" . magit-status))
   :config
   (global-git-commit-mode)
@@ -19,8 +24,6 @@
   (interactive)
   (let ((default-directory (magit-read-repository nil)))
     (call-interactively 'my-ag-here)))
-(global-set-key (read-kbd-macro "s-i") 'my-magit-and-ag)
-(global-set-key (read-kbd-macro "C-S-i") 'my-magit-and-ag)
 
 ;;open files for projects.
 (defun my-magit-open-directory-and-files ()
@@ -28,15 +31,11 @@
   (interactive)
   (let ((default-directory (magit-read-repository nil)))
     (magit-find-file-completing-read)))
-(global-set-key (read-kbd-macro "s-o") 'my-magit-open-directory-and-files)
-(global-set-key (read-kbd-macro "C-S-o") 'my-magit-open-directory-and-files)
 
 (defun my-magit-open-repository ()
   "Open quickly a magit directory."
   (interactive)
   (dired (magit-read-repository nil)))
-(global-set-key (read-kbd-macro "s-p") 'my-magit-open-repository)
-(global-set-key (read-kbd-macro "C-S-p") 'my-magit-open-repository)
 
 ;;Find find in GIT repo
 (use-package magit-find-file
