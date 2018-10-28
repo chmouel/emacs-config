@@ -1,16 +1,25 @@
 (use-package magit
   :commands (magit-read-repository magit-toplevel)
-  :bind (("s-g" . magit-file-popup)
-         ("C-S-q"  . magit-status))
+  :bind (("s-S-v" . my-magit-stage-all-and-commit)
+         ("s-g" . magit-status))
   :config
   (global-git-commit-mode)
   (magit-define-popup-switch 'magit-log-popup ?m "Omit merge commits" "--no-merges"))
+
+(defun my-magit-stage-all-and-commit()
+  (interactive)
+  (magit-stage-file (buffer-file-name))
+  (condition-case nil
+      (magit-commit nil)
+    (error nil))
+  (magit-push-current-to-pushremote nil))
 
 (defun my-magit-and-ag ()
   "Open quickly a magit directory and open a grep file in there"
   (interactive)
   (let ((default-directory (magit-read-repository nil)))
     (call-interactively 'my-ag-here)))
+(global-set-key (read-kbd-macro "s-i") 'my-magit-and-ag)
 (global-set-key (read-kbd-macro "C-S-i") 'my-magit-and-ag)
 
 ;;open files for projects.
@@ -19,12 +28,14 @@
   (interactive)
   (let ((default-directory (magit-read-repository nil)))
     (magit-find-file-completing-read)))
+(global-set-key (read-kbd-macro "s-o") 'my-magit-open-directory-and-files)
 (global-set-key (read-kbd-macro "C-S-o") 'my-magit-open-directory-and-files)
 
 (defun my-magit-open-repository ()
   "Open quickly a magit directory."
   (interactive)
   (dired (magit-read-repository nil)))
+(global-set-key (read-kbd-macro "s-p") 'my-magit-open-repository)
 (global-set-key (read-kbd-macro "C-S-p") 'my-magit-open-repository)
 
 ;;Find find in GIT repo
