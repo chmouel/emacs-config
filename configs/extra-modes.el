@@ -16,17 +16,17 @@
     user-mail-address))
 
 (use-package yasnippet
-  ;; :diminish (yas-minor-mode . " Ⓨ")
   :diminish yas-minor-mode
+  :custom
+  ((auto-insert-query nil)
+   (yas/prompt-functions '(yas/dropdown-prompt)))
   :config
   (yas/global-mode 1)
   (require 'autoinsert)
   (auto-insert-mode)
-  (setq auto-insert-query nil)
   (define-auto-insert "\.py"
     '(lambda () (yas--expand-by-uuid 'python-mode "header")))
-  (use-package dropdown-list)
-  (setq yas/prompt-functions '(yas/dropdown-prompt)))
+  (use-package dropdown-list))
 
 ;; RegexTool
 (use-package regex-tool :commands (regex-tool))
@@ -106,6 +106,7 @@
 ;; ag a C ack replacement
 (use-package ag                            ;
   :commands (ag ag/dwim-at-point)
+  :chords ("gf" . my-ag-here)
   :bind   (("C-S-h" . ag-project)
            ("C-S-g" . my-ag-here))
   :custom
