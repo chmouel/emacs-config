@@ -119,6 +119,8 @@
 ;; flx-ido - advanced flex matching for ido
 (use-package flx-ido
   :custom
+  (ido-enable-flex-matching t)
+  (ido-use-faces nil)
   (gc-cons-threshold 20000000)
   :config
   (flx-ido-mode 1))
@@ -192,14 +194,30 @@
 
 ;; emojis 😅
 (use-package emojify
+  :disabled
   :config
-  (advice-add #'format-mode-line :filter-return #'emojify-string)
-  (global-emojify-mode 1))
+  (advice-add #'format-mode-line :filter-return #'emojify-string))
 
 
 ;; Match parenthesis like vim
 (use-package evil-matchit
   :bind ("C-\\" . evilmi-jump-items))
+
+;; Dockerfilemode
+(use-package dockerfile-mode)
+
+;;edit-server
+(use-package edit-server
+  :config
+  (use-package edit-server-htmlize
+    :config
+    (add-hook 'edit-server-start-hook 'edit-server-maybe-dehtmlize-buffer)
+    (add-hook 'edit-server-done-hook 'edit-server-maybe-htmlize-buffer))
+
+  (edit-server-start))
+
+
+
 
 ;;Web-mode
 (provide 'extras-modes)
