@@ -14,19 +14,14 @@
       mail-source-directory "~/Gnus/Mail"
       nnmail-message-id-cache-file "~/Gnus/config/nnmail-cache")
 
-;; Install gerrit-download
-(use-package gerrit-download
-  :commands (gerrit-download-insinuate-gnus)
-  :config
-  (add-hook 'gnus-startup-hook 'gerrit-download-insinuate-gnus))
-
 ;;Settings
 (setq gnus-summary-ignore-duplicates t
       gnus-suppress-duplicates t
       gnus-read-newsrc-file nil
       gnus-save-newsrc-file nil
+      gnus-novice-user nil
       mail-user-agent 'gnus-user-agent
-      mail-host-address "chmouel.com"
+      message-dont-reply-to-names message-alternative-emails
       read-mail-command 'gnus
       gnus-expert-user t
       gnus-visible-headers "^From:\\|^Subject:\\|^Date:\\|^Newsgroups:\\|^X-Mailer:\\|^X-Newsreader:\\|^Organization:\\|^Message-Id\\|^Followup-To:\\|^User-Agent:\\|^To:\\|^Cc:"
@@ -50,61 +45,26 @@
       gnus-sum-thread-tree-single-leaf "╰► "
       gnus-sum-thread-tree-vertical "│")
 
-(defun my-gnus-article-browse-nnrss-archived-at()
-  "Browse nnrss archived at url header"
-  (browse-url
-   (replace-regexp-in-string
-    "\\(\<\\|\>\\)" ""
-    (with-current-buffer
-        gnus-original-article-buffer
-      (message-fetch-field "archived-at"))))  )
-
-(defun my-gnus-artcile-browse-a-regexp-url()
-  "Browse some url that we want"
-  (article-goto-body)
-  (while
-      (re-search-forward
-       (rx
-        (submatch
-         (or
-          (and "https://review.openstack.org/"
-               (one-or-more (any digit)))
-          (and
-           "https://bugs.launchpad.net/bugs/"
-           (one-or-more (any digit)))))) nil t)
-    (browse-url (match-string-no-properties 1))))
-
-(defun my-gnus-article-browse-message-id ()
-  "Take the message id and browse it with gmane"
-  (browse-url
-   (concat "http://mid.gmane.org/"
-           (message-fetch-field "message-id"))))
-
-; Browse OpenStack review when found
-(defun my-gnus-article-browse-something (&optional prefix)
-  (interactive "P")
-  (gnus-with-article-buffer
-    (cond (prefix
-           (my-gnus-article-browse-message-id))
-          ((string-match "^nntp\\+news\.gwene\.org" gnus-newsgroup-name)
-           (my-gnus-article-browse-nnrss-archived-at))
-          (t
-           (my-gnus-artcile-browse-a-regexp-url)))))
-
 (defun my-gnus-summary-mode-hook ()
-  (local-set-key '[(\[)] 'gnus-article-hide-citation-maybe)
-  (local-set-key '[(\])] 'my-gnus-article-browse-something))
-
+  (local-set-key
+   (kbd "Y")
+   (lambda ()
+     (interactive)
+     (gnus-summary-delete-article)
+     (gnus-summary-next-article nil (and gnus-auto-select-same
+				                         (gnus-summary-article-subject)))))
+  (local-set-key (kbd "C-o") (lambda ()(interactive) (org-capture nil "t")))
+  (local-set-key '[(\[)] 'gnus-article-hide-citation-maybe))
 (add-hook 'gnus-summary-mode-hook 'my-gnus-summary-mode-hook)
 
-
-(setq gnus-thread-sort-functions '(gnus-thread-sort-by-score
-                                   gnus-thread-sort-by-date
-								   gnus-thread-sort-by-subject
-								   gnus-thread-sort-by-total-score))
+(setq gnus-thread-sort-functions
+      '(gnus-thread-sort-by-score
+        gnus-thread-sort-by-date
+		gnus-thread-sort-by-subject
+		gnus-thread-sort-by-total-score))
 
 (defun my-article-mode-hook()
-  (local-set-key (kbd "C-o") (lambda ()(interactive) (org-capture nil "o")))
+  (local-set-key (kbd "s-g") (lambda ()(interactive) (google-this t t)))
   (set-fringe-style 1))
 (add-hook 'gnus-article-mode-hook 'my-article-mode-hook)
 
@@ -112,7 +72,7 @@
 (require 'hl-line)
 (add-hook 'gnus-summary-mode-hook 'my-setup-hl-line)
 (add-hook 'gnus-group-mode-hook 'my-setup-hl-line)
-(defun my-setup-hl-line () (hl-line-mode 1) (setq cursor-type 'hbar) )
+(defun my-setup-hl-line () (hl-line-mode 1) (setq cursor-type 'hbar))
 (setq cursor-type 't)
 
 ; Colours!
