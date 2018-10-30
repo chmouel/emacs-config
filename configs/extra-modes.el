@@ -106,7 +106,8 @@
 ;; ag a C ack replacement
 (use-package ag                            ;
   :commands (ag ag/dwim-at-point)
-  :chords ("gf" . my-ag-here)
+  :chords (("gh" . ag-project)
+           ("gf" . my-ag-here))
   :bind   (("C-S-h" . ag-project)
            ("C-S-g" . my-ag-here))
   :custom
