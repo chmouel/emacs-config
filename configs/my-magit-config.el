@@ -2,11 +2,12 @@
   :commands (magit-read-repository magit-toplevel)
   :chords (("op" . my-magit-open-directory-and-files)
            ("oi" . my-magit-open-repository))
-  :bind (("s-S-v" . my-magit-stage-all-and-commit)
+  :bind (("s-V" . my-magit-stage-all-and-commit)
          ("s-i" . my-magit-and-ag)
          ("s-o" . my-magit-open-directory-and-files)
          ("s-p" . my-magit-open-repository)
          ("s-g" . magit-status))
+  :commands (magit-list-repos-uniquify)
   :config
   (global-git-commit-mode)
   (magit-define-popup-switch 'magit-log-popup ?m "Omit merge commits" "--no-merges"))
@@ -22,20 +23,42 @@
 (defun my-magit-and-ag ()
   "Open quickly a magit directory and open a grep file in there"
   (interactive)
-  (let ((default-directory (magit-read-repository nil)))
+  (let ((default-directory (my-magit-read-repository)))
     (call-interactively 'my-ag-here)))
 
 ;;open files for projects.
 (defun my-magit-open-directory-and-files ()
   "Open quickly a magit directory and open a git file in there"
   (interactive)
-  (let ((default-directory (magit-read-repository nil)))
+  (let ((default-directory (my-magit-read-repository)))
     (magit-find-file-completing-read)))
+
+(setq my-magit-read-repositories nil)
+(setq my-magit-repos-history nil)
+
+;; read the magit repos but keep the chose one at the top of the lsit
+(defun my-magit-read-repository ()
+  (let* ((repos
+          (if (not my-magit-read-repositories)
+              (magit-list-repos-uniquify
+               (--map (cons (file-name-nondirectory
+                             (directory-file-name it))
+                            it)
+                      (magit-list-repos)))
+            my-magit-read-repositories))
+         (reply (ido-completing-read "Git repository: " repos nil nil nil my-magit-repos-history)))
+    (setq my-magit-read-repositories (remove (assoc reply repos) repos))
+    (add-to-list 'my-magit-read-repositories (assoc reply repos))
+    (file-name-as-directory
+     (or (cdr (assoc reply repos))
+         (if (file-directory-p reply)
+             (expand-file-name reply)
+           (user-error "Not a repository or a directory: %s" reply))))))
 
 (defun my-magit-open-repository ()
   "Open quickly a magit directory."
   (interactive)
-  (dired (magit-read-repository nil)))
+  (dired (my-magit-read-repository)))
 
 ;;Find find in GIT repo
 (use-package magit-find-file
