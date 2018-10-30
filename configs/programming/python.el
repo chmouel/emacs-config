@@ -8,10 +8,6 @@
               (locate-user-emacs-file "auto-save-list/anaconda-mode")))
 (use-package hungry-delete :diminish hungry-delete-mode)
 
-(autoload 'pan-switch-test-func "pan")
-(autoload 'pan-run-all-until-fail "pan")
-(autoload 'pan-run-current-test "pan")
-
 (use-package company-anaconda
   :config
   (eval-after-load 'company
@@ -38,11 +34,6 @@
 
   (local-set-key '[(meta q)] 'fill-paragraph)
   (local-set-key (kbd "C-'") 'toggle-quotes)
-
-  ;; (local-set-key (kbd "C-S-y") 'pan-run-all-until-fail)
-  ;; (local-set-key (read-kbd-macro "C-\\") 'pan-switch-test-func)
-  ;; (local-set-key (kbd "C-S-r") 'pan-run-current-test)
-  ;; (local-set-key (kbd "C-S-w") (lambda () (interactive) (kill-new (python-info-current-defun))))
 
   (local-set-key '[(control c)(\[)] 'flycheck-previous-error)
   (local-set-key '[(control c)(\])] 'flycheck-next-error)
