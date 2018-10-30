@@ -2,7 +2,7 @@
   :commands (magit-read-repository magit-toplevel)
   :chords (("op" . my-magit-open-directory-and-files)
            ("oi" . my-magit-open-repository))
-  :bind (("s-V" . my-magit-stage-all-and-commit)
+  :bind (("C-x v v" . my-magit-commit-buffer)
          ("s-i" . my-magit-and-ag)
          ("s-o" . my-magit-open-directory-and-files)
          ("s-p" . my-magit-open-repository)
@@ -12,13 +12,10 @@
   (global-git-commit-mode)
   (magit-define-popup-switch 'magit-log-popup ?m "Omit merge commits" "--no-merges"))
 
-(defun my-magit-stage-all-and-commit()
+(defun my-magit-commit-buffer()
   (interactive)
-  (magit-stage-file (buffer-file-name))
-  (condition-case nil
-      (magit-commit nil)
-    (error nil))
-  (magit-push-current-to-pushremote nil))
+  (if (magit-anything-modified-p nil (list (buffer-file-name)))
+      (magit-commit-create (list (buffer-file-name)))))
 
 (defun my-magit-and-ag ()
   "Open quickly a magit directory and open a grep file in there"
@@ -68,7 +65,7 @@
   (defun my-project-find-file-or-recent(&optional argument)
     (interactive "P")
     (let ((toplevel (magit-toplevel)))
-      (unless toplevel (error "error: not a git project"))
+      (unless toplevel (user-error "error: not a git project"))
       (if argument
           (progn
             (setq toplevel
