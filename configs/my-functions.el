@@ -69,20 +69,21 @@
 (global-set-key [(shift return)] 'smart-open-line)
 
 ;; Kill to the beginning of line (i.e: reverse c-k)
-(global-set-key (kbd "C-<backspace>") (lambda ()
-                                        (interactive)
-                                        (kill-line 0)
-                                        (indent-according-to-mode)))
-
+(global-set-key
+ (kbd "C-<backspace>")
+ (lambda ()
+   (interactive)
+   (kill-line 0)
+   (indent-according-to-mode)))
 
 ;; Kill whole line but stay at the same place.
-(global-set-key (kbd "C-S-k") (lambda ()
-                                (interactive)
-                                (let ((p (point)))
-                                  (kill-whole-line)
-                                  (goto-char p))))
-
-
+(global-set-key
+ (kbd "C-S-k")
+ (lambda ()
+   (interactive)
+   (let ((p (point)))
+     (kill-whole-line)
+     (goto-char p))))
 
 ;; http://emacsredux.com/blog/2013/05/30/joining-lines/
 (defun my-top-join-line ()
@@ -118,57 +119,6 @@
    nil 'fullscreen
    (when (not (frame-parameter nil 'fullscreen)) 'fullboth)))
 
-; Quickly try a lisp on the web downloading and evaluating it.
-; From me.
-(defun my-try-el(url)
-  "Quickly try a lisp file downloading and evaluating it"
-  (interactive "sEmacs lisp url to retrieve: ")
-  (progn
-    (switch-to-buffer (url-retrieve-synchronously url))
-    (save-excursion
-      (goto-char (point-min))
-      (delete-region (point) (search-forward "\n\n" nil t)))
-    (eval-current-buffer)
-    (emacs-lisp-mode)
-    (font-lock-fontify-buffer)))
-
-;; http://www.emacswiki.org/emacs/UnfillRegion
-(defun unfill-region (beg end)
-  "Unfill the region, joining text paragraphs into a single
-    logical line.  This is useful, e.g., for use with
-    `visual-line-mode'."
-  (interactive "*r")
-  (let ((fill-column (point-max)))
-    (fill-region beg end)))
-(define-key global-map "\C-\M-Q" 'unfill-region)
-
-;; https://github.com/milkypostman/dotemacs/blob/master/init.el
-(defun my-rotate-windows ()
-  "Rotate your windows"
-  (interactive)
-  (cond ((not (> (count-windows)1))
-         (message "You can't rotate a single window!"))
-        (t
-         (setq i 1)
-         (setq numWindows (count-windows))
-         (while  (< i numWindows)
-           (let* (
-                  (w1 (elt (window-list) i))
-                  (w2 (elt (window-list) (+ (% i numWindows) 1)))
-
-                  (b1 (window-buffer w1))
-                  (b2 (window-buffer w2))
-
-                  (s1 (window-start w1))
-                  (s2 (window-start w2))
-                  )
-             (set-window-buffer w1  b2)
-             (set-window-buffer w2 b1)
-             (set-window-start w1 s2)
-             (set-window-start w2 s1)
-             (setq i (1+ i)))))))
-
-
 ;; Emacswiki
 (defun copy-line (arg)
   "Copy lines (as many as prefix argument) in the kill ring"
@@ -176,19 +126,7 @@
   (kill-ring-save (line-beginning-position)
                   (line-beginning-position (+ 1 arg)))
   (message "%d line%s copied" arg (if (= 1 arg) "" "s")))
-
 (define-key global-map (kbd "C-S-SPC") 'copy-line)
-
-;; https://stackoverflow.com/questions/1587972/how-to-display-indentation-guides-in-emacs/4459159#4459159
-(defun aj-toggle-fold ()
-  "Toggle fold all lines larger than indentation on current line"
-  (interactive)
-  (let ((col 1))
-    (save-excursion
-      (back-to-indentation)
-      (setq col (+ 1 (current-column)))
-      (set-selective-display
-       (if selective-display nil (or col 1))))))
 
 ;; I have a bunch of different 'profiles' for kubernetes by different cluster so
 ;; i don't mess between things
@@ -201,8 +139,11 @@
      "Kubeconfig: "
      (mapcar
       (lambda (x)
-        (replace-regexp-in-string "^config\." "" (file-name-nondirectory(directory-file-name x))))
-      (directory-files-recursively (expand-file-name "~/.kube") "^config\.")) nil t )))
+        (replace-regexp-in-string
+         "^config\." ""
+         (file-name-nondirectory(directory-file-name x))))
+      (directory-files-recursively
+       (expand-file-name "~/.kube") "^config\.")) nil t )))
   (setq kubeconfig (expand-file-name (format "~/.kube/config.%s" kubeconfig)))
   (if (file-exists-p kubeconfig)
       (setenv "KUBECONFIG" kubeconfig)
