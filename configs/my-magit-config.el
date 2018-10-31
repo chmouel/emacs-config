@@ -15,7 +15,8 @@
 (defun my-magit-commit-buffer()
   (interactive)
   (if (magit-anything-modified-p nil (list (buffer-file-name)))
-      (magit-commit-create (list (buffer-file-name)))))
+      (let ((default-directory (magit-toplevel)))
+        (magit-run-git-with-editor "commit" (list "-v" (buffer-file-name))))))
 
 (defun my-magit-and-ag ()
   "Open quickly a magit directory and open a grep file in there"
