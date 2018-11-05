@@ -3,7 +3,6 @@
   :chords (("op" . my-magit-open-directory-and-files)
            ("oi" . my-magit-open-repository))
   :bind (("C-x v v" . my-magit-commit-buffer)
-         ("C-S-b" . my-switch-buffer-in-project)
          ("s-b" . my-switch-buffer-in-project)
          ("s-i" . my-magit-and-ag)
          ("s-o" . my-magit-open-directory-and-files)
@@ -11,12 +10,24 @@
          ("C-S-g" . magit-status))
   :commands (magit-list-repos-uniquify)
   :config
+  (setq magit-display-buffer-function 'my-magit-display-buffer)
   (global-git-commit-mode)
   (magit-define-popup-switch 'magit-log-popup ?m "Omit merge commits" "--no-merges"))
 
+;;
+(defun my-magit-display-buffer (buffer)
+  (or (get-buffer-window buffer)
+      (if (one-window-p)
+          (let ((new-win (split-window-vertically)))
+            (set-window-buffer new-win buffer)
+            new-win)
+        (let ((new-win (get-lru-window)))
+          (set-window-buffer new-win buffer)
+          new-win))))
+
 (defun my-magit-commit-buffer()
   (interactive)
-  (if (magit-anything-modified-p nil (list (buffer-file-name)))
+  (if (not (magit-anything-modified-p nil (list (buffer-file-name))))
       (message "Fileset is up-to-date")
     (let ((default-directory (magit-toplevel)))
       (magit-run-git-with-editor
