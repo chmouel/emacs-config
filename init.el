@@ -58,6 +58,23 @@
 (if (file-exists-p (downcase (concat my-init-directory "/hosts/" (my-short-hostname) ".el")))
     (load-file (downcase (concat my-init-directory "/hosts/" (my-short-hostname) ".el"))))
 
+(setq initial-major-mode 'markdown-mode)
+(setq initial-scratch-message "\
+<!--
+Scratch buffer, welcome!
+
+Useful Keys :
+Super-o / oi - Open Project
+Super-p / op - Open Project and jump to a file
+
+Control-Shift-b -- switch to a buffer inside this project
+Super-i         -- switch to project and grep
+Super-g         -- magit status
+Super-f         -- find file in project
+-->
+
+")
+
 ;; END
 (cd (expand-file-name "~/"))
 (put 'downcase-region 'disabled nil)
