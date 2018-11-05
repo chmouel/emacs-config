@@ -3,10 +3,12 @@
   :chords (("op" . my-magit-open-directory-and-files)
            ("oi" . my-magit-open-repository))
   :bind (("C-x v v" . my-magit-commit-buffer)
+         ("C-S-b" . my-switch-buffer-in-project)
+         ("s-b" . my-switch-buffer-in-project)
          ("s-i" . my-magit-and-ag)
          ("s-o" . my-magit-open-directory-and-files)
          ("s-p" . my-magit-open-repository)
-         ("s-g" . magit-status))
+         ("C-S-g" . magit-status))
   :commands (magit-list-repos-uniquify)
   :config
   (global-git-commit-mode)
@@ -15,8 +17,10 @@
 (defun my-magit-commit-buffer()
   (interactive)
   (if (magit-anything-modified-p nil (list (buffer-file-name)))
-      (let ((default-directory (magit-toplevel)))
-        (magit-run-git-with-editor "commit" (list "-v" (buffer-file-name))))))
+      (message "Fileset is up-to-date")
+    (let ((default-directory (magit-toplevel)))
+      (magit-run-git-with-editor
+       "commit" (list "-v" (buffer-file-name))))))
 
 (defun my-magit-and-ag ()
   "Open quickly a magit directory and open a grep file in there"
@@ -61,21 +65,9 @@
 ;;Find find in GIT repo
 (use-package magit-find-file
   :bind
-  (("C-S-f" . my-project-find-file-or-recent))
+  (("C-S-f" . my-project-find-file-or-recent)
+   ("s-f" . my-project-find-file-or-recent))
   :config
-  (defun my-project-find-file-or-recent(&optional argument)
-    (interactive "P")
-    (let ((toplevel (magit-toplevel)))
-      (unless toplevel (user-error "error: not a git project"))
-      (if argument
-          (progn
-            (setq toplevel
-                  (s-replace-regexp (s-concat "/\\(home\\|Users\\)/" user-login-name) "~" (magit-toplevel)))
-            (message toplevel)
-            (find-file (ido-completing-read
-                        "Recent in project: "
-                        (-distinct (--filter (s-prefix-p toplevel it) file-name-history)))))
-        (magit-find-file-completing-read))))
   (setq my-magit-find-file-skip-vendor-pattern nil)
   (defun my-magit-find-file-without-vendor (res)
     (--remove
@@ -89,3 +81,31 @@
    'magit-mode-hook
    '(lambda () (interactive)
       (local-set-key '[(\`)] 'magit-find-file-completing-read))))
+
+
+(defun my-project-find-file-or-recent(&optional argument)
+  (interactive "P")
+  (let ((toplevel (magit-toplevel)))
+    (unless toplevel (user-error "error: not a git project"))
+    (if argument
+        (progn
+          (setq toplevel
+                (s-replace-regexp
+                 (s-concat "/\\(home\\|Users\\)/" user-login-name) "~" (magit-toplevel)))
+          (message toplevel)
+          (find-file (ido-completing-read
+                      "Recent in project: "
+                      (-distinct (--filter (s-prefix-p toplevel it) file-name-history)))))
+      (magit-find-file-completing-read))))
+
+(defun my-switch-buffer-in-project ()
+  (interactive)
+  (when-let ((toplevel (magit-toplevel)))
+    (ido-completing-read
+     "Switch to buffer in project: "
+     (mapcar
+      (lambda (arg)
+        (s-replace-regexp
+         (s-concat "/\\(home\\|Users\\)/" user-login-name)
+         "~" (buffer-file-name arg)))
+      (--filter (s-prefix-p toplevel (buffer-file-name it)) (buffer-list))))))

@@ -211,9 +211,8 @@ mouse-3: go to end"))))
   :after ido
   :ensure nil
   :defer t
-  :chords ("=-" . my-ido-already-open)
   :bind (("C-c g" . my-ido-already-open))
   :config
   (defun my-ido-already-open()
     (interactive)
-    (find-file (ido-completing-read "Open history: " file-name-history))))
+    (find-file (ido-completing-read "Open history: " (-distinct file-name-history)))))

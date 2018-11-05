@@ -108,8 +108,9 @@
   :commands (ag ag/dwim-at-point)
   :chords (("gh" . ag-project)
            ("gf" . my-ag-here))
-  :bind   (("C-S-h" . ag-project)
-           ("C-S-g" . my-ag-here))
+  :bind   (("s-h" . ag-project)
+           ("s-g" . my-ag-here)
+           ("C-S-h" . ag-project))
   :custom
   (ag-reuse-buffers t)
   :config
