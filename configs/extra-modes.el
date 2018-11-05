@@ -220,7 +220,8 @@
   (edit-server-start))
 
 
-
+;; ADOC mode
+(use-package adoc-mode :mode "\\.adoc\\'")
 
 ;;Web-mode
 (provide 'extras-modes)
