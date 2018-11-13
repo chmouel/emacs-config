@@ -75,39 +75,29 @@
 
 ;;Find find in GIT repo
 (use-package magit-find-file
-  :bind
-  (("C-S-f" . my-project-find-file-or-recent)
-   ("s-f" . my-project-find-file-or-recent))
-  :config
-  (setq my-magit-find-file-skip-vendor-pattern nil)
-  (defun my-magit-find-file-without-vendor (res)
-    (--remove
-     (and
-      my-magit-find-file-skip-vendor-pattern
-      (string-match
-       my-magit-find-file-skip-vendor-pattern it))
-     res))
-  (advice-add 'magit-find-file-files :filter-return #'my-magit-find-file-without-vendor)
-  (add-hook
-   'magit-mode-hook
-   '(lambda () (interactive)
-      (local-set-key '[(\`)] 'magit-find-file-completing-read))))
+  :commands (magit-find-file-files)
+  :chords ("p[" . my-magit-find-file-completing-read)
+  :bind (("C-S-f" . my-magit-find-file-completing-read)
+         ("s-f" . my-magit-find-file-completing-read)))
 
-
-(defun my-project-find-file-or-recent(&optional argument)
-  (interactive "P")
-  (let ((toplevel (magit-toplevel)))
-    (unless toplevel (user-error "error: not a git project"))
-    (if argument
-        (progn
-          (setq toplevel
-                (s-replace-regexp
-                 (s-concat "/\\(home\\|Users\\)/" user-login-name) "~" (magit-toplevel)))
-          (message toplevel)
-          (find-file (ido-completing-read
-                      "Recent in project: "
-                      (-distinct (--filter (s-prefix-p toplevel it) file-name-history)))))
-      (magit-find-file-completing-read))))
+(setq my-magit-find-files-last nil)
+(defun my-magit-find-file-completing-read()
+  (interactive)
+  (let ((toplevel (magit-toplevel))
+        (files (magit-find-file-files)))
+    (when (and my-magit-find-files-last
+               (string= toplevel (cdr my-magit-find-files-last)))
+      (setq files (remove (car my-magit-find-files-last) files))
+      (add-to-list 'files my-magit-find-files-last))
+    (setq my-magit-find-files-last
+          (cons
+           (magit-completing-read
+            (format "Find file in %s" (abbreviate-file-name default-directory))
+            files)
+           toplevel)
+          ))
+  (magit-with-toplevel
+    (find-file (car my-magit-find-files-last))))
 
 (defun my-switch-buffer-in-project ()
   (interactive)
