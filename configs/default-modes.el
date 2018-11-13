@@ -34,8 +34,8 @@
         ("l" . my-dired-launch-command)
         ("E" . wdired-change-to-wdired-mode)
         ("s" . dired-up-directory)
-        ("j" . dired-previous-line)
-        ("k" . dired-next-line)))
+        ("j" . dired-next-line)
+        ("k" . dired-previous-line)))
 
 ;; Hippy-Expand
 (use-package hippie-exp                 ; Powerful expansion and completion
@@ -87,15 +87,22 @@ With a prefix argument P, isearch for the symbol at point."
     (load-file (concat my-init-directory "/gnus/message.el")))
 
 ;; IBUFFER
+(defun my-ibuffer()
+  (interactive)
+  (ibuffer-list-buffers t)
+  (switch-to-buffer-other-window (get-buffer "*Ibuffer*")))
+
 (use-package ibuffer
   :hook ibuffer-auto-mode
-  :config (setq ibuffer-saved-filter-groups
-                (quote (
-                        ("default"
-                         ("Files" (not mode . dired-mode) (name . "^[^*]"))
-                         ("Directories" (mode . dired-mode))))
-                       ))
-  :bind (("C-~" . ibuffer)))
+  :custom (ibuffer-saved-filter-groups
+           (quote (
+                   ("default"
+                    ("Files" (not mode . dired-mode) (name . "^[^*]"))
+                    ("Directories" (mode . dired-mode))))
+                  ))
+  :bind (("C-~" . my-ibuffer)
+         :map ibuffer-mode-map
+         ("M-p" . ibuffer-backward-line)))
 
 ;; Shell Mode
 ;(add-hook 'shell-mode-hook '(lambda () (toggle-truncate-lines 1)))
@@ -106,20 +113,13 @@ With a prefix argument P, isearch for the symbol at point."
                 ["black" "red4" "green4" "yellow4"
                  "blue3" "magenta4" "cyan4" "white"]))
 
-;;  IDO
-(defun my-ido-local-keys ()
-  "Add my keybindings for ido."
-  (define-key ido-completion-map " " 'ido-next-match)
-  )
-(add-hook 'ido-setup-hook 'my-ido-local-keys)
-
 ;; Comit mode
 (add-hook 'comint-mode-hook
-      (lambda ()
-        (local-set-key
-         '[(control meta l)]
-         (lambda () (interactive)
-           (switch-to-buffer (other-buffer nil))))))
+          (lambda ()
+            (local-set-key
+             '[(control meta l)]
+             (lambda () (interactive)
+               (switch-to-buffer (other-buffer nil))))))
 
 ;;  Flyspell mode
 (add-hook 'log-edit-mode-hook 'flyspell-mode)
@@ -206,13 +206,46 @@ mouse-3: go to end"))))
   (when-let (mdfind (and (eq system-type 'darwin) (executable-find "mdfind")))
     (setq locate-command mdfind)))
 
+;;  IDO
+(defun my-ido-local-keys ()
+  "Add my keybindings for ido."
+  (define-key ido-completion-map " " 'ido-next-match)
+  (define-key ido-completion-map (kbd "C-p") 'ido-prev-match)
+  (define-key ido-completion-map "[" 'ido-prev-match)
+  (define-key ido-completion-map "]" 'ido-next-match)
+  )
+(add-hook 'ido-setup-hook 'my-ido-local-keys)
+
 ;; Find files already opened
 (use-package "files"
   :after ido
   :ensure nil
   :defer t
-  :bind (("C-c g" . my-ido-already-open))
+  :bind (("s-`" . ido-goto-recent-file))
   :config
-  (defun my-ido-already-open()
-    (interactive)
-    (find-file (ido-completing-read "Open history: " (-distinct file-name-history)))))
+  (defun ido-goto-recent-file (file)
+    (interactive
+     (list (let* ((filepaths (let ((items))
+			                   (dolist (item recentf-list)
+			                     (if (and (stringp item)
+					                      (not (string-match ":" item))
+					                      (file-regular-p item)
+					                      (not (member item items)))
+				                     (add-to-list 'items item t)))
+			                   items))
+                  (filenames (mapcar 'expand-file-name filepaths))
+		          (numfilenames (length filenames))
+		          ;; get filename from user with ido
+		          (chosenfilename (ido-completing-read "Recent file: " filenames))
+		          (afterfilenameslist (member chosenfilename filenames))
+		          (posinlist (- numfilenames (length afterfilenameslist))))
+	         (nth posinlist filepaths))))
+    (find-file file)))
+
+;; Recentf
+(use-package recentf
+  :config
+  (setq recentf-save-file "~/.emacs.d/auto-save-list/recent-file-list.el"
+        recentf-max-saved-items 500
+        recentf-max-menu-items 15)
+  (recentf-mode +1))
