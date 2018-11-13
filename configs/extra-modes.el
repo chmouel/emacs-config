@@ -106,10 +106,9 @@
 ;; ag a C ack replacement
 (use-package ag                            ;
   :commands (ag ag/dwim-at-point)
-  :chords (("gh" . ag-project)
-           ("gf" . my-ag-here))
+  :chords ("=-" . my-ag-here)
   :bind   (("s-h" . ag-project)
-           ("s-g" . my-ag-here)
+           ("C-S-g" . my-ag-here)
            ("C-S-h" . ag-project))
   :custom
   (ag-reuse-buffers t)
@@ -216,9 +215,7 @@
     :config
     (add-hook 'edit-server-start-hook 'edit-server-maybe-dehtmlize-buffer)
     (add-hook 'edit-server-done-hook 'edit-server-maybe-htmlize-buffer))
-
   (edit-server-start))
-
 
 ;; ADOC mode
 (use-package adoc-mode :mode "\\.adoc\\'")
