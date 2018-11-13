@@ -7,7 +7,7 @@
          ("s-i" . my-magit-and-ag)
          ("s-o" . my-magit-open-directory-and-files)
          ("s-p" . my-magit-open-repository)
-         ("C-S-g" . magit-status))
+         ("s-g" . magit-status))
   :commands (magit-list-repos-uniquify)
   :config
   (setq magit-display-buffer-function 'my-magit-display-buffer)
@@ -44,7 +44,7 @@
   "Open quickly a magit directory and open a git file in there"
   (interactive)
   (let ((default-directory (my-magit-read-repository)))
-    (magit-find-file-completing-read)))
+    (my-magit-find-file-completing-read)))
 
 (setq my-magit-read-repositories nil)
 (setq my-magit-repos-history nil)
