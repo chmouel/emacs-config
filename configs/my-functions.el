@@ -18,17 +18,6 @@
       (my-duplicate-region (point) (mark))
     (progn (my-duplicate-region (point-at-bol) (point-at-eol) "\n")(next-line))))
 
-;; behave like vi's O command
-(defun open-previous-line (arg)
-  "Open a new line before the current one.
-  See also `newline-and-indent'."
-  (interactive "p")
-  (beginning-of-line)
-  (open-line arg)
-  (when newline-and-indent
-    (indent-according-to-mode)))
-(global-set-key (kbd "C-o") 'open-previous-line)
-
 ;; autoindent open-*-lines
 (defvar newline-and-indent t
   "Modify the behavior of the open-*-line functions to cause them to autoindent.")
@@ -59,6 +48,28 @@
         (display-line-numbers-mode 1)
         (goto-line (read-number "Goto line: ")))
     (display-line-numbers-mode -1)))
+
+;; https://github.com/bbatsov/crux/blob/308f17d914e2cd79cbc809de66d02b03ceb82859/crux.el#L166
+(defun crux-smart-open-line-above ()
+  "Insert an empty line above the current line.
+Position the cursor at its beginning, according to the current mode."
+  (interactive)
+  (move-beginning-of-line nil)
+  (insert "\n")
+  (if electric-indent-inhibit
+      ;; We can't use `indent-according-to-mode' in languages like Python,
+      ;; as there are multiple possible indentations with different meanings.
+      (let* ((indent-end (progn (move-to-mode-line-start) (point)))
+             (indent-start (progn (move-beginning-of-line nil) (point)))
+             (indent-chars (buffer-substring indent-start indent-end)))
+        (forward-line -1)
+        ;; This new line should be indented with the same characters as
+        ;; the current line.
+        (insert indent-chars))
+    ;; Just use the current major-mode's indent facility.
+    (forward-line -1)
+    (indent-according-to-mode)))
+(global-set-key (kbd "C-o") 'crux-smart-open-line-above)
 
 ;; Insert an empty line after the current line.
 ;; Position the cursor at its beginning, according to the current mode.
