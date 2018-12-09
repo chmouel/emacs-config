@@ -216,7 +216,7 @@ mouse-3: go to end"))))
 (add-hook 'ido-setup-hook 'my-ido-local-keys)
 
 ;; Find files already opened
-(use-package "files"
+(use-package files
   :after ido
   :ensure nil
   :defer t
@@ -244,7 +244,7 @@ mouse-3: go to end"))))
 ;; Recentf
 (use-package recentf
   :config
-  (setq recentf-save-file "~/.emacs.d/auto-save-list/recent-file-list.el"
-        recentf-max-saved-items 500
-        recentf-max-menu-items 15)
-  (recentf-mode +1))
+  (recentf-mode +1)
+  :custom
+  (recentf-save-file "~/.emacs.d/auto-save-list/recent-file-list.el"
+                     recentf-max-saved-items 500 recentf-max-menu-items 15))
