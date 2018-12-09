@@ -2,6 +2,7 @@
 (use-package toggle-quotes)
 
 (defun my-programming-common-hook()
+  (if (fboundp 'global-undo-tree-mode) (global-undo-tree-mode nil))
   (highlight-numbers-mode 1)
   (local-set-key (kbd "RET") 'newline-and-indent)
   (local-set-key (kbd "C-C C-l") 'github-browse-file)

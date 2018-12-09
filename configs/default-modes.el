@@ -157,7 +157,6 @@ With a prefix argument P, isearch for the symbol at point."
   (toggle-read-only))
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
-                                        ;                                       ;
 (use-package server                     ; The server of `emacsclient'
   :init (server-mode)
   :diminish (server-buffer-clients . " ⓒ"))
@@ -221,7 +220,7 @@ mouse-3: go to end"))))
   :after ido
   :ensure nil
   :defer t
-  :bind (("s-`" . ido-goto-recent-file))
+  :bind (("M-`" . ido-goto-recent-file))
   :config
   (defun ido-goto-recent-file (file)
     (interactive

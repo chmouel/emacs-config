@@ -49,53 +49,6 @@
         (goto-line (read-number "Goto line: ")))
     (display-line-numbers-mode -1)))
 
-;; https://github.com/bbatsov/crux/blob/308f17d914e2cd79cbc809de66d02b03ceb82859/crux.el#L166
-(defun crux-smart-open-line-above ()
-  "Insert an empty line above the current line.
-Position the cursor at its beginning, according to the current mode."
-  (interactive)
-  (move-beginning-of-line nil)
-  (insert "\n")
-  (if electric-indent-inhibit
-      ;; We can't use `indent-according-to-mode' in languages like Python,
-      ;; as there are multiple possible indentations with different meanings.
-      (let* ((indent-end (progn (move-to-mode-line-start) (point)))
-             (indent-start (progn (move-beginning-of-line nil) (point)))
-             (indent-chars (buffer-substring indent-start indent-end)))
-        (forward-line -1)
-        ;; This new line should be indented with the same characters as
-        ;; the current line.
-        (insert indent-chars))
-    ;; Just use the current major-mode's indent facility.
-    (forward-line -1)
-    (indent-according-to-mode)))
-(global-set-key (kbd "C-o") 'crux-smart-open-line-above)
-
-;; Insert an empty line after the current line.
-;; Position the cursor at its beginning, according to the current mode.
-(defun smart-open-line ()
-  (interactive)
-  (move-end-of-line nil)
-  (newline-and-indent))
-(global-set-key [(shift return)] 'smart-open-line)
-
-;; Kill to the beginning of line (i.e: reverse c-k)
-(global-set-key
- (kbd "C-<backspace>")
- (lambda ()
-   (interactive)
-   (kill-line 0)
-   (indent-according-to-mode)))
-
-;; Kill whole line but stay at the same place.
-(global-set-key
- (kbd "C-S-k")
- (lambda ()
-   (interactive)
-   (let ((p (point)))
-     (kill-whole-line)
-     (goto-char p))))
-
 ;; http://emacsredux.com/blog/2013/05/30/joining-lines/
 (defun my-top-join-line ()
   "Join the current line with the line beneath it."
@@ -129,15 +82,6 @@ Position the cursor at its beginning, according to the current mode."
   (set-frame-parameter
    nil 'fullscreen
    (when (not (frame-parameter nil 'fullscreen)) 'fullboth)))
-
-;; Emacswiki
-(defun copy-line (arg)
-  "Copy lines (as many as prefix argument) in the kill ring"
-  (interactive "p")
-  (kill-ring-save (line-beginning-position)
-                  (line-beginning-position (+ 1 arg)))
-  (message "%d line%s copied" arg (if (= 1 arg) "" "s")))
-(define-key global-map (kbd "C-S-SPC") 'copy-line)
 
 ;; I have a bunch of different 'profiles' for kubernetes by different cluster so
 ;; i don't mess between things

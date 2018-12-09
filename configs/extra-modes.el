@@ -107,9 +107,9 @@
 (use-package ag                            ;
   :commands (ag ag/dwim-at-point)
   :chords ("=-" . my-ag-here)
-  :bind   (("s-h" . ag-project)
+  :bind   (("s-h" . projectile-ag)
            ("C-S-g" . my-ag-here)
-           ("C-S-h" . ag-project))
+           ("C-S-h" . projectile-ag))
   :custom
   (ag-reuse-buffers t)
   :config
@@ -170,7 +170,7 @@
    ("C-x 1" . zygospore-toggle-delete-other-windows)))
 
 ;;
-(use-package google-this :bind (("S--" . google-this)))
+(use-package google-this :bind (("s--" . google-this)))
 
 ;;
 (use-package highlight-indentation
@@ -201,10 +201,6 @@
   (advice-add #'format-mode-line :filter-return #'emojify-string))
 
 
-;; Match parenthesis like vim
-(use-package evil-matchit
-  :bind ("C-\\" . evilmi-jump-items))
-
 ;; Dockerfilemode
 (use-package dockerfile-mode)
 
@@ -219,6 +215,13 @@
 
 ;; ADOC mode
 (use-package adoc-mode :mode "\\.adoc\\'")
+
+;; crux
+(use-package crux
+  :bind (("C-k" . crux-smart-kill-line)
+         ("C-o" . crux-smart-open-line-above)
+         ([shift return] . crux-smart-open-line )))
+
 
 ;;Web-mode
 (provide 'extras-modes)

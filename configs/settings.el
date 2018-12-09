@@ -8,6 +8,7 @@
 (global-set-key '[(control tab)] 'other-window)
 (global-set-key '[(control c)(\])] 'next-error)
 (global-set-key '[(control c)(\[)] 'previous-error)
+(global-set-key (read-kbd-macro "C-x C-=") 'ediff-buffers)
 (global-set-key (read-kbd-macro "C-M-b") 'bookmark-jump)
 (global-set-key (read-kbd-macro "C-x C-k") (lambda () (interactive) (kill-buffer nil)))
 (global-set-key (read-kbd-macro "C-x f") 'find-file-at-point)
