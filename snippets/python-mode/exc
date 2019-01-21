@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: exc
+# key:exc
+# --
+class $0(Exception):
+    pass

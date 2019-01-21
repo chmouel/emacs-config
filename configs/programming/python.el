@@ -21,9 +21,11 @@
  python-shell-completion-module-string-code "';'.join(module_completion('''%s'''))\n"
  python-shell-completion-string-code "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
 
+(reformatter-define yapf :program "yapf" :lighter 'YAPF)
+
 (defun my-python-mode-hook()
   (setq flycheck-python-flake8-executable python-shell-interpreter)
-
+  (yapf-on-save-mode)
   ;; Ipython
   (fci-mode)
   (flycheck-mode)
@@ -39,6 +41,6 @@
   (local-set-key '[(control c)(\])] 'flycheck-next-error)
 
   (setq-local compile-command (concat python-shell-interpreter " -E \"" buffer-file-name "\""))
-  (local-set-key '[(control return)] 'recompile)
+  (local-set-key '[(control return)] 'my-recompile)
   )
 (add-hook 'python-mode-hook 'my-python-mode-hook)

@@ -35,6 +35,7 @@
  '(company-idle-delay 0.3)
  '(compilation-ask-about-save nil)
  '(compilation-scroll-output (quote first-error))
+ '(compile-command "")
  '(completion-ignored-extensions
    (quote
     (".svn/" "CVS/" ".o" "~" ".bin" ".lbin" ".so" ".a" ".ln" ".blg" ".bbl" ".elc" ".pyc" ".pyo" ".gitignore" ".class")))
@@ -43,6 +44,9 @@
  '(ctags-update-other-options
    (quote
     ("--exclude='*.pyc'" "--exclude='*.elc'" "--exclude='*.class'" "--exclude='.git'" "--exclude='.svn'" "--exclude='SCCS'" "--exclude='RCS'" "--exclude='CVS'" "--exclude='EIFGEN'" "--exclude='.tox'" "--exclude='.venv'" "--python-kinds='-i'")))
+ '(custom-safe-themes
+   (quote
+    ("6b2636879127bf6124ce541b1b2824800afc49c6ccd65439d6eb987dbf200c36" default)))
  '(cycbuf-buffer-sort-function (quote cycbuf-sort-by-recency))
  '(cycbuf-dont-show-regexp (quote ("^ " "^\\*cycbuf\\*$" "^\\*Messages\\*#")))
  '(cycbuf-mode-name-replacements
@@ -248,7 +252,7 @@
      ("GNU" . "http://elpa.gnu.org/packages/"))))
  '(package-selected-packages
    (quote
-    (ripgrep crux uuidgen adoc adoc-mode csv color-moccur use-package-chords github-issues direx abyss-theme afternoon-theme ahungry-theme ample-theme ample-zen-theme anti-zenburn-theme atom-dark-theme atom-one-dark-theme autumn-light-theme badger-theme badwolf-theme basic-theme birds-of-paradise-plus-theme blackboard-theme bliss-theme borland-blue-theme boron-theme brutalist-theme bubbleberry-theme busybee-theme calmer-forest-theme caroline-theme challenger-deep-theme cherry-blossom-theme chyla-theme circadian clues-theme colonoscopy-theme commentary-theme constant-theme creamsody-theme dakrone-light-theme dakrone-theme danneskjold-theme darcula-theme dark-krystal-theme dark-mint-theme darkburn-theme darkmine-theme darkokai-theme darktooth-theme distinguished-theme django-theme doneburn-theme doom-themes dracula-theme eclipse-theme eink-theme espresso-theme exotica-theme lorem-ipsum pyimport flycheck-plantuml plantuml-mode edit-server-htmlize edit-server indent-guide projectile evil-matchit-mode bmx-mode elisp emacs-lisp elisp-mode emacs-lisp-mode info-colors magithub github-pullrequest shell-mode message isearch abbrev dired dired-x shut-up lisp-mode misc drag-stuff nyan-mode anzu page diminish ns-win moe moe-theme cyberpunk-theme mode-icons popup-kill-ring pdf-tools imenu-list github-clone indent-tools git-auto-commit-mode helm-lean edit-indirect applescript-mode browse-at-remote go-impl org-cliplink dumb-jump floobits groovy-mode jenkins the-org-mode-expansions kubernetes flycheck-yamllint nov avy es-windows yaml-tomato es-mode magit-gh-pulls commenter micgoline avk-emacs-themes github-modern-theme madhat2r-theme gist zop-to-char idomenu py-yapf js2-mode jsfmt go-add-tags wgrep-ag flycheck-gometalinter go-stacktracer js-auto-beautify visual-fill-column gore-mode go-guru highlight-indentation esqlite go-errcheck go-snippets go-playground golint go-rename toggle-quotes zygospore zenburn-theme yasnippet yascroll window-number wgrep web virtualenvwrapper use-package try transpose-frame tablist tabbar smex smartparens smart-shift smart-mode-line shorten rpm-spec-mode request-deferred regex-tool recent-addresses rcirc-color rcirc-alertify queue python-docstring pyfmt powerline php-mode phi-search pcsv pcache pastie paren-completer paredit pacmacs packed package-safe-delete pabbrev outline-magic names message-x marmalade magit-find-file lui logito lcs json-rpc json-mode isgd isearch-dabbrev inf-ruby ido-vertical-mode ido-completing-read+ ibuffer-vc hungry-delete htmlize highlight-numbers highlight-80+ google-this go-eldoc github-browse-file fringe-helper flycheck flx-ido find-file-in-git-repo fill-column-indicator fakir expand-region esxml es-lib dropdown-list dockerfile-mode db csv-mode csharp-mode company-go company-anaconda comment-dwim-2 browse-kill-ring boxquote bm bitly bbdb anything-git-goto alect-themes aggressive-indent ag)))
+    (reformatter build-status multi-compile-run multi-compile yapf-mode yapf ix ripgrep crux uuidgen adoc csv color-moccur use-package-chords github-issues direx abyss-theme afternoon-theme ahungry-theme ample-theme ample-zen-theme anti-zenburn-theme atom-dark-theme atom-one-dark-theme autumn-light-theme badger-theme badwolf-theme basic-theme birds-of-paradise-plus-theme blackboard-theme bliss-theme borland-blue-theme boron-theme brutalist-theme bubbleberry-theme busybee-theme calmer-forest-theme caroline-theme challenger-deep-theme cherry-blossom-theme chyla-theme circadian clues-theme colonoscopy-theme commentary-theme constant-theme creamsody-theme dakrone-light-theme dakrone-theme danneskjold-theme darcula-theme dark-krystal-theme dark-mint-theme darkburn-theme darkmine-theme darkokai-theme darktooth-theme distinguished-theme django-theme doneburn-theme doom-themes dracula-theme eclipse-theme eink-theme espresso-theme exotica-theme lorem-ipsum pyimport flycheck-plantuml plantuml-mode edit-server-htmlize edit-server indent-guide projectile evil-matchit-mode bmx-mode elisp emacs-lisp elisp-mode emacs-lisp-mode info-colors magithub github-pullrequest shell-mode message isearch abbrev dired dired-x shut-up lisp-mode misc drag-stuff nyan-mode anzu page diminish ns-win moe moe-theme cyberpunk-theme mode-icons popup-kill-ring pdf-tools imenu-list github-clone indent-tools git-auto-commit-mode helm-lean edit-indirect applescript-mode browse-at-remote go-impl org-cliplink dumb-jump floobits groovy-mode jenkins the-org-mode-expansions kubernetes flycheck-yamllint nov avy es-windows yaml-tomato es-mode magit-gh-pulls commenter micgoline avk-emacs-themes github-modern-theme madhat2r-theme gist zop-to-char idomenu js2-mode jsfmt go-add-tags wgrep-ag flycheck-gometalinter go-stacktracer js-auto-beautify visual-fill-column gore-mode go-guru highlight-indentation esqlite go-errcheck go-snippets go-playground golint go-rename toggle-quotes zygospore zenburn-theme yasnippet yascroll window-number wgrep web virtualenvwrapper use-package try transpose-frame tablist tabbar smex smartparens smart-shift smart-mode-line shorten rpm-spec-mode request-deferred regex-tool recent-addresses rcirc-color rcirc-alertify queue python-docstring pyfmt powerline php-mode phi-search pcsv pcache paren-completer paredit pacmacs packed package-safe-delete pabbrev outline-magic names message-x marmalade magit-find-file lui logito lcs json-rpc json-mode isgd isearch-dabbrev inf-ruby ido-vertical-mode ido-completing-read+ ibuffer-vc hungry-delete htmlize highlight-numbers highlight-80+ google-this go-eldoc github-browse-file fringe-helper flycheck flx-ido find-file-in-git-repo fill-column-indicator fakir expand-region esxml es-lib dropdown-list dockerfile-mode db csv-mode csharp-mode company-go company-anaconda comment-dwim-2 browse-kill-ring boxquote bm bitly bbdb anything-git-goto alect-themes aggressive-indent ag)))
  '(package-user-dir "~/.emacs.d/packages")
  '(pdf-view-midnight-colors (quote ("#6a737d" . "#fffbdd")))
  '(powerline-default-separator (quote curve))
@@ -276,6 +280,7 @@
  '(recentf-exclude
    (quote
     (".*/\\.news.*" ".*/\\.bbdb.*" ".*bookmarks.bmk.*" "/usr/share/emacs/.*/etc/.*" ".*loaddefs.el$")))
+ '(recentf-mode t)
  '(recentf-save-file "~/.emacs.d/auto-save-list/recent-file-list.el")
  '(regex-tool-backend (quote perl))
  '(request-storage-directory "~/.emacs.d/auto-save-list/request")
@@ -361,5 +366,4 @@
  '(go-test--ok-face ((t (:foreground "#ff9e0d"))))
  '(go-test--pointer-face ((t (:foreground "magenta3"))))
  '(highlight-indentation-current-column-face ((t (:background "#ff34b3"))))
- '(magit-item-highlight ((((class color) (min-colors 89)) (:background "#ffffaf" :foreground "#5f5f5f"))))
  '(tabbar-modified ((t (:inherit tabbar-default :foreground "orange" :box (:line-width 1 :color "white" :style released-button))))))

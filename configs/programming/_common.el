@@ -1,5 +1,19 @@
 (use-package highlight-numbers)
 (use-package toggle-quotes)
+(use-package multi-compile)
+
+(defun my-recompile (args)
+  (interactive "P")
+  (cond
+   (args (call-interactively 'compile))
+   ((get-buffer "*compilation*")
+    (progn
+      (pop-to-buffer "*compilation*")
+      (recompile)))
+   ((multi-compile--fill-command-list (buffer-file-name))
+    (call-interactively 'multi-compile-run))
+   (compile-command (call-interactively 'recompile))
+   ((call-interactively 'compile))))
 
 (defun my-programming-common-hook()
   (if (fboundp 'global-undo-tree-mode) (global-undo-tree-mode nil))
@@ -9,8 +23,10 @@
   (local-set-key (kbd "C-'") 'toggle-quotes)
   (local-set-key '[(meta return)] 'compile)
 
-  (if (fboundp 'my-compile-command)
-      (local-set-key '[(control meta return)] (lambda () (interactive) (compile my-compile-command))))
-  (if (fboundp 'my-compile-run-command)
-      (local-set-key '[(control return)] (lambda () (interactive) (compile my-compile-run-command)))
-    (local-set-key '[(control return)] 'recompile)))
+  ;; (if (fboundp 'my-compile-command)
+  ;;     (local-set-key '[(control meta return)] (lambda () (interactive) (compile my-compile-command))))
+  ;; (if (fboundp 'my-compile-run-command)
+  ;;     (local-set-key '[(control return)] (lambda () (interactive) (compile my-compile-run-command)))
+  (local-set-key '[(control meta return)] 'multi-compile-run)
+  (local-set-key '[(control return)] 'my-recompile)
+  )

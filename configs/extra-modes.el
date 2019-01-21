@@ -213,15 +213,24 @@
     (add-hook 'edit-server-done-hook 'edit-server-maybe-htmlize-buffer))
   (edit-server-start))
 
-;; ADOC mode
-(use-package adoc-mode :mode "\\.adoc\\'")
-
 ;; crux
 (use-package crux
   :bind (("C-k" . crux-smart-kill-line)
          ("C-o" . crux-smart-open-line-above)
          ([shift return] . crux-smart-open-line )))
 
+
+;; PlantUML
+
+(use-package plantuml-mode
+  :bind ([(control c) (control c)] . my-plantuml-preview)
+  :config
+  (defun my-plantuml-preview ()
+    (interactive)
+    (save-excursion (plantuml-preview-buffer 4))))
+
+; Reformatter
+(use-package reformatter)
 
 ;;Web-mode
 (provide 'extras-modes)

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: yamlsrc
+# key: _yaml
+# --
+#+BEGIN_SRC yaml
+${0}
+#+END_SRC

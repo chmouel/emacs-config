@@ -53,7 +53,8 @@
          (projectile-project-root)
          (if current-prefix-arg
              args
-           (cons "--fixed-strings" args))))
+           (cons "--fixed-strings" args)))
+        (other-window))
     (error "Package `ripgrep' is not available")))
 
 (defun my-projectile-and-ripgrep()

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: defa
+# key: defa
+# --
+def ${1:name}(${0:arg}):

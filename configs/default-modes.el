@@ -62,7 +62,9 @@
   :bind (([remap isearch-forward] . endless/isearch-symbol-with-prefix)
          :map isearch-mode-map
          ("C-." . isearch-forward-symbol-at-point)
-         ("C-o" . my-isearch-occur))
+         ("C-o" . my-isearch-occur)
+         ("M-o" . my-isearch-moccur)
+         )
   :init
   (setq isearch-allow-scroll t)
   :config
@@ -76,6 +78,14 @@ With a prefix argument P, isearch for the symbol at point."
        (if p #'isearch-forward-symbol-at-point
          #'isearch-forward))))
 
+  (defun my-isearch-moccur ()
+    (interactive)
+    (let ((case-fold-search isearch-case-fold-search))
+      (multi-occur-in-matching-buffers
+       (concat ".*\." (file-name-extension (buffer-file-name)) "$")
+       (if isearch-regexp isearch-string (regexp-quote isearch-string)))
+      ))
+
   (defun my-isearch-occur ()
     (interactive)
     (let ((case-fold-search isearch-case-fold-search))
@@ -87,12 +97,18 @@ With a prefix argument P, isearch for the symbol at point."
     (load-file (concat my-init-directory "/gnus/message.el")))
 
 ;; IBUFFER
-(defun my-ibuffer()
+(defun my-switch-to-ibuffer()
   (interactive)
-  (ibuffer-list-buffers t)
-  (switch-to-buffer-other-window (get-buffer "*Ibuffer*")))
+  (unless (get-buffer "*Ibuffer*")
+    (ibuffer-list-buffers))
+  (pop-to-buffer "*Ibuffer*"))
 
 (use-package ibuffer
+  :init
+  (add-hook 'ibuffer-mode-hook
+	        '(lambda ()
+	           (ibuffer-auto-mode 1)
+	           (ibuffer-filter-by-visiting-file nil)))
   :hook ibuffer-auto-mode
   :custom (ibuffer-saved-filter-groups
            (quote (
@@ -100,7 +116,7 @@ With a prefix argument P, isearch for the symbol at point."
                     ("Files" (not mode . dired-mode) (name . "^[^*]"))
                     ("Directories" (mode . dired-mode))))
                   ))
-  :bind (("C-~" . my-ibuffer)
+  :bind (("C-x C-b" . my-switch-to-ibuffer)
          :map ibuffer-mode-map
          ("M-p" . ibuffer-backward-line)))
 
@@ -243,8 +259,6 @@ mouse-3: go to end"))))
 
 ;; Recentf
 (use-package recentf
-  :config
-  (recentf-mode +1)
   :custom
   (recentf-save-file "~/.emacs.d/auto-save-list/recent-file-list.el"
                      recentf-max-saved-items 500 recentf-max-menu-items 15))

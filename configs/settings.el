@@ -10,11 +10,10 @@
 (global-set-key '[(control c)(\[)] 'previous-error)
 (global-set-key (read-kbd-macro "C-x C-=") 'ediff-buffers)
 (global-set-key (read-kbd-macro "C-M-b") 'bookmark-jump)
-(global-set-key (read-kbd-macro "C-x C-k") (lambda () (interactive) (kill-buffer nil)))
+(global-set-key (read-kbd-macro "C-x C-k") 'kill-current-buffer)
 (global-set-key (read-kbd-macro "C-x f") 'find-file-at-point)
 (global-set-key (read-kbd-macro "M-q") 'fill-region)
 (global-set-key (read-kbd-macro "M-l") 'downcase-word)
-(global-set-key (read-kbd-macro "C-x C-b")    'ibuffer-list-buffers)
 (global-set-key (kbd "M-n") 'forward-paragraph)
 (global-set-key (kbd "M-p") 'backward-paragraph)
 

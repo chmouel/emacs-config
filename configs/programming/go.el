@@ -25,7 +25,8 @@
   (set (make-local-variable 'flycheck-disabled-checkers) '(go-golint))
 
   (local-set-key (kbd "M-.") 'godef-jump)
-  (local-set-key '[(control return)] 'recompile)
+  (local-set-key '[(control return)] 'my-recompile)
+  (local-set-key '[(control meta return)] 'multi-compile-run)
   (my-programming-common-hook)
   )
 
