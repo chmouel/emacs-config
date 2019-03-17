@@ -103,13 +103,18 @@
   (smex-save-file (locate-user-emacs-file "auto-save-list/smex-items"))
   :bind (("M-x" . smex)))
 
+;; Counsel
+(use-package counsel
+  :config
+  (define-key ivy-minibuffer-map (kbd "C-w") 'ivy-yank-word)
+  :bind   (("s-h" . counsel-ag)
+           ("c-s" . swiper)
+           ("C-S-h" . counsel-ag)))
+
 ;; ag a C ack replacement
 (use-package ag                            ;
   :commands (ag ag/dwim-at-point)
-  :chords ("=-" . my-ag-here)
-  :bind   (("s-h" . projectile-ag)
-           ("C-S-g" . my-ag-here)
-           ("C-S-h" . projectile-ag))
+  :bind   (("C-S-g" . my-ag-here))
   :custom
   (ag-reuse-buffers t)
   :config
