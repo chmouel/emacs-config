@@ -21,7 +21,7 @@
  python-shell-completion-module-string-code "';'.join(module_completion('''%s'''))\n"
  python-shell-completion-string-code "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
 
-(reformatter-define yapf :program "yapf" :lighter 'YAPF)
+(reformatter-define yapf :program "yapf")
 
 (defun my-python-mode-hook()
   (setq flycheck-python-flake8-executable python-shell-interpreter)
