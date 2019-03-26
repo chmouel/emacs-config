@@ -14,7 +14,7 @@
  '(ac-trigger-key "M-TAB")
  '(ack-and-a-half-arguments (quote ("--ignore-dir .tox" "-k" "--ignore-dir vendor/")))
  '(ack-executable "/usr/bin/ack-grep")
- '(ag-reuse-buffers t)
+ '(ag-reuse-buffers t t)
  '(all-christian-calendar-holidays t)
  '(atomic-chrome-buffer-frame-height 80)
  '(atomic-chrome-buffer-open-style (quote split))
@@ -239,6 +239,8 @@
  '(max-specpdl-size 50000)
  '(mc/list-file "~/.emacs.d/auto-save-list/mc-lists.el" t)
  '(mm-inline-text-html-with-w3m-keymap nil)
+ '(multi-compile-history-file
+   (expand-file-name (concat user-emacs-directory "/auto-save-list/multi-compile.cache")))
  '(nrepl-message-colors
    (quote
     ("#032f62" "#6a737d" "#d73a49" "#6a737d" "#005cc5" "#6f42c1" "#d73a49" "#6a737d")))
