@@ -60,17 +60,18 @@
 
 (setq initial-major-mode 'markdown-mode)
 (setq initial-scratch-message "\
+<!--
     Chmouel's scratch buffer,
 
-<!--
 Useful Keys :
-Super-o / oi - Open Project
-Super-p / op - Open Project and jump to a file
-Super-i      - Open project and grep
 
-Super-g         -- magit status
-Super-f         -- find file in project
-Super-b         -- switch to a buffer inside this project
+Super-o - Open Project
+Super-p - Open Project and jump to a file
+Super-i - Open project and grep
+
+Super-g - magit status
+Super-f - find file in project
+Super-b - switch to a buffer inside this project
 
 -->
 

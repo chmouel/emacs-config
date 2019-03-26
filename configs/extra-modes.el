@@ -106,9 +106,9 @@
 ;; Counsel
 (use-package counsel
   :config
+  (define-key ivy-minibuffer-map (kbd "C-o") 'ivy-occur)
   (define-key ivy-minibuffer-map (kbd "C-w") 'ivy-yank-word)
   :bind   (("s-h" . counsel-ag)
-           ("c-s" . swiper)
            ("C-S-h" . counsel-ag)))
 
 ;; ag a C ack replacement

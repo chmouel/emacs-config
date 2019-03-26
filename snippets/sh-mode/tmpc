@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: tmpc
+# key: tmpc
+# --
+TMP=$(mktemp /tmp/.mm.XXXXXX)
+clean() { rm -f \${TMP}; }
+trap clean EXIT
+$0
