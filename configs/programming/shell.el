@@ -1,6 +1,7 @@
 (defvar shfmt-command "shfmt")
 (reformatter-define shell-formatter
   :program shfmt-command
+  :args '("-i" "2")
   :lighter 'SHFmt)
 
 (defun my-sh-mode-hook()
