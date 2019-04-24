@@ -108,8 +108,7 @@
   :config
   (define-key ivy-minibuffer-map (kbd "C-o") 'ivy-occur)
   (define-key ivy-minibuffer-map (kbd "C-w") 'ivy-yank-word)
-  :bind   (("s-h" . counsel-ag)
-           ("C-S-h" . counsel-ag)))
+  :bind   (("s-k" . counsel-ag)))
 
 ;; ag a C ack replacement
 (use-package ag                            ;

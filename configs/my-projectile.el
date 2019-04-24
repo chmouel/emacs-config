@@ -39,27 +39,9 @@
   (let ((projectile-switch-project-action 'projectile-dired))
     (projectile-switch-project)))
 
-(defun my-projectile-ripgrep ()
-  (interactive)
-  (if (require 'ripgrep nil 'noerror)
-      (let ((search-term
-             (read-from-minibuffer "Search string here: " (ag/dwim-at-point)))
-            (args (mapcar (lambda (val) (concat "--glob !" val))
-                          (append projectile-globally-ignored-files
-                                  projectile-globally-ignored-directories))))
-        (setq args (cons "--ignore-vcs" args))
-        (ripgrep-regexp
-         search-term
-         (projectile-project-root)
-         (if current-prefix-arg
-             args
-           (cons "--fixed-strings" args)))
-        (other-window))
-    (error "Package `ripgrep' is not available")))
-
 (defun my-projectile-and-ripgrep()
   (interactive)
-  (let ((projectile-switch-project-action 'my-projectile-ripgrep))
+  (let ((projectile-switch-project-action 'counsel-ag))
     (projectile-switch-project)))
 
 
