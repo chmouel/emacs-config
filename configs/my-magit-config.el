@@ -1,7 +1,7 @@
 (use-package magit
   :commands (magit-read-repository magit-toplevel)
   :bind (("C-x v v" . my-magit-commit-buffer)
-         ("s-g" . magit-status))
+         ("C-c g" . magit-status))
   :commands (magit-list-repos-uniquify)
   :config
   (setq magit-display-buffer-function 'my-magit-display-buffer)

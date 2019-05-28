@@ -108,19 +108,19 @@
   :config
   (define-key ivy-minibuffer-map (kbd "C-o") 'ivy-occur)
   (define-key ivy-minibuffer-map (kbd "C-w") 'ivy-yank-word)
-  :bind   (("s-k" . counsel-ag)))
+  (defun my-counsel-ag-here()
+    (interactive)
+    (counsel-ag (ag/dwim-at-point)  (expand-file-name ".")))
+  :bind   (("s-g" . my-counsel-ag-here)
+           ("s-h" . counsel-ag)))
 
 ;; ag a C ack replacement
 (use-package ag                            ;
   :commands (ag ag/dwim-at-point)
-  :bind   (("C-S-g" . my-ag-here))
   :custom
   (ag-reuse-buffers t)
   :config
-  (add-to-list 'ag-arguments "-z")
-  (defun my-ag-here (string)
-    (interactive (list (read-from-minibuffer "Search string here: " (ag/dwim-at-point))))
-    (ag/search string (expand-file-name "."))))
+  (add-to-list 'ag-arguments "-z"))
 
 ;; flx-ido - advanced flex matching for ido
 (use-package flx-ido
