@@ -204,6 +204,7 @@ mouse-3: go to end"))))
 ;; Grep
 (use-package grep
   :defer t
+  :bind (("C-s-G" . grep))
   :config
   (when-let (gnu-find (and (eq system-type 'darwin)
                            (executable-find "gfind")))

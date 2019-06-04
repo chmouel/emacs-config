@@ -108,11 +108,14 @@
   :config
   (define-key ivy-minibuffer-map (kbd "C-o") 'ivy-occur)
   (define-key ivy-minibuffer-map (kbd "C-w") 'ivy-yank-word)
+  (defun my-counsel-ag-def-word()
+    (interactive)
+    (counsel-ag  (ag/dwim-at-point)))
   (defun my-counsel-ag-here()
     (interactive)
     (counsel-ag (ag/dwim-at-point)  (expand-file-name ".")))
   :bind   (("s-g" . my-counsel-ag-here)
-           ("s-h" . counsel-ag)))
+           ("s-h" . my-counsel-ag-def-word)))
 
 ;; ag a C ack replacement
 (use-package ag                            ;
