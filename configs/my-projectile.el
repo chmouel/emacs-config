@@ -26,6 +26,8 @@
 (use-package projectile
   :chords (("p[" . projectile-find-file))
   :config
+  (autoload 'projectile "projectile-ensure-project")
+  (autoload 'projectile "projectile-project-root")
   (projectile-mode +1)
   :bind (("s-b" . projectile-switch-to-buffer)
          ("C-S-f" . projectile-find-file)
