@@ -74,7 +74,6 @@
 ;; remap C-a to `smarter-move-beginning-of-line'
 (global-set-key [remap move-beginning-of-line] 'smarter-move-beginning-of-line)
 
-
 ;; From http://www.emacswiki.org/emacs/FullScreen#toc23
 (defun my-toggle-fullscreen ()
   "Toggle full screen"
@@ -104,18 +103,18 @@
       (setenv "KUBECONFIG" kubeconfig)
     (error "Cannot find kubeconfig: %s" kubeconfig)))
 
-;; Is that useful?
-(defun my-generate-commit()
-  (interactive)
-  (goto-char (point-min))
-  (re-search-forward "^# Everything starting" nil t)
-  (kill-region (point-min) (match-beginning 0))
-  (goto-char (point-min))
-  (Lorem-ipsum-insert-sentences 1)
-  (insert "\n\n")
-  (Lorem-ipsum-insert-list 10)
-  (insert "\n")
-  (goto-char (point-min))
-  (save-buffer)
-  (server-edit)
-  )
+(defun my-search (counsel directory)
+  (if counsel (counsel-rg  (ag/dwim-at-point) (expand-file-name directory) "")
+    (let ((search (ag/read-from-minibuffer "Search string")))
+      (rg search "*" (expand-file-name directory)))))
+
+(defun my-search-project (&optional arg)
+  (interactive "P")
+  (my-search arg (projectile-ensure-project (projectile-project-root))))
+
+(defun my-search-here (&optional arg)
+  (interactive "P")
+  (my-search arg "."))
+
+(global-set-key '[(super h)] 'my-search-project)
+(global-set-key '[(super g)] 'my-search-here)

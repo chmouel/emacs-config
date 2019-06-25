@@ -107,19 +107,15 @@
 (use-package counsel
   :config
   (define-key ivy-minibuffer-map (kbd "C-o") 'ivy-occur)
-  (define-key ivy-minibuffer-map (kbd "C-w") 'ivy-yank-word)
-  (defun my-counsel-ag-def-word()
-    (interactive)
-    (counsel-ag  (ag/dwim-at-point)))
-  (defun my-counsel-ag-here()
-    (interactive)
-    (counsel-ag (ag/dwim-at-point)  (expand-file-name ".")))
-  :bind   (("s-g" . my-counsel-ag-here)
-           ("s-h" . my-counsel-ag-def-word)))
+  (define-key ivy-minibuffer-map (kbd "C-w") 'ivy-yank-word))
 
-;; ag a C ack replacement
-(use-package ag                            ;
-  :commands (ag ag/dwim-at-point)
+;; RG
+(use-package rg
+  :custom
+  (rg-ignore-case 'smart))
+
+;; AG
+(use-package ag
   :custom
   (ag-reuse-buffers t)
   :config
