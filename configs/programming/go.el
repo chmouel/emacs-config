@@ -6,6 +6,8 @@
 (defun my-go-mode-hook ()
   (autoload 'go-test--get-current-test-info "gotest" "" nil)
 
+  (setq gofmt-command "goimports")
+
   (local-set-key (kbd "C-c i") 'go-goto-imports)
   (local-set-key (kbd "C-c C-r") 'go-remove-unused-imports)
   (local-set-key (kbd "C-c d") 'godoc-at-point)
