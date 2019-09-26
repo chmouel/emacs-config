@@ -234,29 +234,15 @@ mouse-3: go to end"))))
 
 ;; Find files already opened
 (use-package files
-  :after ido
+  :after recentf
   :ensure nil
   :defer t
-  :bind (("M-`" . ido-goto-recent-file))
+  :bind (("s-." . my-goto-recent-files))
   :config
-  (defun ido-goto-recent-file (file)
-    (interactive
-     (list (let* ((filepaths (let ((items))
-			                   (dolist (item recentf-list)
-			                     (if (and (stringp item)
-					                      (not (string-match ":" item))
-					                      (file-regular-p item)
-					                      (not (member item items)))
-				                     (add-to-list 'items item t)))
-			                   items))
-                  (filenames (mapcar 'expand-file-name filepaths))
-		          (numfilenames (length filenames))
-		          ;; get filename from user with ido
-		          (chosenfilename (ido-completing-read "Recent file: " filenames))
-		          (afterfilenameslist (member chosenfilename filenames))
-		          (posinlist (- numfilenames (length afterfilenameslist))))
-	         (nth posinlist filepaths))))
-    (find-file file)))
+  (defun my-goto-recent-files(arg)
+    (interactive "P")
+    (let ((rf (if (not arg) (--filter (not (string-match ":" it)) recentf-list) recentf-list)))
+      (find-file (ido-completing-read "File: " rf)))))
 
 ;; Recentf
 (use-package recentf

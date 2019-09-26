@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: err
+# key: err
+# --
+ || { echo "$1"; exit 1 ;}

@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: zshargparse
+# key: zshargparse
+# --
+while getopts ':i' arg
+do
+case $arg in
+(i) onlyinstall=yes  ;;
+(\?) print invalid option: $OPTARG;;
+esac
+done
+(( OPTIND > 1 )) && shift $(( OPTIND - 1 ))

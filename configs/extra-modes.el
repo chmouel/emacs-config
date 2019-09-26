@@ -28,6 +28,12 @@
     '(lambda () (yas--expand-by-uuid 'python-mode "header")))
   (use-package dropdown-list))
 
+(use-package ace-jump-mode
+  :custom
+  ((ace-jump-mode-gray-background nil))
+  :bind (("C-c SPC" . ace-jump-mode)
+         ("C-x SPC" . ace-jump-mode-pop-mark)))
+
 ;; RegexTool
 (use-package regex-tool :commands (regex-tool))
 
@@ -35,7 +41,8 @@
 (use-package highlight-80+ :commands  (highlight-80+))
 
 ;; Browse Kill ring
-(use-package browse-kill-ring)
+(use-package browse-at-remote
+  :bind (("C-c C-l" . browse-at-remote)))
 
 ;; Multiple cursors
 (use-package multiple-cursors
@@ -82,7 +89,7 @@
   (powerline-display-mule-info nil)
   (powerline-display-buffer-size nil))
 ;; Smart power bar that look fruitful
-(use-package micgoline)
+;; (use-package micgoline)
 
 ;; Boorkmarks
 (use-package bm)
@@ -208,13 +215,13 @@
 (use-package dockerfile-mode)
 
 ;;edit-server
-(use-package edit-server
-  :config
-  (use-package edit-server-htmlize
-    :config
-    (add-hook 'edit-server-start-hook 'edit-server-maybe-dehtmlize-buffer)
-    (add-hook 'edit-server-done-hook 'edit-server-maybe-htmlize-buffer))
-  (edit-server-start))
+;; (use-package edit-server
+;;   :config
+;;   (use-package edit-server-htmlize
+;;     :config
+;;     (add-hook 'edit-server-start-hook 'edit-server-maybe-dehtmlize-buffer)
+;;     (add-hook 'edit-server-done-hook 'edit-server-maybe-htmlize-buffer))
+;;   (edit-server-start))
 
 ;; crux
 (use-package crux
@@ -222,17 +229,15 @@
          ("C-o" . crux-smart-open-line-above)
          ([shift return] . crux-smart-open-line )))
 
-
 ;; PlantUML
+;; (use-package plantuml-mode
+;;   :bind ([(control c) (control c)] . my-plantuml-preview)
+;;   :config
+;;   (defun my-plantuml-preview ()
+;;     (interactive)
+;;     (save-excursion (plantuml-preview-buffer 4))))
 
-(use-package plantuml-mode
-  :bind ([(control c) (control c)] . my-plantuml-preview)
-  :config
-  (defun my-plantuml-preview ()
-    (interactive)
-    (save-excursion (plantuml-preview-buffer 4))))
-
-; Reformatter
+;; Reformatter
 (use-package reformatter)
 
 ;;Web-mode

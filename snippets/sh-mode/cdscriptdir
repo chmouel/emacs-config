@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: cdscriptdir
+# key: cdscriptdir
+# --
+cd $(dirname $(readlink -f $0))
