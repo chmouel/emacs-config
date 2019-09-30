@@ -232,16 +232,16 @@ mouse-3: go to end"))))
   )
 (add-hook 'ido-setup-hook 'my-ido-local-keys)
 
-;; Find files already opened
+;; Find files already recent
 (use-package files
-  :after recentf
+  :after ido
   :ensure nil
   :defer t
   :bind (("s-." . my-goto-recent-files))
   :config
   (defun my-goto-recent-files(arg)
     (interactive "P")
-    (let ((rf (if (not arg) (--filter (not (string-match ":" it)) recentf-list) recentf-list)))
+    (let ((rf (if arg (--filter (not (string-match ":" it)) recentf-list) recentf-list)))
       (find-file (ido-completing-read "File: " rf)))))
 
 ;; Recentf

@@ -388,6 +388,7 @@
      (340 . "#d73a49")
      (360 . "#6a737d"))))
  '(vc-annotate-very-old-color "#6a737d")
+ '(vc-follow-symlinks nil)
  '(wdired-enable t)
  '(weechat-auto-monitor-buffers t)
  '(weechat-auto-monitor-new-buffers t)
@@ -408,15 +409,3 @@
      ("America/Montreal" "Montreal")
      ("America/Los-Angeles" "San Francisco")
      ("Europe/Paris" "Paris")))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(font-lock-comment-face ((t (:foreground "#878787" :slant normal :weight bold))))
- '(font-lock-constant-face ((t (:foreground "goldenrod2"))))
- '(font-lock-function-face ((t (:foreground "turquoise2"))))
- '(font-lock-keyword-face ((t (:foreground "MediumOrchid1" :weight bold))))
- '(font-lock-variable-name-face ((t (:foreground "SpringGreen1" :slant normal :weight bold))))
- '(minibuffer-prompt ((t (:foreground "CadetBlue3" :weight bold))))
- '(region ((t (:background "#5e5e5e" :slant italic)))))
