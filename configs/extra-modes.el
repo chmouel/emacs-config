@@ -157,7 +157,7 @@
 
   (setq
    flycheck-mode-line '(:eval (my-flycheck-mode-line-status-text))
-   flycheck-mode-line-prefix "👺"
+   flycheck-mode-line-prefix "FlyChk"
    flycheck-disabled-checkers
    '(html-tidy xml-xmlint emacs-lisp emacs-lisp-checkdoc)
    flycheck-display-errors-delay 0.2
