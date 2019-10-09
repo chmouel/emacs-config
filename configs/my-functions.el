@@ -104,7 +104,7 @@
     (error "Cannot find kubeconfig: %s" kubeconfig)))
 
 (defun my-search (counsel directory)
-  (if counsel (counsel-rg  (ag/dwim-at-point) (expand-file-name directory) "")
+  (if (not counsel) (counsel-rg  (ag/dwim-at-point) (expand-file-name directory) "")
     (let ((search (ag/read-from-minibuffer "Search string")))
       (rg search "*" (expand-file-name directory)))))
 
