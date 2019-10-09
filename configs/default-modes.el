@@ -199,7 +199,7 @@ mouse-2: toggle rest visibility\n\
 mouse-3: go to end"))))
 
 ;;View
-(use-package view :diminish (view-mode . "👁"))
+(use-package view)
 
 ;; Grep
 (use-package grep
