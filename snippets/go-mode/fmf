@@ -3,4 +3,4 @@
 # key: fmf
 # binding: M-P
 # --
-fmt.Printf("$0%s\n")
+fmt.Printf("$0%+v\n", $1)
