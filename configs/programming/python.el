@@ -1,13 +1,10 @@
-(use-package python-docstring
-  :config (python-docstring-install)
-  :diminish "📖")
+(use-package python-docstring :config (python-docstring-install))
 (use-package fill-column-indicator)
 (use-package anaconda-mode
-  :diminish "🐍"
   :init (setq anaconda-mode-installation-directory
               (locate-user-emacs-file "auto-save-list/anaconda-mode")))
-(use-package hungry-delete :diminish hungry-delete-mode)
-
+;; (use-package hungry-delete :diminish hungry-delete-mode)
+(use-package blacken)
 (use-package company-anaconda
   :config
   (eval-after-load 'company
@@ -25,8 +22,10 @@
 
 (defun my-python-mode-hook()
   (setq flycheck-python-flake8-executable python-shell-interpreter)
-  (yapf-on-save-mode)
+  ;; (yapf-on-save-mode)
+
   ;; Ipython
+  (blacken-mode)
   (fci-mode)
   (flycheck-mode)
   (anaconda-mode)
