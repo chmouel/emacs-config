@@ -20,14 +20,10 @@
 
 ;;; Commentary:
 
-;;
-
 ;; projectile
 (use-package projectile
-  :chords (("p[" . projectile-find-file))
+  :commands (projectile-ensure-project projectile-project-root)
   :config
-  (autoload 'projectile "projectile-ensure-project")
-  (autoload 'projectile "projectile-project-root")
   (projectile-mode +1)
   :bind (("s-b" . projectile-switch-to-buffer)
          ("C-S-f" . projectile-find-file)
@@ -45,10 +41,6 @@
   (interactive)
   (let ((projectile-switch-project-action 'counsel-ag))
     (projectile-switch-project)))
-
-
-;;; Code:
-
 
 
 (provide 'my-projectile)
