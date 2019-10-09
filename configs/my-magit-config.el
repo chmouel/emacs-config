@@ -2,7 +2,7 @@
   :commands (magit-read-repository magit-toplevel)
   :bind (("C-x v v" . my-magit-commit-buffer)
          ("C-c g" . magit-status))
-  :commands (magit-list-repos-uniquify)
+  :commands (magit-process-file magit-list-repos-uniquify)
   :config
   (setq magit-display-buffer-function 'my-magit-display-buffer)
   (global-git-commit-mode)
