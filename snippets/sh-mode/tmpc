@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: tmpc
+# name: Temporary File
 # key: tmpc
 # --
 TMP=$(mktemp /tmp/.mm.XXXXXX)
