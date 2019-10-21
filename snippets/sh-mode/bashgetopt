@@ -1,0 +1,14 @@
+# key: bashgetopt
+# name: BASH Getopt
+# --
+while getopts "$0s:" o; do
+case "\${o}" in
+s)
+s=\${OPTARG}
+;;
+*)
+echo "Invalid option"; exit 1;
+;;
+esac
+done
+shift \$((OPTIND-1))
