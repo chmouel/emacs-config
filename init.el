@@ -80,3 +80,4 @@ Super-b - switch to a buffer inside this project
 ;; END
 (cd (expand-file-name "~/"))
 (put 'downcase-region 'disabled nil)
+(put 'magit-edit-line-commit 'disabled nil)
