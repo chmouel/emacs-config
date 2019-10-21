@@ -22,10 +22,10 @@
 
 (defun my-python-mode-hook()
   (setq flycheck-python-flake8-executable python-shell-interpreter)
-  ;; (yapf-on-save-mode)
+  (yapf-on-save-mode)
 
   ;; Ipython
-  (blacken-mode)
+  ;; (blacken-mode)
   (fci-mode)
   (flycheck-mode)
   (anaconda-mode)
