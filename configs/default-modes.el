@@ -12,6 +12,10 @@
 (use-package "dired"
   :ensure nil
   :config
+  (use-package diredfl
+    :ensure t
+    :config
+    (diredfl-global-mode 1))
   (require 'dired-x)
   :init
   (defun my-dired-mode-hook ()
