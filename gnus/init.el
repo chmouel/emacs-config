@@ -1,6 +1,6 @@
-;Load Files
+;; Load Files
 (if (file-exists-p (concat my-init-directory "/gnus/filter.el"))
-  (load-file (concat my-init-directory "/gnus/filter.el")))
+    (load-file (concat my-init-directory "/gnus/filter.el")))
 
 ;Default paths
 (setq gnus-agent-directory "~/Gnus/agent"
