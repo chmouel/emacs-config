@@ -50,6 +50,7 @@
   :custom
   (mc/list-file "~/.emacs.d/auto-save-list/mc-lists.el"))
 
+
 ;; Expand Region
 (use-package expand-region
   :config (setq er/try-expand-list (remove 'er/mark-comment er/try-expand-list))
@@ -164,6 +165,14 @@
    flycheck-highlighting-mode 'lines)
   (global-flycheck-mode t))
 
+(use-package flycheck-yamllint
+  :ensure t
+  :defer t
+  :init
+  (progn
+    (eval-after-load 'flycheck
+      '(add-hook 'flycheck-mode-hook 'flycheck-yamllint-setup))))
+
 ;; Comment dwim
 (use-package comment-dwim-2 :bind (("M-;" . comment-dwim-2)))
 
@@ -214,31 +223,58 @@
 ;; Dockerfilemode
 (use-package dockerfile-mode)
 
-;;edit-server
-;; (use-package edit-server
-;;   :config
-;;   (use-package edit-server-htmlize
-;;     :config
-;;     (add-hook 'edit-server-start-hook 'edit-server-maybe-dehtmlize-buffer)
-;;     (add-hook 'edit-server-done-hook 'edit-server-maybe-htmlize-buffer))
-;;   (edit-server-start))
-
 ;; crux
 (use-package crux
   :bind (("C-k" . crux-smart-kill-line)
          ("C-o" . crux-smart-open-line-above)
          ([shift return] . crux-smart-open-line )))
 
-;; PlantUML
-;; (use-package plantuml-mode
-;;   :bind ([(control c) (control c)] . my-plantuml-preview)
-;;   :config
-;;   (defun my-plantuml-preview ()
-;;     (interactive)
-;;     (save-excursion (plantuml-preview-buffer 4))))
+
+;; Eshell
+(use-package eshell
+  :config
+  (setq eshell-prompt-function
+        (lambda ()
+          (concat
+           (propertize "┌─[" 'face `(:foreground "grey91"))
+           (propertize (user-login-name) 'face `(:foreground "red"))
+           (propertize "@" 'face `(:foreground "grey91"))
+           (propertize (system-name) 'face `(:foreground "lightblue"))
+           (propertize "]──[" 'face `(:foreground "grey91"))
+           (propertize (format-time-string "%H:%M" (current-time)) 'face `(:foreground "yellow"))
+           (propertize "]──[" 'face `(:foreground "grey91"))
+           (propertize (concat (eshell/pwd)) 'face `(:foreground "white"))
+           (propertize "]\n" 'face `(:foreground "grey91"))
+           (propertize "└─>" 'face `(:foreground "grey91"))
+           (propertize (if (= (user-uid) 0) " # " " $ ") 'face `(:foreground "grey91"))
+           ))
+        eshell-visual-commands '("htop" "vi" "screen" "top" "less"
+                                 "more" "lynx" "ncftp" "pine" "tin" "trn" "elm"
+                                 "vim")
+
+        eshell-visual-subcommands '("git" "log" "diff" "show" "ssh"))
+  :init
+  (setq eshell-scroll-to-bottom-on-input 'all
+        eshell-error-if-no-glob t
+        eshell-hist-ignoredups t
+        eshell-save-history-on-exit t
+        eshell-prefer-lisp-functions nil
+        eshell-destroy-buffer-when-process-dies t))
+
+(use-package esh-autosuggest
+  :hook (eshell-mode . esh-autosuggest-mode)
+  ;; If you have use-package-hook-name-suffix set to nil, uncomment and use the
+  ;; line below instead:
+  ;; :hook (eshell-mode-hook . esh-autosuggest-mode)
+  :ensure t)
 
 ;; Reformatter
 (use-package reformatter)
+
+;; Markdown mode
+(use-package markdown-mode
+  :bind (:map markdown-mode-map
+              ("C-`" . markdown-insert-code)))
 
 ;;Web-mode
 (provide 'extras-modes)
