@@ -22,9 +22,6 @@
   (substring system-name (match-beginning 0) (match-end 0))
   )
 
-;; Some macros.
-(defmacro GUI (&rest x) (list 'if (not (null window-system)) (cons 'progn x)))
-
 ;; Loading Packages
 (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
     (let* ((my-lisp-dir (expand-file-name (concat my-init-directory "/packages/")))
