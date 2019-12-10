@@ -29,14 +29,10 @@
 
   (use-package go-guru :config (go-guru-hl-identifier-mode))
 
-  (set (make-local-variable 'flycheck-disabled-checkers) '(go-golint))
-
   (local-set-key (kbd "M-.") 'godef-jump)
   (local-set-key '[(control return)] 'my-recompile)
   (local-set-key '[(control meta return)] 'multi-compile-run)
-  (my-programming-common-hook)
-  )
+  (my-programming-common-hook))
 
 (add-hook 'go-mode-hook 'my-go-mode-hook)
 (add-hook 'before-save-hook 'gofmt-before-save)
-(add-hook 'go-mode-hook 'my-go-mode-hook)

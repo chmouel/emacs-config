@@ -9,7 +9,6 @@
 (global-set-key '[(control c)(\])] 'next-error)
 (global-set-key '[(control c)(\[)] 'previous-error)
 (global-set-key (read-kbd-macro "C-x C-=") 'ediff-buffers)
-(global-set-key (read-kbd-macro "C-M-b") 'bookmark-jump)
 (global-set-key (read-kbd-macro "C-x C-k") 'kill-current-buffer)
 (global-set-key (read-kbd-macro "C-x f") 'find-file-at-point)
 (global-set-key (read-kbd-macro "M-q") 'fill-region)
@@ -17,8 +16,8 @@
 (global-set-key (kbd "M-n") 'forward-paragraph)
 (global-set-key (kbd "M-p") 'backward-paragraph)
 
-;; whitespace cleanup
-(global-set-key (read-kbd-macro "C-+")    'whitespace-cleanup)
+(global-set-key (read-kbd-macro "C-x <left>") 'indent-rigidly-left)
+(global-set-key (read-kbd-macro "C-x <right>") 'indent-rigidly-right)
 
 ;; No need digits
 (global-set-key (read-kbd-macro "C-2")      'split-window-vertically)

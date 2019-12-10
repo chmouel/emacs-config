@@ -28,12 +28,6 @@
     '(lambda () (yas--expand-by-uuid 'python-mode "header")))
   (use-package dropdown-list))
 
-(use-package ace-jump-mode
-  :custom
-  ((ace-jump-mode-gray-background nil))
-  :bind (("C-c SPC" . ace-jump-mode)
-         ("C-x SPC" . ace-jump-mode-pop-mark)))
-
 ;; RegexTool
 (use-package regex-tool :commands (regex-tool))
 
@@ -49,7 +43,6 @@
   :bind (("C-c ." . mc/mark-all-like-this-dwim))
   :custom
   (mc/list-file "~/.emacs.d/auto-save-list/mc-lists.el"))
-
 
 ;; Expand Region
 (use-package expand-region
@@ -89,11 +82,6 @@
   :custom
   (powerline-display-mule-info nil)
   (powerline-display-buffer-size nil))
-;; Smart power bar that look fruitful
-;; (use-package micgoline)
-
-;; Boorkmarks
-(use-package bm)
 
 ;;Company mode
 (use-package company :diminish company-mode)
@@ -278,3 +266,11 @@
 
 ;;Web-mode
 (provide 'extras-modes)
+
+;; Direnv
+(use-package direnv
+  :custom
+  (direnv-always-show-summary t)
+  (direnv-show-paths-in-summary nil)
+  :config
+  (direnv-mode))
