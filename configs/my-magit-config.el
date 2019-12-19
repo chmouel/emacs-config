@@ -6,7 +6,7 @@
          ("C-c g" . magit-status))
   :commands (magit-process-file magit-list-repos-uniquify)
   :config
-  (setq magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1)
+  (setq magit-display-buffer-function 'magit-display-buffer-fullframe-status-topleft-v1)
   (global-git-commit-mode)
   (magit-define-popup-switch 'magit-log-popup ?m "Omit merge commits" "--no-merges"))
 
