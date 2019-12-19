@@ -2,6 +2,37 @@
 (use-package toggle-quotes)
 (use-package multi-compile)
 
+;;Company mode
+(use-package company
+  :ensure t
+  :config
+  (setq company-idle-delay 0)
+  (setq company-minimum-prefix-length 1))
+
+(use-package company-lsp
+  :ensure t
+  :commands company-lsp)
+
+(use-package lsp-mode
+  :ensure t
+  :commands lsp
+  :custom
+  (lsp-gopls-staticcheck t)
+  (lsp-eldoc-render-all t)
+  (lsp-gopls-complete-unimported t)
+  (lsp-enable-snippet nil)
+  (lsp-enable-links nil)
+  (lsp-ui-sideline-delay 2.0)
+  (lsp-ui-doc-max-width 30)
+  (lsp-ui-doc-max-height 15)
+  (lsp-document-highlight-delay 2.0)
+  (lsp-auto-guess-root t)
+  (lsp-prefer-flymake nil) ; Use flycheck instead of flymake
+  :hook
+  ((python-mode) . lsp)
+  ((go-mode) . lsp))
+
+
 (defun my-recompile (args)
   (interactive "P")
   (cond
