@@ -5,7 +5,6 @@
 
 (defun my-go-mode-hook ()
   (autoload 'go-test--get-current-test-info "gotest" "" nil)
-
   (setq gofmt-command "goimports")
 
   (local-set-key (kbd "C-c i") 'go-goto-imports)
@@ -20,16 +19,15 @@
        (kbd "C-S-r")
        '(lambda ()(interactive)
           (compile (concat "go test -run " (cadr (go-test--get-current-test-info)) "$")))))
-  (add-to-list 'company-backends 'company-go)
 
+  (add-to-list 'company-backends 'company-go)
   (subword-mode)
   (company-mode)
 
-  (use-package go-eldoc :config (go-eldoc-setup))
+  ;; (use-package go-eldoc :config (go-eldoc-setup))
+  ;; (use-package go-guru :config (go-guru-hl-identifier-mode))
+  ;; (local-set-key (kbd "M-.") 'godef-jump)
 
-  (use-package go-guru :config (go-guru-hl-identifier-mode))
-
-  (local-set-key (kbd "M-.") 'godef-jump)
   (local-set-key '[(control return)] 'my-recompile)
   (local-set-key '[(control meta return)] 'multi-compile-run)
   (my-programming-common-hook))

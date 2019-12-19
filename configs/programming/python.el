@@ -1,5 +1,6 @@
 (use-package python-docstring :config (python-docstring-install))
 (use-package fill-column-indicator)
+(use-package py-isort)
 (use-package anaconda-mode
   :init (setq anaconda-mode-installation-directory
               (locate-user-emacs-file "auto-save-list/anaconda-mode")))
@@ -34,12 +35,14 @@
           (if arg (concat " as " (read-from-minibuffer "Import as: "))))
          "\n")))))
 
+
 (defun my-py-import-add (arg import)
   (interactive
    (list
     current-prefix-arg
     (read-from-minibuffer "Package: " )))
-  (my-py-insert-import arg import))
+  (my-py-insert-import arg import)
+  (py-isort-buffer))
 
 (reformatter-define yapf :program "yapf")
 (defun my-python-mode-hook()
@@ -47,13 +50,16 @@
   (yapf-on-save-mode)
   (fci-mode)
   (flycheck-mode)
-  (anaconda-mode)
-  (company-mode)
-  (eldoc-mode)
   (hungry-delete-mode)
 
   (local-set-key '[(meta q)] 'fill-paragraph)
   (local-set-key (kbd "C-'") 'toggle-quotes)
+
+  (local-set-key (kbd "s-t") 'ff-find-other-file)
+  (if (and buffer-file-name
+           (string-match "^test_"
+                         (file-name-sans-extension buffer-file-name)))
+      (local-set-key (kbd "C-S-r") 'pytest-one))
 
   (local-set-key '[(control c)(i)] 'my-py-import-add)
   (local-set-key '[(control c)(\[)] 'flycheck-previous-error)
