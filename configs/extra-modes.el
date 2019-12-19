@@ -83,9 +83,6 @@
   (powerline-display-mule-info nil)
   (powerline-display-buffer-size nil))
 
-;;Company mode
-(use-package company :diminish company-mode)
-
 ;;Ido Vertical mode
 (use-package ido-vertical-mode
   :custom
@@ -264,9 +261,6 @@
   :bind (:map markdown-mode-map
               ("C-`" . markdown-insert-code)))
 
-;;Web-mode
-(provide 'extras-modes)
-
 ;; Direnv
 (use-package direnv
   :custom
@@ -274,3 +268,14 @@
   (direnv-show-paths-in-summary nil)
   :config
   (direnv-mode))
+
+;; Anzu
+(use-package anzu
+  :config
+  (global-anzu-mode +1))
+
+(use-package info-colors
+  :hook (Info-selection-hook . info-colors-fontify-node))
+
+;;Web-mode
+(provide 'extras-modes)
