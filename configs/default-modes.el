@@ -205,19 +205,6 @@ mouse-3: go to end"))))
 ;;View
 (use-package view)
 
-;; Grep
-(use-package grep
-  :defer t
-  :bind (("C-s-G" . grep))
-  :config
-  (when-let (gnu-find (and (eq system-type 'darwin)
-                           (executable-find "gfind")))
-    (setq find-program gnu-find))
-
-  (when-let (gnu-xargs (and (eq system-type 'darwin)
-                            (executable-find "gxargs")))
-    (setq xargs-program gnu-xargs)))
-
 ;; Search files on the system
 (use-package locate
   :defer t
