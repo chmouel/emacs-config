@@ -1,8 +1,11 @@
+(setq force-database-file
+      (expand-file-name "~/.emacs.d/auto-save-list/forge.database"))
 (use-package magit
   :commands (magit-read-repository magit-toplevel)
   :bind (("C-x v v" . my-magit-commit-buffer)
          ("C-x v +" . magit-pull)
          ("s-1" . magit-status)
+         ("s-2" . magit-show-refs)
          ("C-c g" . magit-status))
   :commands (magit-process-file magit-list-repos-uniquify)
   :config
