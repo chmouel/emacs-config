@@ -58,13 +58,17 @@
   (local-set-key (kbd "s-t") 'ff-find-other-file)
   (if (and buffer-file-name
            (string-match "^test_"
-                         (file-name-sans-extension buffer-file-name)))
-      (local-set-key (kbd "C-S-r") 'pytest-one))
+                         (file-name-base (file-name-sans-extension buffer-file-name))))
+      (progn
+        (local-set-key '[(control return)] 'pytest-one)
+        (local-set-key (kbd "C-S-r") 'pytest-one))
+    (local-set-key '[(control return)] 'my-recompile))
+
 
   (local-set-key '[(control c)(i)] 'my-py-import-add)
   (local-set-key '[(control c)(\[)] 'flycheck-previous-error)
   (local-set-key '[(control c)(\])] 'flycheck-next-error)
 
-  (setq-local compile-command (concat python-shell-interpreter " -E \"" buffer-file-name "\""))
-  (local-set-key '[(control return)] 'my-recompile))
+  (setq-local compile-command (concat python-shell-interpreter " -E \"" buffer-file-name "\"")))
+
 (add-hook 'python-mode-hook 'my-python-mode-hook)
