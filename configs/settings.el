@@ -10,6 +10,8 @@
 (global-set-key '[(control c)(\[)] 'previous-error)
 (global-set-key (read-kbd-macro "C-x C-=") 'ediff-buffers)
 (global-set-key (read-kbd-macro "C-x C-k") 'kill-current-buffer)
+(global-set-key (read-kbd-macro "s-w") 'kill-current-buffer)
+
 (global-set-key (read-kbd-macro "C-x f") 'find-file-at-point)
 (global-set-key (read-kbd-macro "M-q") 'fill-region)
 (global-set-key (read-kbd-macro "M-l") 'downcase-word)
