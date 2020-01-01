@@ -12,6 +12,7 @@
 (use-package "dired"
   :ensure nil
   :config
+  (use-package all-the-icons-dired)
   (use-package diredfl
     :ensure t
     :config
@@ -19,6 +20,7 @@
   (require 'dired-x)
   :init
   (defun my-dired-mode-hook ()
+    (all-the-icons-dired-mode)
     (dired-omit-mode)
     (when (featurep 'tooltip) (tooltip-mode 0)))
   (add-hook 'dired-mode-hook 'my-dired-mode-hook)
