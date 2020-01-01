@@ -271,11 +271,100 @@
 
 ;; Anzu
 (use-package anzu
+  :diminish anzu-mode
   :config
   (global-anzu-mode +1))
 
 (use-package info-colors
   :hook (Info-selection-hook . info-colors-fontify-node))
 
+(use-package deadgrep
+  :config
+  (defun my-deadgrep-no-project()
+    "Don't use project only current dir"
+    (deadgrep--lookup-override default-directory))
+  :bind
+  (("C-S-g" . (lambda () (interactive) (setq-local deadgrep-project-root-function 'my-deadgrep-no-project) (call-interactively 'deadgrep))))
+  )
+
+;; Emacs DASHBoard ASAP
+(use-package dashboard
+  :ensure t
+  :custom
+  (dashboard-banner-logo-title "Welcome to ChmouMACS!!")
+  (dashboard-startup-banner 'logo)
+  (dashboard-center-content t)
+  (dashboard-set-file-icons t)
+  (dashboard-set-heading-icons t)
+  (dashboard-items '((recents . 10)
+                     (projects  . 10)
+                     (bookmarks . 5)))
+  :bind (:map
+         dashboard-mode-map
+         ("g" . (lambda ()
+                  (interactive)
+                  (if (file-directory-p
+                       (thing-at-point 'filename))
+                      (magit-status (thing-at-point 'filename)))))
+
+         ("b" . (lambda ()
+                  (interactive)
+                  (if (file-directory-p
+                       (thing-at-point 'filename))
+                      (let ((default-directory (thing-at-point 'filename)))
+                        (magit-show-refs)))))
+
+         ("p" . dashboard-previous-line)
+         ("n" . dashboard-next-line))
+  :bind (("s-3" . my-show-dashboard))
+  :config
+  (dashboard-setup-startup-hook)
+  (defun my-show-dashboard()
+    (interactive)
+    (if (not (get-buffer dashboard-buffer-name))
+        (progn
+          (ignore-errors (dashboard-insert-startupify-lists))
+          (switch-to-buffer dashboard-buffer-name)
+          (dashboard-mode))
+      (progn (dashboard-refresh-buffer)))
+    (call-interactively 'widget-forward)))
+
+;; Ace Window
+(use-package ace-window
+  :bind (("C-M-s-w" . ace-window)))
+
+(use-package ace-jump-buffer
+  :custom
+  ((ajb-bs-configuration "files"))
+  :bind (("C-M-s-e" . ace-jump-buffer)))
+
+;; Which key
+(use-package which-key
+  :config
+  (which-key-mode))
+
+;;
+(use-package centaur-tabs
+  :bind
+  (("s-{" . centaur-tabs-backward)
+   ("s-}" . centaur-tabs-forward)
+   ("S-s up" . centaur-tabs-forward-group)
+   ("S-s down" . centaur-tabs-backward-group))
+
+  :custom
+  ((centaur-tabs-cycle-scope 'tabs)
+   (centaur-tabs-set-icons t))
+
+  :init
+  (require 'centaur-tabs)
+  :config
+  (centaur-tabs-mode t))
+
+;; VTERM
+(use-package vterm)
+
+;;
+
+;;; KEEP IT
 ;;Web-mode
 (provide 'extras-modes)
