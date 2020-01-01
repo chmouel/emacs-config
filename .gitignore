@@ -19,3 +19,5 @@ anaconda-mode
 emojis/
 magithub/
 transient/
+/.lsp-session-v1
+/persp-confs/
