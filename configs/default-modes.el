@@ -11,6 +11,14 @@
 ;; Dired
 (use-package "dired"
   :ensure nil
+  :custom
+  ((dired-omit-files
+    (concat "^\\.\\|^\\.?#\\|^\\.$\\|^\\.\\.$\\|"
+            "^Thumbs.db$\\|\\.svn$\\|\\.git\\(ignore\\)?\\|"
+            "\\.pyc$\\|^\\.coverage$\\|^TAGS$\\|^tags$\\|"
+            "\\.class$\\|\\.DS_Store\\|\\.localized$\\|__pycache__$"))
+   (insert-directory-program (if (executable-find "gls") "gls" "ls"))
+   (dired-listing-switches "-lGh1v --sort=extension"))
   :config
   (use-package all-the-icons-dired)
   (use-package diredfl
@@ -38,6 +46,7 @@
   (:map dired-mode-map
         ("W" . browse-url-of-dired-file)
         ("l" . my-dired-launch-command)
+        ("O" . dired-omit-mode)
         ("E" . wdired-change-to-wdired-mode)
         ("s" . dired-up-directory)
         ("j" . dired-next-line)
