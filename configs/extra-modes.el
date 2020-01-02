@@ -340,6 +340,7 @@
 
 ;; Which key
 (use-package which-key
+  :diminish which-key-mode
   :config
   (which-key-mode))
 
@@ -348,20 +349,34 @@
   :bind
   (("s-{" . centaur-tabs-backward)
    ("s-}" . centaur-tabs-forward)
+   ("s->" . centaur-tabs-counsel-switch-group)
    ("S-s up" . centaur-tabs-forward-group)
    ("S-s down" . centaur-tabs-backward-group))
 
   :custom
   ((centaur-tabs-cycle-scope 'tabs)
+   (centaur-tabs-set-bar 'under)
+   (x-underline-at-descent-line t)
+   (centaur-tabs-set-modified-marker t)
+   (centaur-tabs-modified-marker "﹡")
+   (centaur-tabs-gray-out-icons 'buffer)
    (centaur-tabs-set-icons t))
 
   :init
   (require 'centaur-tabs)
   :config
-  (centaur-tabs-mode t))
+  (centaur-tabs-headline-match)
+  (centaur-tabs-mode t)
+  (centaur-tabs-group-by-projectile-project))
 
 ;; VTERM
 (use-package vterm)
+
+;; ZOOM mode
+(use-package zoom
+  :diminish zoom-mode
+  :config
+  (zoom-mode 1))
 
 ;;
 
