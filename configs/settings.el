@@ -1,8 +1,8 @@
 ;; FSET
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;KeyBinding
-(global-set-key '[(control meta l)] (lambda () (interactive) (switch-to-buffer (other-buffer))))
+;; KeyBinding
+(global-set-key '[(control meta l)] 'mode-line-other-buffer)
 (global-set-key '[(control next)] 'end-of-buffer)
 (global-set-key '[(control prior)] 'beginning-of-buffer)
 (global-set-key '[(control tab)] 'other-window)
