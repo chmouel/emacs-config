@@ -75,7 +75,12 @@
 (defun my-setup-hl-line () (hl-line-mode 1) (setq cursor-type 'hbar))
 (setq cursor-type 't)
 
-; Colours!
+;; Emojify on group mode cause i have mbox with emojis :D
+(use-package emojify
+  :hook (gnus-group-mode-hook . emojify-mode))
+
+
+;; Colours!
 (require 'gnus-cite)
 (require 'mail-parse)
 
