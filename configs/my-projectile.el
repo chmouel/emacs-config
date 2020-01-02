@@ -23,6 +23,8 @@
 ;; projectile
 (use-package projectile
   :commands (projectile-ensure-project projectile-project-root)
+  :custom
+  ((projectile-mode-line-function 'my-projectile-mode-line))
   :config
   (projectile-mode +1)
   :bind (("s-b" . projectile-switch-to-buffer)
@@ -31,6 +33,16 @@
          ("s-o" . projectile-switch-project)
          ("s-i" . my-projectile-and-ripgrep)
          ("s-p" . my-projectile-and-dired)))
+
+(defun my-projectile-mode-line ()
+  (let ((project-name (projectile-project-name)))
+    (format " :%s" (or project-name "-"))))
+
+(defun my-projectile-mode-line ()
+  (let ((project-name
+         (projectile-project-name)))
+    (if (not (string= project-name "-"))
+        (format " PRJ[%s]" project-name) "")))
 
 (defun my-projectile-and-dired()
   (interactive)
