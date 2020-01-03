@@ -17,7 +17,6 @@
             "^Thumbs.db$\\|\\.svn$\\|\\.git\\(ignore\\)?\\|"
             "\\.pyc$\\|^\\.coverage$\\|^TAGS$\\|^tags$\\|"
             "\\.class$\\|\\.DS_Store\\|\\.localized$\\|__pycache__$"))
-   (insert-directory-program (if (executable-find "gls") "gls" "ls"))
    (dired-listing-switches "-lGh1v --sort=extension"))
   :config
   (use-package all-the-icons-dired)
@@ -27,6 +26,8 @@
     (diredfl-global-mode 1))
   (require 'dired-x)
   :init
+  (setq insert-directory-program
+        '(if (executable-find "gls") "gls" "ls"))
   (defun my-dired-mode-hook ()
     (all-the-icons-dired-mode)
     (dired-omit-mode)
