@@ -16,8 +16,8 @@
     (concat "^\\.\\|^\\.?#\\|^\\.$\\|^\\.\\.$\\|"
             "^Thumbs.db$\\|\\.svn$\\|\\.git\\(ignore\\)?\\|"
             "\\.pyc$\\|^\\.coverage$\\|^TAGS$\\|^tags$\\|"
-            "\\.class$\\|\\.DS_Store\\|\\.localized$\\|__pycache__$"))
-   (dired-listing-switches "-lGh1v --sort=extension"))
+            "\\.class$\\|\\.DS_Store\\|\\.localized$\\|__pycache__$")))
+
   :config
   (use-package all-the-icons-dired)
   (use-package diredfl
@@ -26,8 +26,8 @@
     (diredfl-global-mode 1))
   (require 'dired-x)
   :init
-  (setq insert-directory-program
-        '(if (executable-find "gls") "gls" "ls"))
+  (if (executable-find "gls")
+      (setq insert-directory-program "gls"))
   (defun my-dired-mode-hook ()
     (all-the-icons-dired-mode)
     (dired-omit-mode)
