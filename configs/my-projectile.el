@@ -26,6 +26,13 @@
   :custom
   ((projectile-mode-line-function 'my-projectile-mode-line))
   :config
+  (setq frame-title-format
+        '(""
+          "%b"
+          (:eval
+           (let ((project-name (projectile-project-name)))
+             (unless (string= "-" project-name)
+               (format " ⏤ %s" project-name))))))
   (projectile-mode +1)
   :bind (("s-b" . projectile-switch-to-buffer)
          ("C-S-f" . projectile-find-file)
