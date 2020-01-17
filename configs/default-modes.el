@@ -17,7 +17,6 @@
             "^Thumbs.db$\\|\\.svn$\\|\\.git\\(ignore\\)?\\|"
             "\\.pyc$\\|^\\.coverage$\\|^TAGS$\\|^tags$\\|"
             "\\.class$\\|\\.DS_Store\\|\\.localized$\\|__pycache__$")))
-
   :config
   (use-package all-the-icons-dired)
   (use-package diredfl
@@ -158,17 +157,17 @@ With a prefix argument P, isearch for the symbol at point."
 
 ;;  Make execustable scripts.
 (add-hook 'after-save-hook
-  'executable-make-buffer-file-executable-if-script-p)
+          'executable-make-buffer-file-executable-if-script-p)
 
 ;;  Delete trailing whitespace
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+;; (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;;  Define j/k for scroll up/down on view-mode and derived.
 (defun my-view-vi-keys-map (x-map)
   (define-key x-map (read-kbd-macro "S-SPC") 'View-scroll-page-backward)
   (define-key x-map (read-kbd-macro "j") 'View-scroll-line-forward)
   (define-key x-map (read-kbd-macro "k") 'View-scroll-line-backward)
-)
+  )
 
 (eval-after-load "view" '(my-view-vi-keys-map view-mode-map))
 (eval-after-load "man" '(my-view-vi-keys-map Man-mode-map))
