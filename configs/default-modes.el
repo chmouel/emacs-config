@@ -159,8 +159,13 @@ With a prefix argument P, isearch for the symbol at point."
 (add-hook 'after-save-hook
           'executable-make-buffer-file-executable-if-script-p)
 
-;;  Delete trailing whitespace
-;; (add-hook 'before-save-hook 'delete-trailing-whitespace)
+;;  Delete trailing whitespace, allow overriding it in a dirs-locale with the
+;;  my-delete-trailing-whitespace-enabled variable
+(defvar my-delete-trailing-whitespace-enabled 't)
+(defun my-delete-trailing-whitespace ()
+  (if my-delete-trailing-whitespace delete-trailing-whitespace))
+(add-hook 'before-save-hook 'my-delete-trailing-whitespace)
+
 
 ;;  Define j/k for scroll up/down on view-mode and derived.
 (defun my-view-vi-keys-map (x-map)
