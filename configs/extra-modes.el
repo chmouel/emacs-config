@@ -181,10 +181,7 @@
 (use-package google-this :bind (("s--" . google-this)))
 
 ;;
-(use-package highlight-indentation
-  :config
-  (set-face-background 'highlight-indentation-face "#e3e3d3")
-  (set-face-background 'highlight-indentation-current-column-face "#c3b3b3"))
+(use-package highlight-indentation)
 
 ;; change ag interactivity
 (use-package wgrep-ag :commands (wgrep-ag-setup wgrep-ag-setup))
