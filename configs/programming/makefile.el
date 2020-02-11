@@ -1,0 +1,5 @@
+(defun my-makefile-mode-hook ()
+  (my-programming-common-hook)
+  (local-set-key '[(control =)] 'whitespace-cleanup)
+  (whitespace-mode))
+(add-hook 'makefile-mode-hook 'my-makefile-mode-hook)
