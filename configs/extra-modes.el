@@ -99,6 +99,7 @@
 ;; Counsel
 (use-package counsel
   :config
+  (global-set-key '[(control \`)] 'counsel-switch-buffer)
   (define-key ivy-minibuffer-map (kbd "C-o") 'ivy-occur)
   (define-key ivy-minibuffer-map (kbd "C-w") 'ivy-yank-word))
 
