@@ -110,6 +110,8 @@
 
 ;; AG
 (use-package ag
+  :bind (("s-h" . ag-project))
+  :commands (ag/read-from-minibuffer)
   :custom
   (ag-reuse-buffers t)
   :config
