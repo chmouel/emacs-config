@@ -6,7 +6,7 @@
   :bind (("C-x v v" . my-magit-commit-buffer)
          ("C-x v -" . magit-pull)
          ("C-x v +" . magit-push)
-         ("s-1" . magit-status)
+         ("<f5>" . magit-status)
          ("s-2" . magit-show-refs)
          ("C-c g" . magit-status))
   :bind (:map magit-refs-mode-map
@@ -15,7 +15,11 @@
               ("j" . magit-section-forward)
               ("." . (lambda () (interactive) (magit-checkout (magit-branch-at-point)))))
   :commands (magit-process-file magit-list-repos-uniquify)
+  :hook
+  (magit-status-mode-hook my-magit-status-mode-hook)
   :config
+  (defun my-magit-status-mode-hook ()
+    (local-set-key '[(control =)] 'magit-commit-create))
   (setq magit-display-buffer-function 'magit-display-buffer-fullframe-status-topleft-v1)
   (global-git-commit-mode)
   (magit-define-popup-switch 'magit-log-popup ?m "Omit merge commits" "--no-merges"))
