@@ -379,6 +379,22 @@
   :config
   (zoom-mode 1))
 
+;; PlantUML
+(use-package plantuml-mode
+  :bind (:map plantuml-mode-map ([(control c) (control c)]
+                                 . my-plantuml-preview))
+  :config
+  (defun my-plantuml-preview ()
+    (interactive)
+    (save-excursion (plantuml-preview-buffer 4))))
+
+
+;; Grip Mode
+(use-package grip-mode
+  :ensure t
+  :bind (:map markdown-mode-command-map
+              ("g" . grip-mode)))
+
 ;;
 
 ;;; KEEP IT
