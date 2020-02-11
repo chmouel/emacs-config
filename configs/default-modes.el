@@ -163,7 +163,7 @@ With a prefix argument P, isearch for the symbol at point."
 ;;  my-delete-trailing-whitespace-enabled variable
 (defvar my-delete-trailing-whitespace-enabled 't)
 (defun my-delete-trailing-whitespace ()
-  (if my-delete-trailing-whitespace delete-trailing-whitespace))
+  (if my-delete-trailing-whitespace-enabled (delete-trailing-whitespace)))
 (add-hook 'before-save-hook 'my-delete-trailing-whitespace)
 
 
