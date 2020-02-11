@@ -146,12 +146,13 @@
 
   (setq
    flycheck-mode-line '(:eval (my-flycheck-mode-line-status-text))
-   flycheck-mode-line-prefix "FlyChk"
+   flycheck-mode-line-prefix "FC"
    flycheck-disabled-checkers
    '(html-tidy xml-xmlint emacs-lisp emacs-lisp-checkdoc)
    flycheck-display-errors-delay 0.2
    flycheck-highlighting-mode 'lines)
-  (global-flycheck-mode t))
+  (global-flycheck-mode t)
+  )
 
 (use-package flycheck-yamllint
   :ensure t
