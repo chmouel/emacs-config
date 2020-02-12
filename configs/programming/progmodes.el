@@ -18,25 +18,33 @@
   :commands lsp
   :custom
   (lsp-gopls-staticcheck t)
-  (lsp-eldoc-render-all t)
+  (lsp-eldoc-render-all nil)
   (lsp-gopls-complete-unimported t)
-  (lsp-enable-snippet nil)
-  (lsp-enable-links nil)
-  (lsp-ui-sideline-delay 2.0)
-  (lsp-ui-doc-max-width 30)
-  (lsp-ui-doc-max-height 15)
-  (lsp-document-highlight-delay 2.0)
+  (lsp-enable-snippet t)
+  (lsp-enable-links t)
+  ;; (lsp-ui-sideline-delay 0.5)
+  ;; (lsp-ui-doc-max-width 30)
+  ;; (lsp-ui-doc-max-height 15)
+  (lsp-ui-doc-enable t)
+  (lsp-ui-imenu-enable t)
+  (lsp-ui-peek-enable t)
+  (lsp-ui-flycheck-enable t)
   (lsp-auto-guess-root t)
   (lsp-prefer-flymake nil) ; Use flycheck instead of flymake
   :hook
   ((python-mode) . lsp)
-  ((go-mode) . lsp))
+  ;; ((go-mode) . lsp)
+  )
 
 
 (defun my-recompile (args)
   (interactive "P")
   (cond
    (args (call-interactively 'compile))
+   ((get-buffer "*Go Test*")
+    (progn
+      (pop-to-buffer "*Go Test*")
+      (recompile)))
    ((get-buffer "*compilation*")
     (progn
       (pop-to-buffer "*compilation*")
@@ -53,10 +61,6 @@
   (local-set-key (kbd "C-'") 'toggle-quotes)
   (local-set-key '[(meta return)] 'compile)
 
-  ;; (if (fboundp 'my-compile-command)
-  ;;     (local-set-key '[(control meta return)] (lambda () (interactive) (compile my-compile-command))))
-  ;; (if (fboundp 'my-compile-run-command)
-  ;;     (local-set-key '[(control return)] (lambda () (interactive) (compile my-compile-run-command)))
   (local-set-key '[(control meta return)] 'multi-compile-run)
   (local-set-key '[(control return)] 'my-recompile)
   )
