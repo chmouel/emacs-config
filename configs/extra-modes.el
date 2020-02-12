@@ -317,7 +317,6 @@
 
          ("p" . dashboard-previous-line)
          ("n" . dashboard-next-line))
-  :bind (("s-3" . my-show-dashboard))
   :config
   (dashboard-setup-startup-hook)
   (defun my-show-dashboard()
