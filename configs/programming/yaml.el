@@ -1,6 +1,6 @@
 (defun my-yaml-mode-hook ()
-  (local-set-key
-   '[(control =)]
-   (lambda () (interactive) (call-interactively 'highlight-indentation-current-column-mode)))
+  (local-set-key '[(control =)] 'whitespace-cleanup)
+  (local-set-key '[(control -)] (lambda () (interactive) (call-interactively 'highlight-indentation-current-column-mode)))
+  (whitespace-mode)
   (my-programming-common-hook))
 (add-hook 'yaml-mode-hook 'my-yaml-mode-hook)
