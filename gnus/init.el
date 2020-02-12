@@ -35,7 +35,6 @@
                                        "%~(max-right 20)~(pad-right 20)f %B%s\n")
       gnus-group-line-format "%1M%1S%5y: %(%-50,50G%)\n"
       gnus-topic-display-empty-topics nil
-      gnus-summary-line-format "%U%R%z %(%&user-date;  %-15,15f  %B%s%)\n"
       gnus-summary-thread-gathering-function 'gnus-gather-threads-by-references
       gnus-thread-sort-functions '(gnus-thread-sort-by-number (not gnus-thread-sort-by-date))
       gnus-sum-thread-tree-false-root ""
