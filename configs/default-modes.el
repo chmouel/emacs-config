@@ -112,12 +112,6 @@ With a prefix argument P, isearch for the symbol at point."
     (load-file (concat my-init-directory "/gnus/message.el")))
 
 ;; IBUFFER
-(defun my-switch-to-ibuffer()
-  (interactive)
-  (unless (get-buffer "*Ibuffer*")
-    (ibuffer-list-buffers))
-  (pop-to-buffer "*Ibuffer*"))
-
 (use-package ibuffer
   :init
   (add-hook 'ibuffer-mode-hook
@@ -131,7 +125,7 @@ With a prefix argument P, isearch for the symbol at point."
                     ("Files" (not mode . dired-mode) (name . "^[^*]"))
                     ("Directories" (mode . dired-mode))))
                   ))
-  :bind (("C-x C-b" . my-switch-to-ibuffer)
+  :bind (("C-x C-b" . ibuffer-jump)
          :map ibuffer-mode-map
          ("M-p" . ibuffer-backward-line)))
 
