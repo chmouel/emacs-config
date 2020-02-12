@@ -23,7 +23,7 @@
  '(ace-jump-mode-gray-background nil t)
  '(ack-and-a-half-arguments (quote ("--ignore-dir .tox" "-k" "--ignore-dir vendor/")))
  '(ack-executable "/usr/bin/ack-grep")
- '(ag-reuse-buffers t)
+ '(ag-reuse-buffers t t)
  '(ajb-bs-configuration "files" t)
  '(all-christian-calendar-holidays t)
  '(atomic-chrome-buffer-frame-height 80)
@@ -187,6 +187,7 @@
  '(gnus-topic-indent-level 4)
  '(gnus-user-agent (quote (gnus emacs)))
  '(go-playground-ask-for-file-name t t)
+ '(go-test-verbose t)
  '(grep-scroll-output t)
  '(grep-window-height 10)
  '(groovy-indent-offset 2)
@@ -207,18 +208,6 @@
  '(ibuffer-always-compile-formats t)
  '(ibuffer-elide-long-columns t)
  '(ibuffer-expert t)
- '(ibuffer-formats
-   (quote
-    ((mark modified read-only " "
-           (name 18 -1 :left)
-           " "
-           (size 9 -1 :right)
-           " "
-           (mode 16 16 :left :elide)
-           " " filename-and-process)
-     (mark " "
-           (name 16 -1)
-           " " filename))))
  '(ibuffer-saved-filter-groups
    (quote
     (("default"
@@ -274,25 +263,25 @@
  '(kill-do-not-save-duplicates t)
  '(ls-lisp-dirs-first t)
  '(ls-lisp-use-insert-directory-program nil)
- '(lsp-auto-guess-root t)
+ '(lsp-auto-guess-root t t)
  '(lsp-document-highlight-delay 2.0 t)
- '(lsp-eldoc-render-all t)
+ '(lsp-eldoc-render-all nil t)
  '(lsp-enable-file-watchers nil)
- '(lsp-enable-links t)
- '(lsp-enable-snippet t)
+ '(lsp-enable-links t t)
+ '(lsp-enable-snippet t t)
  '(lsp-file-watch-ignored
    (quote
     ("[/\\\\]\\.git$" "[/\\\\]\\.hg$" "[/\\\\]\\.bzr$" "[/\\\\]_darcs$" "[/\\\\]\\.svn$" "[/\\\\]_FOSSIL_$" "[/\\\\]\\.idea$" "[/\\\\]\\.ensime_cache$" "[/\\\\]\\.eunit$" "[/\\\\]node_modules$" "[/\\\\]\\.fslckout$" "[/\\\\]\\.tox$" "[/\\\\]\\.stack-work$" "[/\\\\]\\.bloop$" "[/\\\\]\\.metals$" "[/\\\\]target$" "[/\\\\]\\.deps$" "[/\\\\]build-aux$" "[/\\\\]autom4te.cache$" "[/\\\\]\\.reference$")))
  '(lsp-file-watch-threshold 500)
  '(lsp-gopls-complete-unimported t t)
  '(lsp-gopls-staticcheck t t)
- '(lsp-prefer-flymake nil)
- '(lsp-ui-doc-enable t)
+ '(lsp-prefer-flymake nil t)
+ '(lsp-ui-doc-enable t t)
  '(lsp-ui-doc-max-height 15)
  '(lsp-ui-doc-max-width 30)
- '(lsp-ui-flycheck-enable t)
- '(lsp-ui-imenu-enable t)
- '(lsp-ui-peek-enable t)
+ '(lsp-ui-flycheck-enable t t)
+ '(lsp-ui-imenu-enable t t)
+ '(lsp-ui-peek-enable t t)
  '(lsp-ui-sideline-delay 0.5)
  '(magit-commit-show-diff nil)
  '(magit-commit-signoff t)
@@ -303,7 +292,7 @@
  '(magit-visit-ref-behavior (quote (checkout-branch)))
  '(make-backup-files nil)
  '(max-specpdl-size 50000)
- '(mc/list-file "~/.emacs.d/auto-save-list/mc-lists.el")
+ '(mc/list-file "~/.emacs.d/auto-save-list/mc-lists.el" t)
  '(mm-inline-text-html-with-w3m-keymap nil)
  '(multi-compile-history-file
    (expand-file-name
@@ -329,7 +318,7 @@
     (concat user-emacs-directory "/packages")))
  '(pdf-view-midnight-colors (quote ("#6a737d" . "#fffbdd")))
  '(plantuml-default-exec-mode (quote jar))
- '(plantuml-jar-path "/usr/local/Cellar/plantuml/1.2019.13/libexec/plantuml.jar")
+ '(plantuml-jar-path "/usr/local/Cellar/plantuml/1.2019.13/libexec/plantuml.jar" t)
  '(powerline-default-separator (quote curve))
  '(powerline-display-buffer-size nil nil nil "Customized with use-package powerline")
  '(powerline-display-mule-info nil nil nil "Customized with use-package powerline")
@@ -383,7 +372,7 @@
  '(savehist-mode t)
  '(server-use-tcp nil)
  '(server-window nil)
- '(smex-save-file "~/.emacs.d/auto-save-list/smex-items")
+ '(smex-save-file "~/.emacs.d/auto-save-list/smex-items" t)
  '(split-width-threshold nil)
  '(svn-status-display-full-path t)
  '(svn-status-hide-unmodified t)
