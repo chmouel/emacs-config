@@ -51,7 +51,7 @@
   (fci-mode)
   (flycheck-mode)
   (hungry-delete-mode)
-
+  (eldoc-mode -1)
   (local-set-key '[(meta q)] 'fill-paragraph)
   (local-set-key (kbd "C-'") 'toggle-quotes)
 
@@ -64,7 +64,7 @@
         (local-set-key (kbd "C-S-r") 'pytest-one))
     (local-set-key '[(control return)] 'my-recompile))
 
-
+  (local-set-key '[(meta return)] 'compile)
   (local-set-key '[(control c)(i)] 'my-py-import-add)
   (local-set-key '[(control c)(\[)] 'flycheck-previous-error)
   (local-set-key '[(control c)(\])] 'flycheck-next-error)
