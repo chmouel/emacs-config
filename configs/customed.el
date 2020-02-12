@@ -23,7 +23,7 @@
  '(ace-jump-mode-gray-background nil t)
  '(ack-and-a-half-arguments (quote ("--ignore-dir .tox" "-k" "--ignore-dir vendor/")))
  '(ack-executable "/usr/bin/ack-grep")
- '(ag-reuse-buffers t t)
+ '(ag-reuse-buffers t)
  '(ajb-bs-configuration "files" t)
  '(all-christian-calendar-holidays t)
  '(atomic-chrome-buffer-frame-height 80)
@@ -276,10 +276,10 @@
  '(ls-lisp-use-insert-directory-program nil)
  '(lsp-auto-guess-root t)
  '(lsp-document-highlight-delay 2.0 t)
- '(lsp-eldoc-render-all nil)
+ '(lsp-eldoc-render-all t)
  '(lsp-enable-file-watchers nil)
- '(lsp-enable-links nil)
- '(lsp-enable-snippet nil)
+ '(lsp-enable-links t)
+ '(lsp-enable-snippet t)
  '(lsp-file-watch-ignored
    (quote
     ("[/\\\\]\\.git$" "[/\\\\]\\.hg$" "[/\\\\]\\.bzr$" "[/\\\\]_darcs$" "[/\\\\]\\.svn$" "[/\\\\]_FOSSIL_$" "[/\\\\]\\.idea$" "[/\\\\]\\.ensime_cache$" "[/\\\\]\\.eunit$" "[/\\\\]node_modules$" "[/\\\\]\\.fslckout$" "[/\\\\]\\.tox$" "[/\\\\]\\.stack-work$" "[/\\\\]\\.bloop$" "[/\\\\]\\.metals$" "[/\\\\]target$" "[/\\\\]\\.deps$" "[/\\\\]build-aux$" "[/\\\\]autom4te.cache$" "[/\\\\]\\.reference$")))
@@ -287,12 +287,12 @@
  '(lsp-gopls-complete-unimported t t)
  '(lsp-gopls-staticcheck t t)
  '(lsp-prefer-flymake nil)
- '(lsp-ui-doc-enable nil)
+ '(lsp-ui-doc-enable t)
  '(lsp-ui-doc-max-height 15)
  '(lsp-ui-doc-max-width 30)
  '(lsp-ui-flycheck-enable t)
- '(lsp-ui-imenu-enable nil)
- '(lsp-ui-peek-enable nil)
+ '(lsp-ui-imenu-enable t)
+ '(lsp-ui-peek-enable t)
  '(lsp-ui-sideline-delay 0.5)
  '(magit-commit-show-diff nil)
  '(magit-commit-signoff t)
@@ -303,7 +303,7 @@
  '(magit-visit-ref-behavior (quote (checkout-branch)))
  '(make-backup-files nil)
  '(max-specpdl-size 50000)
- '(mc/list-file "~/.emacs.d/auto-save-list/mc-lists.el" t)
+ '(mc/list-file "~/.emacs.d/auto-save-list/mc-lists.el")
  '(mm-inline-text-html-with-w3m-keymap nil)
  '(multi-compile-history-file
    (expand-file-name
@@ -323,13 +323,13 @@
      ("GNU" . "http://elpa.gnu.org/packages/"))))
  '(package-selected-packages
    (quote
-    (sqlite magit-section jinja2-mode ripgrep grip-mode zoom-mode zoom emojify doom-themes centaur-tabs centaur-tab which-key awesome-tab all-the-icons-dired all-the-icons exec-path-from-shell vterm ace-jump-buffer ace-window dashboard jira-markup-mode lsp-ui py-isort subr-x docker-tramp ibuffer-tramp kubernetes-tramp helm-org general direnv pytest ibuffer-git esh-autosuggest diredfl git-commit-insert-issue evil monokai-pro monokai-alt monokai-pro-theme monokai-theme goto-last-change company-lsp jsx-mode auto-complete multiple-cursors forge mmm-mode ag rg deadgrep inf-ruby gitconfig-mode yaml-imenu yaml-mode counsel flycheck-rust rust-auto-use rust-playground rust-mode reformatter multi-compile-run multi-compile yapf-mode yapf crux adoc color-moccur use-package-chords github-issues direx lorem-ipsum pyimport flycheck-plantuml plantuml-mode indent-guide projectile evil-matchit-mode elisp emacs-lisp elisp-mode emacs-lisp-mode info-colors magithub shell-mode message isearch abbrev dired dired-x lisp-mode misc anzu page diminish ns-win moe popup-kill-ring pdf-tools imenu-list github-clone indent-tools git-auto-commit-mode helm-lean applescript-mode browse-at-remote go-impl dumb-jump groovy-mode the-org-mode-expansions kubernetes flycheck-yamllint avy commenter gist zop-to-char js2-mode jsfmt go-add-tags wgrep-ag flycheck-gometalinter go-stacktracer js-auto-beautify go-guru highlight-indentation esqlite go-errcheck go-snippets go-playground golint go-rename toggle-quotes zygospore zenburn-theme yasnippet yascroll window-number wgrep web use-package try smex smart-shift smart-mode-line rpm-spec-mode request-deferred regex-tool queue python-docstring pyfmt powerline php-mode pcsv pcache paredit package-safe-delete message-x marmalade magit-find-file json-rpc json-mode isearch-dabbrev ido-vertical-mode ido-completing-read+ ibuffer-vc hungry-delete htmlize highlight-numbers highlight-80+ google-this go-eldoc github-browse-file fringe-helper flycheck flx-ido find-file-in-git-repo fill-column-indicator expand-region dropdown-list dockerfile-mode csv-mode csharp-mode company-go company-anaconda comment-dwim-2 browse-kill-ring boxquote bm bbdb aggressive-indent)))
+    (go-test sqlite magit-section jinja2-mode ripgrep grip-mode zoom-mode zoom emojify doom-themes centaur-tabs centaur-tab which-key awesome-tab all-the-icons-dired all-the-icons exec-path-from-shell vterm ace-jump-buffer ace-window dashboard jira-markup-mode lsp-ui py-isort subr-x docker-tramp ibuffer-tramp kubernetes-tramp helm-org general direnv pytest ibuffer-git esh-autosuggest diredfl git-commit-insert-issue evil monokai-pro monokai-alt monokai-pro-theme monokai-theme goto-last-change company-lsp jsx-mode auto-complete multiple-cursors forge mmm-mode ag rg deadgrep inf-ruby gitconfig-mode yaml-imenu yaml-mode counsel flycheck-rust rust-auto-use rust-playground rust-mode reformatter multi-compile-run multi-compile yapf-mode yapf crux adoc color-moccur use-package-chords github-issues direx lorem-ipsum pyimport flycheck-plantuml plantuml-mode indent-guide projectile evil-matchit-mode elisp emacs-lisp elisp-mode emacs-lisp-mode info-colors magithub shell-mode message isearch abbrev dired dired-x lisp-mode misc anzu page diminish ns-win moe popup-kill-ring pdf-tools imenu-list github-clone indent-tools git-auto-commit-mode helm-lean applescript-mode browse-at-remote go-impl dumb-jump groovy-mode the-org-mode-expansions kubernetes flycheck-yamllint avy commenter gist zop-to-char js2-mode jsfmt go-add-tags wgrep-ag flycheck-gometalinter go-stacktracer js-auto-beautify go-guru highlight-indentation esqlite go-errcheck go-snippets go-playground golint go-rename toggle-quotes zygospore zenburn-theme yasnippet yascroll window-number wgrep web use-package try smex smart-shift smart-mode-line rpm-spec-mode request-deferred regex-tool queue python-docstring pyfmt powerline php-mode pcsv pcache paredit package-safe-delete message-x marmalade magit-find-file json-rpc json-mode isearch-dabbrev ido-vertical-mode ido-completing-read+ ibuffer-vc hungry-delete htmlize highlight-numbers highlight-80+ google-this go-eldoc github-browse-file fringe-helper flycheck flx-ido find-file-in-git-repo fill-column-indicator expand-region dropdown-list dockerfile-mode csv-mode csharp-mode company-go company-anaconda comment-dwim-2 browse-kill-ring boxquote bm bbdb aggressive-indent)))
  '(package-user-dir
    (expand-file-name
     (concat user-emacs-directory "/packages")))
  '(pdf-view-midnight-colors (quote ("#6a737d" . "#fffbdd")))
  '(plantuml-default-exec-mode (quote jar))
- '(plantuml-jar-path "/usr/local/Cellar/plantuml/1.2019.13/libexec/plantuml.jar" t)
+ '(plantuml-jar-path "/usr/local/Cellar/plantuml/1.2019.13/libexec/plantuml.jar")
  '(powerline-default-separator (quote curve))
  '(powerline-display-buffer-size nil nil nil "Customized with use-package powerline")
  '(powerline-display-mule-info nil nil nil "Customized with use-package powerline")
