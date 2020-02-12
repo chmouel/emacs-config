@@ -13,7 +13,6 @@
                  (lambda ()
                    (interactive)
                    (go-import-add nil (read-from-minibuffer "Import: "))))
-  (local-set-key (kbd "C-c i") 'go-goto-imports)
   (local-set-key (kbd "C-M-<up>")
                  (lambda ()
                    (interactive)
@@ -22,6 +21,7 @@
                  (lambda ()
                    (interactive)
                    (re-search-forward go-func-regexp nil t)))
+
   (local-set-key (kbd "C-S-w")
                  (lambda ()
                    (interactive)
@@ -33,10 +33,11 @@
     (local-set-key (kbd "C-S-y") 'go-test-current-file)
     (local-set-key (kbd "C-S-r") 'go-test-current-test))
 
+  (local-set-key (kbd "C-c i") 'go-goto-imports)
   (local-set-key (kbd "C-c d") 'godoc-at-point)
-  (local-set-key (kbd "s-t") 'ff-find-other-file)
   (local-set-key (kbd "M-.") 'godef-jump)
   (local-set-key (kbd "C-c C-r") 'go-remove-unused-imports)
+  (local-set-key (kbd "s-t") 'ff-find-other-file)
   (my-programming-common-hook)
 
   (add-to-list 'company-backends 'company-go)
