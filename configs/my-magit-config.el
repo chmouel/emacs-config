@@ -7,7 +7,7 @@
          ("C-x v -" . magit-pull)
          ("C-x v +" . magit-push)
          ("<f5>" . magit-status)
-         ("s-2" . magit-show-refs)
+         ("C-<f5>" . magit-show-refs)
          ("C-c g" . magit-status))
   :bind (:map magit-refs-mode-map
               ("K" . magit-branch-delete)
