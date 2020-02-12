@@ -51,16 +51,24 @@
          ("M-<down>" . er/contract-region)))
 
 ;; Ibuffer-VC
-(use-package ibuffer-vc
+(use-package ibuffer-projectile
+  :custom
+  ((ibuffer-projectile-prefix ""))
+  :config
+  (setq ibuffer-formats '((mark modified read-only locked
+                                " " (name 25 25 :left :elide)
+                                " " (mode 16 16 :left :elide) " " project-relative-file)
+                          (mark " " (name 16 -1) " " filename)))
   :init
   (add-hook 'ibuffer-hook
             (lambda ()
-              (ibuffer-vc-set-filter-groups-by-vc-root)
+              (toggle-truncate-lines t)
+              (ibuffer-projectile-set-filter-groups)
               (unless (eq ibuffer-sorting-mode 'alphabetic)
                 (ibuffer-do-sort-by-alphabetic)))))
 
-;; Popup for auto-complete and others
-(use-package popup)
+  ;; Popup for auto-complete and others
+  (use-package popup)
 
 ;; Auto complete in words.
 (use-package auto-complete)
