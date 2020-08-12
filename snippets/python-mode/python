@@ -1,8 +1,7 @@
 # -*- mode: snippet -*-
-# name: python
+# name: Python shbang
+# keyword: python-shbang
 # --
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-# Chmouel Boudjnah <chmouel@chmouel.com>
+#!/usr/bin/env python3
 
 $0

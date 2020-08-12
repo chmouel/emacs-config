@@ -1,5 +1,6 @@
 # -*- mode: snippet -*-
-# name: defa
+# name: Function with argument
 # key: defa
 # --
-def ${1:name}(${0:arg}):
+def ${1:name}(${2:arg}):
+    ${0}

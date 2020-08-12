@@ -1,4 +1,4 @@
 # -*- coding: utf-8 -*-
-# name: dbgos
+# name: Debug ipython
 # --
 from IPython.frontend.terminal.embed import InteractiveShellEmbed;InteractiveShellEmbed()()

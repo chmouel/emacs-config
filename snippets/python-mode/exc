@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: exc
+# name: Exceptions
 # key:exc
 # --
 class $0(Exception):

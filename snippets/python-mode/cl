@@ -1,4 +1,4 @@
-# name: cl
+# name: Class
 # key: cl
 # --
 class ${1:ClassName}(object):

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# name: defs
+# name: Function in self
 # --
 def ${1:name}(self):
     $0

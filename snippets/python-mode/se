@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: sys.exit
+# name: System exit
 # key: se
 # --
 sys.exit(${0:1})
