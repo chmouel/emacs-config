@@ -244,6 +244,8 @@ mouse-3: go to end"))))
 
 ;; Recentf
 (use-package recentf
+  :config
+  (recentf-load-list)
   :custom
   (recentf-save-file "~/.emacs.d/auto-save-list/recent-file-list.el"
                      recentf-max-saved-items 500 recentf-max-menu-items 15))
