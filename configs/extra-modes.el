@@ -272,9 +272,17 @@
 (use-package reformatter)
 
 ;; Markdown mode
+
+
 (use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
   :bind (:map markdown-mode-map
-              ("C-`" . markdown-insert-code)))
+              ("C-`" . markdown-insert-code))
+  :init (setq markdown-command "multimarkdown"))
 
 ;; Direnv
 (use-package direnv
