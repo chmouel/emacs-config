@@ -223,15 +223,12 @@ mouse-3: go to end"))))
   (when-let (mdfind (and (eq system-type 'darwin) (executable-find "mdfind")))
     (setq locate-command mdfind)))
 
-;;  IDO
-(defun my-ido-local-keys ()
-  "Add my keybindings for ido."
-  (define-key ido-completion-map " " 'ido-next-match)
-  (define-key ido-completion-map (kbd "C-p") 'ido-prev-match)
-  (define-key ido-completion-map "[" 'ido-prev-match)
-  (define-key ido-completion-map "]" 'ido-next-match)
-  )
-(add-hook 'ido-setup-hook 'my-ido-local-keys)
+(use-package ido
+  :defer t
+  :bind
+  (:map ido-completion-map
+        (" "   . ido-next-match)
+        ))
 
 ;; Find files already recent
 (use-package files
