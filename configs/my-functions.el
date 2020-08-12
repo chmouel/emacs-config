@@ -116,5 +116,5 @@
   (interactive "P")
   (my-search arg "."))
 
-(global-set-key '[(super h)] 'my-search-project)
+(global-set-key '[(super u)] 'my-search-project)
 (global-set-key '[(super g)] 'my-search-here)
