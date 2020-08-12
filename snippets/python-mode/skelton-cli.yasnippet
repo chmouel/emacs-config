@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: Simple Key
+# key: skelton-cli
+import argparse
+import sys
+
+
+def parse_args(args):
+    parser = argparse.ArgumentParser()
+    parser.parse_args(args)
+
+
+def main(args):
+    parser = parse_args(args)
+
+
+if __name__ == '__main__':
+    main(sys.argv[1:])
