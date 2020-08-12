@@ -6,10 +6,18 @@
               (locate-user-emacs-file "auto-save-list/anaconda-mode")))
 ;; (use-package hungry-delete :diminish hungry-delete-mode)
 (use-package blacken)
+
 (use-package company-anaconda
+  :ensure t
+  :init (require 'rx)
+  :after (company)
   :config
-  (eval-after-load 'company
-    '(add-to-list 'company-backends 'company-anaconda)))
+  (add-to-list 'company-backends 'company-anaconda))
+
+(use-package company-quickhelp
+  :ensure t
+  :config
+  (company-quickhelp-mode))
 
 ;; Ipython
 (setq
@@ -51,7 +59,9 @@
   (fci-mode)
   (flycheck-mode)
   (hungry-delete-mode)
-  (eldoc-mode -1)
+  (anaconda-mode)
+  (anaconda-eldoc-mode)
+  (company-mode-on)
   (local-set-key '[(meta q)] 'fill-paragraph)
   (local-set-key (kbd "C-'") 'toggle-quotes)
 
