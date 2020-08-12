@@ -36,7 +36,7 @@
 
 ;; Browse Kill ring
 (use-package browse-at-remote
-  :bind (("C-c C-l" . browse-at-remote)))
+  :bind (("s-l" . browse-at-remote)))
 
 ;; Multiple cursors
 (use-package multiple-cursors
@@ -390,9 +390,6 @@
   (centaur-tabs-headline-match)
   (centaur-tabs-mode t)
   (centaur-tabs-group-by-projectile-project))
-
-;; VTERM
-(use-package vterm)
 
 ;; ZOOM mode
 (use-package zoom
