@@ -5,7 +5,7 @@
                                         "%b"))))
 (when (featurep 'tool-bar) (tool-bar-mode -1))
 (when (featurep 'scroll-bar) (scroll-bar-mode -1))
-(when (featurep 'menu-bar)(menu-bar-mode -1))
+;; (when (featurep 'menu-bar)(menu-bar-mode -1))
 
 ;;; Buffer, Windows and Frames
 (setq frame-resize-pixelwise t          ; Resize by pixels
