@@ -44,21 +44,6 @@
   :custom
   (mc/list-file "~/.emacs.d/auto-save-list/mc-lists.el"))
 
-;; Neotry
-(use-package neotree
-  :init
-  (defun my-neotree-toggle ()
-    "Toggle show the NeoTree window."
-    (interactive)
-    (if (neo-global--window-exists-p)
-        (neotree-hide)
-      (neotree-projectile-action)))
-  :custom
-  ((neo-theme (if (display-graphic-p) 'icons 'arrow)))
-  :bind (("<f6>" . my-neotree-toggle)
-         (:map neotree-mode-map
-               ("k" . neotree-previous-line)
-               ("j" . neotree-next-line))))
 
 ;; Expand Region
 (use-package expand-region
