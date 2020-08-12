@@ -19,7 +19,7 @@
   :diminish yas-minor-mode
   :custom
   ((auto-insert-query nil)
-   (yas/prompt-functions '(yas/dropdown-prompt)))
+   (yas-prompt-functions '(yas/dropdown-prompt)))
   :config
   (yas/global-mode 1)
   (require 'autoinsert)
