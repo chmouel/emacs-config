@@ -51,6 +51,11 @@
   :bind (("M-<up>" . er/expand-region)
          ("M-<down>" . er/contract-region)))
 
+;;Ibuffer alltheicons
+(use-package all-the-icons-ibuffer
+  :ensure t
+  :init (all-the-icons-ibuffer-mode 1))
+
 ;; Ibuffer-VC
 (use-package ibuffer-projectile
   :custom
