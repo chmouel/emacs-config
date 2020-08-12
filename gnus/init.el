@@ -2,7 +2,11 @@
 (if (file-exists-p (concat my-init-directory "/gnus/filter.el"))
     (load-file (concat my-init-directory "/gnus/filter.el")))
 
-;Default paths
+;; Emojify on group mode cause i have mbox with emojis :D
+;; (use-package emojify
+;;   :ensure t)
+
+;; Default paths
 (setq gnus-agent-directory "~/Gnus/agent"
       gnus-article-save-directory "~/Gnus/News"
       gnus-cache-directory "~/Gnus/News/cache"
@@ -33,8 +37,9 @@
                                         ; from jd
       gnus-summary-line-format (concat "%z%U%R %~(max-right 17)~(pad-right 17)&user-date;  "
                                        "%~(max-right 20)~(pad-right 20)f %B%s\n")
-      gnus-group-line-format "%1M%1S%5y: %(%-50,50G%)\n"
       gnus-topic-display-empty-topics nil
+      gnus-topic-line-format "%i[ %(%{%n%}%) -- %A ]%v
+"
       gnus-summary-thread-gathering-function 'gnus-gather-threads-by-references
       gnus-thread-sort-functions '(gnus-thread-sort-by-number (not gnus-thread-sort-by-date))
       gnus-sum-thread-tree-false-root ""
@@ -45,13 +50,15 @@
       gnus-sum-thread-tree-vertical "│")
 
 (defun my-gnus-summary-mode-hook ()
+  (local-set-key "j" 'gnus-summary-next-article)
   (local-set-key
    (kbd "Y")
    (lambda ()
      (interactive)
      (gnus-summary-delete-article)
-     (gnus-summary-next-article nil (and gnus-auto-select-same
-				                         (gnus-summary-article-subject)))))
+     (gnus-summary-next-article
+      nil (and gnus-auto-select-same
+               (gnus-summary-article-subject)))))
   (local-set-key (kbd "C-o") (lambda ()(interactive) (org-capture nil "t")))
   (local-set-key '[(\[)] 'gnus-article-hide-citation-maybe))
 (add-hook 'gnus-summary-mode-hook 'my-gnus-summary-mode-hook)
@@ -67,17 +74,41 @@
   (set-fringe-style 1))
 (add-hook 'gnus-article-mode-hook 'my-article-mode-hook)
 
-;HighLine
+;; Group-mode
+;; Nicer group-line with emojis
+(setq gnus-group-line-format "%M%S%p%P%5y:%B%(%g%)\n"
+      my-group-name-map '(("^INBOX" . "📮 Inbox")
+                          (".*Plumbing" . ":fire_engine: Plumbing")
+                          (".*emacs\\.devel" . ":postal-horn: Emacs")
+                          (".*Upstream" . "🤸‍ Upstream")
+                          (".*-0-GitHUB" . ":card_box: GitHub")
+                          (".*-Announce" . "👄 Announce")
+                          (".*Operator" . ":microphone: Operator")
+                          (".*OS-SME" . ":sos: OpenShift-SME")
+                          (".*Cloud-Strat" . "🙉 Cloud-Strategy")))
+
+(defun gnus-user-format-function-d (arg)
+  (let ((group gnus-tmp-decoded-group) (group-name))
+    (emojify-string
+     (cond
+      ((cdr
+        (cl-assoc-if
+         (lambda (regexp) (string-match regexp group))
+         my-group-name-map)))
+      (t (replace-regexp-in-string ".*/" "" group))))))
+
+(defun my-gnus-group-mode-hook ()
+  (local-set-key "j" 'next-line)
+  (local-set-key "k" 'previous-line))
+(add-hook 'gnus-group-mode-hook 'my-gnus-group-mode-hook)
+
+
+;; HighLine
 (require 'hl-line)
 (add-hook 'gnus-summary-mode-hook 'my-setup-hl-line)
 (add-hook 'gnus-group-mode-hook 'my-setup-hl-line)
-(defun my-setup-hl-line () (hl-line-mode 1) (setq cursor-type 'hbar))
+(defun my-setup-hl-line () (hl-line-mode 1) (setq-local cursor-type 'hbar))
 (setq cursor-type 't)
-
-;; Emojify on group mode cause i have mbox with emojis :D
-(use-package emojify
-  :hook (gnus-group-mode-hook . emojify-mode))
-
 
 ;; Colours!
 (require 'gnus-cite)
@@ -95,6 +126,7 @@
 
 ;GET MAIL EVERY 2mn
 (gnus-demon-add-handler 'gnus-group-get-new-news 2 t)
+(gnus-demon-add-handler 'gnus-demon-close-connections 30 t)
 (gnus-demon-init)
 
 ;Add topic-mode with custom format
@@ -109,21 +141,8 @@
 
 ; Group parameters.
 (setq gnus-parameters
-                                        ; Those come with the excelent jd's gnus configuration.
-      '(("^gerrit\\.*"
-         (highlight-words .  (("Build failed" 0 0 error)
-                              ("Jenkins has submitted this change and it was merged." 0 0 success)
-                              ("Gerrit-Project: \\(.*\\)" 1 1 font-lock-comment-face)
-                              ("^.+ has uploaded a new change for review." 0 0 bold)
-
-                              ("^-\s+\\([^ ]+\\).*\\(FAILURE\\)" 1 1 error)
-                              ("^-\s+\\([^ ]+\\).*\\(SUCCESS\\)" 1 1 success)
-
-                              ("Workflow\\+[[:digit:]]" 0 0 success)
-                              ("Workflow-[[:digit:]]" 0 0 error)
-                              (".*\\(\\(Code-Review\\|Verified\\)-[[:digit:]]+\\).*" 1 1 error)
-                              (".*\\(\\(Code-Review\\|Verified\\)\\+[[:digit:]]+\\).*" 1 1 success)
-                              )))))
+      '((".*Tekton.*"
+         (highlight-words .  (("Build failed" 0 0 error))))))
 ;;
 (use-package bbdb
   :config
