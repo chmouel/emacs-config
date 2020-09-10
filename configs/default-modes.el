@@ -69,6 +69,25 @@
             try-complete-lisp-symbol-partially
             try-complete-lisp-symbol))))
 
+(use-package tab-bar
+  :ensure nil
+  :custom
+  (tab-bar-new-button-show
+   nil
+   tab-bar-select-tab-modifiers '(super))
+  :config
+  (setq tab-bar-new-tab-choice (lambda () (dired ".")))
+  (tab-bar-mode 1)
+  :bind
+  (("s-{" . tab-previous)
+   ("s-}" . tab-next)
+   ("s->" . tab-switcher)
+   ("s-w" . (lambda () (interactive) (kill-current-buffer) (tab-bar-close-tab)))
+   ("s-t" . tab-new)))
+
+
+
+
 ;; Find files already opened
 (use-package isearch
   :ensure nil
