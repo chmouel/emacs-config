@@ -8,7 +8,7 @@
   (setq go-playground-basedir "~/tmp/goplay"))
 
 (defun my-go-mode-hook ()
-  (setq gofmt-command "goimports")
+  ;; (setq gofmt-command "goimports")
   (local-set-key (kbd "C-c a")
                  (lambda ()
                    (interactive)
@@ -35,14 +35,15 @@
 
   (local-set-key (kbd "C-c i") 'go-goto-imports)
   (local-set-key (kbd "C-c d") 'godoc-at-point)
-  (local-set-key (kbd "M-.") 'godef-jump)
   (local-set-key (kbd "C-c C-r") 'go-remove-unused-imports)
   (local-set-key (kbd "s-t") 'ff-find-other-file)
   (my-programming-common-hook)
-
-  (add-to-list 'company-backends 'company-go)
   (subword-mode)
-  (company-mode))
+
+  ;; (local-set-key (kbd "M-.") 'godef-jump)
+  ;; (add-to-list 'company-backends 'company-go)
+  ;; (company-mode)
+  )
 
 (add-hook 'go-mode-hook 'my-go-mode-hook)
-(add-hook 'before-save-hook 'gofmt-before-save)
+;; (add-hook 'before-save-hook 'gofmt-before-save)
