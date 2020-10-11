@@ -136,7 +136,6 @@
   :custom
   (ido-enable-flex-matching t)
   (ido-use-faces nil)
-  (gc-cons-threshold 20000000)
   :config
   (flx-ido-mode 1))
 
