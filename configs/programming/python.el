@@ -52,10 +52,9 @@
   (my-py-insert-import arg import)
   (py-isort-buffer))
 
-(reformatter-define yapf :program "yapf")
 (defun my-python-mode-hook()
   (setq flycheck-python-flake8-executable python-shell-interpreter)
-  (yapf-on-save-mode)
+  (yapf-mode)
   (fci-mode)
   (flycheck-mode)
   (hungry-delete-mode)
