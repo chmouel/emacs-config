@@ -414,6 +414,16 @@
   :bind (:map markdown-mode-command-map
               ("g" . grip-mode)))
 
+
+(use-package eshell-toggle
+  :custom
+  (eshell-toggle-size-fraction 3)
+  (eshell-toggle-use-projectile-root t)
+  (eshell-toggle-run-command "ls")
+  (eshell-toggle-init-function #'eshell-toggle-init-eshell)
+  :bind
+  ("s-=" . eshell-toggle))
+
 ;;
 
 ;;; KEEP IT
