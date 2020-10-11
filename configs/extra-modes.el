@@ -161,7 +161,11 @@
    flycheck-mode-line '(:eval (my-flycheck-mode-line-status-text))
    flycheck-mode-line-prefix "FC"
    flycheck-disabled-checkers
-   '(html-tidy xml-xmlint emacs-lisp emacs-lisp-checkdoc)
+   '(go-unconvert
+     go-staticcheck go-errcheck
+     go-fmt go-build go-vet
+     html-tidy xml-xmlint
+     emacs-lisp emacs-lisp-checkdoc)
    flycheck-display-errors-delay 0.2
    flycheck-highlighting-mode 'lines)
   (global-flycheck-mode t)
