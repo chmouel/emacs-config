@@ -35,8 +35,7 @@
                (format " ⏤ %s" project-name))))))
   (projectile-mode +1)
   :bind (("s-b" . projectile-switch-to-buffer)
-         ("C-S-f" . projectile-find-file)
-         ("s-f" . projectile-find-file)
+         ("s-f" . my-projectile-find-file)
          ("s-o" . projectile-switch-project)
          ("s-i" . my-projectile-and-ripgrep)
          ("s-p" . my-projectile-and-dired)))
@@ -61,6 +60,18 @@
   (let ((projectile-switch-project-action 'counsel-ag))
     (projectile-switch-project)))
 
+(defun my-projectile-find-file()
+  (interactive)
+  (let* ((project-root (projectile-ensure-project (projectile-project-root)))
+         (files
+          (if (boundp 'my-project-ignore-files)
+              (--filter (not (string-match my-project-ignore-files it))
+                        (projectile-project-files project-root))
+            (projectile-project-files project-root)))
+         (file (ido-completing-read "Find file: " (sort files #'string<))))
+    (when file
+      (funcall 'find-file (expand-file-name file project-root))
+      (run-hooks 'projectile-find-file-hook))))
 
 (provide 'my-projectile)
 ;;; my-projectile.el ends here
