@@ -4,8 +4,8 @@
 (use-package magit
   :commands (magit-read-repository magit-toplevel)
   :bind (;; ("C-x v v" . my-magit-commit-buffer)
-         ("C-x v -" . magit-pull)
-         ("C-x v +" . magit-push)
+         ("C-x v -" . magit-pull-from-pushremote)
+         ("C-x v P" . magit-push-current-to-pushremote)
          ("<f5>" . magit-status)
          ("C-<f5>" . magit-show-refs)
          ("C-c g" . magit-status))
