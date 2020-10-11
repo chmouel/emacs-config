@@ -179,6 +179,14 @@
     (eval-after-load 'flycheck
       '(add-hook 'flycheck-mode-hook 'flycheck-yamllint-setup))))
 
+(use-package flycheck-color-mode-line
+  :ensure t
+  :defer t
+  :init
+  (progn
+    (eval-after-load 'flycheck
+      '(add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode))))
+
 ;; Comment dwim
 (use-package comment-dwim-2 :bind (("M-;" . comment-dwim-2)))
 
