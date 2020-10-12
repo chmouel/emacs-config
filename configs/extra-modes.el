@@ -36,11 +36,11 @@
 
 ;; Browse Kill ring
 (use-package browse-at-remote
-  :bind (("s-l" . browse-at-remote)))
+  :bind (("c-c b" . browse-at-remote)))
 
 ;; Multiple cursors
 (use-package multiple-cursors
-  :bind (("C-c ." . mc/mark-all-dwim))
+  :bind (("C-c M-." . mc/mark-all-dwim))
   :custom
   (mc/list-file "~/.emacs.d/auto-save-list/mc-lists.el"))
 
@@ -306,6 +306,8 @@
 ;; Anzu
 (use-package anzu
   :diminish anzu-mode
+  :bind
+  (("C-c ." . anzu-replace-at-cursor-thing))
   :config
   (global-anzu-mode +1))
 
