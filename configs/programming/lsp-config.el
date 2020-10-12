@@ -1,15 +1,23 @@
 (use-package company :ensure t)
+(use-package company-box
+  :hook (company-mode . company-box-mode))
+
 (use-package lsp-mode
   :ensure t
   ;; uncomment to enable gopls http debug server
   ;; :custom (lsp-gopls-server-args '("-debug" "127.0.0.1:0"))
   :commands (lsp lsp-deferred)
+  ;; :diminish (lsp-mode . "LSP"))
   :init
   (add-to-list 'company-backends 'company-capf)
   :custom ((lsp-auto-guess-root t)
            (lsp-document-highlight-delay 2.0 t)
+           (lsp-eldoc-enable-hover nil)
            (lsp-eldoc-render-all nil)
+           (lsp-diagnostic-package :none)
            (lsp-enable-file-watchers nil)
+           (lsp-pyls-plugins-flake8-enabled t)
+           (lsp-enable-symbol-highlighting nil)
            (lsp-enable-links t)
            (lsp-enable-snippet t)
            (lsp-file-watch-threshold 500)
@@ -21,13 +29,8 @@
            (read-process-output-max (* 1024 1024))
            (lsp-completion-provider :capf))
   :hook ((lsp-mode . lsp-enable-which-key-integration)
-         ;; (lsp-managed-mode . lsp-modeline-diagnostics-mode)
-         (before-save-hook . lsp-organize-imports)
-         (before-save-hook . lsp-format-buffer)
-
-         (lsp-mode . lsp-headerline-breadcrumb-mode)
-         ;; (lsp-mode . lsp-modeline-code-actions-mode)
-         )
+         (lsp-mode . lsp-modeline-code-actions-mode)
+         (lsp-mode . lsp-headerline-breadcrumb-mode))
 
   :config (progn
             ;; use flycheck, not flymake
@@ -65,17 +68,4 @@
 (use-package flycheck
   :ensure t)
 
-(use-package go-mode
-  :ensure t
-  :bind (
-         ;; If you want to switch existing go-mode bindings to use lsp-mode/gopls instead
-         ;; uncomment the following lines
-         ("s-." . lsp-describe-thing-at-point)
-         ("s-?" . lsp-ivy-workspace-symbol)
-         )
-  :hook ((go-mode . lsp-deferred)
-         (lsp-mode . lsp-modeline-code-actions-mode)
-         (before-save . lsp-format-buffer)
-         (before-save . lsp-organize-imports)))
-
-(provide 'gopls-config)
+(provide 'lsp-config)
