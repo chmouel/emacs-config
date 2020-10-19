@@ -35,7 +35,6 @@
                (format " ⏤ %s" project-name))))))
   (projectile-mode +1)
   :bind (("s-b" . projectile-switch-to-buffer)
-         ("s-f" . my-projectile-find-file)
          ("s-o" . projectile-switch-project)
          ("s-i" . my-projectile-and-ripgrep)
          ("s-p" . my-projectile-and-dired)))
