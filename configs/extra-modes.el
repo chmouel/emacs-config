@@ -92,9 +92,22 @@
 ;; Counsel
 (use-package counsel
   :config
-  (global-set-key '[(control \`)] 'counsel-switch-buffer)
-  (define-key ivy-minibuffer-map (kbd "C-o") 'ivy-occur)
-  (define-key ivy-minibuffer-map (kbd "C-w") 'ivy-yank-word))
+  :bind
+  ([super return] . counsel-switch-buffer))
+
+;; Ivy integration for Projectile
+(use-package counsel-projectile
+  :hook (counsel-mode . counsel-projectile-mode)
+  :bind (("C-x b" . counsel-projectile-switch-to-buffer))
+  :init (setq counsel-projectile-grep-initial-input '(ivy-thing-at-point)))
+
+;; FZF
+(use-package fzf
+  :init (setenv "FZF_DEFAULT_COMMAND" "fd --type f")
+  :commands (fzf/start fzf)
+  :bind
+  (("s-f" . fzf)
+   ("s-F" . fzf-git)))
 
 ;; RG
 (use-package rg
