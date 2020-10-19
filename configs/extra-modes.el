@@ -36,11 +36,11 @@
 
 ;; Browse Kill ring
 (use-package browse-at-remote
-  :bind (("c-c b" . browse-at-remote)))
+  :bind (("C-c b" . browse-at-remote)))
 
 ;; Multiple cursors
 (use-package multiple-cursors
-  :bind (("C-c M-." . mc/mark-all-dwim))
+  :bind (("C-c ." . mc/mark-all-dwim))
   :custom
   (mc/list-file "~/.emacs.d/auto-save-list/mc-lists.el"))
 
