@@ -27,6 +27,7 @@
   (define-auto-insert "\.py"
     '(lambda () (yas--expand-by-uuid 'python-mode "header")))
   (use-package dropdown-list))
+(use-package yasnippet-snippets)
 
 ;; RegexTool
 (use-package regex-tool :commands (regex-tool))
