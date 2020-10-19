@@ -391,7 +391,7 @@
   (eshell-toggle-run-command "ls")
   (eshell-toggle-init-function #'eshell-toggle-init-eshell)
   :bind
-  ("s-=" . eshell-toggle))
+  ([(super shift return)] . eshell-toggle))
 
 ;;
 
