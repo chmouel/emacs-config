@@ -118,3 +118,19 @@
 
 (global-set-key '[(super u)] 'my-search-project)
 (global-set-key '[(super g)] 'my-search-here)
+
+;;
+(defun my/frame-move-resize (position)
+  "Resize selected frame to cover exactly 1/3 of screen area, and
+   move frame to given third of current screen. Symbol POSITION can
+   be either left, center, right."
+
+  (let* ((HEIGHT (display-pixel-height))
+         (WIDTH  (display-pixel-width)))
+    (pcase position
+      ('left   (setf x (* 0 (/ (display-pixel-width) 3))))
+      ('center (setf x (* 1 (/ (display-pixel-width) 3))))
+      ('right  (setf x (* 2 (/ (display-pixel-width) 3)))))
+
+    (set-frame-size (selected-frame) (/ WIDTH 2) HEIGHT t)
+    (set-frame-position (selected-frame) x 0)))
