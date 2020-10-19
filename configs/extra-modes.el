@@ -356,49 +356,16 @@
       (progn (dashboard-refresh-buffer)))
     (call-interactively 'widget-forward)))
 
-;; Ace Window
-(use-package ace-window
-  :bind (("C-M-s-w" . ace-window)))
-
-(use-package ace-jump-buffer
-  :custom
-  ((ajb-bs-configuration "files"))
-  :bind (("C-M-s-e" . ace-jump-buffer)))
-
 ;; Which key
 (use-package which-key
-  :diminish which-key-mode
   :config
   (which-key-mode))
 
-;;
-;; (use-package centaur-tabs
-;;   :bind
-;;   (("s-{" . centaur-tabs-backward)
-;;    ("s-}" . centaur-tabs-forward)
-;;    ("s->" . centaur-tabs-counsel-switch-group)
-;;    ("S-s up" . centaur-tabs-forward-group)
-;;    ("S-s down" . centaur-tabs-backward-group))
-
-;;   :custom
-;;   ((centaur-tabs-cycle-scope 'tabs)
-;;    (centaur-tabs-set-bar 'under)
-;;    (x-underline-at-descent-line t)
-;;    (centaur-tabs-set-modified-marker t)
-;;    (centaur-tabs-modified-marker "﹡")
-;;    (centaur-tabs-gray-out-icons 'buffer)
-;;    (centaur-tabs-set-icons t))
-
-;;   :init
-;;   (require 'centaur-tabs)
-;;   :config
-;;   (centaur-tabs-headline-match)
-;;   (centaur-tabs-mode t)
-;;   (centaur-tabs-group-by-projectile-project))
-
-;; ZOOM mode
-(use-package zoom
-  :diminish zoom-mode)
+;; Increment number a la vimscript
+(use-package evil-numbers
+  :bind
+  (("C-c +" . evil-numbers/inc-at-pt)
+   ("C-c -" . evil-numbers/dec-at-pt)))
 
 ;; PlantUML
 (use-package plantuml-mode
