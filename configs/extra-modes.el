@@ -297,11 +297,12 @@
 
 ;; Anzu
 (use-package anzu
-  :diminish anzu-mode
-  :bind
-  (("C-c ." . anzu-replace-at-cursor-thing))
-  :config
-  (global-anzu-mode +1))
+  :bind (([remap query-replace] . anzu-query-replace)
+         ([remap query-replace-regexp] . anzu-query-replace-regexp)
+         :map isearch-mode-map
+         ([remap isearch-query-replace] . anzu-isearch-query-replace)
+         ([remap isearch-query-replace-regexp] . anzu-isearch-query-replace-regexp))
+  :hook (after-init . global-anzu-mode))
 
 (use-package info-colors
   :hook (Info-selection-hook . info-colors-fontify-node))
