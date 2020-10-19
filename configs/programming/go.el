@@ -39,11 +39,16 @@
   (local-set-key (kbd "s-t") 'ff-find-other-file)
   (my-programming-common-hook)
   (subword-mode)
+  (local-set-key (kbd "s-.")  'lsp-describe-thing-at-point)
+  (local-set-key (kbd "s-?")  'lsp-ivy-workspace-symbol)
+
+  (lsp-deferred)
 
   ;; (local-set-key (kbd "M-.") 'godef-jump)
   ;; (add-to-list 'company-backends 'company-go)
   ;; (company-mode)
   )
 
+
 (add-hook 'go-mode-hook 'my-go-mode-hook)
-;; (add-hook 'before-save-hook 'gofmt-before-save)
+(add-hook 'before-save-hook 'gofmt-before-save)

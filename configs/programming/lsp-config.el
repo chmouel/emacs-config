@@ -1,4 +1,19 @@
-(use-package company :ensure t)
+(use-package company
+  :ensure t
+  ;; :init
+  ;; (add-to-list 'company-backends 'company-capf)
+  :bind
+  (:map company-mode-map
+        ("<backtab>" . company-yasnippet)
+        :map company-active-map
+        ("C-p" . company-select-previous)
+        ("C-n" . company-select-next)
+        ("<tab>" . company-complete-common-or-cycle)
+        ("<backtab>" . my-company-yasnippet)
+        :map company-search-map
+        ("C-p" . company-select-previous)
+        ("C-n" . company-select-next)))
+
 (use-package company-box
   :hook (company-mode . company-box-mode))
 
@@ -7,9 +22,7 @@
   ;; uncomment to enable gopls http debug server
   ;; :custom (lsp-gopls-server-args '("-debug" "127.0.0.1:0"))
   :commands (lsp lsp-deferred)
-  ;; :diminish (lsp-mode . "LSP"))
-  :init
-  (add-to-list 'company-backends 'company-capf)
+  :diminish (lsp-mode . "LSP")
   :custom ((lsp-auto-guess-root t)
            (lsp-document-highlight-delay 2.0 t)
            (lsp-eldoc-enable-hover nil)
