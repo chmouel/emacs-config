@@ -46,7 +46,7 @@
                '(:eval (propertize (substring
                                     default-directory
                                     (+ 1 (string-match "/[^/]+/$" default-directory)) nil)
-                                   'face '(:foreground "#7d7d7d"))
+                                   'face '(:foreground "#7d7d7d" :slant italic))
                        )))
 (add-hook 'find-file-hook 'add-mode-line-dirtrack)
 
