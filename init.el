@@ -43,6 +43,11 @@
 (eval-when-compile (require 'use-package))
 (setq use-package-always-ensure t)
 
+
+;; Email With Message-mail
+(if (file-exists-p (concat user-emacs-directory "/gnus/message.el"))
+    (load-file (concat user-emacs-directory "/gnus/message.el")))
+
 ;; Loading Configs files
 (my-load-dir (concat my-init-directory "/configs/"))
 (my-load-dir (concat my-init-directory "/configs/programming/"))
