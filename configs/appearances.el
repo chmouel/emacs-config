@@ -22,11 +22,29 @@
 (put 'narrow-to-page 'disabled nil)
 (global-font-lock-mode 't)
 (delete-selection-mode 't)
-(column-number-mode 't)
-(line-number-mode 't)
 (show-paren-mode 't)
-(if window-system
-    (display-time-mode 't))
+(column-number-mode -1)
+(line-number-mode -1)
+(display-time-mode -1)
+
+;;
+(defadvice vc-mode-line (after me/vc-mode-line () activate)
+  "Strip backend from the VC information."
+  (when (stringp vc-mode)
+    (let ((vc-text (replace-regexp-in-string "^ Git." "" vc-mode)))
+      (setq vc-mode (concat " 📦 " (propertize vc-text
+                                               'face '(:foreground "sky blue" :weight bold)
+                                               ))))))
+(defun add-mode-line-dirtrack ()
+  "When editing a file, show the last directory of the current path in the mode
+   line."
+  (add-to-list 'mode-line-buffer-identification
+               '(:eval (propertize (substring
+                                    default-directory
+                                    (+ 1 (string-match "/[^/]+/$" default-directory)) nil)
+                                   'face '(:foreground "#7d7d7d"))
+                       )))
+(add-hook 'find-file-hook 'add-mode-line-dirtrack)
 
 ;;Non Customizables
 (setq ring-bell-function 'ignore)
