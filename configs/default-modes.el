@@ -3,10 +3,10 @@
 
 ;;Abbrev
 (setq
- abbrev-file-name (concat my-init-directory "/auto-save-list/abbrev_defs"))
+ abbrev-file-name (concat user-emacs-directory "/auto-save-list/abbrev_defs"))
 
 ;; Bookmarks
-(setq bookmark-default-file (concat my-init-directory "/auto-save-list/bookmarks.bmk"))
+(setq bookmark-default-file (concat user-emacs-directory "/auto-save-list/bookmarks.bmk"))
 
 ;; Dired
 (use-package "dired"
@@ -18,17 +18,11 @@
             "\\.pyc$\\|^\\.coverage$\\|^TAGS$\\|^tags$\\|"
             "\\.class$\\|\\.DS_Store\\|\\.localized$\\|__pycache__$")))
   :config
-  (use-package all-the-icons-dired)
-  (use-package diredfl
-    :ensure t
-    :config
-    (diredfl-global-mode 1))
   (require 'dired-x)
   :init
   (if (executable-find "gls")
       (setq insert-directory-program "gls"))
   (defun my-dired-mode-hook ()
-    (all-the-icons-dired-mode)
     (dired-omit-mode)
     (when (featurep 'tooltip) (tooltip-mode 0)))
   (add-hook 'dired-mode-hook 'my-dired-mode-hook)
@@ -123,11 +117,6 @@ With a prefix argument P, isearch for the symbol at point."
     (interactive)
     (let ((case-fold-search isearch-case-fold-search))
       (occur (if isearch-regexp isearch-string (regexp-quote isearch-string))))))
-
-;; Email With Message-mail
-(fset 'mail 'message-mail)
-(if (file-exists-p (concat my-init-directory "/gnus/message.el"))
-    (load-file (concat my-init-directory "/gnus/message.el")))
 
 ;; IBUFFER
 (use-package ibuffer
@@ -266,3 +255,5 @@ mouse-3: go to end"))))
   :custom
   (recentf-save-file "~/.emacs.d/auto-save-list/recent-file-list.el"
                      recentf-max-saved-items 500 recentf-max-menu-items 15))
+
+;; VC
