@@ -22,12 +22,10 @@
   ;; uncomment to enable gopls http debug server
   ;; :custom (lsp-gopls-server-args '("-debug" "127.0.0.1:0"))
   :commands (lsp lsp-deferred)
-  :diminish (lsp-mode . "LSP")
   :custom ((lsp-auto-guess-root t)
            (lsp-document-highlight-delay 2.0 t)
            (lsp-eldoc-enable-hover nil)
            (lsp-eldoc-render-all nil)
-           (lsp-diagnostic-package :none)
            (lsp-enable-file-watchers nil)
            (lsp-pyls-plugins-flake8-enabled t)
            (lsp-enable-symbol-highlighting nil)

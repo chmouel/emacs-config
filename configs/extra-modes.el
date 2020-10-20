@@ -16,7 +16,6 @@
     user-mail-address))
 
 (use-package yasnippet
-  :diminish yas-minor-mode
   :custom
   ((auto-insert-query nil)
    (yas-prompt-functions '(yas/dropdown-prompt)))
@@ -211,7 +210,6 @@
 ;; Drag stuff up and down
 (use-package drag-stuff
   :ensure t
-  :diminish drag-stuff-mode
   :init (drag-stuff-global-mode 1)
   :bind (([(control x) (down)] . drag-stuff-down)
          ([(control x) (up)] . drag-stuff-up)))

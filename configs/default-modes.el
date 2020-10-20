@@ -92,7 +92,6 @@
 (use-package isearch
   :ensure nil
   :defer t
-  :diminish isearch
   :bind (([remap isearch-forward] . endless/isearch-symbol-with-prefix)
          :map isearch-mode-map
          ("C-." . isearch-forward-symbol-at-point)
@@ -207,12 +206,11 @@ With a prefix argument P, isearch for the symbol at point."
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
 (use-package server                     ; The server of `emacsclient'
-  :init (server-mode)
-  :diminish (server-buffer-clients . " ⓒ"))
+  :init (server-mode))
 ;
-(use-package eldoc :diminish eldoc-mode)
-(use-package subword :diminish subword-mode)
-(use-package autorevert :diminish auto-revert-mode)
+(use-package eldoc)
+(use-package subword)
+(use-package autorevert)
 
 ;; Which-func
 (use-package which-func
