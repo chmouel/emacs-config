@@ -36,7 +36,7 @@
 
 ;; Browse Kill ring
 (use-package browse-at-remote
-  :bind (("C-c b" . browse-at-remote)))
+  :bind (("<f6>" . browse-at-remote)))
 
 ;; Multiple cursors
 (use-package multiple-cursors
