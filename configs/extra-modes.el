@@ -233,7 +233,6 @@
   :config
   (advice-add #'format-mode-line :filter-return #'emojify-string))
 
-
 ;; Dockerfilemode
 (use-package dockerfile-mode)
 
@@ -405,7 +404,38 @@
   :bind
   ([(super shift return)] . eshell-toggle))
 
-;;
+;; Dired
+(use-package all-the-icons-dired
+  :ensure t
+  :commands (all-the-icons-dired-mode)
+  :config (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
+
+(use-package diredfl
+  :ensure t
+  :config
+  (diredfl-global-mode 1))
+
+(use-package diff-hl
+  :ensure t
+  :defer 1
+  :custom-face
+  (diff-hl-change ((t (:background nil :foreground "green"))))
+  (diff-hl-margin-unknown ((t (:background nil :foreground "yellow"))))
+  (diff-hl-margin-ignored ((t (:background nil :foreground "magenta"))))
+  (diff-hl-delete ((t (:background nil :foreground "red"))))
+
+  :hook ((dired-mode . diff-hl-dired-mode))
+  :config
+  ;; Highlight on-the-fly
+  (diff-hl-margin-mode)
+  (diff-hl-flydiff-mode 1)
+  ;; Integration with magit
+  (with-eval-after-load 'magit
+    (add-hook 'magit-pre-refresh-hook #'diff-hl-magit-pre-refresh)
+    (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh)))
+
+(use-package dired-hl)
+
 
 ;;; KEEP IT
 ;;Web-mode
