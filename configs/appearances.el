@@ -27,14 +27,18 @@
 (line-number-mode -1)
 (display-time-mode -1)
 
-;;
-(defadvice vc-mode-line (after me/vc-mode-line () activate)
-  "Strip backend from the VC information."
-  (when (stringp vc-mode)
-    (let ((vc-text (replace-regexp-in-string "^ Git." "" vc-mode)))
-      (setq vc-mode (concat " 📦 " (propertize vc-text
-                                               'face '(:foreground "sky blue" :weight bold)
-                                               ))))))
+(advice-add #'vc-git-mode-line-string :filter-return #'my-replace-git-status)
+(defun my-replace-git-status (tstr)
+  (let* ((tstr (replace-regexp-in-string "Git" "" tstr))
+         (first-char (substring tstr 0 1))
+         (rest-chars (substring tstr 1)))
+    (cond
+     ((string= ":" first-char) ;;; Modified
+      (replace-regexp-in-string "^:" "⚡️" tstr))
+     ((string= "-" first-char) ;; No change
+      (replace-regexp-in-string "^-" "✔️" tstr))
+     (t tstr))))
+
 (defun add-mode-line-dirtrack ()
   "When editing a file, show the last directory of the current path in the mode
    line."
