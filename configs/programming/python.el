@@ -68,7 +68,6 @@
   (local-set-key '[(control c)(\])] 'flycheck-next-error)
 
   (flycheck-mode)
-  (lsp-modeline-diagnostics-mode -1)
   (lsp-deferred)
   (setq-local compile-command (concat python-shell-interpreter " -E \"" buffer-file-name "\"")))
 
