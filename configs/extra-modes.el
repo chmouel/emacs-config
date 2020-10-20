@@ -135,21 +135,23 @@
     (let ((text (pcase (or status flycheck-last-status-change)
                   (`not-checked "")
                   (`no-checker "")
-                  (`running " 🏃🏽‍♂️")
-                  (`errored " 😱")
+                  (`running "🏃🏽‍♂️")
+                  (`errored "😱")
                   (`finished
                    (let-alist (flycheck-count-errors flycheck-current-errors)
-                     (if (or .error .warning)
-                         (format " 😱 %s/%s" (or .error 0) (or .warning 0))
-                       "")))
+                     (cond
+                      (.error (format "😱 %s/%s" (or .error 0) (or .warning 0)))
+                      (.warning (format "🤨 %s/%s" (or .error 0) (or .warning 0)))
+                      t " ")
+                     ))
                   (`interrupted "✋")
                   (`suspicious "🤔"))))
-      (concat " " flycheck-mode-line-prefix text)))
+      (concat " " text)))
 
   :custom
   (
    (flycheck-mode-line '(:eval (my-flycheck-mode-line-status-text)))
-   (flycheck-mode-line-prefix "FC")
+   (flycheck-mode-line-prefix "")
    (flycheck-disabled-checkers
     '(go-unconvert
       go-staticcheck go-errcheck
@@ -188,7 +190,7 @@
   ((rm-whitelist
     (format "^ \\(%s\\)$"
             (mapconcat #'identity
-                       '("FC.*")
+                       '(".*🏃🏽‍♂️.*" ".*😱.*" ".*🤨.*")
                        "\\|")))))
 
 ;; Comment dwim
