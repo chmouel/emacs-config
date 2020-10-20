@@ -1,6 +1,9 @@
 (require 'message)
 (use-package message-x)
 
+; Use message
+(fset 'mail 'message-mail)
+
 (setq
  message-auto-save-directory "~/Gnus/Mail/drafts"
  message-directory "~/Gnus/Mail")
