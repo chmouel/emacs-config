@@ -90,14 +90,12 @@
 
 ;; Counsel
 (use-package counsel
-  :config
   :bind
-  ([super return] . counsel-switch-buffer))
+  (("C-x b" . counsel-switch-buffer)))
 
 ;; Ivy integration for Projectile
 (use-package counsel-projectile
   :hook (counsel-mode . counsel-projectile-mode)
-  :bind (("C-x b" . counsel-projectile-switch-to-buffer))
   :init (setq counsel-projectile-grep-initial-input '(ivy-thing-at-point)))
 
 ;; FZF
@@ -137,30 +135,31 @@
     (let ((text (pcase (or status flycheck-last-status-change)
                   (`not-checked "")
                   (`no-checker "")
-                  (`running "*")
-                  (`errored "!")
+                  (`running " 🏃🏽‍♂️")
+                  (`errored " 😱")
                   (`finished
                    (let-alist (flycheck-count-errors flycheck-current-errors)
                      (if (or .error .warning)
-                         (format ":%s/%s" (or .error 0) (or .warning 0))
+                         (format " 😱 %s/%s" (or .error 0) (or .warning 0))
                        "")))
-                  (`interrupted ".")
-                  (`suspicious "?"))))
+                  (`interrupted "✋")
+                  (`suspicious "🤔"))))
       (concat " " flycheck-mode-line-prefix text)))
 
-  (setq
-   flycheck-mode-line '(:eval (my-flycheck-mode-line-status-text))
-   flycheck-mode-line-prefix "FC"
-   flycheck-disabled-checkers
-   '(go-unconvert
-     go-staticcheck go-errcheck
-     go-fmt go-build go-vet
-     html-tidy xml-xmlint
-     emacs-lisp emacs-lisp-checkdoc)
-   flycheck-display-errors-delay 0.2
-   flycheck-highlighting-mode 'lines)
-  (global-flycheck-mode t)
-  )
+  :custom
+  (
+   (flycheck-mode-line '(:eval (my-flycheck-mode-line-status-text)))
+   (flycheck-mode-line-prefix "FC")
+   (flycheck-disabled-checkers
+    '(go-unconvert
+      go-staticcheck go-errcheck
+      go-fmt go-build go-vet
+      html-tidy xml-xmlint
+      emacs-lisp emacs-lisp-checkdoc))
+   (flycheck-display-errors-delay 0.2)
+   (flycheck-highlighting-mode 'lines))
+  :init
+  (global-flycheck-mode t))
 
 (use-package flycheck-yamllint
   :ensure t
@@ -171,12 +170,26 @@
       '(add-hook 'flycheck-mode-hook 'flycheck-yamllint-setup))))
 
 (use-package flycheck-color-mode-line
+  :disabled
   :ensure t
   :defer t
   :init
   (progn
     (eval-after-load 'flycheck
       '(add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode))))
+
+;;
+(use-package rich-minority
+  :defer t
+  :ensure nil
+  :init
+  (rich-minority-mode)
+  :custom
+  ((rm-whitelist
+    (format "^ \\(%s\\)$"
+            (mapconcat #'identity
+                       '("FC.*")
+                       "\\|")))))
 
 ;; Comment dwim
 (use-package comment-dwim-2 :bind (("M-;" . comment-dwim-2)))
