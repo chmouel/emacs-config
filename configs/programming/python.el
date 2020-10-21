@@ -1,38 +1,20 @@
 ;; (use-package python-docstring :config (python-docstring-install))
 (use-package fill-column-indicator)
 (use-package py-isort)
-;; (use-package anaconda-mode
-;;   :init (setq anaconda-mode-installation-directory
-;;               (locate-user-emacs-file "auto-save-list/anaconda-mode")))
-;; ;; (use-package hungry-delete :diminish hungry-delete-mode)
-;; (use-package blacken)
-;; (use-package company-anaconda
-;;   :ensure t
-;;   :init (require 'rx)
-;;   :after (company)
-;;   :config
-;;   (add-to-list 'company-backends 'company-anaconda))
-
-;; (use-package company-quickhelp
-;;   :ensure t
-;;   :config
-;;   (company-quickhelp-mode))
+(use-package python-docstring)
+(use-package pytest)
 
 (defun my-py-insert-import (arg import)
   (save-excursion
     (goto-char (point-min))
-    (unless
-        (re-search-forward
-         (concat "^\\(import\\|from.*import\\) " import) nil t)
-      (goto-char (point-min))
-      (when (re-search-forward "^\\([^#]\\)" nil t)
-        (beginning-of-line)
-        (insert
-         (concat
-          "import " import
-          (if arg (concat " as " (read-from-minibuffer "Import as: "))))
-         "\n")))))
-
+    (while (or (python-info-current-line-comment-p)
+               (python-info-docstring-p))
+      (forward-line))
+    (insert
+     (concat
+      "import " import
+      (if arg (concat " as " (read-from-minibuffer "Import as: "))))
+     "\n")))
 
 (defun my-py-import-add (arg import)
   (interactive
@@ -47,6 +29,7 @@
   (yapf-mode)
   (fci-mode)
   (hungry-delete-mode)
+  (python-docstring-mode)
   ;; (anaconda-mode)
   ;; (anaconda-eldoc-mode)
   ;; (company-mode-on)
