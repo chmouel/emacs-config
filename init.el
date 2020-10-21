@@ -19,8 +19,7 @@
 
 (defun my-short-hostname()
   (string-match "[0-9A-Za-z-]+" system-name)
-  (substring system-name (match-beginning 0) (match-end 0))
-  )
+  (substring system-name (match-beginning 0) (match-end 0)))
 
 ;; Loading Packages
 (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
@@ -41,8 +40,6 @@
 (if (not (fboundp 'use-package))
     (package-install 'use-package))
 (eval-when-compile (require 'use-package))
-(setq use-package-always-ensure t)
-
 
 ;; Email With Message-mail
 (if (file-exists-p (concat user-emacs-directory "/gnus/message.el"))

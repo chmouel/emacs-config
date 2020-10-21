@@ -1,5 +1,10 @@
 (setq forge-database-file
       (expand-file-name "~/.emacs.d/auto-save-list/forge.database"))
+(use-package forge
+  :bind (:map
+         forge-topic-mode-map
+         ("C-c C-v" . my-forge-show-pullreq-diff))
+  :after magit)
 
 (use-package magit
   :commands (magit-read-repository magit-toplevel)
@@ -25,14 +30,14 @@
   (global-git-commit-mode)
   (magit-define-popup-switch 'magit-log-popup ?m "Omit merge commits" "--no-merges"))
 
-  (defun my-diff-current-unstaged-file (&optional many)
-    (interactive)
-    (if (vc-registered (buffer-file-name))
-        (if (magit-anything-unstaged-p
-             nil `(,(file-name-nondirectory (buffer-file-name))))
-            (magit-diff-unstaged '() `(,(magit-file-relative-name)))
-          (message "no unstaged changes"))
-      (message "file is not registered in GIT")))
+(defun my-diff-current-unstaged-file (&optional many)
+  (interactive)
+  (if (vc-registered (buffer-file-name))
+      (if (magit-anything-unstaged-p
+           nil `(,(file-name-nondirectory (buffer-file-name))))
+          (magit-diff-unstaged '() `(,(magit-file-relative-name)))
+        (message "no unstaged changes"))
+    (message "file is not registered in GIT")))
 
 (defun my-magit-commit-buffer()
   (interactive)
@@ -41,3 +46,13 @@
     (let ((default-directory (magit-toplevel)))
       (magit-run-git-with-editor
        "commit" (list "-v" (buffer-file-name))))))
+
+(defun my-forge-show-pullreq-diff (n)
+  (interactive (list (forge-read-pullreq "Show pull-request" t)))
+  (let ((remote-upstream
+         (if (member "upstream" (magit-list-remotes))
+             "upstream" "origin"))
+        (pullreq-number
+         (oref (forge-get-pullreq n) number)))
+    (magit-show-commit
+     (format "%s/pr/%s" remote-upstream pullreq-number))))
