@@ -34,10 +34,6 @@
 ;; Hightly more than 80
 (use-package highlight-80+ :commands  (highlight-80+))
 
-;; Browse Kill ring
-(use-package browse-at-remote
-  :bind (("<f6>" . browse-at-remote)))
-
 ;; Multiple cursors
 (use-package multiple-cursors
   :bind (("C-c ." . mc/mark-all-dwim))
@@ -435,6 +431,13 @@
   (with-eval-after-load 'magit
     (add-hook 'magit-pre-refresh-hook #'diff-hl-magit-pre-refresh)
     (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh)))
+
+
+(use-package "github-browse-remote"
+  ;;https://github.com/chmouel/chmouzies/blob/master/emacs/github-browse-remote.el
+  :ensure nil
+  :bind (("<C-f6>" . github-browse-remote-kill)
+         ("<f6>" . github-browse-remote)))
 
 (use-package dired-hl)
 
