@@ -142,12 +142,12 @@
                      ))
                   (`interrupted "✋")
                   (`suspicious "🤔"))))
-      (concat " " text)))
+      (concat " " flycheck-mode-line-prefix text)))
 
   :custom
   (
    (flycheck-mode-line '(:eval (my-flycheck-mode-line-status-text)))
-   (flycheck-mode-line-prefix "")
+   (flycheck-mode-line-prefix "FC ")
    (flycheck-disabled-checkers
     '(go-unconvert
       go-staticcheck go-errcheck
@@ -186,7 +186,7 @@
   ((rm-whitelist
     (format "^ \\(%s\\)$"
             (mapconcat #'identity
-                       '(".*🏃🏽‍♂️.*" ".*😱.*" ".*🤨.*")
+                       '("FC.*")
                        "\\|")))))
 
 ;; Comment dwim
