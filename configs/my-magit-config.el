@@ -5,6 +5,7 @@
   :commands (magit-read-repository magit-toplevel)
   :bind (;; ("C-x v v" . my-magit-commit-buffer)
          ("C-x v -" . magit-pull-from-pushremote)
+         ("C-x v =" . my-diff-current-unstaged-file)
          ("C-x v P" . magit-push-current-to-pushremote)
          ("<f5>" . magit-status)
          ("C-<f5>" . magit-show-refs)
@@ -23,6 +24,15 @@
   (setq magit-display-buffer-function 'magit-display-buffer-fullframe-status-topleft-v1)
   (global-git-commit-mode)
   (magit-define-popup-switch 'magit-log-popup ?m "Omit merge commits" "--no-merges"))
+
+  (defun my-diff-current-unstaged-file (&optional many)
+    (interactive)
+    (if (vc-registered (buffer-file-name))
+        (if (magit-anything-unstaged-p
+             nil `(,(file-name-nondirectory (buffer-file-name))))
+            (magit-diff-unstaged '() `(,(magit-file-relative-name)))
+          (message "no unstaged changes"))
+      (message "file is not registered in GIT")))
 
 (defun my-magit-commit-buffer()
   (interactive)
