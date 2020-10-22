@@ -241,6 +241,14 @@
          ([shift return] . crux-smart-open-line )))
 
 
+(use-package amx
+  :init
+  (amx-initialize)
+  :custom
+  ((amx-save-to-file
+    (locate-user-emacs-file
+     (concat "auto-save-list/amx-items")))))
+
 ;; Eshell
 (use-package eshell
   :config
@@ -323,47 +331,6 @@
   :bind
   (("C-S-g" . (lambda () (interactive) (setq-local deadgrep-project-root-function 'my-deadgrep-no-project) (call-interactively 'deadgrep))))
   )
-
-;; Emacs DASHBoard ASAP
-(use-package dashboard
-  :ensure t
-  :custom
-  (dashboard-banner-logo-title "Welcome to ChmouMACS!!")
-  (dashboard-startup-banner 'logo)
-  (dashboard-center-content t)
-  (dashboard-set-file-icons t)
-  (dashboard-set-heading-icons t)
-  (dashboard-items '((recents . 10)
-                     (projects  . 10)
-                     (bookmarks . 5)))
-  :bind (:map
-         dashboard-mode-map
-         ("g" . (lambda ()
-                  (interactive)
-                  (if (file-directory-p
-                       (thing-at-point 'filename))
-                      (magit-status (thing-at-point 'filename)))))
-
-         ("b" . (lambda ()
-                  (interactive)
-                  (if (file-directory-p
-                       (thing-at-point 'filename))
-                      (let ((default-directory (thing-at-point 'filename)))
-                        (magit-show-refs)))))
-
-         ("p" . dashboard-previous-line)
-         ("n" . dashboard-next-line))
-  :config
-  (dashboard-setup-startup-hook)
-  (defun my-show-dashboard()
-    (interactive)
-    (if (not (get-buffer dashboard-buffer-name))
-        (progn
-          (ignore-errors (dashboard-insert-startupify-lists))
-          (switch-to-buffer dashboard-buffer-name)
-          (dashboard-mode))
-      (progn (dashboard-refresh-buffer)))
-    (call-interactively 'widget-forward)))
 
 ;; Which key
 (use-package which-key
