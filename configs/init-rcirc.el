@@ -35,3 +35,5 @@
 (use-package rcirc-alertify
   :config
   (rcirc-alertify-enable))
+
+(provide 'init-rcirc)
