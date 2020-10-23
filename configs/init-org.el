@@ -92,3 +92,5 @@
   (local-set-key (kbd "C-+") 'my-org-mode-chrome-cli-insert-current-tab-title-url)
   (local-set-key (kbd "C-=") 'my-org-insert-github-from-current-tab))
 (add-hook 'org-capture-mode-hook 'my-org-capture-mode-hook)
+
+(provide 'init-org)
