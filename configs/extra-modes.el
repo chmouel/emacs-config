@@ -369,17 +369,6 @@
   :bind
   ([(super shift return)] . eshell-toggle))
 
-;; Dired
-(use-package all-the-icons-dired
-  :ensure t
-  :commands (all-the-icons-dired-mode)
-  :config (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
-
-(use-package diredfl
-  :ensure t
-  :config
-  (diredfl-global-mode 1))
-
 (use-package diff-hl
   :ensure t
   :defer 1
@@ -405,9 +394,6 @@
   :ensure nil
   :bind (("<C-f6>" . github-browse-remote-kill)
          ("<f6>" . github-browse-remote)))
-
-(use-package dired-hl)
-
 
 ;;; KEEP IT
 ;;Web-mode

@@ -3,48 +3,10 @@
 
 ;;Abbrev
 (setq
- abbrev-file-name (concat user-emacs-directory "/auto-save-list/abbrev_defs"))
+ abbrev-file-name (concat user-emacs-directory "auto-save-list/abbrev_defs"))
 
 ;; Bookmarks
 (setq bookmark-default-file (concat user-emacs-directory "/auto-save-list/bookmarks.bmk"))
-
-;; Dired
-(use-package "dired"
-  :ensure nil
-  :custom
-  ((dired-omit-files
-    (concat "^\\.\\|^\\.?#\\|^\\.$\\|^\\.\\.$\\|"
-            "^Thumbs.db$\\|\\.svn$\\|\\.git\\(ignore\\)?\\|"
-            "\\.pyc$\\|^\\.coverage$\\|^TAGS$\\|^tags$\\|"
-            "\\.class$\\|\\.DS_Store\\|\\.localized$\\|__pycache__$")))
-  :config
-  (require 'dired-x)
-  :init
-  (if (executable-find "gls")
-      (setq insert-directory-program "gls"))
-  (defun my-dired-mode-hook ()
-    (dired-omit-mode)
-    (when (featurep 'tooltip) (tooltip-mode 0)))
-  (add-hook 'dired-mode-hook 'my-dired-mode-hook)
-  ;; Hack dired to launch files with 'l' key.
-  ;; http://omniorthogonal.blogspot.com/2008/05/useful-emacs-dired-launch-hack.html
-  (defun my-dired-launch-command ()
-    (interactive)
-    (dired-do-shell-command
-     (case system-type
-       (gnu/linux "gnome-open") ;right for gnome (ubuntu), not for other systems
-       (darwin "open"))
-     nil
-     (dired-get-marked-files t current-prefix-arg)))
-  :bind
-  (:map dired-mode-map
-        ("W" . browse-url-of-dired-file)
-        ("l" . my-dired-launch-command)
-        ("O" . dired-omit-mode)
-        ("E" . wdired-change-to-wdired-mode)
-        ("s" . dired-up-directory)
-        ("j" . dired-next-line)
-        ("k" . dired-previous-line)))
 
 ;; Hippy-Expand
 (use-package hippie-exp                 ; Powerful expansion and completion
