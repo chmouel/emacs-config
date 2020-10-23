@@ -19,21 +19,22 @@
 (global-font-lock-mode 't)
 (delete-selection-mode 't)
 (show-paren-mode 't)
-(column-number-mode -1)
-(line-number-mode -1)
+(column-number-mode t)
+(line-number-mode t)
 (display-time-mode -1)
 
 (advice-add #'vc-git-mode-line-string :filter-return #'my-replace-git-status)
 (defun my-replace-git-status (tstr)
   (let* ((tstr (replace-regexp-in-string "Git" "" tstr))
          (first-char (substring tstr 0 1))
-         (rest-chars (substring tstr 1)))
-    (cond
-     ((string= ":" first-char) ;;; Modified
-      (replace-regexp-in-string "^:" "⚡️" tstr))
-     ((string= "-" first-char) ;; No change
-      (replace-regexp-in-string "^-" "✔️" tstr))
-     (t tstr))))
+         (rest-chars (substring tstr 1))
+         (emojified (cond
+                     ((string= ":" first-char) ;;; Modified
+                      (replace-regexp-in-string "^:" "⚡" tstr))
+                     ((string= "-" first-char) ;; No change
+                      (replace-regexp-in-string "^-" "✔" tstr))
+                     (t tstr))))
+    (propertize emojified 'face '(:foreground "sky blue"))))
 
 (defun add-mode-line-dirtrack ()
   "When editing a file, show the last directory of the current path in the mode
