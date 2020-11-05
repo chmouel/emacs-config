@@ -41,9 +41,6 @@
    ("s-w" . (lambda () (interactive) (kill-current-buffer) (tab-bar-close-tab)))
    ("s-t" . tab-new)))
 
-
-
-
 ;; Find files already opened
 (use-package isearch
   :ensure nil
@@ -129,7 +126,6 @@ With a prefix argument P, isearch for the symbol at point."
   (if my-delete-trailing-whitespace-enabled (delete-trailing-whitespace)))
 (add-hook 'before-save-hook 'my-delete-trailing-whitespace)
 
-
 ;;  Define j/k for scroll up/down on view-mode and derived.
 (defun my-view-vi-keys-map (x-map)
   (define-key x-map (read-kbd-macro "S-SPC") 'View-scroll-page-backward)
@@ -194,6 +190,7 @@ mouse-3: go to end"))))
 (use-package ido
   :defer t
   :bind
+  ("C-x b" . ido-switch-buffer)
   (:map ido-completion-map
         (" "   . ido-next-match)
         ))
