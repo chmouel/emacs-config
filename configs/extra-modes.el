@@ -77,10 +77,10 @@
   (ido-vertical-mode 1))
 
 ;; smex - IDO completion for M-x
-;; (use-package smex
-;;   :custom
-;;   (smex-save-file (locate-user-emacs-file "auto-save-list/smex-items"))
-;;   :bind (("M-x" . smex)))
+(use-package smex
+  :custom
+  (smex-save-file (locate-user-emacs-file "auto-save-list/smex-items"))
+  :bind (("M-x" . smex)))
 
 ;; Counsel
 (use-package counsel
