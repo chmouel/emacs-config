@@ -83,8 +83,8 @@
   :bind (("M-x" . smex)))
 
 ;; Counsel
-(use-package counsel
-  :bind (("M-x" . counsel-M-x)))
+;; (use-package counsel
+;;   :bind (("M-x" . counsel-M-x)))
 
 ;; Ivy
 (use-package ivy
