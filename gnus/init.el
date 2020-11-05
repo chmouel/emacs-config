@@ -3,8 +3,8 @@
     (load-file (concat my-init-directory "/gnus/filter.el")))
 
 ;; Emojify on group mode cause i have mbox with emojis :D
-;; (use-package emojify
-;;   :ensure t)
+(use-package emojify
+  :ensure t)
 
 ;; Default paths
 (setq gnus-agent-directory "~/Gnus/agent"
@@ -74,19 +74,6 @@
   (set-fringe-style 1))
 (add-hook 'gnus-article-mode-hook 'my-article-mode-hook)
 
-;; Group-mode
-;; Nicer group-line with emojis
-(setq gnus-group-line-format "%M%S%p%P%5y:%B%(%g%)\n"
-      my-group-name-map '(("^INBOX" . "📮 Inbox")
-                          (".*Plumbing" . ":fire_engine: Plumbing")
-                          (".*emacs\\.devel" . ":postal-horn: Emacs")
-                          (".*Upstream" . "🤸‍ Upstream")
-                          (".*-0-GitHUB" . ":card_box: GitHub")
-                          (".*-Announce" . "👄 Announce")
-                          (".*Operator" . ":microphone: Operator")
-                          (".*OS-SME" . ":sos: OpenShift-SME")
-                          (".*Cloud-Strat" . "🙉 Cloud-Strategy")))
-
 (defun gnus-user-format-function-d (arg)
   (let ((group gnus-tmp-decoded-group) (group-name))
     (emojify-string
@@ -98,17 +85,22 @@
       (t (replace-regexp-in-string ".*/" "" group))))))
 
 (defun my-gnus-group-mode-hook ()
+  (emojify-mode)
   (local-set-key "j" 'next-line)
   (local-set-key "k" 'previous-line))
 (add-hook 'gnus-group-mode-hook 'my-gnus-group-mode-hook)
 
 
 ;; HighLine
-(require 'hl-line)
-(add-hook 'gnus-summary-mode-hook 'my-setup-hl-line)
-(add-hook 'gnus-group-mode-hook 'my-setup-hl-line)
-(defun my-setup-hl-line () (hl-line-mode 1) (setq-local cursor-type 'hbar))
-(setq cursor-type 't)
+(use-package hl-line
+  :ensure nil
+  :hook
+  (gnus-summary-mode-hook . my-setup-hl-line)
+  (gnus-group-mode-hook . my-setup-hl-line)
+  :config
+  (defun my-setup-hl-line ()
+    (hl-line-mode 1)
+    (setq-local cursor-type 'hbar)))
 
 ;; Colours!
 (require 'gnus-cite)
@@ -138,11 +130,6 @@
     (propertize
      (format "%s %d" name total-number-of-articles)
      'face topic-face)))
-
-; Group parameters.
-(setq gnus-parameters
-      '((".*Tekton.*"
-         (highlight-words .  (("Build failed" 0 0 error))))))
 ;;
 (use-package bbdb
   :config
@@ -196,5 +183,7 @@
 (add-hook 'gnus-after-getting-new-news-hook 'gnus-notifications)
 
 ;; Gravatar
-(require 'gnus-gravatar)
-(add-hook 'gnus-article-prepare-hook 'gnus-treat-from-gravatar)
+(use-package gnus-gravatar
+  :ensure nil
+  :hook
+  (gnus-article-prepare-hook . gnus-treat-from-gravatar))
