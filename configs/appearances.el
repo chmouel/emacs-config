@@ -30,11 +30,11 @@
          (rest-chars (substring tstr 1))
          (emojified (cond
                      ((string= ":" first-char) ;;; Modified
-                      (replace-regexp-in-string "^:" "⚡" tstr))
+                      (replace-regexp-in-string "^:" "🏗" tstr))
                      ((string= "-" first-char) ;; No change
-                      (replace-regexp-in-string "^-" "✔" tstr))
+                      (replace-regexp-in-string "^-" "✅" tstr))
                      (t tstr))))
-    (propertize emojified 'face '(:foreground "sky blue"))))
+    (propertize emojified 'face '(:foreground "Light Blue" :weight bold))))
 
 (defun add-mode-line-dirtrack ()
   "When editing a file, show the last directory of the current path in the mode
