@@ -116,7 +116,6 @@
   (interactive "P")
   (my-search arg "."))
 
-(global-set-key '[(super u)] 'deadgrep)
 (global-set-key '[(super g)] 'my-search-here)
 
 ;;
