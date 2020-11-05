@@ -63,9 +63,7 @@
 ;; Yascroll
 (use-package yascroll :config (global-yascroll-bar-mode 't))
 
-;; Github browse current file
-(use-package github-browse-file)
-
+;;
 (use-package powerline
   :custom
   (powerline-display-mule-info nil)
@@ -79,28 +77,27 @@
   (ido-vertical-mode 1))
 
 ;; smex - IDO completion for M-x
-(use-package smex
-  :custom
-  (smex-save-file (locate-user-emacs-file "auto-save-list/smex-items"))
-  :bind (("M-x" . smex)))
+;; (use-package smex
+;;   :custom
+;;   (smex-save-file (locate-user-emacs-file "auto-save-list/smex-items"))
+;;   :bind (("M-x" . smex)))
 
 ;; Counsel
 (use-package counsel
-  :bind
-  (("C-x b" . counsel-switch-buffer)))
+  :bind (("M-x" . counsel-M-x)))
 
-;; Ivy integration for Projectile
-(use-package counsel-projectile
-  :hook (counsel-mode . counsel-projectile-mode)
-  :init (setq counsel-projectile-grep-initial-input '(ivy-thing-at-point)))
+;; Ivy
+(use-package ivy
+  :config
+  (setq ivy-re-builders-alist
+        '((t . ivy--regex-fuzzy))))
 
 ;; FZF
 (use-package fzf
   :init (setenv "FZF_DEFAULT_COMMAND" "fd --type f")
   :commands (fzf/start fzf)
   :bind
-  (("s-f" . fzf)
-   ("s-F" . fzf-git)))
+  (("s-F" . fzf)))
 
 ;; RG
 (use-package rg
@@ -329,8 +326,8 @@
     "Don't use project only current dir"
     (deadgrep--lookup-override default-directory))
   :bind
-  (("C-S-g" . (lambda () (interactive) (setq-local deadgrep-project-root-function 'my-deadgrep-no-project) (call-interactively 'deadgrep))))
-  )
+  (("s-u" . 'deadgrep)
+   ("C-S-g" . (lambda () (interactive) (setq-local deadgrep-project-root-function 'my-deadgrep-no-project) (call-interactively 'deadgrep)))))
 
 ;; Which key
 (use-package which-key
