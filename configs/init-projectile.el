@@ -24,7 +24,8 @@
 (use-package projectile
   :commands (projectile-ensure-project projectile-project-root)
   :custom
-  ((projectile-mode-line-function 'my-projectile-mode-line))
+  ((projectile-switch-project-action 'projectile-dired)
+   (projectile-mode-line-function 'my-projectile-mode-line))
   :config
   (setq frame-title-format
         '(""
@@ -37,7 +38,17 @@
   :bind (("s-b" . projectile-switch-to-buffer)
          ("s-o" . projectile-switch-project)
          ("s-i" . my-projectile-and-ripgrep)
+         ("s-f" . projectile-find-file)
+         ("s-<return>" . projectile-switch-open-project)
          ("s-p" . my-projectile-and-dired)))
+
+;; Ivy integration for Projectile
+(use-package counsel-projectile
+  :bind
+  (("s-U" . counsel-projectile-git-grep))
+  :hook (counsel-mode . counsel-projectile-mode)
+  :init (setq counsel-projectile-grep-initial-input '(ivy-thing-at-point)))
+
 
 (defun my-projectile-mode-line ()
   (let ((project-name (projectile-project-name)))
