@@ -5,9 +5,7 @@
 
 ;;; Buffer, Windows and Frames
 (setq frame-resize-pixelwise t          ; Resize by pixels
-      frame-title-format
-      '(:eval (if (buffer-file-name)
-                  (abbreviate-file-name (buffer-file-name)) "%b"))
+      frame-title-format "Emacs - %b"
       ;; Size new windows proportionally wrt other windows
       window-combination-resize t)
 
@@ -30,11 +28,11 @@
          (rest-chars (substring tstr 1))
          (emojified (cond
                      ((string= ":" first-char) ;;; Modified
-                      (replace-regexp-in-string "^:" "⚡" tstr))
+                      (replace-regexp-in-string "^:" "🏗" tstr))
                      ((string= "-" first-char) ;; No change
-                      (replace-regexp-in-string "^-" "✔" tstr))
+                      (replace-regexp-in-string "^-" "✅" tstr))
                      (t tstr))))
-    (propertize emojified 'face '(:foreground "sky blue"))))
+    (propertize emojified 'face '(:foreground "Light Blue" :weight bold))))
 
 (defun add-mode-line-dirtrack ()
   "When editing a file, show the last directory of the current path in the mode
