@@ -1,6 +1,15 @@
 (use-package highlight-numbers)
 (use-package toggle-quotes)
 (use-package multi-compile)
+(use-package treemacs
+  :bind
+  (:map treemacs-mode-map
+        ("f" . projectile-find-file)))
+
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
+
+(use-package imenu-list)
 
 (setq-default compile-command "")
 (defun my-recompile (args)
@@ -20,13 +29,9 @@
    ((not (string= "" compile-command)) (call-interactively 'recompile))
    ((call-interactively 'compile))))
 
+
 (defun my-programming-common-hook()
-  (if (fboundp 'global-undo-tree-mode) (global-undo-tree-mode nil))
+  (if (fboundp 'global-undo-tree-mode)(global-undo-tree-mode nil))
   (highlight-numbers-mode 1)
   (local-set-key (kbd "RET") 'newline-and-indent)
-  (local-set-key (kbd "C-'") 'toggle-quotes)
-  (local-set-key '[(meta return)] 'compile)
-
-  (local-set-key '[(control meta return)] 'multi-compile-run)
-  (local-set-key '[(control return)] 'my-recompile)
-  )
+  (local-set-key (kbd "C-'") 'toggle-quotes))

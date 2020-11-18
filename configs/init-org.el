@@ -10,7 +10,7 @@
 (require 'the-org-mode-expansions)
 
 (define-key global-map "\C-cc" (lambda () (interactive) (org-capture nil "d")))
-(define-key global-map (kbd "<f12>") (lambda () (interactive) (org-capture-goto-last-stored)))
+(define-key global-map "\C-cv" (lambda () (interactive) (org-capture nil "t")))
 
 (setq org-link-abbrev-alist
       '(("lp" . "https://bugs.launchpad.org/+bug/")))
