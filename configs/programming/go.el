@@ -29,7 +29,7 @@
   (local-set-key (kbd "C-M-<down>") 'my-go-next-function)
   (local-set-key (kbd "C-c d") 'godoc-at-point)
   (local-set-key (kbd "C-S-w") (lambda () (interactive) (kill-new (go-test--get-current-test))))
-  (local-set-key (kbd "s-t") 'ff-find-other-file)
+  (local-set-key (kbd "C-c t") 'ff-find-other-file)
   (if (and buffer-file-name
            (string-match "_test\\'"
                          (file-name-sans-extension buffer-file-name)))

@@ -35,17 +35,17 @@
              (unless (string= "-" project-name)
                (format " ⏤ %s" project-name))))))
   (projectile-mode +1)
-  :bind (("s-b" . projectile-switch-to-buffer)
-         ("s-o" . projectile-switch-project)
-         ("s-i" . my-projectile-and-ripgrep)
-         ("s-f" . projectile-find-file)
-         ("s-<return>" . projectile-switch-open-project)
-         ("s-p" . my-projectile-and-dired)))
+  :bind (("C-c b" . projectile-switch-to-buffer)
+         ("C-c o" . projectile-switch-project)
+         ("C-c i" . my-projectile-and-ripgrep)
+         ("C-c f" . projectile-find-file)
+         ("C-c <return>" . projectile-switch-open-project)
+         ("C-c p" . my-projectile-and-dired)))
 
 ;; Ivy integration for Projectile
 (use-package counsel-projectile
   :bind
-  (("s-U" . counsel-projectile-git-grep))
+  (("C-c U" . counsel-projectile-git-grep))
   :hook (counsel-mode . counsel-projectile-mode)
   :init (setq counsel-projectile-grep-initial-input '(ivy-thing-at-point)))
 

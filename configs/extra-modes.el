@@ -97,7 +97,7 @@
   :init (setenv "FZF_DEFAULT_COMMAND" "fd --type f")
   :commands (fzf/start fzf)
   :bind
-  (("s-F" . fzf)))
+  (("C-c F" . fzf)))
 
 ;; RG
 (use-package rg
@@ -106,7 +106,7 @@
 
 ;; AG
 (use-package ag
-  :bind (("s-h" . ag-project))
+  :bind (("C-c h" . ag-project))
   :commands (ag/read-from-minibuffer)
   :custom
   (ag-reuse-buffers t)
@@ -202,7 +202,7 @@
    ("C-x 1" . zygospore-toggle-delete-other-windows)))
 
 ;;
-(use-package google-this :bind (("s--" . google-this)))
+(use-package google-this :bind (("C-c -" . google-this)))
 
 ;;
 (use-package highlight-indentation)
@@ -326,7 +326,7 @@
     "Don't use project only current dir"
     (deadgrep--lookup-override default-directory))
   :bind
-  (("s-u" . 'deadgrep)
+  (("C-c u" . 'deadgrep)
    ("C-S-g" . (lambda () (interactive) (setq-local deadgrep-project-root-function 'my-deadgrep-no-project) (call-interactively 'deadgrep)))))
 
 ;; Which key

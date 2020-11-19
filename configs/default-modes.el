@@ -35,11 +35,11 @@
   (setq tab-bar-new-tab-choice (lambda () (dired ".")))
   (tab-bar-mode 1)
   :bind
-  (("s-{" . tab-previous)
-   ("s-}" . tab-next)
-   ("s->" . tab-switcher)
-   ("s-w" . (lambda () (interactive) (kill-current-buffer) (tab-bar-close-tab)))
-   ("s-t" . tab-new)))
+  (("C-c {" . tab-previous)
+   ("C-c }" . tab-next)
+   ("C-c >" . tab-switcher)
+   ("C-c w" . (lambda () (interactive) (kill-current-buffer) (tab-bar-close-tab)))
+   ("C-c t" . tab-new)))
 
 ;; Find files already opened
 (use-package isearch
@@ -200,7 +200,7 @@ mouse-3: go to end"))))
   :after ido
   :ensure nil
   :defer t
-  :bind (("s-." . my-goto-recent-files))
+  :bind (("C-c ." . my-goto-recent-files))
   :config
   (defun my-goto-recent-files(arg)
     (interactive "P")
