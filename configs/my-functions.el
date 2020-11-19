@@ -16,7 +16,11 @@
   (interactive)
   (if mark-active
       (my-duplicate-region (point) (mark))
-    (progn (my-duplicate-region (point-at-bol) (point-at-eol) "\n")(next-line))))
+    (progn
+      (my-duplicate-region
+       (point-at-bol)
+       (point-at-eol) "\n")
+      (next-line))))
 
 ;; autoindent open-*-lines
 (defvar newline-and-indent t
