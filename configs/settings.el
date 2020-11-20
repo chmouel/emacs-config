@@ -13,13 +13,13 @@
 ;; kill-current-buffer works weirdly for me, it switch to another buffer i am
 ;; not expected with and i have been using that keybining/lambda to a very long time
 (global-set-key (read-kbd-macro "C-x C-k") (lambda ()(interactive)(kill-buffer (current-buffer))))
-;; (global-set-key (read-kbd-macro "s-w") 'kill-current-buffer)
+;; (global-set-key (read-kbd-macro "C-c w") 'kill-current-buffer)
 
 (global-set-key (read-kbd-macro "C-x f") 'find-file-at-point)
 (global-set-key (read-kbd-macro "M-q") 'fill-region)
 
-(global-set-key (kbd "s-<up>") 'backward-paragraph)
-(global-set-key (kbd "s-<down>") 'forward-paragraph)
+(global-set-key (kbd "C-c <up>") 'backward-paragraph)
+(global-set-key (kbd "C-c <down>") 'forward-paragraph)
 
 (global-set-key (read-kbd-macro "C-x <left>") 'indent-rigidly-left)
 (global-set-key (read-kbd-macro "C-x <right>") 'indent-rigidly-right)

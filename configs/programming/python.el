@@ -36,7 +36,7 @@
   (highlight-indentation-mode)
   (local-set-key '[(meta q)] 'fill-paragraph)
   (local-set-key (kbd "C-'") 'toggle-quotes)
-  (local-set-key (kbd "s-t") 'ff-find-other-file)
+  (local-set-key (kbd "C-c t") 'ff-find-other-file)
   (if (and buffer-file-name
            (string-match "^test_"
                          (file-name-base (file-name-sans-extension buffer-file-name))))
