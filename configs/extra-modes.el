@@ -76,10 +76,24 @@
   :config
   (ido-vertical-mode 1))
 
+(use-package bufler
+  :bind
+  (("C-x C-b" . bufler)))
+
 ;; smex - IDO completion for M-x
 (use-package smex
   :custom
-  (smex-save-file (locate-user-emacs-file "auto-save-list/smex-items"))
+  (smex-save-file
+   (locate-user-emacs-file
+    "auto-save-list/smex-items"))
+  :bind (("M-x" . smex)))
+
+;;Helm
+(use-package helm
+  :custom
+  (smex-save-file
+   (locate-user-emacs-file
+    "auto-save-list/smex-items"))
   :bind (("M-x" . smex)))
 
 ;; Counsel
