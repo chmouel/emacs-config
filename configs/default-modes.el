@@ -216,3 +216,33 @@ mouse-3: go to end"))))
                      recentf-max-saved-items 500 recentf-max-menu-items 15))
 
 ;; VC
+;; Eshell
+(use-package eshell
+  :config
+  (setq eshell-prompt-function
+        (lambda ()
+          (concat
+           (propertize "┌─[" 'face `(:foreground "grey91"))
+           (propertize (user-login-name) 'face `(:foreground "red"))
+           (propertize "@" 'face `(:foreground "grey91"))
+           (propertize (system-name) 'face `(:foreground "lightblue"))
+           (propertize "]──[" 'face `(:foreground "grey91"))
+           (propertize (format-time-string "%H:%M" (current-time)) 'face `(:foreground "yellow"))
+           (propertize "]──[" 'face `(:foreground "grey91"))
+           (propertize (concat (eshell/pwd)) 'face `(:foreground "white"))
+           (propertize "]\n" 'face `(:foreground "grey91"))
+           (propertize "└─>" 'face `(:foreground "grey91"))
+           (propertize (if (= (user-uid) 0) " # " " $ ") 'face `(:foreground "grey91"))
+           ))
+        eshell-visual-commands '("htop" "vi" "screen" "top" "less"
+                                 "more" "lynx" "ncftp" "pine" "tin" "trn" "elm"
+                                 "vim")
+
+        eshell-visual-subcommands '("git" "log" "diff" "show" "ssh"))
+  :init
+  (setq eshell-scroll-to-bottom-on-input 'all
+        eshell-error-if-no-glob t
+        eshell-hist-ignoredups t
+        eshell-save-history-on-exit t
+        eshell-prefer-lisp-functions nil
+        eshell-destroy-buffer-when-process-dies t))
