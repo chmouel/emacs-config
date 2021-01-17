@@ -1,8 +1,8 @@
 ;; (use-package python-docstring :config (python-docstring-install))
-(use-package fill-column-indicator)
-(use-package py-isort)
-(use-package python-docstring)
-(use-package pytest)
+(use-package fill-column-indicator :ensure t)
+(use-package py-isort :ensure t)
+(use-package python-docstring :ensure t)
+(use-package pytest :ensure t)
 
 (defun my-py-insert-import (arg import)
   (save-excursion

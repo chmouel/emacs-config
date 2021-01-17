@@ -1,4 +1,5 @@
 (use-package go-playground
+  :ensure t
   :init
   (setq go-playground-ask-file-name t)
   (setq go-playground-basedir "~/tmp/goplay"))

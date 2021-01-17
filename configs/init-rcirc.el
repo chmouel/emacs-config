@@ -33,6 +33,7 @@
 
 
 (use-package rcirc-alertify
+  :ensure t
   :config
   (rcirc-alertify-enable))
 

@@ -24,3 +24,4 @@ transient/
 /.cache/
 /amx-items
 /network-security.data
+/package-quickstart.el
