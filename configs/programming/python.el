@@ -3,6 +3,8 @@
 (use-package py-isort :ensure t)
 (use-package python-docstring :ensure t)
 (use-package pytest :ensure t)
+(use-package yapfify :ensure t)
+(use-package hungry-delete :ensure t)
 
 (defun my-py-insert-import (arg import)
   (save-excursion
