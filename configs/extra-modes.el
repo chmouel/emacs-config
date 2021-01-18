@@ -148,13 +148,13 @@
 
 ;; Flycheck
 (use-package flycheck
-:ensure t
+  :ensure t
   :config
   (defun my-flycheck-mode-line-status-text (&optional status)
     (let ((text (pcase (or status flycheck-last-status-change)
                   (`not-checked "")
                   (`no-checker "")
-                  (`running "🏃🏽‍♂️")
+                  (`running "🏃")
                   (`errored "😱")
                   (`finished
                    (let-alist (flycheck-count-errors flycheck-current-errors)
@@ -344,7 +344,7 @@
 
 ;; Anzu
 (use-package anzu
-  :ensure t  
+  :ensure t
   :bind (([remap query-replace] . anzu-query-replace)
          ([remap query-replace-regexp] . anzu-query-replace-regexp)
          :map isearch-mode-map
@@ -398,7 +398,7 @@
 
 
 (use-package eshell-toggle
-  :ensure t  
+  :ensure t
   :custom
   (eshell-toggle-size-fraction 3)
   (eshell-toggle-use-projectile-root t)
