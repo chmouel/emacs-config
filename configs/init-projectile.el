@@ -39,6 +39,7 @@
          ("C-c o" . projectile-switch-project)
          ("C-c i" . my-projectile-and-ripgrep)
          ("C-c f" . projectile-find-file)
+         ("C-c S-<return>" . projectile-commander)
          ("C-c <return>" . projectile-switch-open-project)
          ("C-c p" . my-projectile-and-dired)))
 

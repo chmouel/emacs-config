@@ -1,19 +1,19 @@
-(setq forge-database-file
-      (expand-file-name "~/.emacs.d/auto-save-list/forge.database"))
 (use-package forge
   :bind (:map
          forge-topic-mode-map
          ("C-c C-l" . my-forge-show-pullreq-diff)
          :map magit-mode-map
          ("C-c C-l" . my-forge-show-pullreq-diff))
+  :config
+  (setq forge-database-file
+        (expand-file-name "~/.emacs.d/auto-save-list/forge.database"))
   :after magit)
 
 (use-package magit
   :commands (magit-read-repository magit-toplevel)
   :bind (;; ("C-x v v" . my-magit-commit-buffer)
          ("C-x v -" . magit-pull-from-pushremote)
-         ("C-x v =" . my-diff-current-unstaged-file)
-         ("C-x v s-=" . vc-diff)
+         ("C-x v s-=" . my-diff-current-unstaged-file)
          ("C-x v P" . magit-push-current-to-pushremote)
          ("<f5>" . magit-status)
          ("C-<f5>" . magit-show-refs)

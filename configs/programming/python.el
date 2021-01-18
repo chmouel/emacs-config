@@ -40,7 +40,7 @@
   (local-set-key (kbd "C-'") 'toggle-quotes)
   (local-set-key (kbd "C-c t") 'ff-find-other-file)
   (if (and buffer-file-name
-           (string-match "^test_"
+           (string-match "\\(^test_\\|_test$\\)"
                          (file-name-base (file-name-sans-extension buffer-file-name))))
       (progn
         (local-set-key '[(control return)] 'pytest-one)

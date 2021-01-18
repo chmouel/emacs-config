@@ -64,7 +64,6 @@
 ;; Yascroll
 (use-package yascroll :config (global-yascroll-bar-mode 't) :ensure t)
 
-;;
 (use-package powerline
   :ensure t
   :custom
@@ -99,12 +98,7 @@
   :custom
   (smex-save-file
    (locate-user-emacs-file
-    "auto-save-list/smex-items"))
-  :bind (("M-x" . smex)))
-
-;; Counsel
-;; (use-package counsel
-;;   :bind (("M-x" . counsel-M-x)))
+    "auto-save-list/smex-items")))
 
 ;; Ivy
 (use-package ivy
@@ -230,7 +224,7 @@
    ("C-x 1" . zygospore-toggle-delete-other-windows)))
 
 ;;
-(use-package google-this :ensure t :bind (("C-c -" . google-this)))
+(use-package google-this :ensure t :bind (("C-c *" . google-this)))
 
 ;;
 (use-package highlight-indentation :ensure t)
@@ -277,38 +271,6 @@
     (locate-user-emacs-file
      (concat "auto-save-list/amx-items")))))
 
-;; Eshell
-(use-package eshell
-  :ensure t
-  :config
-  (setq eshell-prompt-function
-        (lambda ()
-          (concat
-           (propertize "┌─[" 'face `(:foreground "grey91"))
-           (propertize (user-login-name) 'face `(:foreground "red"))
-           (propertize "@" 'face `(:foreground "grey91"))
-           (propertize (system-name) 'face `(:foreground "lightblue"))
-           (propertize "]──[" 'face `(:foreground "grey91"))
-           (propertize (format-time-string "%H:%M" (current-time)) 'face `(:foreground "yellow"))
-           (propertize "]──[" 'face `(:foreground "grey91"))
-           (propertize (concat (eshell/pwd)) 'face `(:foreground "white"))
-           (propertize "]\n" 'face `(:foreground "grey91"))
-           (propertize "└─>" 'face `(:foreground "grey91"))
-           (propertize (if (= (user-uid) 0) " # " " $ ") 'face `(:foreground "grey91"))
-           ))
-        eshell-visual-commands '("htop" "vi" "screen" "top" "less"
-                                 "more" "lynx" "ncftp" "pine" "tin" "trn" "elm"
-                                 "vim")
-
-        eshell-visual-subcommands '("git" "log" "diff" "show" "ssh"))
-  :init
-  (setq eshell-scroll-to-bottom-on-input 'all
-        eshell-error-if-no-glob t
-        eshell-hist-ignoredups t
-        eshell-save-history-on-exit t
-        eshell-prefer-lisp-functions nil
-        eshell-destroy-buffer-when-process-dies t))
-
 (use-package esh-autosuggest
 :ensure t
   :hook (eshell-mode . esh-autosuggest-mode)
@@ -353,9 +315,21 @@
   :ensure t
   :hook (after-init . global-anzu-mode))
 
+;; Swiper
+(use-package swiper
+  :bind
+  (("C-S-s" . 'swiper-isearch)))
+
+;; Easy-kill
+(use-package easy-kill
+  :bind
+  (("M-w" . 'easy-kill)))
+
+;; Info colours
 (use-package info-colors
   :ensure t :hook (Info-selection-hook . info-colors-fontify-node))
 
+;; Deadgrep
 (use-package deadgrep
   :ensure t
   :config
@@ -396,7 +370,6 @@
   :bind (:map markdown-mode-command-map
               ("g" . grip-mode)))
 
-
 (use-package eshell-toggle
   :ensure t
   :custom
@@ -405,7 +378,7 @@
   (eshell-toggle-run-command "ls")
   (eshell-toggle-init-function #'eshell-toggle-init-eshell)
   :bind
-  ([(super shift return)] . eshell-toggle))
+  ("C-`" . eshell-toggle))
 
 (use-package diff-hl
   :ensure t

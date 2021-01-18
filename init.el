@@ -57,5 +57,5 @@
 (cd (expand-file-name "~/"))
 (put 'downcase-region 'disabled nil)
 (put 'list-threads 'disabled nil)
-(put 'magit-diff-edit-hunk-commit 'disabled nil)
 (put 'magit-edit-line-commit 'disabled nil)
+(put 'magit-diff-edit-hunk-commit 'disabled nil)
