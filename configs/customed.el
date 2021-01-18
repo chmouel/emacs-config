@@ -19,7 +19,6 @@
  '(ace-jump-mode-gray-background nil t)
  '(ack-and-a-half-arguments '("--ignore-dir .tox" "-k" "--ignore-dir vendor/"))
  '(ack-executable "/usr/bin/ack-grep")
- '(ag-reuse-buffers t t)
  '(ajb-bs-configuration "files")
  '(all-christian-calendar-holidays t)
  '(atomic-chrome-buffer-frame-height 80)
@@ -27,9 +26,8 @@
  '(atomic-chrome-url-major-mode-alist
    '(("https://github.com/.*/issues/.*" . markdown-mode)
      ("https://mail.google.com/.*" . message-mode)))
- '(auto-insert-query nil)
  '(auto-install-directory (expand-file-name (concat user-emacs-directory "/modes/")))
- '(battery-mode-line-format "--[%b%p%%]")
+ '(battery-mode-line-format "--[%b%p%%]" t)
  '(bc-bookmark-file
    (expand-file-name
     (concat user-emacs-directory "/auto-save-list/breadcrumb.el")))
@@ -58,7 +56,7 @@
  '(ctags-update-other-options
    '("--exclude='*.pyc'" "--exclude='*.elc'" "--exclude='*.class'" "--exclude='.git'" "--exclude='.svn'" "--exclude='SCCS'" "--exclude='RCS'" "--exclude='CVS'" "--exclude='EIFGEN'" "--exclude='.tox'" "--exclude='.venv'" "--python-kinds='-i'"))
  '(custom-safe-themes
-   '("8d7684de9abb5a770fbfd72a14506d6b4add9a7d30942c6285f020d41d76e0fa" "7b3d184d2955990e4df1162aeff6bfb4e1c3e822368f0359e15e2974235d9fa8" "5036346b7b232c57f76e8fb72a9c0558174f87760113546d3a9838130f1cdb74" "730a87ed3dc2bf318f3ea3626ce21fb054cd3a1471dcd59c81a4071df02cb601" "6c3b5f4391572c4176908bb30eddc1718344b8eaff50e162e36f271f6de015ca" default))
+   '("e6ff132edb1bfa0645e2ba032c44ce94a3bd3c15e3929cdf6c049802cf059a2a" "2c49d6ac8c0bf19648c9d2eabec9b246d46cb94d83713eaae4f26b49a8183fc4" "3df5335c36b40e417fec0392532c1b82b79114a05d5ade62cfe3de63a59bc5c6" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" "990e24b406787568c592db2b853aa65ecc2dcd08146c0d22293259d400174e37" "4bca89c1004e24981c840d3a32755bf859a6910c65b829d9441814000cf6c3d0" "6b80b5b0762a814c62ce858e9d72745a05dd5fc66f821a1c5023b4f2a76bc910" "8d7684de9abb5a770fbfd72a14506d6b4add9a7d30942c6285f020d41d76e0fa" "7b3d184d2955990e4df1162aeff6bfb4e1c3e822368f0359e15e2974235d9fa8" "5036346b7b232c57f76e8fb72a9c0558174f87760113546d3a9838130f1cdb74" "730a87ed3dc2bf318f3ea3626ce21fb054cd3a1471dcd59c81a4071df02cb601" "6c3b5f4391572c4176908bb30eddc1718344b8eaff50e162e36f271f6de015ca" default))
  '(cycbuf-buffer-sort-function 'cycbuf-sort-by-recency)
  '(cycbuf-dont-show-regexp '("^ " "^\\*cycbuf\\*$" "^\\*Messages\\*#"))
  '(cycbuf-mode-name-replacements
@@ -78,10 +76,6 @@
  '(diff-font-lock-syntax nil)
  '(diff-switches "-uw")
  '(dired-auto-revert-buffer 'dired-directory-changed-p)
- '(dired-omit-files
-   "^\\.\\|^\\.?#\\|^\\.$\\|^\\.\\.$\\|^Thumbs.db$\\|\\.svn$\\|\\.git\\(ignore\\)?\\|\\.pyc$\\|^\\.coverage$\\|^TAGS$\\|^tags$\\|\\.class$\\|\\.DS_Store\\|\\.localized$\\|__pycache__$")
- '(direnv-always-show-summary t)
- '(direnv-show-paths-in-summary nil)
  '(display-time-24hr-format t)
  '(display-time-default-load-average nil)
  '(display-time-world-list
@@ -144,22 +138,12 @@
     (concat user-emacs-directory "/auto-save-list/eshell/")))
  '(eshell-modules-list
    '(eshell-alias eshell-banner eshell-basic eshell-cmpl eshell-dirs eshell-glob eshell-hist eshell-ls eshell-pred eshell-prompt eshell-rebind eshell-script))
- '(eshell-toggle-init-function 'eshell-toggle-init-eshell t)
- '(eshell-toggle-run-command "ls" t)
- '(eshell-toggle-size-fraction 3 t)
- '(eshell-toggle-use-projectile-root t t)
  '(exec-path-from-shell-check-startup-files nil)
  '(fill-column 80)
  '(flx-ido-mode t)
  '(flycheck-check-syntax-automatically '(save mode-enabled))
  '(flycheck-checkers
    '(tex-aspell-dynamic ada-gnat asciidoctor asciidoc awk-gawk bazel-buildifier c/c++-clang c/c++-gcc c/c++-cppcheck cfengine chef-foodcritic coffee coffee-coffeelint coq css-csslint css-stylelint cuda-nvcc cwl d-dmd dockerfile-hadolint elixir-credo emacs-lisp emacs-lisp-checkdoc ember-template erlang-rebar3 erlang eruby-erubis eruby-ruumba fortran-gfortran go-gofmt go-golint go-vet go-build go-test go-errcheck go-unconvert go-staticcheck groovy haml handlebars haskell-stack-ghc haskell-ghc haskell-hlint html-tidy javascript-eslint javascript-jshint javascript-standard json-jsonlint json-python-json json-jq jsonnet less less-stylelint llvm-llc lua-luacheck lua markdown-markdownlint-cli nix nix-linter opam perl perl-perlcritic php php-phpmd php-phpcs processing proselint protobuf-protoc protobuf-prototool pug puppet-parser puppet-lint python-flake8 python-pylint python-pycompile python-mypy r-lintr racket rpm-rpmlint rst-sphinx rst ruby-rubocop ruby-standard ruby-reek ruby-rubylint ruby ruby-jruby rust-cargo rust rust-clippy scala scala-scalastyle scheme-chicken scss-lint scss-stylelint sass/scss-sass-lint sass scss sh-bash sh-posix-dash sh-posix-bash sh-zsh sh-shellcheck slim slim-lint sql-sqlint systemd-analyze tcl-nagelfar terraform terraform-tflint tex-chktex tex-lacheck texinfo textlint typescript-tslint verilog-verilator vhdl-ghdl xml-xmlstarlet xml-xmllint yaml-jsyaml yaml-ruby yaml-yamllint))
- '(flycheck-disabled-checkers
-   '(go-unconvert go-staticcheck go-errcheck go-fmt go-build go-vet html-tidy xml-xmlint emacs-lisp emacs-lisp-checkdoc))
- '(flycheck-display-errors-delay 0.2)
- '(flycheck-highlighting-mode 'lines)
- '(flycheck-mode-line '(:eval (my-flycheck-mode-line-status-text)))
- '(flycheck-mode-line-prefix "FC")
  '(font-use-system-font t)
  '(forge-database-file
    "/Users/chmouel/.emacs.d/auto-save-list/forge-database.sqlite" t)
@@ -199,28 +183,18 @@
  '(ibuffer-elide-long-columns t)
  '(ibuffer-expert t)
  '(ibuffer-projectile-prefix "")
- '(ibuffer-saved-filter-groups
-   '(("default"
-      ("Files"
-       (not mode . dired-mode)
-       (name . "^[^*]"))
-      ("Directories"
-       (mode . dired-mode)))))
  '(ibuffer-show-empty-filter-groups nil)
  '(ibuffer-truncate-lines nil)
  '(ibuffer-use-other-window nil)
- '(ido-enable-flex-matching t nil nil "Customized with use-package flx-ido")
  '(ido-enable-last-directory-history t)
  '(ido-enable-tramp-completion nil)
  '(ido-ignore-directories '("\\`CVS/" "\\`\\.\\./" "\\`\\./" "\\`\\.svn/"))
- '(ido-max-prospects 5 nil nil "Customized with use-package ido-vertical-mode")
  '(ido-mode 'buffer nil (ido))
  '(ido-rotate-file-list-default t)
  '(ido-save-directory-list-file
    (expand-file-name
     (concat user-emacs-directory "/auto-save-list/ido.last")))
  '(ido-show-dot-for-dired t)
- '(ido-use-faces nil nil nil "Customized with use-package flx-ido")
  '(ido-use-filename-at-point 'guess)
  '(ido-use-url-at-point t)
  '(igrep-options "-I")
@@ -249,33 +223,9 @@
  '(kill-do-not-save-duplicates t)
  '(ls-lisp-dirs-first t)
  '(ls-lisp-use-insert-directory-program nil)
- '(lsp-auto-guess-root t t)
- '(lsp-completion-provider :capf t)
  '(lsp-diagnostic-package :none)
  '(lsp-diagnostics-provider :none)
- '(lsp-document-highlight-delay 2.0 t)
- '(lsp-eldoc-enable-hover nil t)
- '(lsp-eldoc-render-all nil t)
- '(lsp-enable-file-watchers nil t)
- '(lsp-enable-links t t)
- '(lsp-enable-snippet t t)
- '(lsp-enable-symbol-highlighting nil t)
- '(lsp-file-watch-threshold 500 t)
- '(lsp-gopls-complete-unimported t t)
- '(lsp-gopls-staticcheck t t)
- '(lsp-idle-delay 1 t)
  '(lsp-modeline-diagnostics-enable nil)
- '(lsp-prefer-flymake nil t)
- '(lsp-pyls-plugins-flake8-enabled t t)
- '(lsp-treemacs-sync-mode nil t)
- '(lsp-ui-doc-enable nil t)
- '(lsp-ui-doc-max-height 15 t)
- '(lsp-ui-doc-max-width 30 t)
- '(lsp-ui-flycheck-enable t t)
- '(lsp-ui-imenu-enable t t)
- '(lsp-ui-peek-enable t t)
- '(lsp-ui-sideline-delay 0.5 t)
- '(lsp-ui-sideline-enable nil t)
  '(magit-commit-show-diff nil)
  '(magit-commit-signoff t)
  '(magit-completing-read-function 'magit-ido-completing-read)
@@ -285,7 +235,6 @@
  '(magit-visit-ref-behavior '(checkout-branch))
  '(make-backup-files nil)
  '(max-specpdl-size 50000)
- '(mc/list-file "~/.emacs.d/auto-save-list/mc-lists.el" t)
  '(mm-inline-text-html-with-w3m-keymap nil)
  '(multi-compile-history-file
    (expand-file-name
@@ -305,15 +254,13 @@
      ("GNU" . "http://elpa.gnu.org/packages/")))
  '(package-quickstart t)
  '(package-selected-packages
-   '(git-messenger slack rainbow-delimiters treemacs-magit treemacs-all-the-icons poly-org poly-slim poly-markdown polymode cyphejor pinyinlib counsel-tramp counsel-world-clock counsel-osx-app ivy-xref ivy-yasnippet ivy-hydra ivy-prescient amx company-prescient yasnippet-snippets fzf evil-numbers company-box drag-stuff all-the-icons-ivy all-the-icons-ivy-rich lsp-ivy lsp-treemacs yapfify bufler python-black eshell-did-you-mean go-dlv dired-sidebar blacken closql dash-functional emacsql minibuffer company-quickhelp mustache-mode all-the-icons-ibuffer all-the-icons-gnus go-test sqlite ripgrep zoom-mode centaur-tab awesome-tab all-the-icons-dired exec-path-from-shell ace-window jira-markup-mode py-isort subr-x docker-tramp ibuffer-tramp kubernetes-tramp helm-org general direnv pytest ibuffer-git esh-autosuggest evil monokai-pro monokai-alt monokai-pro-theme goto-last-change ag gitconfig-mode yaml-imenu flycheck-rust rust-auto-use rust-playground multi-compile-run yapf-mode yapf adoc color-moccur github-issues direx lorem-ipsum pyimport flycheck-plantuml evil-matchit-mode elisp emacs-lisp elisp-mode emacs-lisp-mode info-colors magithub shell-mode message isearch abbrev dired dired-x lisp-mode misc anzu page diminish ns-win moe popup-kill-ring pdf-tools imenu-list github-clone indent-tools helm-lean applescript-mode go-impl the-org-mode-expansions flycheck-yamllint avy commenter gist zop-to-char jsfmt go-add-tags wgrep-ag flycheck-gometalinter go-stacktracer js-auto-beautify highlight-indentation esqlite go-errcheck go-snippets golint go-rename toggle-quotes zygospore window-number wgrep web use-package try smex smart-shift smart-mode-line rpm-spec-mode request-deferred regex-tool queue python-docstring pyfmt pcsv pcache paredit package-safe-delete message-x marmalade magit-find-file json-rpc json-mode isearch-dabbrev ido-completing-read+ highlight-numbers highlight-80+ google-this go-eldoc fringe-helper flx-ido find-file-in-git-repo expand-region dropdown-list csv-mode company-go company-anaconda comment-dwim-2 browse-kill-ring boxquote bm))
+   '(hungry-delete hungry-delete-mode exec-path-from-shell magit smart-mode-line-powerline-theme php-mode js2-mode jsx-mode rcirc-alertify ibuffer-projectile fill-column-indicator go-playground treemacs multi-compile aggressive-indent smartparens eshell-toggle rich-minority lsp-ui lsp-mode rg ivy helm ido-vertical-mode plantuml-mode which-key deadgrep reformatter dockerfile-mode dumb-jump powerline yascroll auto-complete popup multiple-cursors yasnippet doom-themes crux diredfl diff-hl grip-mode markdown-mode "smex" git-messenger slack rainbow-delimiters treemacs-magit treemacs-all-the-icons poly-org poly-slim poly-markdown polymode cyphejor pinyinlib counsel-tramp counsel-world-clock counsel-osx-app ivy-xref ivy-yasnippet ivy-hydra ivy-prescient amx company-prescient yasnippet-snippets fzf evil-numbers company-box drag-stuff all-the-icons-ivy all-the-icons-ivy-rich lsp-ivy lsp-treemacs yapfify bufler python-black eshell-did-you-mean go-dlv dired-sidebar blacken closql dash-functional emacsql minibuffer company-quickhelp mustache-mode all-the-icons-ibuffer all-the-icons-gnus go-test sqlite ripgrep zoom-mode centaur-tab awesome-tab all-the-icons-dired ace-window jira-markup-mode py-isort subr-x docker-tramp ibuffer-tramp kubernetes-tramp helm-org general direnv pytest ibuffer-git esh-autosuggest evil monokai-pro monokai-alt monokai-pro-theme goto-last-change ag gitconfig-mode yaml-imenu flycheck-rust rust-auto-use rust-playground multi-compile-run yapf-mode yapf adoc color-moccur github-issues direx lorem-ipsum pyimport flycheck-plantuml evil-matchit-mode elisp emacs-lisp elisp-mode emacs-lisp-mode info-colors magithub shell-mode message isearch abbrev dired dired-x lisp-mode misc anzu page diminish ns-win moe popup-kill-ring pdf-tools imenu-list github-clone indent-tools helm-lean applescript-mode go-impl the-org-mode-expansions flycheck-yamllint avy commenter gist zop-to-char jsfmt go-add-tags wgrep-ag flycheck-gometalinter go-stacktracer js-auto-beautify highlight-indentation esqlite go-errcheck go-snippets golint go-rename toggle-quotes zygospore window-number wgrep web use-package try smex smart-shift smart-mode-line rpm-spec-mode request-deferred regex-tool queue python-docstring pyfmt pcsv pcache paredit package-safe-delete message-x marmalade magit-find-file json-rpc json-mode isearch-dabbrev ido-completing-read+ highlight-numbers highlight-80+ google-this go-eldoc fringe-helper flx-ido find-file-in-git-repo expand-region dropdown-list csv-mode company-go company-anaconda comment-dwim-2 browse-kill-ring boxquote bm))
  '(package-user-dir
    (expand-file-name
     (concat user-emacs-directory "/packages")))
  '(plantuml-default-exec-mode 'jar)
  '(plantuml-jar-path "/usr/local/Cellar/plantuml/1.2019.13/libexec/plantuml.jar" t)
  '(powerline-default-separator 'curve)
- '(powerline-display-buffer-size nil nil nil "Customized with use-package powerline")
- '(powerline-display-mule-info nil nil nil "Customized with use-package powerline")
  '(powerline-gui-use-vcs-glyph t)
  '(projectile-cache-file
    (expand-file-name
@@ -322,7 +269,6 @@
  '(projectile-known-projects-file
    (expand-file-name
     (concat user-emacs-directory "/auto-save-list/projectile-bookmarks.eld")))
- '(projectile-mode-line-function 'my-projectile-mode-line)
  '(projectile-mode-line-prefix " PRJ")
  '(projectile-project-root-files
    '("rebar.config" "project.clj" "SConstruct" "pom.xml" "build.sbt" "build.gradle" "Gemfile" "requirements.txt" "package.json" "gulpfile.js" "Gruntfile.js" "bower.json" "composer.json" "Cargo.toml" "mix.exs" "tox.ini"))
@@ -335,7 +281,6 @@
  '(rcirc-prompt "[%t] ")
  '(rcirc-scroll-show-maximum-output t)
  '(read-mail-command 'gnus)
- '(read-process-output-max 1048576 t)
  '(reb-re-syntax 'sregex)
  '(recent-addresses-file
    (expand-file-name
@@ -344,14 +289,11 @@
  '(recentf-exclude '("^(/var/\\\\|/etc\\\\|/Applications\\\\).*"))
  '(recentf-filename-handlers 'abbreviate-file-name)
  '(recentf-max-saved-items 500)
- '(recentf-save-file "~/.emacs.d/auto-save-list/recent-file-list.el")
  '(regex-tool-backend 'perl)
  '(request-storage-directory
    (expand-file-name
     (concat user-emacs-directory "/auto-save-list/request")))
  '(require-final-newline 'visit-save)
- '(rg-ignore-case 'smart)
- '(rm-whitelist "^ \\(FC.*\\)$")
  '(rst-level-face-base-color "dark slate gray")
  '(safe-local-variable-values '((c-hanging-comment-ender-p)))
  '(save-interprogram-paste-before-kill t)
@@ -365,7 +307,56 @@
  '(savehist-mode t)
  '(server-use-tcp nil)
  '(server-window nil)
- '(smex-save-file "~/.emacs.d/auto-save-list/smex-items")
+ '(sml/mode-width (if (eq (powerline-current-separator) 'arrow) 'right 'full))
+ '(sml/pos-id-separator
+   '(""
+     (:propertize " " face powerline-active1)
+     (:eval
+      (propertize " " 'display
+                  (funcall
+                   (intern
+                    (format "powerline-%s-%s"
+                            (powerline-current-separator)
+                            (car powerline-default-separator-dir)))
+                   'powerline-active1 'powerline-active2)))
+     (:propertize " " face powerline-active2)))
+ '(sml/pos-minor-modes-separator
+   '(""
+     (:propertize " " face powerline-active1)
+     (:eval
+      (propertize " " 'display
+                  (funcall
+                   (intern
+                    (format "powerline-%s-%s"
+                            (powerline-current-separator)
+                            (cdr powerline-default-separator-dir)))
+                   'powerline-active1 'sml/global)))
+     (:propertize " " face sml/global)))
+ '(sml/pre-id-separator
+   '(""
+     (:propertize " " face sml/global)
+     (:eval
+      (propertize " " 'display
+                  (funcall
+                   (intern
+                    (format "powerline-%s-%s"
+                            (powerline-current-separator)
+                            (car powerline-default-separator-dir)))
+                   'sml/global 'powerline-active1)))
+     (:propertize " " face powerline-active1)))
+ '(sml/pre-minor-modes-separator
+   '(""
+     (:propertize " " face powerline-active2)
+     (:eval
+      (propertize " " 'display
+                  (funcall
+                   (intern
+                    (format "powerline-%s-%s"
+                            (powerline-current-separator)
+                            (cdr powerline-default-separator-dir)))
+                   'powerline-active2 'powerline-active1)))
+     (:propertize " " face powerline-active1)))
+ '(sml/pre-modes-separator (propertize " " 'face 'sml/modes))
  '(spaceline-all-the-icons-file-name-highlight "light blue")
  '(spaceline-all-the-icons-hide-long-buffer-path t)
  '(spaceline-all-the-icons-highlight-file-name t)
@@ -376,14 +367,7 @@
  '(svn-status-wash-control-M-in-process-buffers t)
  '(swbuff-exclude-buffer-regexps '("^ " "^\\*" "^newsrc-dribble$" "^bbdb$"))
  '(synosaurus-backend 'synosaurus-backend-openthesaurus)
- '(tab-bar-close-button-show nil)
- '(tab-bar-close-tab-select 'left)
- '(tab-bar-history-mode nil)
- '(tab-bar-new-button-show nil)
- '(tab-bar-new-tab-choice 'ignore)
  '(tab-bar-select-tab-modifiers '(super) nil nil "Customized with use-package tab-bar")
- '(tab-bar-show 1)
- '(tab-bar-tab-hints t)
  '(tab-width 4)
  '(tags-revert-without-query t)
  '(tramp-chunksize 500 nil (tramp))
@@ -430,7 +414,6 @@
      ("America/Los_Angeles" "San-Francisco")
      ("Australia/Sydney" "Sydney")))
  '(x-underline-at-descent-line t)
- '(yas-prompt-functions '(yas/dropdown-prompt))
  '(yas-wrap-around-region t)
  '(yas/trigger-key "C-M-SPC")
  '(yas/wrap-around-region t)
