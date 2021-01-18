@@ -191,9 +191,12 @@ mouse-3: go to end"))))
   :defer t
   :bind
   ("C-x b" . ido-switch-buffer)
-  (:map ido-completion-map
-        (" "   . ido-next-match)
-        ))
+  ("C-\\" . ido-switch-buffer)
+  (:map ido-common-completion-map
+        ("C-\\" . ido-next-match)
+        :map ido-completion-map
+        (" "   . ido-next-match)))
+
 
 ;; Find files already recent
 (use-package files

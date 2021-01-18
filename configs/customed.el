@@ -19,7 +19,6 @@
  '(ace-jump-mode-gray-background nil t)
  '(ack-and-a-half-arguments '("--ignore-dir .tox" "-k" "--ignore-dir vendor/"))
  '(ack-executable "/usr/bin/ack-grep")
- '(ag-reuse-buffers t t)
  '(ajb-bs-configuration "files")
  '(all-christian-calendar-holidays t)
  '(atomic-chrome-buffer-frame-height 80)
@@ -27,7 +26,6 @@
  '(atomic-chrome-url-major-mode-alist
    '(("https://github.com/.*/issues/.*" . markdown-mode)
      ("https://mail.google.com/.*" . message-mode)))
- '(auto-insert-query nil)
  '(auto-install-directory (expand-file-name (concat user-emacs-directory "/modes/")))
  '(battery-mode-line-format "--[%b%p%%]")
  '(bc-bookmark-file
@@ -78,10 +76,6 @@
  '(diff-font-lock-syntax nil)
  '(diff-switches "-uw")
  '(dired-auto-revert-buffer 'dired-directory-changed-p)
- '(dired-omit-files
-   "^\\.\\|^\\.?#\\|^\\.$\\|^\\.\\.$\\|^Thumbs.db$\\|\\.svn$\\|\\.git\\(ignore\\)?\\|\\.pyc$\\|^\\.coverage$\\|^TAGS$\\|^tags$\\|\\.class$\\|\\.DS_Store\\|\\.localized$\\|__pycache__$")
- '(direnv-always-show-summary t)
- '(direnv-show-paths-in-summary nil)
  '(display-time-24hr-format t)
  '(display-time-default-load-average nil)
  '(display-time-world-list
@@ -144,22 +138,12 @@
     (concat user-emacs-directory "/auto-save-list/eshell/")))
  '(eshell-modules-list
    '(eshell-alias eshell-banner eshell-basic eshell-cmpl eshell-dirs eshell-glob eshell-hist eshell-ls eshell-pred eshell-prompt eshell-rebind eshell-script))
- '(eshell-toggle-init-function 'eshell-toggle-init-eshell t)
- '(eshell-toggle-run-command "ls" t)
- '(eshell-toggle-size-fraction 3 t)
- '(eshell-toggle-use-projectile-root t t)
  '(exec-path-from-shell-check-startup-files nil)
  '(fill-column 80)
  '(flx-ido-mode t)
  '(flycheck-check-syntax-automatically '(save mode-enabled))
  '(flycheck-checkers
    '(tex-aspell-dynamic ada-gnat asciidoctor asciidoc awk-gawk bazel-buildifier c/c++-clang c/c++-gcc c/c++-cppcheck cfengine chef-foodcritic coffee coffee-coffeelint coq css-csslint css-stylelint cuda-nvcc cwl d-dmd dockerfile-hadolint elixir-credo emacs-lisp emacs-lisp-checkdoc ember-template erlang-rebar3 erlang eruby-erubis eruby-ruumba fortran-gfortran go-gofmt go-golint go-vet go-build go-test go-errcheck go-unconvert go-staticcheck groovy haml handlebars haskell-stack-ghc haskell-ghc haskell-hlint html-tidy javascript-eslint javascript-jshint javascript-standard json-jsonlint json-python-json json-jq jsonnet less less-stylelint llvm-llc lua-luacheck lua markdown-markdownlint-cli nix nix-linter opam perl perl-perlcritic php php-phpmd php-phpcs processing proselint protobuf-protoc protobuf-prototool pug puppet-parser puppet-lint python-flake8 python-pylint python-pycompile python-mypy r-lintr racket rpm-rpmlint rst-sphinx rst ruby-rubocop ruby-standard ruby-reek ruby-rubylint ruby ruby-jruby rust-cargo rust rust-clippy scala scala-scalastyle scheme-chicken scss-lint scss-stylelint sass/scss-sass-lint sass scss sh-bash sh-posix-dash sh-posix-bash sh-zsh sh-shellcheck slim slim-lint sql-sqlint systemd-analyze tcl-nagelfar terraform terraform-tflint tex-chktex tex-lacheck texinfo textlint typescript-tslint verilog-verilator vhdl-ghdl xml-xmlstarlet xml-xmllint yaml-jsyaml yaml-ruby yaml-yamllint))
- '(flycheck-disabled-checkers
-   '(go-unconvert go-staticcheck go-errcheck go-fmt go-build go-vet html-tidy xml-xmlint emacs-lisp emacs-lisp-checkdoc))
- '(flycheck-display-errors-delay 0.2)
- '(flycheck-highlighting-mode 'lines)
- '(flycheck-mode-line '(:eval (my-flycheck-mode-line-status-text)))
- '(flycheck-mode-line-prefix "FC")
  '(font-use-system-font t)
  '(forge-database-file
    "/Users/chmouel/.emacs.d/auto-save-list/forge-database.sqlite" t)
@@ -199,28 +183,18 @@
  '(ibuffer-elide-long-columns t)
  '(ibuffer-expert t)
  '(ibuffer-projectile-prefix "")
- '(ibuffer-saved-filter-groups
-   '(("default"
-      ("Files"
-       (not mode . dired-mode)
-       (name . "^[^*]"))
-      ("Directories"
-       (mode . dired-mode)))))
  '(ibuffer-show-empty-filter-groups nil)
  '(ibuffer-truncate-lines nil)
  '(ibuffer-use-other-window nil)
- '(ido-enable-flex-matching t nil nil "Customized with use-package flx-ido")
  '(ido-enable-last-directory-history t)
  '(ido-enable-tramp-completion nil)
  '(ido-ignore-directories '("\\`CVS/" "\\`\\.\\./" "\\`\\./" "\\`\\.svn/"))
- '(ido-max-prospects 5 nil nil "Customized with use-package ido-vertical-mode")
  '(ido-mode 'buffer nil (ido))
  '(ido-rotate-file-list-default t)
  '(ido-save-directory-list-file
    (expand-file-name
     (concat user-emacs-directory "/auto-save-list/ido.last")))
  '(ido-show-dot-for-dired t)
- '(ido-use-faces nil nil nil "Customized with use-package flx-ido")
  '(ido-use-filename-at-point 'guess)
  '(ido-use-url-at-point t)
  '(igrep-options "-I")
@@ -249,33 +223,9 @@
  '(kill-do-not-save-duplicates t)
  '(ls-lisp-dirs-first t)
  '(ls-lisp-use-insert-directory-program nil)
- '(lsp-auto-guess-root t)
- '(lsp-completion-provider :capf)
  '(lsp-diagnostic-package :none)
  '(lsp-diagnostics-provider :none)
- '(lsp-document-highlight-delay 2.0 t)
- '(lsp-eldoc-enable-hover nil)
- '(lsp-eldoc-render-all nil)
- '(lsp-enable-file-watchers nil)
- '(lsp-enable-links t)
- '(lsp-enable-snippet t)
- '(lsp-enable-symbol-highlighting nil)
- '(lsp-file-watch-threshold 500)
- '(lsp-gopls-complete-unimported t t)
- '(lsp-gopls-staticcheck t t)
- '(lsp-idle-delay 1)
  '(lsp-modeline-diagnostics-enable nil)
- '(lsp-prefer-flymake nil t)
- '(lsp-pyls-plugins-flake8-enabled t)
- '(lsp-treemacs-sync-mode nil t)
- '(lsp-ui-doc-enable nil)
- '(lsp-ui-doc-max-height 15)
- '(lsp-ui-doc-max-width 30)
- '(lsp-ui-flycheck-enable t t)
- '(lsp-ui-imenu-enable t)
- '(lsp-ui-peek-enable t)
- '(lsp-ui-sideline-delay 0.5)
- '(lsp-ui-sideline-enable nil)
  '(magit-commit-show-diff nil)
  '(magit-commit-signoff t)
  '(magit-completing-read-function 'magit-ido-completing-read)
@@ -285,7 +235,6 @@
  '(magit-visit-ref-behavior '(checkout-branch))
  '(make-backup-files nil)
  '(max-specpdl-size 50000)
- '(mc/list-file "~/.emacs.d/auto-save-list/mc-lists.el" t)
  '(mm-inline-text-html-with-w3m-keymap nil)
  '(multi-compile-history-file
    (expand-file-name
@@ -305,15 +254,13 @@
      ("GNU" . "http://elpa.gnu.org/packages/")))
  '(package-quickstart t)
  '(package-selected-packages
-   '(boon easy-kill git-messenger slack rainbow-delimiters treemacs-magit treemacs-all-the-icons poly-org poly-slim poly-markdown polymode cyphejor pinyinlib counsel-tramp counsel-world-clock counsel-osx-app ivy-xref ivy-yasnippet ivy-hydra ivy-prescient amx company-prescient yasnippet-snippets fzf evil-numbers company-box drag-stuff all-the-icons-ivy all-the-icons-ivy-rich lsp-ivy lsp-treemacs yapfify bufler python-black eshell-did-you-mean go-dlv dired-sidebar blacken closql dash-functional emacsql minibuffer company-quickhelp mustache-mode all-the-icons-ibuffer all-the-icons-gnus go-test sqlite ripgrep zoom-mode centaur-tab awesome-tab all-the-icons-dired exec-path-from-shell ace-window jira-markup-mode py-isort subr-x docker-tramp ibuffer-tramp kubernetes-tramp helm-org general direnv pytest ibuffer-git esh-autosuggest evil monokai-pro monokai-alt monokai-pro-theme goto-last-change ag gitconfig-mode yaml-imenu flycheck-rust rust-auto-use rust-playground multi-compile-run yapf-mode yapf adoc color-moccur github-issues direx lorem-ipsum pyimport flycheck-plantuml evil-matchit-mode elisp emacs-lisp elisp-mode emacs-lisp-mode info-colors magithub shell-mode message isearch abbrev dired dired-x lisp-mode misc anzu page diminish ns-win moe popup-kill-ring pdf-tools imenu-list github-clone indent-tools helm-lean applescript-mode go-impl the-org-mode-expansions flycheck-yamllint avy commenter gist zop-to-char jsfmt go-add-tags wgrep-ag flycheck-gometalinter go-stacktracer js-auto-beautify highlight-indentation esqlite go-errcheck go-snippets golint go-rename toggle-quotes zygospore window-number wgrep web use-package try smex smart-shift smart-mode-line rpm-spec-mode request-deferred regex-tool queue python-docstring pyfmt pcsv pcache paredit package-safe-delete message-x marmalade magit-find-file json-rpc json-mode isearch-dabbrev ido-completing-read+ highlight-numbers highlight-80+ google-this go-eldoc fringe-helper flx-ido find-file-in-git-repo expand-region dropdown-list csv-mode company-go company-anaconda comment-dwim-2 browse-kill-ring boxquote bm))
+   '(eshell-toggle crux hungry-delete fill-column-indicator dockerfile-mode ibuffer-projectile ibuffer-project which-key multi-compile doom-themes deadgrep rg ido-vertical-mode aggressive-indent go-playground smartparens php-mode powerline yascroll auto-complete diredfl diff-hl grip-mode lsp-ui rust-mode python-django boon easy-kill git-messenger slack rainbow-delimiters treemacs-magit treemacs-all-the-icons poly-org poly-slim poly-markdown polymode cyphejor pinyinlib counsel-tramp counsel-world-clock counsel-osx-app ivy-xref ivy-yasnippet ivy-hydra ivy-prescient amx company-prescient yasnippet-snippets fzf evil-numbers company-box drag-stuff all-the-icons-ivy all-the-icons-ivy-rich lsp-ivy lsp-treemacs yapfify bufler python-black eshell-did-you-mean go-dlv dired-sidebar blacken closql dash-functional emacsql minibuffer company-quickhelp mustache-mode all-the-icons-ibuffer all-the-icons-gnus go-test sqlite ripgrep zoom-mode centaur-tab awesome-tab all-the-icons-dired exec-path-from-shell ace-window jira-markup-mode py-isort subr-x docker-tramp ibuffer-tramp kubernetes-tramp helm-org general direnv pytest ibuffer-git esh-autosuggest evil monokai-pro monokai-alt monokai-pro-theme goto-last-change ag gitconfig-mode yaml-imenu flycheck-rust rust-auto-use rust-playground multi-compile-run yapf-mode yapf adoc color-moccur github-issues direx lorem-ipsum pyimport flycheck-plantuml evil-matchit-mode elisp emacs-lisp elisp-mode emacs-lisp-mode info-colors magithub shell-mode message isearch abbrev dired dired-x lisp-mode misc anzu page diminish ns-win moe popup-kill-ring pdf-tools imenu-list github-clone indent-tools helm-lean applescript-mode go-impl the-org-mode-expansions flycheck-yamllint avy commenter gist zop-to-char jsfmt go-add-tags wgrep-ag flycheck-gometalinter go-stacktracer js-auto-beautify highlight-indentation esqlite go-errcheck go-snippets golint go-rename toggle-quotes zygospore window-number wgrep web use-package try smex smart-shift smart-mode-line rpm-spec-mode request-deferred regex-tool queue python-docstring pyfmt pcsv pcache paredit package-safe-delete message-x marmalade magit-find-file json-rpc json-mode isearch-dabbrev ido-completing-read+ highlight-numbers highlight-80+ google-this go-eldoc fringe-helper flx-ido find-file-in-git-repo expand-region dropdown-list csv-mode company-go company-anaconda comment-dwim-2 browse-kill-ring boxquote bm))
  '(package-user-dir
    (expand-file-name
     (concat user-emacs-directory "/packages")))
  '(plantuml-default-exec-mode 'jar)
  '(plantuml-jar-path "/usr/local/Cellar/plantuml/1.2019.13/libexec/plantuml.jar" t)
  '(powerline-default-separator 'curve)
- '(powerline-display-buffer-size nil nil nil "Customized with use-package powerline")
- '(powerline-display-mule-info nil nil nil "Customized with use-package powerline")
  '(powerline-gui-use-vcs-glyph t)
  '(projectile-cache-file
    (expand-file-name
@@ -322,7 +269,6 @@
  '(projectile-known-projects-file
    (expand-file-name
     (concat user-emacs-directory "/auto-save-list/projectile-bookmarks.eld")))
- '(projectile-mode-line-function 'my-projectile-mode-line)
  '(projectile-mode-line-prefix " PRJ")
  '(projectile-project-root-files
    '("rebar.config" "project.clj" "SConstruct" "pom.xml" "build.sbt" "build.gradle" "Gemfile" "requirements.txt" "package.json" "gulpfile.js" "Gruntfile.js" "bower.json" "composer.json" "Cargo.toml" "mix.exs" "tox.ini"))
@@ -335,7 +281,6 @@
  '(rcirc-prompt "[%t] ")
  '(rcirc-scroll-show-maximum-output t)
  '(read-mail-command 'gnus)
- '(read-process-output-max 1048576 t)
  '(reb-re-syntax 'sregex)
  '(recent-addresses-file
    (expand-file-name
@@ -344,14 +289,11 @@
  '(recentf-exclude '("^(/var/\\\\|/etc\\\\|/Applications\\\\).*"))
  '(recentf-filename-handlers 'abbreviate-file-name)
  '(recentf-max-saved-items 500)
- '(recentf-save-file "~/.emacs.d/auto-save-list/recent-file-list.el")
  '(regex-tool-backend 'perl)
  '(request-storage-directory
    (expand-file-name
     (concat user-emacs-directory "/auto-save-list/request")))
  '(require-final-newline 'visit-save)
- '(rg-ignore-case 'smart)
- '(rm-whitelist "^ \\(FC.*\\)$")
  '(rst-level-face-base-color "dark slate gray")
  '(safe-local-variable-values '((c-hanging-comment-ender-p)))
  '(save-interprogram-paste-before-kill t)
@@ -365,7 +307,6 @@
  '(savehist-mode t)
  '(server-use-tcp nil)
  '(server-window nil)
- '(smex-save-file "~/.emacs.d/auto-save-list/smex-items")
  '(spaceline-all-the-icons-file-name-highlight "light blue")
  '(spaceline-all-the-icons-hide-long-buffer-path t)
  '(spaceline-all-the-icons-highlight-file-name t)
@@ -379,7 +320,6 @@
  '(tab-bar-close-button-show nil)
  '(tab-bar-close-tab-select 'left)
  '(tab-bar-history-mode nil)
- '(tab-bar-new-button-show nil)
  '(tab-bar-new-tab-choice 'ignore)
  '(tab-bar-select-tab-modifiers '(super) nil nil "Customized with use-package tab-bar")
  '(tab-bar-show 1)
@@ -430,7 +370,6 @@
      ("America/Los_Angeles" "San-Francisco")
      ("Australia/Sydney" "Sydney")))
  '(x-underline-at-descent-line t)
- '(yas-prompt-functions '(yas/dropdown-prompt))
  '(yas-wrap-around-region t)
  '(yas/trigger-key "C-M-SPC")
  '(yas/wrap-around-region t)
