@@ -317,11 +317,13 @@
 
 ;; Swiper
 (use-package swiper
+  :ensure t
   :bind
   (("C-S-s" . 'swiper-isearch)))
 
 ;; Easy-kill
 (use-package easy-kill
+  :ensure t
   :bind
   (("M-w" . 'easy-kill)))
 
