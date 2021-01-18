@@ -141,6 +141,9 @@ With a prefix argument P, isearch for the symbol at point."
 ;;  Ediff
 (setq emerge-diff-options "--ignore-all-space")
 
+;; Diff
+(setq diff-refine nil)
+
 ;; Compilation colors
 (require 'ansi-color)
 (defun colorize-compilation-buffer ()
