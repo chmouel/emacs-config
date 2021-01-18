@@ -30,9 +30,9 @@
          (rest-chars (substring tstr 1))
          (emojified (cond
                      ((string= ":" first-char) ;;; Modified
-                      (replace-regexp-in-string "^:" "🏗" tstr))
+                      (replace-regexp-in-string "^:" "✍ " tstr))
                      ((string= "-" first-char) ;; No change
-                      (replace-regexp-in-string "^-" "✅" tstr))
+                      (replace-regexp-in-string "^-" "✓ " tstr))
                      (t tstr))))
     (propertize emojified 'face '(:foreground "Light Blue" :weight bold))))
 
