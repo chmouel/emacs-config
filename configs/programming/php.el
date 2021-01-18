@@ -1,4 +1,4 @@
-(use-package php-mode)
+(use-package php-mode :ensure t)
 
 (setq auto-mode-alist (cons '("\\.php\\'" . php-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.inc\\'" . php-mode) auto-mode-alist))

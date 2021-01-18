@@ -6,7 +6,7 @@
   :config
   ;; Display icons for buffers
   (use-package all-the-icons-ibuffer
-    :if t
+    :ensure t
     :init (all-the-icons-ibuffer-mode 1))
 
   (with-eval-after-load 'counsel
@@ -23,6 +23,7 @@
 
 ;; Group ibuffer's list by project root
 (use-package ibuffer-projectile
+  :ensure t
   :functions all-the-icons-octicon ibuffer-do-sort-by-alphabetic
   :hook ((ibuffer . (lambda ()
                       (ibuffer-projectile-set-filter-groups)

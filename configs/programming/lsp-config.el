@@ -15,6 +15,7 @@
         ("C-n" . company-select-next)))
 
 (use-package company-box
+  :ensure t
   :hook (company-mode . company-box-mode))
 
 (use-package lsp-mode

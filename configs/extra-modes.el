@@ -1,5 +1,5 @@
 ;; Dimnish commnand line
-(use-package diminish)
+(use-package diminish :ensure t)
 
 ;; Yassnippet
 (defun yas--expand-by-uuid (mode uuid)
@@ -16,6 +16,7 @@
     user-mail-address))
 
 (use-package yasnippet
+  :ensure t
   :custom
   ((auto-insert-query nil)
    (yas-prompt-functions '(yas/dropdown-prompt)))
@@ -25,17 +26,16 @@
   (auto-insert-mode)
   (define-auto-insert "\.py"
     '(lambda () (yas--expand-by-uuid 'python-mode "header")))
-  (use-package dropdown-list))
-(use-package yasnippet-snippets)
+  ;; (use-package dropdown-list :ensure t)
+  )
+(use-package yasnippet-snippets :ensure t)
 
 ;; RegexTool
-(use-package regex-tool :commands (regex-tool))
-
-;; Hightly more than 80
-(use-package highlight-80+ :commands  (highlight-80+))
+(use-package regex-tool :commands (regex-tool) :ensure t)
 
 ;; Multiple cursors
 (use-package multiple-cursors
+  :ensure t
   :bind (("C-c ." . mc/mark-all-dwim))
   :custom
   (mc/list-file "~/.emacs.d/auto-save-list/mc-lists.el"))
@@ -43,44 +43,49 @@
 
 ;; Expand Region
 (use-package expand-region
+  :ensure t
   :config (setq er/try-expand-list (remove 'er/mark-comment er/try-expand-list))
   :bind (("M-<up>" . er/expand-region)
          ("M-<down>" . er/contract-region)))
 
 ;; Popup for auto-complete and others
-(use-package popup)
+(use-package popup :ensure t)
 
 ;; Auto complete in words.
-(use-package auto-complete)
+(use-package auto-complete :ensure t)
 
 ;; JSON Mode
-(use-package json-mode :mode "\\.json\\'")
+(use-package json-mode :mode "\\.json\\'" :ensure t)
 
 ;; window-number-meta-mode
-(use-package window-number
+(use-package window-number :ensure t
   :config (window-number-meta-mode 1))
 
 ;; Yascroll
-(use-package yascroll :config (global-yascroll-bar-mode 't))
+(use-package yascroll :config (global-yascroll-bar-mode 't) :ensure t)
 
 (use-package powerline
+  :ensure t
   :custom
   (powerline-display-mule-info nil)
   (powerline-display-buffer-size nil))
 
 ;;Ido Vertical mode
 (use-package ido-vertical-mode
+  :ensure t
   :custom
   (ido-max-prospects 5)
   :config
   (ido-vertical-mode 1))
 
 (use-package bufler
+  :ensure t
   :bind
   (("C-x C-b" . bufler)))
 
 ;; smex - IDO completion for M-x
 (use-package smex
+  :ensure t
   :custom
   (smex-save-file
    (locate-user-emacs-file
@@ -89,6 +94,7 @@
 
 ;;Helm
 (use-package helm
+  :ensure t
   :custom
   (smex-save-file
    (locate-user-emacs-file
@@ -96,12 +102,14 @@
 
 ;; Ivy
 (use-package ivy
+:ensure t
   :config
   (setq ivy-re-builders-alist
         '((t . ivy--regex-fuzzy))))
 
 ;; FZF
 (use-package fzf
+  :ensure t
   :init (setenv "FZF_DEFAULT_COMMAND" "fd --type f")
   :commands (fzf/start fzf)
   :bind
@@ -109,11 +117,13 @@
 
 ;; RG
 (use-package rg
+  :ensure t
   :custom
   (rg-ignore-case 'smart))
 
 ;; AG
 (use-package ag
+  :ensure t
   :bind (("C-c h" . ag-project))
   :commands (ag/read-from-minibuffer)
   :custom
@@ -123,6 +133,7 @@
 
 ;; flx-ido - advanced flex matching for ido
 (use-package flx-ido
+  :ensure t
   :custom
   (ido-enable-flex-matching t)
   (ido-use-faces nil)
@@ -131,6 +142,7 @@
 
 ;; Flycheck
 (use-package flycheck
+:ensure t
   :config
   (defun my-flycheck-mode-line-status-text (&optional status)
     (let ((text (pcase (or status flycheck-last-status-change)
@@ -183,8 +195,7 @@
 
 ;;
 (use-package rich-minority
-  :defer t
-  :ensure nil
+  :ensure t
   :init
   (rich-minority-mode)
   :custom
@@ -195,31 +206,35 @@
                        "\\|")))))
 
 ;; Comment dwim
-(use-package comment-dwim-2 :bind (("M-;" . comment-dwim-2)))
+(use-package comment-dwim-2 :ensure t  :bind (("M-;" . comment-dwim-2)))
 
 ;; Smartshift
-(use-package smart-shift :config (global-smart-shift-mode))
+(use-package smart-shift :ensure t :config (global-smart-shift-mode))
 
 ;; Isearch
 (use-package isearch-dabbrev
+  :ensure t
   :bind (:map isearch-mode-map ("<tab>" . isearch-dabbrev-expand)))
 
 ;; Toggle control-x-1 to restore after
-(use-package zygospore :bind
+(use-package zygospore
+  :ensure t
+  :bind
   (("C-1" . zygospore-toggle-delete-other-windows)
    ("C-x 1" . zygospore-toggle-delete-other-windows)))
 
 ;;
-(use-package google-this :bind (("C-c *" . google-this)))
+(use-package google-this :ensure t :bind (("C-c *" . google-this)))
 
 ;;
-(use-package highlight-indentation)
+(use-package highlight-indentation :ensure t)
 
 ;; change ag interactivity
-(use-package wgrep-ag :commands (wgrep-ag-setup wgrep-ag-setup))
+(use-package wgrep-ag :commands (wgrep-ag-setup wgrep-ag-setup) :ensure t)
 
 ;; dumb-jump everywhere move into stuff
 (use-package dumb-jump
+  :ensure t
   :bind
   (("C-S-d" . dumb-jump-go)))
 
@@ -237,16 +252,18 @@
   (advice-add #'format-mode-line :filter-return #'emojify-string))
 
 ;; Dockerfilemode
-(use-package dockerfile-mode)
+(use-package dockerfile-mode :ensure t )
 
 ;; crux
 (use-package crux
+  :ensure t
   :bind (("C-k" . crux-smart-kill-line)
          ("C-o" . crux-smart-open-line-above)
          ([shift return] . crux-smart-open-line )))
 
 
 (use-package amx
+  :ensure t
   :init
   (amx-initialize)
   :custom
@@ -254,8 +271,8 @@
     (locate-user-emacs-file
      (concat "auto-save-list/amx-items")))))
 
-
 (use-package esh-autosuggest
+:ensure t
   :hook (eshell-mode . esh-autosuggest-mode)
   ;; If you have use-package-hook-name-suffix set to nil, uncomment and use the
   ;; line below instead:
@@ -263,7 +280,7 @@
   :ensure t)
 
 ;; Reformatter
-(use-package reformatter)
+(use-package reformatter :ensure t )
 
 ;; Markdown mode
 
@@ -280,6 +297,7 @@
 
 ;; Direnv
 (use-package direnv
+  :ensure t
   :custom
   (direnv-always-show-summary t)
   (direnv-show-paths-in-summary nil)
@@ -288,11 +306,13 @@
 
 ;; Anzu
 (use-package anzu
+  :ensure t  
   :bind (([remap query-replace] . anzu-query-replace)
          ([remap query-replace-regexp] . anzu-query-replace-regexp)
          :map isearch-mode-map
          ([remap isearch-query-replace] . anzu-isearch-query-replace)
          ([remap isearch-query-replace-regexp] . anzu-isearch-query-replace-regexp))
+  :ensure t
   :hook (after-init . global-anzu-mode))
 
 ;; Swiper
@@ -307,10 +327,11 @@
 
 ;; Info colours
 (use-package info-colors
-  :hook (Info-selection-hook . info-colors-fontify-node))
+  :ensure t :hook (Info-selection-hook . info-colors-fontify-node))
 
 ;; Deadgrep
 (use-package deadgrep
+  :ensure t
   :config
   (defun my-deadgrep-no-project()
     "Don't use project only current dir"
@@ -321,17 +342,20 @@
 
 ;; Which key
 (use-package which-key
+  :ensure t
   :config
   (which-key-mode))
 
 ;; Increment number a la vimscript
 (use-package evil-numbers
+  :ensure t
   :bind
   (("C-c +" . evil-numbers/inc-at-pt)
    ("C-c -" . evil-numbers/dec-at-pt)))
 
 ;; PlantUML
 (use-package plantuml-mode
+:ensure t
   :bind (:map plantuml-mode-map ([(control c) (control c)]
                                  . my-plantuml-preview))
   :config
@@ -347,6 +371,7 @@
               ("g" . grip-mode)))
 
 (use-package eshell-toggle
+  :ensure t  
   :custom
   (eshell-toggle-size-fraction 3)
   (eshell-toggle-use-projectile-root t)

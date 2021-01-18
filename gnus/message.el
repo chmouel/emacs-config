@@ -1,5 +1,5 @@
 (require 'message)
-(use-package message-x)
+;(use-package message-x :ensure t)
 
 ; Use message
 (fset 'mail 'message-mail)
