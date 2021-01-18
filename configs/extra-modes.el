@@ -167,8 +167,8 @@
    (flycheck-mode-line-prefix "FC ")
    (flycheck-disabled-checkers
     '(go-unconvert
-      go-staticcheck go-errcheck
-      go-fmt go-build go-vet
+      ;; go-staticcheck go-errcheck
+      ;; go-fmt go-build go-vet
       html-tidy xml-xmlint
       emacs-lisp emacs-lisp-checkdoc))
    (flycheck-display-errors-delay 0.2)
@@ -176,6 +176,16 @@
   :init
   (global-flycheck-mode t))
 
+;; Counsel
+(use-package counsel :ensure t
+  :bind (("C-*"     . counsel-org-agenda-headlines)
+         ("C-x C-f" . counsel-find-file)
+         ("C-h f"   . counsel-describe-function)
+         ("C-x b" . counsel-switch-buffer)
+         ("C-x r b" . counsel-bookmark)
+         ("M-x"     . counsel-M-x)))
+
+;;Flycheck
 (use-package flycheck-yamllint
   :ensure t
   :defer t
@@ -235,6 +245,8 @@
 ;; dumb-jump everywhere move into stuff
 (use-package dumb-jump
   :ensure t
+  :config
+  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
   :bind
   (("C-S-d" . dumb-jump-go)))
 
@@ -244,12 +256,6 @@
   :init (drag-stuff-global-mode 1)
   :bind (([(control x) (down)] . drag-stuff-down)
          ([(control x) (up)] . drag-stuff-up)))
-
-;; emojis 😅
-(use-package emojify
-  :disabled
-  :config
-  (advice-add #'format-mode-line :filter-return #'emojify-string))
 
 ;; Dockerfilemode
 (use-package dockerfile-mode :ensure t )
