@@ -13,6 +13,34 @@
 
 (use-package imenu-list   :ensure t)
 
+;; Eldoc-Mode
+(use-package smartparens
+  :ensure t
+  :diminish smartparens-mode
+  :bind
+  ("C-M-a" . sp-backward-sexp)
+  ("C-M-e" . sp-forward-sexp)
+  :config
+  (bind-key
+   "C-c s"
+   (defhydra smartparens-hydra ()
+     "Smartparens"
+     ("k" sp-previous-sexp "Prev")
+     ("j" sp-next-sexp "Next")
+     ;; ("u" sp-backward-up-sexp "Up")
+     ;; ("a" sp-backward-down-sexp "Down")
+     ;; ("f" sp-forward-sexp "Forward")
+     ;; ("b" sp-backward-sexp "Backward")
+     ;; ("k" sp-kill-sexp "Kill")
+     ("q" nil "Quit" :color blue))
+   smartparens-mode-map)
+  :init
+  (add-hook 'python-mode-hook 'smartparens-mode)
+  (add-hook 'go-mode-hook 'smartparens-mode)
+  (add-hook 'lisp-interaction-mode-hook 'smartparens-mode)
+  (add-hook 'emacs-lisp-mode-hook 'smartparens-mode)
+  (add-hook 'org-mode-hook 'smartparens-mode))
+
 (setq-default compile-command "")
 (defun my-recompile (args)
   (interactive "P")

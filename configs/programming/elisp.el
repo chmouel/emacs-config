@@ -1,5 +1,4 @@
-;Eldoc-Mode
-(use-package smartparens :ensure t :diminish smartparens-mode)
+;;
 (use-package aggressive-indent :ensure t :diminish aggressive-indent-mode)
 
 (use-package emacs-lisp

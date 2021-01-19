@@ -100,13 +100,6 @@
    (locate-user-emacs-file
     "auto-save-list/smex-items")))
 
-;; Ivy
-(use-package ivy
-:ensure t
-  :config
-  (setq ivy-re-builders-alist
-        '((t . ivy--regex-fuzzy))))
-
 ;; FZF
 (use-package fzf
   :ensure t
@@ -177,13 +170,50 @@
   (global-flycheck-mode t))
 
 ;; Counsel
-(use-package counsel :ensure t
-  :bind (("C-*"     . counsel-org-agenda-headlines)
-         ("C-x C-f" . counsel-find-file)
+(use-package counsel
+  :ensure t
+  :after ivy
+  :custom
+  (counsel-find-file-ignore-regexp
+   (regexp-opt completion-ignored-extensions))
+  :bind (("C-x C-f" . counsel-find-file)
          ("C-h f"   . counsel-describe-function)
-         ("C-x b" . counsel-switch-buffer)
+         ("C-x b"   . counsel-switch-buffer)
+         ("C-\\"    . counsel-switch-buffer)
          ("C-x r b" . counsel-bookmark)
          ("M-x"     . counsel-M-x)))
+
+;; Ivy
+(use-package ivy
+  :ensure t
+  :config
+  (ivy-mode)
+  :bind (:map ivy-minibuffer-map
+              ("C-\\" . ivy-next-line)
+              ("<up>" . ivy-previous-history-element)
+              ("<down>" . ivy-next-history-element))
+  :custom
+  (counsel-switch-buffer-preview-virtual-buffers nil)
+  (ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
+  (ivy-extra-directories nil)
+  (ivy-count-format "")
+  (ivy-use-virtual-buffers t))
+
+(use-package all-the-icons-ivy
+  :ensure t
+  :after (all-the-icons ivy)
+  :custom
+  (all-the-icons-spacer " ")
+  (all-the-icons-ivy-file-commands
+   '(counsel-dired-jump
+     counsel-find-file
+     counsel-file-jump
+     counsel-find-library
+     counsel-git
+     counsel-projectile-find-dir
+     counsel-projectile-find-file
+     counsel-recentf))
+  :config (all-the-icons-ivy-setup))
 
 ;;Flycheck
 (use-package flycheck-yamllint
