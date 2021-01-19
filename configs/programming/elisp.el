@@ -1,5 +1,26 @@
 ;Eldoc-Mode
-(use-package smartparens :ensure t :diminish smartparens-mode)
+(use-package smartparens
+  :ensure t
+  :diminish smartparens-mode
+  :bind
+  ("C-M-a" . sp-backward-sexp)
+  ("C-M-e" . sp-forward-sexp)
+  :config
+  (bind-key
+   "C-c s"
+   (defhydra smartparens-hydra ()
+     "Smartparens"
+     ("d" sp-down-sexp "Down")
+     ("e" sp-up-sexp "Up")
+     ("l" sp-next-sexp "Next")
+     ("h" sp-previous-sexp "Prev")
+     ("u" sp-backward-up-sexp "Up")
+     ("a" sp-backward-down-sexp "Down")
+     ("f" sp-forward-sexp "Forward")
+     ("b" sp-backward-sexp "Backward")
+     ("k" sp-kill-sexp "Kill")
+     ("q" nil "Quit" :color blue))
+   smartparens-mode-map))
 (use-package aggressive-indent :ensure t :diminish aggressive-indent-mode)
 
 (use-package emacs-lisp
