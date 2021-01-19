@@ -51,7 +51,6 @@
   (local-set-key '[(control c)(i)] 'my-py-import-add)
   (local-set-key '[(control c)(\[)] 'flycheck-previous-error)
   (local-set-key '[(control c)(\])] 'flycheck-next-error)
-
   (flycheck-mode)
   (lsp-deferred)
   (setq-local compile-command (concat python-shell-interpreter " -E \"" buffer-file-name "\"")))
