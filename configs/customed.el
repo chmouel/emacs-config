@@ -226,7 +226,6 @@
  '(lsp-modeline-diagnostics-enable nil)
  '(magit-commit-show-diff nil)
  '(magit-commit-signoff t)
- '(magit-completing-read-function 'magit-ido-completing-read)
  '(magit-expand-staged-on-commit 'full)
  '(magit-log-arguments '("--graph" "--decorate" "--no-merges"))
  '(magit-log-auto-more t)
