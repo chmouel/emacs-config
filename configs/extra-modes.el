@@ -207,6 +207,7 @@
 (use-package crux
   :ensure t
   :bind (("C-k" . crux-smart-kill-line)
+         ("C-M-l" . crux-switch-to-previous-buffer)
          ("C-o" . crux-smart-open-line-above)
          ([shift return] . crux-smart-open-line )))
 
