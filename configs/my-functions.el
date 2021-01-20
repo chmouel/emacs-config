@@ -137,3 +137,45 @@
 
     (set-frame-size (selected-frame) (/ WIDTH 2) HEIGHT t)
     (set-frame-position (selected-frame) x 0)))
+
+;;; Based on https://git.io/JtqzI
+(defvar my-git-clone-destination "/tmp/gitrepos")
+(defun my-git-clone-clipboard-url ()
+  "Clone git URL in clipboard asynchronously and open in dired when finished."
+  (interactive)
+  (cl-assert (string-match-p "^\\(http\\|https\\|ssh\\)://" (current-kill 0)) nil "No URL in clipboard")
+  (let* ((url (current-kill 0))
+         (download-dir (expand-file-name my/git-clone-destination))
+         (project-dir (concat (file-name-as-directory download-dir)
+                              (file-name-base url)))
+         (default-directory download-dir)
+         (command (format "git clone %s" url))
+         (buffer (generate-new-buffer (format "*%s*" command)))
+         (proc))
+    (when (not(file-exists-p download-dir))
+      (make-directory download-dir))
+    (when (file-exists-p project-dir)
+      (if (y-or-n-p (format "%s exists. delete?" (file-name-base url)))
+          (delete-directory project-dir t)
+        (user-error "Bailed")))
+    (switch-to-buffer buffer)
+    (setq proc (start-process-shell-command (nth 0 (split-string command)) buffer command))
+    (with-current-buffer buffer
+      (setq default-directory download-dir)
+      (shell-command-save-pos-or-erase)
+      (require 'shell)
+      (shell-mode)
+      (view-mode +1))
+    (lexical-let ((project-dir project-dir))
+      (set-process-sentinel proc (lambda (process state)
+                                   (let ((output (with-current-buffer (process-buffer process)
+                                                   (buffer-string))))
+                                     (kill-buffer (process-buffer process))
+                                     (if (= (process-exit-status process) 0)
+                                         (progn
+                                           (message "finished: ")
+                                           (dired project-dir))
+                                       (user-error (format "%s" output))))))
+      (set-process-filter proc #'comint-output-filter))))
+
+
