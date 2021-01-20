@@ -9,7 +9,12 @@
         (expand-file-name "~/.emacs.d/auto-save-list/forge.database"))
   :after magit)
 
+(use-package transient
+  :ensure t
+  :after magit)
+
 (use-package magit
+  :ensure t
   :commands (magit-read-repository magit-toplevel)
   :bind (;; ("C-x v v" . my-magit-commit-buffer)
          ("C-x v -" . magit-pull-from-pushremote)
@@ -28,12 +33,13 @@
   :commands (magit-process-file magit-list-repos-uniquify)
   :hook
   (magit-status-mode-hook my-magit-status-mode-hook)
+  :custom
+  (magit-completing-read-function 'magit-completing-read)
+  (magit-display-buffer-function 'magit-display-buffer-fullframe-status-topleft-v1)
   :config
   (defun my-magit-status-mode-hook ()
     (local-set-key '[(control =)] 'magit-commit-create))
-  (setq magit-display-buffer-function 'magit-display-buffer-fullframe-status-topleft-v1)
-  (global-git-commit-mode)
-  (magit-define-popup-switch 'magit-log-popup ?m "Omit merge commits" "--no-merges"))
+  (global-git-commit-mode))
 
 (defun my-diff-current-unstaged-file (&optional many)
   (interactive)
