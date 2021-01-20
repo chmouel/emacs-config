@@ -211,8 +211,14 @@
          ("C-o" . crux-smart-open-line-above)
          ([shift return] . crux-smart-open-line )))
 
+;; Ctrlf
+(use-package ctrlf
+  :ensure t
+  :config
+  (ctrlf-mode 1))
+
 (use-package esh-autosuggest
-:ensure t
+  :ensure t
   :hook (eshell-mode . esh-autosuggest-mode)
   ;; If you have use-package-hook-name-suffix set to nil, uncomment and use the
   ;; line below instead:
