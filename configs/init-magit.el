@@ -9,10 +9,6 @@
         (expand-file-name "~/.emacs.d/auto-save-list/forge.database"))
   :after magit)
 
-(use-package transient
-  :ensure t
-  :after magit)
-
 (use-package magit
   :ensure t
   :commands (magit-read-repository magit-toplevel)
