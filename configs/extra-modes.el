@@ -70,36 +70,6 @@
   (powerline-display-mule-info nil)
   (powerline-display-buffer-size nil))
 
-;;Ido Vertical mode
-(use-package ido-vertical-mode
-  :ensure t
-  :custom
-  (ido-max-prospects 5)
-  :config
-  (ido-vertical-mode 1))
-
-(use-package bufler
-  :ensure t
-  :bind
-  (("C-x C-b" . bufler)))
-
-;; smex - IDO completion for M-x
-(use-package smex
-  :ensure t
-  :custom
-  (smex-save-file
-   (locate-user-emacs-file
-    "auto-save-list/smex-items"))
-  :bind (("M-x" . smex)))
-
-;;Helm
-(use-package helm
-  :ensure t
-  :custom
-  (smex-save-file
-   (locate-user-emacs-file
-    "auto-save-list/smex-items")))
-
 ;; FZF
 (use-package fzf
   :ensure t
@@ -123,15 +93,6 @@
   (ag-reuse-buffers t)
   :config
   (add-to-list 'ag-arguments "-z"))
-
-;; flx-ido - advanced flex matching for ido
-(use-package flx-ido
-  :ensure t
-  :custom
-  (ido-enable-flex-matching t)
-  (ido-use-faces nil)
-  :config
-  (flx-ido-mode 1))
 
 ;; Flycheck
 (use-package flycheck
@@ -169,52 +130,6 @@
   :init
   (global-flycheck-mode t))
 
-;; Counsel
-(use-package counsel
-  :ensure t
-  :after ivy
-  :custom
-  (counsel-find-file-ignore-regexp
-   (regexp-opt completion-ignored-extensions))
-  :bind (("C-x C-f" . counsel-find-file)
-         ("C-h f"   . counsel-describe-function)
-         ("C-x b"   . counsel-switch-buffer)
-         ("C-\\"    . counsel-switch-buffer)
-         ("C-x r b" . counsel-bookmark)
-         ("M-x"     . counsel-M-x)))
-
-;; Ivy
-(use-package ivy
-  :ensure t
-  :config
-  (ivy-mode)
-  :bind (:map ivy-minibuffer-map
-              ("C-\\" . ivy-next-line)
-              ("<up>" . ivy-previous-history-element)
-              ("<down>" . ivy-next-history-element))
-  :custom
-  (counsel-switch-buffer-preview-virtual-buffers nil)
-  (ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
-  (ivy-extra-directories nil)
-  (ivy-count-format "")
-  (ivy-use-virtual-buffers t))
-
-(use-package all-the-icons-ivy
-  :ensure t
-  :after (all-the-icons ivy)
-  :custom
-  (all-the-icons-spacer " ")
-  (all-the-icons-ivy-file-commands
-   '(counsel-dired-jump
-     counsel-find-file
-     counsel-file-jump
-     counsel-find-library
-     counsel-git
-     counsel-projectile-find-dir
-     counsel-projectile-find-file
-     counsel-recentf))
-  :config (all-the-icons-ivy-setup))
-
 ;;Flycheck
 (use-package flycheck-yamllint
   :ensure t
@@ -236,8 +151,6 @@
 ;;
 (use-package rich-minority
   :ensure t
-  :init
-  (rich-minority-mode)
   :custom
   ((rm-whitelist
     (format "^ \\(%s\\)$"
@@ -296,16 +209,6 @@
   :bind (("C-k" . crux-smart-kill-line)
          ("C-o" . crux-smart-open-line-above)
          ([shift return] . crux-smart-open-line )))
-
-
-(use-package amx
-  :ensure t
-  :init
-  (amx-initialize)
-  :custom
-  ((amx-save-to-file
-    (locate-user-emacs-file
-     (concat "auto-save-list/amx-items")))))
 
 (use-package esh-autosuggest
 :ensure t

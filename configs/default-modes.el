@@ -187,26 +187,6 @@ mouse-3: go to end"))))
   (when-let (mdfind (and (eq system-type 'darwin) (executable-find "mdfind")))
     (setq locate-command mdfind)))
 
-(use-package ido
-  :defer t
-  :bind
-  (:map ido-common-completion-map
-        ("C-\\" . ido-next-match)
-        :map ido-completion-map
-        (" "   . ido-next-match)))
-
-;; Find files already recent
-(use-package files
-  :after ido
-  :ensure nil
-  :defer t
-  :bind (("C-c ." . my-goto-recent-files))
-  :config
-  (defun my-goto-recent-files(arg)
-    (interactive "P")
-    (let ((rf (if arg (--filter (not (string-match ":" it)) recentf-list) recentf-list)))
-      (find-file (ido-completing-read "File: " rf)))))
-
 ;; Recentf
 (use-package recentf
   :config
