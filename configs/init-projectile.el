@@ -36,7 +36,7 @@
                (format " ⏤ %s" project-name))))))
   (projectile-mode +1)
   :bind (("C-c b" . projectile-switch-to-buffer)
-         ("C-c o" . projectile-switch-project)
+         ("C-c o" . my-projectile-and-find-file)
          ("C-c i" . my-projectile-and-ripgrep)
          ("C-c f" . projectile-find-file)
          ("C-c S-<return>" . projectile-commander)
@@ -46,10 +46,9 @@
 ;; Ivy integration for Projectile
 (use-package counsel-projectile
   :bind
-  (("C-c U" . counsel-projectile-git-grep))
+  (("C-c U" . counsel-projectile-rg))
   :hook (counsel-mode . counsel-projectile-mode)
   :init (setq counsel-projectile-grep-initial-input '(ivy-thing-at-point)))
-
 
 (defun my-projectile-mode-line ()
   (let ((project-name (projectile-project-name)))
@@ -66,9 +65,14 @@
   (let ((projectile-switch-project-action 'projectile-dired))
     (projectile-switch-project)))
 
+(defun my-projectile-and-find-file()
+  (interactive)
+  (let ((projectile-switch-project-action 'my-projectile-find-file))
+    (projectile-switch-project)))
+
 (defun my-projectile-and-ripgrep()
   (interactive)
-  (let ((projectile-switch-project-action 'counsel-ag))
+  (let ((projectile-switch-project-action 'counsel-projectile-rg))
     (projectile-switch-project)))
 
 (defun my-projectile-find-file()
