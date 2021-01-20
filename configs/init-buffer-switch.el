@@ -1,4 +1,12 @@
+;; Bufler
+(use-package bufler
+  :ensure t
+  :bind
+  (("C-x C-b" . bufler)))
+
+;;; DISABLED
 (use-package ibuffer
+  :disabled
   :ensure nil
   :bind
   ("C-x C-b" . ibuffer)
@@ -23,6 +31,7 @@
 
 ;; Group ibuffer's list by project root
 (use-package ibuffer-projectile
+  :disabled
   :ensure t
   :functions all-the-icons-octicon ibuffer-do-sort-by-alphabetic
   :hook ((ibuffer . (lambda ()
