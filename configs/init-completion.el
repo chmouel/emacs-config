@@ -38,7 +38,7 @@
   (prescient-persist-mode t)  
   :custom
   (prescient-sort-length-enable nil)
-  (prescient-filter-method '(literal fuzzy anchored)))
+  (prescient-filter-method '(anchored simple regexp fuzzy)))
 
 (use-package marginalia 
   :ensure t
