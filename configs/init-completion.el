@@ -32,27 +32,76 @@
         :map ido-completion-map
         (" "   . ido-next-match)))
 
+;;; Ido Vertical mode
+(use-package ido-vertical-mode
+  :ensure t
+  :custom
+  (ido-max-prospects 10)
+  :config
+  (ido-vertical-mode 1))
+
+(use-package marginalia
+  :ensure t
+  :config
+  (setq marginalia-annotators
+        '(marginalia-annotators-heavy
+          marginalia-annotators-light))
+  (marginalia-mode 1))
+
+(use-package minibuffer
+  :hook (after-init . minibuffer-depth-indicate-mode) ; recursion depth
+  :custom
+  (enable-recursive-minibuffers t)
+  (completion-styles
+   '(partial-completion basic flex initials substring))
+  (completion-category-overrides
+   '((file (styles basic flex initials substring))
+     (buffer (styles basic flex initials substring))
+     (info-menu (styles basic flex initials substring))))
+  (completion-auto-help nil)
+  (completion-flex-nospace nil)
+  (read-file-name-completion-ignore-case t)
+  (read-buffer-completion-ignore-case t)
+  (completion-pcm-complete-word-inserts-delimiters t)
+  (completion-show-help nil))
+
+(use-package icomplete
+  :hook (after-init . icomplete-mode)
+  :custom
+  (icomplete-in-buffer t)
+  (icomplete-delay-completions-threshold 0)
+  :config
+  :bind (:map icomplete-minibuffer-map
+              ("<return>" . icomplete-force-complete-and-exit)              
+              ("TAB" . icomplete-force-complete)              
+              ("C-s" . icomplete-forward-completions)
+              ("C-n" . icomplete-forward-completions)
+              ("C-p" . icomplete-backward-completions)))
+
+(use-package icomplete-vertical
+  :after icomplete
+  :hook (icomplete-mode . icomplete-vertical-mode))
+
+(use-package consult
+  :ensure t
+  :bind (("M-s o" . consult-outline)
+         ("M-s i" . consult-imenu)
+         ("C-x r b" . consult-bookmark)
+         ("M-y" . consult-yank-pop)))
+
+;;  Disabled
 (use-package prescient
   :ensure t
+  :disabled
   :config
   (prescient-persist-mode t)  
   :custom
   (prescient-sort-length-enable nil)
   (prescient-filter-method '(anchored simple regexp fuzzy)))
 
-(use-package marginalia 
-  :ensure t
-  :init
-  (marginalia-mode t)
-  ;; When using Selectrum, ensure that Selectrum is refreshed when cycling annotations.
-  (advice-add #'marginalia-cycle :after
-              (lambda () (when (bound-and-true-p selectrum-mode) (selectrum-exhibit))))
-  (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light))
-  :bind (:map minibuffer-local-completion-map
-              ("C-i" . marginalia-cycle-annotators)))
-
 (use-package selectrum
   :ensure t
+  :disabled
   :custom
   (selectrum-count-style 'nil)
   (selectrum-extend-current-candidate-highlight t)
@@ -62,23 +111,9 @@
 (use-package selectrum-prescient
   :ensure t
   :after selectrum
+  :disabled
   :config
   (selectrum-prescient-mode t))
-
-(use-package consult
-  :ensure t
-  :bind (("M-s o" . consult-outline)
-         ("M-s i" . consult-imenu)
-         ("C-x r b" . consult-bookmark)
-         ("M-y" . consult-yank-pop)))
-
-;;; Ido Vertical mode
-(use-package ido-vertical-mode
-  :ensure t
-  :custom
-  (ido-max-prospects 10)
-  :config
-  (ido-vertical-mode 1))
 
 ;; Ivy
 (use-package ivy
@@ -166,8 +201,6 @@
   :bind (("M-x" . smex)))
 
 ;;; Code:
-
-
 
 (provide 'init-completion)
 ;;; init-completion.el ends here
