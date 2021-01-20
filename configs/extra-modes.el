@@ -217,6 +217,7 @@
   :config
   (ctrlf-mode 1))
 
+;; Eshell autosuggest
 (use-package esh-autosuggest
   :ensure t
   :hook (eshell-mode . esh-autosuggest-mode)
