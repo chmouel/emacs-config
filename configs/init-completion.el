@@ -4,10 +4,15 @@
 ;; Author: Chmouel Boudjnah <chmouel@chmouel.com>
 
 ;; Helm
-(use-package helm :ensure t)
+(use-package helm :ensure t
+  :custom
+  (helm-buffers-fuzzy-matching t)
+  :bind
+  ("M-y" . helm-show-kill-ring))
 
 ;; IDO
 (use-package ido
+  :after ivy
   :defer t
   :config
   (ido-mode)
@@ -22,7 +27,10 @@
   (ido-show-dot-for-dired t)
   (ido-use-filename-at-point 'guess)
   (ido-use-url-at-point t)  
+  (ido-enable-flex-matching t)
+  (ido-use-url-at-pointfaces nil)  
   :bind
+  ("C-x C-f" . ido-find-file)
   (:map ido-common-completion-map
         ("C-\\" . ido-next-match)
         :map ido-completion-map
@@ -32,9 +40,6 @@
 ;; flx-ido - advanced flex matching for ido
 (use-package flx-ido
   :ensure t
-  :custom
-  (ido-enable-flex-matching t)
-  (ido-use-faces nil)
   :config
   (flx-ido-mode 1))
 
@@ -55,15 +60,16 @@
           marginalia-annotators-light))
   (marginalia-mode 1))
 
-                                        ; Use flex for completion-styles
+;; Use flex for completion-styles
 (use-package minibuffer
   :custom
   (completion-styles
    '(basic partial-completion flex)))
 
-
 ;; Ivy
 (use-package ivy
+  :config
+  (ivy-mode)
   :ensure t
   :bind
   (:map ivy-minibuffer-map
@@ -142,7 +148,7 @@
          ("M-s i" . consult-imenu)
          ("C-x r b" . consult-bookmark)
          ("C-x b" . consult-buffer)
-         ("M-y" . consult-yank-pop)))
+         ))
 
 ;;  Disabled
 (use-package prescient
