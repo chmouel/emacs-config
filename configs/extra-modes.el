@@ -211,12 +211,6 @@
          ("C-o" . crux-smart-open-line-above)
          ([shift return] . crux-smart-open-line )))
 
-;; Ctrlf
-(use-package ctrlf
-  :ensure t
-  :config
-  (ctrlf-mode 1))
-
 ;; Eshell autosuggest
 (use-package esh-autosuggest
   :ensure t
