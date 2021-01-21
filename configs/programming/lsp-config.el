@@ -68,7 +68,7 @@
             ;; don't add any dely before trying to complete thing being typed
             ;; the call/response to gopls is asynchronous so this should have little
             ;; to no affect on edit latency
-            (setq company-idle-delay 0)
+            (setq company-idle-delay 0.3)
             ;; start completing after a single character instead of 3
             (setq company-minimum-prefix-length 1)
             ;; align fields in completions

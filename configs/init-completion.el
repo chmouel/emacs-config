@@ -9,6 +9,19 @@
 ;; IDO
 (use-package ido
   :defer t
+  :config
+  (ido-mode)
+  :custom
+  (ido-enable-last-directory-history t)
+  (ido-enable-tramp-completion nil)
+  (ido-ignore-directories '("\\`CVS/" "\\`\\.\\./" "\\`\\./" "\\`\\.svn/"))
+  (ido-rotate-file-list-default t)
+  (ido-save-directory-list-file
+   (expand-file-name
+    (concat user-emacs-directory "/auto-save-list/ido.last")))
+  (ido-show-dot-for-dired t)
+  (ido-use-filename-at-point 'guess)
+  (ido-use-url-at-point t)  
   :bind
   (:map ido-common-completion-map
         ("C-\\" . ido-next-match)
@@ -24,6 +37,7 @@
   (ido-vertical-mode 1))
 
 (use-package marginalia
+  :disabled
   :ensure t
   :config
   (setq marginalia-annotators
@@ -32,23 +46,12 @@
   (marginalia-mode 1))
 
 (use-package minibuffer
-  :hook (after-init . minibuffer-depth-indicate-mode) ; recursion depth
   :custom
-  (enable-recursive-minibuffers t)
   (completion-styles
-   '(partial-completion basic flex initials substring))
-  (completion-category-overrides
-   '((file (styles basic flex initials substring))
-     (buffer (styles basic flex initials substring))
-     (info-menu (styles basic flex initials substring))))
-  (completion-auto-help nil)
-  (completion-flex-nospace nil)
-  (read-file-name-completion-ignore-case t)
-  (read-buffer-completion-ignore-case t)
-  (completion-pcm-complete-word-inserts-delimiters t)
-  (completion-show-help nil))
+   '(basic partial-completion flex)))
 
 (use-package icomplete
+  :disabled
   :hook (after-init . icomplete-mode)
   :custom
   (icomplete-in-buffer t)
@@ -63,25 +66,27 @@
               ("C-p" . icomplete-backward-completions)))
 
 (use-package icomplete-vertical
+  :disabled
   :after icomplete
   :hook (icomplete-mode . icomplete-vertical-mode))
 
 (use-package consult
+  :disabled
   :ensure t
   :bind (("M-s o" . consult-outline)
          ("M-s i" . consult-imenu)
          ("C-x r b" . consult-bookmark)
+         ("C-x b" . consult-buffer)
          ("M-y" . consult-yank-pop)))
 
 ;;  Disabled
 (use-package prescient
   :ensure t
-  :disabled
   :config
   (prescient-persist-mode t)  
   :custom
   (prescient-sort-length-enable nil)
-  (prescient-filter-method '(anchored simple regexp fuzzy)))
+  (prescient-filter-method '(anchored regexp fuzzy)))
 
 (use-package selectrum
   :ensure t
@@ -102,7 +107,6 @@
 ;; Ivy
 (use-package ivy
   :ensure t
-  :disabled
   :config
   (ivy-mode)
   :bind
@@ -116,7 +120,6 @@
   (ivy-use-virtual-buffers t))
 
 (use-package all-the-icons-ivy
-  :disabled
   :ensure t
   :after (all-the-icons ivy)
   :custom
@@ -134,7 +137,6 @@
 
 (use-package ivy-prescient
   :ensure t
-  :disabled
   :after counsel
   :config
   (ivy-prescient-mode 1))
@@ -142,12 +144,15 @@
 ;; Counsel
 (use-package counsel
   :ensure t
-  :disabled
   :after ivy
   :custom
-  (counsel-find-file-ignore-regexp
-   (regexp-opt completion-ignored-extensions))
+  (setq
+   counsel-find-file-ignore-regexp
+   (regexp-opt
+    (append completion-ignored-extensions (quote (".#")))))
+  ;; (regexp-opt completion-ignored-extensions))
   :bind (("C-h f"   . counsel-describe-function)
+         ("C-x C-f" . counsel-find-file)
          ("C-x b"   . counsel-switch-buffer)
          ("C-\\"    . counsel-switch-buffer)
          ("C-x r b" . counsel-bookmark)
@@ -157,7 +162,6 @@
 ;; flx-ido - advanced flex matching for ido
 (use-package flx-ido
   :ensure t
-  :disabled
   :custom
   (ido-enable-flex-matching t)
   (ido-use-faces nil)
