@@ -349,6 +349,9 @@
   :bind (("<C-f6>" . github-browse-remote-kill)
          ("<f6>" . github-browse-remote)))
 
+;; Use ripgrep
+(use-package "ripgrep" :ensure t)
+
 ;;; KEEP IT
 ;;Web-mode
 (provide 'extras-modes)
