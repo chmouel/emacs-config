@@ -43,13 +43,6 @@
          ("C-c <return>" . projectile-switch-open-project)
          ("C-c p" . my-projectile-and-dired)))
 
-;; Ivy integration for Projectile
-(use-package counsel-projectile
-  :bind
-  (("C-c U" . counsel-projectile-rg))
-  :hook (counsel-mode . counsel-projectile-mode)
-  :init (setq counsel-projectile-grep-initial-input '(ivy-thing-at-point)))
-
 (defun my-projectile-mode-line ()
   (let ((project-name (projectile-project-name)))
     (format " :%s" (or project-name "-"))))
