@@ -257,8 +257,14 @@
 ;; Swiper
 (use-package swiper
   :ensure t
-  :bind
-  (("C-S-s" . 'swiper-isearch)))
+  :config
+  (if (executable-find "rg")
+      (setq counsel-grep-base-command
+            "rg -i -M 120 --no-heading --line-number --color never %s %s"))
+  :bind 
+  (("C-S-s" . 'swiper-isearch)
+   :map isearch-mode-map
+   ("C-'" . swiper-from-isearch)))
 
 ;; Easy-kill
 (use-package easy-kill
