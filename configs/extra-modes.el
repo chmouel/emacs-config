@@ -57,10 +57,6 @@
 ;; JSON Mode
 (use-package json-mode :mode "\\.json\\'" :ensure t)
 
-;; window-number-meta-mode
-(use-package window-number :ensure t
-  :config (window-number-meta-mode 1))
-
 ;; Yascroll
 (use-package yascroll :config (global-yascroll-bar-mode 't) :ensure t)
 
