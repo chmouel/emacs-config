@@ -302,7 +302,7 @@
 
 ;; PlantUML
 (use-package plantuml-mode
-:ensure t
+  :ensure t
   :bind (:map plantuml-mode-map ([(control c) (control c)]
                                  . my-plantuml-preview))
   :config
