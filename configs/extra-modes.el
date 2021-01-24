@@ -24,10 +24,12 @@
   (yas/global-mode 1)
   (require 'autoinsert)
   (auto-insert-mode)
+  (setq auto-insert-query nil)
+  (setq auto-insert-alist nil)
   (define-auto-insert "\.py"
-    '(lambda () (yas--expand-by-uuid 'python-mode "header")))
-  ;; (use-package dropdown-list :ensure t)
-  )
+    '(lambda () (yas--expand-by-uuid 'python-mode "header"))))
+  ;; (use-package dropdown-list :ensure t))
+  
 (use-package yasnippet-snippets :ensure t)
 
 ;; RegexTool
