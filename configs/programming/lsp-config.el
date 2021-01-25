@@ -76,8 +76,4 @@
             )
   )
 
-;; optional package to get the error squiggles as you edit
-(use-package flycheck
-  :ensure t)
-
 (provide 'lsp-config)
