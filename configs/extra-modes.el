@@ -17,6 +17,7 @@
 
 (use-package yasnippet
   :ensure t
+  :diminish yas-minor-mode
   :custom
   ((auto-insert-query nil)
    (yas-prompt-functions '(yas/dropdown-prompt)))
@@ -30,7 +31,7 @@
     '(lambda () (yas--expand-by-uuid 'python-mode "header"))))
   ;; (use-package dropdown-list :ensure t))
   
-(use-package yasnippet-snippets :ensure t)
+(use-package yasnippet-snippets :diminish :ensure t)
 
 ;; RegexTool
 (use-package regex-tool :commands (regex-tool) :ensure t)
@@ -94,6 +95,7 @@
 
 ;; Flycheck
 (use-package flycheck
+  :disabled
   :ensure t
   :config
   (defun my-flycheck-mode-line-status-text (&optional status)
@@ -114,8 +116,7 @@
       (concat " " flycheck-mode-line-prefix text)))
 
   :custom
-  (
-   (flycheck-mode-line '(:eval (my-flycheck-mode-line-status-text)))
+  ((flycheck-mode-line '(:eval (my-flycheck-mode-line-status-text)))
    (flycheck-mode-line-prefix "FC ")
    (flycheck-disabled-checkers
     '(go-unconvert
@@ -193,6 +194,7 @@
 
 ;; Drag stuff up and down
 (use-package drag-stuff
+  :diminish
   :ensure t
   :init (drag-stuff-global-mode 1)
   :bind (([(control x) (down)] . drag-stuff-down)
@@ -246,6 +248,7 @@
 ;; Anzu
 (use-package anzu
   :ensure t
+  :diminish
   :bind (([remap query-replace] . anzu-query-replace)
          ([remap query-replace-regexp] . anzu-query-replace-regexp)
          :map isearch-mode-map
@@ -256,7 +259,8 @@
 
 ;; Swiper
 (use-package swiper
-  :ensure t
+  :ensure t 
+  :diminish
   :config
   (if (executable-find "rg")
       (setq counsel-grep-base-command
@@ -289,6 +293,7 @@
 
 ;; Which key
 (use-package which-key
+  :diminish
   :ensure t
   :config
   (which-key-mode))
