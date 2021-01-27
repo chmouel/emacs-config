@@ -43,7 +43,6 @@
 
 ;; Remap goto-line to show temporary the line number.
 ;; http://whattheemacsd.com//key-bindings.el-01.html
-(global-set-key [remap goto-line] 'goto-line-with-feedback)
 (defun goto-line-with-feedback ()
   "Show line numbers temporarily, while prompting for the line number input"
   (interactive)
