@@ -3,31 +3,6 @@
 ;; Copyright (C) 2021  Chmouel Boudjnah
 ;; Author: Chmouel Boudjnah <chmouel@chmouel.com>
 
-(use-package icomplete
-  :hook (after-init . fido-mode)
-  ;; :config
-  ;; (fido-mode 1)
-  :custom
-  (icomplete-in-buffer t)
-  (icomplete-tidy-shadowed-file-names t)
-  (icomplete-delay-completions-threshold 0)
-  :custom-face
-  (icomplete-first-match ((t (:foreground "gold" :weight extra-bold))))
-  :config
-  :bind (:map icomplete-minibuffer-map
-              ("C-c C-c" . embark-act)
-              ("<return>" . icomplete-force-complete-and-exit)
-              ("C-<tab>" . minibuffer-force-complete)
-              ;; ("TAB" . icomplete-force-complete)
-              ("C-\\" . icomplete-forward-completions)
-              ("C-s" . icomplete-forward-completions)
-              ("C-n" . icomplete-forward-completions)
-              ("C-p" . icomplete-backward-completions)))
-
-(use-package icomplete-vertical
-  :after icomplete
-  :hook (icomplete-mode . icomplete-vertical-mode))
-
 ;; Prettiness
 (use-package marginalia
   :ensure t
@@ -37,13 +12,7 @@
           marginalia-annotators-light))
   (marginalia-mode 1))
 
-;; Use flex for completion-styles
-;; (use-package minibuffer
-;;   :custom
-;;   (completion-styles
-;;    '(basic partial-completion emacs22 flex)))
-
-;; Consult works at least
+;; Consult
 (use-package consult
   :after projectile
   :custom
@@ -53,13 +22,14 @@
   :ensure t
   :bind (("M-s o" . consult-outline)
          ("M-s i" . consult-imenu)
+         ("M-s g" . consult-grep)
+         ("M-g g" . consult-goto-line)
          ("M-y"   . consult-yank)
          ("C-c U" . my-consult-projectile-rg)
          ("C-x r b" . consult-bookmark)
          ("C-x C-r" . consult-recent-file)
          ("C-\\" . consult-buffer)
-         ("C-x b" . consult-buffer)
-         )
+         ("C-x b" . consult-buffer))
   :config
   (defun my-consult-projectile-rg (&optional initial)
     (interactive "P")
@@ -77,6 +47,31 @@
                         " ")))
         (consult-ripgrep (projectile-project-root) thingapt)))))
 
+;;  Disabled
+(use-package prescient
+  :ensure t
+  :config
+  (prescient-persist-mode t)
+  :custom
+  (prescient-sort-length-enable nil)
+  (prescient-filter-method '(anchored regexp fuzzy)))
+
+;;
+(use-package selectrum
+  :ensure t
+  :custom
+  (selectrum-count-style 'nil)
+  (selectrum-extend-current-candidate-highlight t)
+  :config
+  (selectrum-mode))
+
+(use-package selectrum-prescient
+  :ensure t
+  :after selectrum
+  :config
+  (selectrum-prescient-mode t))
+
+;;;; Disabled
 ;; IDO
 (use-package ido
   :disabled
@@ -104,12 +99,14 @@
 ;; Flex IDO
 ;; flx-ido - advanced flex matching for ido
 (use-package flx-ido
+  :disabled
   :ensure t
   :config
   (flx-ido-mode 1))
 
 ;; Ido Vertical mode
 (use-package ido-vertical-mode
+  :disabled  
   :ensure t
   :custom
   (ido-max-prospects 10)
@@ -118,12 +115,11 @@
 
 ;; Ivy
 (use-package ivy
+  :disabled
   :ensure t
   :bind
-  (;; ("C-\\" . ivy-switch-buffer)
-   ;; ("C-x b" . ivy-switch-buffer)
-   :map ivy-minibuffer-map
-   ("C-\\" . ivy-next-line))
+  (:map ivy-minibuffer-map
+        ("C-\\" . ivy-next-line))
   :custom
   (counsel-switch-buffer-preview-virtual-buffers nil)
   (ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
@@ -132,6 +128,7 @@
   (ivy-use-virtual-buffers t))
 
 (use-package all-the-icons-ivy
+  :disabled
   :ensure t
   :after (all-the-icons ivy)
   :custom
@@ -187,35 +184,6 @@
   :config
   (ivy-prescient-mode 1))
 
-;;  Disabled
-(use-package prescient
-  :disabled
-  :ensure t
-  :config
-  (prescient-persist-mode t)
-  :custom
-  (prescient-sort-length-enable nil)
-  (prescient-filter-method '(anchored regexp fuzzy)))
-
-;;
-(use-package selectrum
-  :ensure t
-  :disabled
-  :custom
-  (selectrum-count-style 'nil)
-  (selectrum-extend-current-candidate-highlight t)
-  :config
-  (selectrum-mode))
-
-(use-package selectrum-prescient
-  :disabled
-  :ensure t
-  :after selectrum
-  :config
-  (selectrum-prescient-mode t))
-
-;;;; Disabled
-
 (use-package amx
   :disabled
   :ensure t
@@ -228,11 +196,38 @@
 
 ;; smex - IDO completion for M-x
 (use-package smex
+  :disabled
   :ensure t
   :custom
   (smex-save-file
    (locate-user-emacs-file
     "auto-save-list/smex-items")))
+
+(use-package icomplete
+  :disabled
+  :hook (after-init . fido-mode)
+  :custom
+  (icomplete-in-buffer t)
+  (icomplete-tidy-shadowed-file-names t)
+  (icomplete-delay-completions-threshold 0)
+  :custom-face
+  (icomplete-first-match ((t (:foreground "gold" :weight extra-bold))))
+  :config
+  :bind (:map icomplete-minibuffer-map
+              ("C-c C-c" . embark-act)
+              ("<return>" . icomplete-force-complete-and-exit)
+              ("C-<tab>" . minibuffer-force-complete)
+              ;; ("TAB" . icomplete-force-complete)
+              ("C-\\" . icomplete-forward-completions)
+              ("C-s" . icomplete-forward-completions)
+              ("C-n" . icomplete-forward-completions)
+              ("C-p" . icomplete-backward-completions)))
+
+(use-package icomplete-vertical
+  :disabled
+  :after icomplete
+  :hook (icomplete-mode . icomplete-vertical-mode))
+
 ;;; Code:
 
 (provide 'init-completion)
