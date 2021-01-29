@@ -24,12 +24,11 @@
          ("M-s i" . consult-imenu)
          ("M-s g" . consult-grep)
          ("M-g g" . consult-goto-line)
-         ("M-y"   . consult-yank)
-         ("C-c U" . my-consult-projectile-rg)
-         ("C-x r b" . consult-bookmark)
-         ("C-x C-r" . consult-recent-file)
-         ("C-\\" . consult-buffer)
-         ("C-x b" . consult-buffer))
+         ("M-s y"   . consult-yank)
+         ("C-x r b" . (lambda ()(interactive) (do-ivy-completion 'consult-bookmark)))
+         ("C-x C-r" . consult-recent-file))
+  ;; ("C-\\" . consult-buffer)
+  ;; ("C-x b" . consult-buffer))
   :config
   (defun my-consult-projectile-rg (&optional initial)
     (interactive "P")
@@ -58,18 +57,26 @@
 
 ;;
 (use-package selectrum
+  :disabled
   :ensure t
+  :bind
+  (:map selectrum-minibuffer-map
+        ("C-\\" . selectrum-next-candidate)
+        ("C-s" . selectrum-next-candidate)
+        ("C-n" . selectrum-next-candidate)
+        ("C-p" . selectrum-previous-candidate)
+        ("<up>" . previous-history-element)
+        ("<down>" . next-history-element))
   :custom
   (selectrum-count-style 'nil)
-  (selectrum-extend-current-candidate-highlight t)
-  :config
-  (selectrum-mode))
+  (selectrum-extend-current-candidate-highlight t))
 
 (use-package selectrum-prescient
+  :disabled
   :ensure t
   :after selectrum
   :config
-  (selectrum-prescient-mode t))
+  (selectrum-prescient-mode +1))
 
 ;;;; Disabled
 ;; IDO
@@ -115,11 +122,21 @@
 
 ;; Ivy
 (use-package ivy
-  :disabled
   :ensure t
+  :hook (after-init . ivy-mode)
   :bind
-  (:map ivy-minibuffer-map
-        ("C-\\" . ivy-next-line))
+  (("C-\\" . ivy-switch-buffer)
+   ("C-x C-f" . (lambda ()(interactive) (do-normal-completion 'find-file)))
+   ("C-x b" . ivy-switch-buffer)
+   :map ivy-minibuffer-map
+   ("C-\\" . ivy-next-line))
+  :config
+  (defun do-normal-completion(func)
+    (let ((completion-styles '(flex partial-completion emacs22))
+          (completing-read-function #'completing-read-default)
+          ;; (completing-read-function #'icomplete-read)
+          (completion-in-region-function #'completion--in-region))
+      (call-interactively func)))  
   :custom
   (counsel-switch-buffer-preview-virtual-buffers nil)
   (ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
@@ -128,7 +145,6 @@
   (ivy-use-virtual-buffers t))
 
 (use-package all-the-icons-ivy
-  :disabled
   :ensure t
   :after (all-the-icons ivy)
   :custom
@@ -146,15 +162,14 @@
 
 ;; Helm
 (use-package helm :ensure t
-  :disabled
   :custom
   (helm-buffers-fuzzy-matching t)
   :bind
-  ("M-y" . helm-show-kill-ring))
+  ("C-M-y" . helm-show-kill-ring))
+
 
 ;; Counsel
 (use-package counsel
-  :disabled
   :ensure t
   :after ivy
   :custom
@@ -163,14 +178,15 @@
    (regexp-opt
     (append completion-ignored-extensions (quote (".#")))))
   :bind (("C-h f"   . counsel-describe-function)
+         ("M-x" . counsel-M-x)
+         ("C-|" . counsel-find-file)
          ("C-h s"   . counsel-describe-function)
-         ("C-\\"    . counsel-switch-buffer)
+         ("C-h v"   . counsel-describe-variable)
          ("C-x 8 RET" . counsel-unicode-char)
          ("C-x r b" . counsel-bookmark)))
 
 ;; Ivy integration for Projectile
 (use-package counsel-projectile
-  :disabled
   :bind
   (("C-c U" . counsel-projectile-rg))
   :hook (counsel-mode . counsel-projectile-mode)
@@ -178,7 +194,6 @@
 
 ;;; DISABLED
 (use-package ivy-prescient
-  :disabled
   :ensure t
   :after counsel
   :config
@@ -204,10 +219,10 @@
     "auto-save-list/smex-items")))
 
 (use-package icomplete
-  :disabled
-  :hook (after-init . fido-mode)
+  ;; :hook (after-init . fido-mode)
   :custom
   (icomplete-in-buffer t)
+  (icomplete-show-matches-on-no-input t)
   (icomplete-tidy-shadowed-file-names t)
   (icomplete-delay-completions-threshold 0)
   :custom-face
@@ -217,14 +232,12 @@
               ("C-c C-c" . embark-act)
               ("<return>" . icomplete-force-complete-and-exit)
               ("C-<tab>" . minibuffer-force-complete)
-              ;; ("TAB" . icomplete-force-complete)
               ("C-\\" . icomplete-forward-completions)
               ("C-s" . icomplete-forward-completions)
               ("C-n" . icomplete-forward-completions)
               ("C-p" . icomplete-backward-completions)))
 
 (use-package icomplete-vertical
-  :disabled
   :after icomplete
   :hook (icomplete-mode . icomplete-vertical-mode))
 
