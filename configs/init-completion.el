@@ -53,7 +53,7 @@
   (prescient-persist-mode t)
   :custom
   (prescient-sort-length-enable nil)
-  (prescient-filter-method '(anchored regexp fuzzy)))
+  (prescient-filter-method '(literal regexp fuzzy)))
 
 ;;
 (use-package selectrum
