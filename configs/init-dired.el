@@ -33,6 +33,10 @@
   (if (executable-find "gls")
       (setq insert-directory-program "gls"))
   (defun my-dired-mode-hook ()
+    ;; I hate magic stuff from ivy/selectrum or others when dealing with files
+    (setq-local completion-styles '(flex partial-completion emacs22))
+    (setq-local completing-read-function #'completing-read-default)
+    (setq-local completion-in-region-function #'completion--in-region)    
     (dired-omit-mode)
     (when (featurep 'tooltip) (tooltip-mode 0)))
   (add-hook 'dired-mode-hook 'my-dired-mode-hook)
@@ -42,8 +46,8 @@
     (interactive)
     (dired-do-shell-command
      (case system-type
-       (gnu/linux "gnome-open") ;right for gnome (ubuntu), not for other systems
-       (darwin "open"))
+           (gnu/linux "xdg-open") ;;right for gnome (ubuntu), not for other systems
+           (darwin "open"))
      nil
      (dired-get-marked-files t current-prefix-arg)))
   :bind
