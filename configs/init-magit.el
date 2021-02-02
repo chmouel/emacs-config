@@ -30,6 +30,7 @@
   :hook
   (magit-status-mode-hook my-magit-status-mode-hook)
   :custom
+  (magit-completing-read-function 'ivy-completing-read)
   (magit-display-buffer-function 'magit-display-buffer-fullframe-status-topleft-v1)
   :config
   (defun my-magit-status-mode-hook ()
