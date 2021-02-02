@@ -22,9 +22,11 @@
 
 ;; projectile
 (use-package projectile
+  :after ivy
   :commands (projectile-ensure-project projectile-project-root)
   :custom
   ((projectile-switch-project-action 'projectile-dired)
+   (projectile-completion-system 'ivy)
    (projectile-mode-line-function 'my-projectile-mode-line))
   :config
   (setq frame-title-format
