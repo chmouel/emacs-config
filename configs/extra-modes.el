@@ -30,7 +30,7 @@
     '(lambda () (yas--expand-by-uuid 'python-mode "header"))))
   ;; (use-package dropdown-list :ensure t))
   
-(use-package yasnippet-snippets :diminish :ensure t)
+(use-package yasnippet-snippets :after yasnippet :diminish :ensure t)
 
 ;; RegexTool
 (use-package regex-tool :commands (regex-tool) :ensure t)
