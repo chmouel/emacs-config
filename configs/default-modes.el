@@ -2,8 +2,10 @@
 (use-package saveplace :config (setq-default save-place t))
 
 ;;Abbrev
-(setq
- abbrev-file-name (concat user-emacs-directory "auto-save-list/abbrev_defs"))
+(use-package abbrev
+  :diminish abbrev-mode
+  :custom
+  abbrev-file-name (concat user-emacs-directory "auto-save-list/abbrev_defs"))
 
 ;; Bookmarks
 (setq bookmark-default-file (concat user-emacs-directory "/auto-save-list/bookmarks.bmk"))
