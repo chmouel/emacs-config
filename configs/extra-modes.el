@@ -360,6 +360,11 @@
   :bind (("<C-f6>" . github-browse-remote-kill)
          ("<f6>" . github-browse-remote)))
 
+; Avy
+(use-package avy
+  :ensure t
+  :bind ("C-c C-j" . avy-goto-word-1))
+
 ;; Use ripgrep
 (use-package "ripgrep" :ensure t)
 
