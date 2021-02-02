@@ -1,20 +1,6 @@
 ;; Dimnish commnand line
 (use-package diminish :ensure t)
 
-;; Yassnippet
-(defun yas--expand-by-uuid (mode uuid)
-  "Exapnd snippet template in MODE by its UUID"
-  (yas/expand-snippet
-   (yas--template-content
-    (yas--get-template-by-uuid mode uuid))))
-
-(defun yas--magit-email-or-default ()
-  "Get email from GIT or use default"
-  (require 'magit-process)
-  (if (magit-toplevel ".")
-      (magit-get "user.email")
-    user-mail-address))
-
 (use-package yasnippet
   :ensure t
   :diminish yas-minor-mode
@@ -22,6 +8,19 @@
   ((auto-insert-query nil)
    (yas-prompt-functions '(yas/dropdown-prompt)))
   :config
+  ;; Yassnippet
+  (defun yas--expand-by-uuid (mode uuid)
+    "Exapnd snippet template in MODE by its UUID"
+    (yas/expand-snippet
+     (yas--template-content
+      (yas--get-template-by-uuid mode uuid))))
+
+  (defun yas--magit-email-or-default ()
+    "Get email from GIT or use default"
+    (require 'magit-process)
+    (if (magit-toplevel ".")
+        (magit-get "user.email")
+      user-mail-address))  
   (yas/global-mode 1)
   (require 'autoinsert)
   (auto-insert-mode)
