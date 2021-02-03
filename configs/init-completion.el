@@ -203,14 +203,11 @@
   (ivy-prescient-mode 1))
 
 (use-package amx
-  :disabled
   :ensure t
-  :init
-  (amx-initialize)
   :custom
-  ((amx-save-to-file
+  ((amx-save-file
     (locate-user-emacs-file
-     (concat "auto-save-list/amx-items")))))
+     "auto-save-list/amx-items"))))
 
 ;; smex - IDO completion for M-x
 (use-package smex

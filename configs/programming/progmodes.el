@@ -27,8 +27,8 @@
      "Smartparens"
      ("k" sp-previous-sexp "Prev")
      ("j" sp-next-sexp "Next")
-     ;; ("u" sp-backward-up-sexp "Up")
-     ;; ("a" sp-backward-down-sexp "Down")
+     ("u" sp-backward-up-sexp "Up")
+     ("a" sp-backward-down-sexp "Down")
      ;; ("f" sp-forward-sexp "Forward")
      ;; ("b" sp-backward-sexp "Backward")
      ;; ("k" sp-kill-sexp "Kill")
