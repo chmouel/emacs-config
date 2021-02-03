@@ -195,7 +195,7 @@
 (use-package drag-stuff
   :diminish
   :ensure t
-  :init (drag-stuff-global-mode 1)
+  :config (drag-stuff-global-mode 1)
   :bind (([(control x) (down)] . drag-stuff-down)
          ([(control x) (up)] . drag-stuff-up)))
 
@@ -220,8 +220,6 @@
 (use-package reformatter :ensure t )
 
 ;; Markdown mode
-
-
 (use-package markdown-mode
   :ensure t
   :commands (markdown-mode gfm-mode)
@@ -332,8 +330,8 @@
   ("C-`" . eshell-toggle))
 
 (use-package diff-hl
+  :after magit
   :ensure t
-  :defer 1
   :custom-face
   (diff-hl-change ((t (:background nil :foreground "green"))))
   (diff-hl-margin-unknown ((t (:background nil :foreground "yellow"))))
