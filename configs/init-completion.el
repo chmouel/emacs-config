@@ -200,10 +200,7 @@
   (ivy-prescient-mode 1))
 
 (use-package amx
-  :disabled
   :ensure t
-  :init
-  (amx-initialize)
   :custom
   ((amx-save-file
     (locate-user-emacs-file
