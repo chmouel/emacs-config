@@ -26,9 +26,9 @@
   :hook (after-init-hook . projectile-mode)
   :commands (projectile-ensure-project projectile-project-root)
   :custom
-  ((projectile-switch-project-action 'projectile-dired)
-   (projectile-completion-system 'ivy)
-   (projectile-mode-line-function 'my-projectile-mode-line))
+  (projectile-switch-project-action 'projectile-dired)
+  (projectile-completion-system 'ivy)
+  (projectile-mode-line-function 'my-projectile-mode-line)
   (frame-title-format
    '(""
      "%b"
