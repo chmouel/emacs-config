@@ -23,20 +23,19 @@
 ;; projectile
 (use-package projectile
   :after ivy
+  :hook (after-init-hook . projectile-mode)
   :commands (projectile-ensure-project projectile-project-root)
   :custom
   ((projectile-switch-project-action 'projectile-dired)
    (projectile-completion-system 'ivy)
    (projectile-mode-line-function 'my-projectile-mode-line))
-  :config
-  (setq frame-title-format
-        '(""
-          "%b"
-          (:eval
-           (let ((project-name (projectile-project-name)))
-             (unless (string= "-" project-name)
-               (format " ⏤ %s" project-name))))))
-  (projectile-mode +1)
+  (frame-title-format
+   '(""
+     "%b"
+     (:eval
+      (let ((project-name (projectile-project-name)))
+        (unless (string= "-" project-name)
+          (format " ⏤ %s" project-name))))))
   :bind (("C-c b" . projectile-switch-to-buffer)
          ("C-c o" . my-projectile-and-find-file)
          ("C-c i" . my-projectile-and-ripgrep)
