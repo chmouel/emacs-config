@@ -22,7 +22,6 @@
 
 ;; projectile
 (use-package projectile
-  :after ivy
   :hook (after-init . projectile-mode)
   :commands (projectile-ensure-project projectile-project-root)
   :custom
@@ -31,7 +30,6 @@
    (locate-user-emacs-file "auto-save-list/projectile-bookmarks.eld"))
   (projectile-mode-line-prefix "")
   (projectile-switch-project-action 'projectile-dired)
-  (projectile-completion-system 'ivy)
   (projectile-mode-line-function 'my-projectile-mode-line)
   (frame-title-format
    '(""
