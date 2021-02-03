@@ -7,9 +7,9 @@
 (setq frame-resize-pixelwise t          ; Resize by pixels
       ;; Size new windows proportionally wrt other windows
       window-combination-resize t)
-(add-hook 'after-init-hook (lambda ()
-                             (setq frame-title-format "Emacs - %b")
-                             ))
+;; (add-hook 'after-init-hook (lambda ()
+;;                              (setq frame-title-format "Emacs - %b")
+;;                              ))
 
 ;;Line Spacing by default
 (setq-default line-spacing 2)
