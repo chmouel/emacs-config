@@ -25,7 +25,7 @@
          ("M-s g" . consult-grep)
          ("M-g g" . consult-goto-line)
          ("M-s y"   . consult-yank)
-         ("C-x r b" . (lambda ()(interactive) (do-ivy-completion 'consult-bookmark)))
+         ("C-x r b" . consult-bookmark)
          ("C-x C-r" . consult-recent-file))
   ;; ("C-\\" . consult-buffer)
   ;; ("C-x b" . consult-buffer))
@@ -53,11 +53,11 @@
   (prescient-persist-mode t)
   :custom
   (prescient-sort-length-enable nil)
-  (prescient-filter-method '(literal regexp fuzzy)))
+  (prescient-filter-method '(literal regexp initialism fuzzy)))
 
 ;;
 (use-package selectrum
-  ;; :hook (after-init . selectrum-mode)
+  :hook (after-init . selectrum-mode)
   :ensure t
   :bind
   (:map selectrum-minibuffer-map
@@ -74,14 +74,12 @@
 
 (use-package orderless
   :ensure t
-  :disabled
-  :init (icomplete-mode) ; optional but recommended!
   :custom (completion-styles '(orderless)))
 
 ;;;; Disabled
 ;; IDO
 (use-package ido
-  :disabled
+  :hook (after-init . ido-mode)
   :after ivy
   :defer t
   :custom
@@ -98,6 +96,7 @@
   (ido-enable-flex-matching t)
   (ido-use-url-at-pointfaces nil)
   :bind
+  ("C-x C-f" . ido-find-file)
   (:map ido-common-completion-map
         ("C-\\" . ido-next-match)
         :map ido-completion-map
@@ -106,14 +105,12 @@
 ;; Flex IDO
 ;; flx-ido - advanced flex matching for ido
 (use-package flx-ido
-  :disabled
   :ensure t
   :config
   (flx-ido-mode 1))
 
 ;; Ido Vertical mode
 (use-package ido-vertical-mode
-  :disabled  
   :ensure t
   :custom
   (ido-max-prospects 10)
@@ -123,7 +120,6 @@
 ;; Ivy
 (use-package ivy
   :ensure t
-  :hook (after-init . ivy-mode)
   :bind
   (("C-\\" . ivy-switch-buffer)
    ("C-S-f" . (lambda ()(interactive) (do-normal-completion 'find-file)))
@@ -179,14 +175,7 @@
   (setq
    counsel-find-file-ignore-regexp
    (regexp-opt
-    (append completion-ignored-extensions (quote (".#")))))
-  :bind (("C-h f"   . counsel-describe-function)
-         ("M-x" . counsel-M-x)
-         ("M-s-y" . counsel-yank-pop)
-         ("C-h s"   . counsel-describe-function)
-         ("C-h v"   . counsel-describe-variable)
-         ("C-x 8 RET" . counsel-unicode-char)
-         ("C-x r b" . counsel-bookmark)))
+    (append completion-ignored-extensions (quote (".#"))))))
 
 ;; Ivy integration for Projectile
 (use-package counsel-projectile
@@ -219,6 +208,7 @@
     "auto-save-list/smex-items")))
 
 (use-package icomplete
+  ;; :hook (after-init . icomplete-mode)  
   :custom
   (icomplete-in-buffer t)
   (icomplete-show-matches-on-no-input t)
@@ -237,6 +227,7 @@
               ("C-p" . icomplete-backward-completions)))
 
 (use-package icomplete-vertical
+  :disabled
   :after icomplete
   :hook (icomplete-mode . icomplete-vertical-mode))
 
