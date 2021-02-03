@@ -72,10 +72,6 @@
   :config
   (selectrum-prescient-mode +1))
 
-(use-package orderless
-  :ensure t
-  :custom (completion-styles '(orderless)))
-
 ;;;; Disabled
 ;; IDO
 (use-package ido
