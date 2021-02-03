@@ -1,6 +1,7 @@
 (use-package project
   :ensure t
   :bind
+  ("C-c u" . project-find-regexp)
   ("C-x p v" . my-project-magit)
   :config
   (defun my-project-magit ()

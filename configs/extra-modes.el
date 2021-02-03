@@ -285,7 +285,7 @@
     "Don't use project only current dir"
     (deadgrep--lookup-override default-directory))
   :bind
-  (("C-c u" . 'deadgrep)
+  (;; ("C-c u" . 'deadgrep)
    ("C-S-g" . (lambda () (interactive) (setq-local deadgrep-project-root-function 'my-deadgrep-no-project) (call-interactively 'deadgrep)))
    :map deadgrep-mode-map
    ("C-e" . deadgrep-edit-mode)))
