@@ -57,26 +57,26 @@
 
 ;;
 (use-package selectrum
-  :disabled
+  ;; :hook (after-init . selectrum-mode)
   :ensure t
   :bind
   (:map selectrum-minibuffer-map
-        ("C-\\" . selectrum-next-candidate)
-        ("C-s" . selectrum-next-candidate)
-        ("C-n" . selectrum-next-candidate)
-        ("C-p" . selectrum-previous-candidate)
-        ("<up>" . previous-history-element)
-        ("<down>" . next-history-element))
+        ("C-\\" . selectrum-next-candidate))
   :custom
   (selectrum-count-style 'nil)
   (selectrum-extend-current-candidate-highlight t))
 
 (use-package selectrum-prescient
-  :disabled
   :ensure t
   :after selectrum
   :config
   (selectrum-prescient-mode +1))
+
+(use-package orderless
+  :ensure t
+  :disabled
+  :init (icomplete-mode) ; optional but recommended!
+  :custom (completion-styles '(orderless)))
 
 ;;;; Disabled
 ;; IDO
@@ -126,9 +126,12 @@
   :hook (after-init . ivy-mode)
   :bind
   (("C-\\" . ivy-switch-buffer)
-   ("C-x C-f" . (lambda ()(interactive) (do-normal-completion 'find-file)))
+   ("C-S-f" . (lambda ()(interactive) (do-normal-completion 'find-file)))
    ("C-x b" . ivy-switch-buffer)
    :map ivy-minibuffer-map
+   ("C-s" . ivy-next-line)
+   ("C-M-j" . ivy-partial)
+   ("C-j" . ivy-immediate-done)
    ("C-\\" . ivy-next-line))
   :config
   (defun do-normal-completion(func)
@@ -140,7 +143,7 @@
   :custom
   (counsel-switch-buffer-preview-virtual-buffers nil)
   (ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
-  (ivy-extra-directories nil)
+  (ivy-extra-directories '("./"))
   (ivy-count-format "")
   (ivy-use-virtual-buffers t))
 
@@ -179,7 +182,7 @@
     (append completion-ignored-extensions (quote (".#")))))
   :bind (("C-h f"   . counsel-describe-function)
          ("M-x" . counsel-M-x)
-         ("C-|" . counsel-find-file)
+         ("M-s-y" . counsel-yank-pop)
          ("C-h s"   . counsel-describe-function)
          ("C-h v"   . counsel-describe-variable)
          ("C-x 8 RET" . counsel-unicode-char)
@@ -219,7 +222,6 @@
     "auto-save-list/smex-items")))
 
 (use-package icomplete
-  ;; :hook (after-init . fido-mode)
   :custom
   (icomplete-in-buffer t)
   (icomplete-show-matches-on-no-input t)
