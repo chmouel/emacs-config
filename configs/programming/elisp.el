@@ -1,6 +1,10 @@
 ;;
 (use-package aggressive-indent :ensure t :diminish aggressive-indent-mode)
 
+(use-package eldoc
+  :defer t
+  :diminish)
+
 (use-package emacs-lisp
   :ensure nil
   :defer t

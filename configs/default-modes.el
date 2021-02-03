@@ -2,8 +2,10 @@
 (use-package saveplace :config (setq-default save-place t))
 
 ;;Abbrev
-(setq
- abbrev-file-name (concat user-emacs-directory "auto-save-list/abbrev_defs"))
+(use-package abbrev
+  :diminish abbrev-mode
+  :custom
+  abbrev-file-name (concat user-emacs-directory "auto-save-list/abbrev_defs"))
 
 ;; Bookmarks
 (setq bookmark-default-file (concat user-emacs-directory "/auto-save-list/bookmarks.bmk"))
@@ -32,9 +34,12 @@
    tab-bar-new-button-show 'nil
    tab-bar-history-mode 't
    tab-bar-new-tab-to 'rightmost
-   tab-bar-tab-hints 't
-   tab-bar-select-tab-modifiers '(super))
+   tab-bar-tab-hints 't)
   :config
+  (cond ((memq window-system '(mac ns))
+         (setq tab-bar-select-tab-modifiers '(super)))
+        ((memq window-system '(x))
+         (setq tab-bar-select-tab-modifiers '(meta))))
   (tab-bar-mode 1)
   (setq tab-bar-new-tab-choice (lambda () (dired "."))))
 
@@ -46,8 +51,7 @@
          :map isearch-mode-map
          ("C-." . isearch-forward-symbol-at-point)
          ("C-o" . my-isearch-occur)
-         ("M-o" . my-isearch-moccur)
-         )
+         ("M-o" . my-isearch-moccur))
   :init
   (setq isearch-allow-scroll t)
   :config

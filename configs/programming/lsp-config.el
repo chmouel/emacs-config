@@ -1,4 +1,5 @@
 (use-package company
+  :diminish
   :ensure t
   ;; :init
   ;; (add-to-list 'company-backends 'company-capf)
@@ -15,6 +16,7 @@
         ("C-n" . company-select-next)))
 
 (use-package company-box
+  :diminish
   :ensure t
   :hook (company-mode . company-box-mode))
 
@@ -75,9 +77,5 @@
             (setq company-tooltip-align-annotations t)
             )
   )
-
-;; optional package to get the error squiggles as you edit
-(use-package flycheck
-  :ensure t)
 
 (provide 'lsp-config)

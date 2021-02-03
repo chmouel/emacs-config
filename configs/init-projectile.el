@@ -22,9 +22,11 @@
 
 ;; projectile
 (use-package projectile
+  :after ivy
   :commands (projectile-ensure-project projectile-project-root)
   :custom
   ((projectile-switch-project-action 'projectile-dired)
+   (projectile-completion-system 'ivy)
    (projectile-mode-line-function 'my-projectile-mode-line))
   :config
   (setq frame-title-format
@@ -42,13 +44,6 @@
          ("C-c S-<return>" . projectile-commander)
          ("C-c <return>" . projectile-switch-open-project)
          ("C-c p" . my-projectile-and-dired)))
-
-;; Ivy integration for Projectile
-(use-package counsel-projectile
-  :bind
-  (("C-c U" . counsel-projectile-rg))
-  :hook (counsel-mode . counsel-projectile-mode)
-  :init (setq counsel-projectile-grep-initial-input '(ivy-thing-at-point)))
 
 (defun my-projectile-mode-line ()
   (let ((project-name (projectile-project-name)))

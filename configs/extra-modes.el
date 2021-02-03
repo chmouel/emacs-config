@@ -1,34 +1,36 @@
 ;; Dimnish commnand line
 (use-package diminish :ensure t)
 
-;; Yassnippet
-(defun yas--expand-by-uuid (mode uuid)
-  "Exapnd snippet template in MODE by its UUID"
-  (yas/expand-snippet
-   (yas--template-content
-    (yas--get-template-by-uuid mode uuid))))
-
-(defun yas--magit-email-or-default ()
-  "Get email from GIT or use default"
-  (require 'magit-process)
-  (if (magit-toplevel ".")
-      (magit-get "user.email")
-    user-mail-address))
-
 (use-package yasnippet
   :ensure t
+  :diminish yas-minor-mode
   :custom
   ((auto-insert-query nil)
    (yas-prompt-functions '(yas/dropdown-prompt)))
   :config
+  ;; Yassnippet
+  (defun yas--expand-by-uuid (mode uuid)
+    "Exapnd snippet template in MODE by its UUID"
+    (yas/expand-snippet
+     (yas--template-content
+      (yas--get-template-by-uuid mode uuid))))
+
+  (defun yas--magit-email-or-default ()
+    "Get email from GIT or use default"
+    (require 'magit-process)
+    (if (magit-toplevel ".")
+        (magit-get "user.email")
+      user-mail-address))  
   (yas/global-mode 1)
   (require 'autoinsert)
   (auto-insert-mode)
+  (setq auto-insert-query nil)
+  (setq auto-insert-alist nil)
   (define-auto-insert "\.py"
-    '(lambda () (yas--expand-by-uuid 'python-mode "header")))
-  ;; (use-package dropdown-list :ensure t)
-  )
-(use-package yasnippet-snippets :ensure t)
+    '(lambda () (yas--expand-by-uuid 'python-mode "header"))))
+  ;; (use-package dropdown-list :ensure t))
+  
+(use-package yasnippet-snippets :after yasnippet :diminish :ensure t)
 
 ;; RegexTool
 (use-package regex-tool :commands (regex-tool) :ensure t)
@@ -56,10 +58,6 @@
 
 ;; JSON Mode
 (use-package json-mode :mode "\\.json\\'" :ensure t)
-
-;; window-number-meta-mode
-(use-package window-number :ensure t
-  :config (window-number-meta-mode 1))
 
 ;; Yascroll
 (use-package yascroll :config (global-yascroll-bar-mode 't) :ensure t)
@@ -96,6 +94,7 @@
 
 ;; Flycheck
 (use-package flycheck
+  :disabled
   :ensure t
   :config
   (defun my-flycheck-mode-line-status-text (&optional status)
@@ -116,8 +115,7 @@
       (concat " " flycheck-mode-line-prefix text)))
 
   :custom
-  (
-   (flycheck-mode-line '(:eval (my-flycheck-mode-line-status-text)))
+  ((flycheck-mode-line '(:eval (my-flycheck-mode-line-status-text)))
    (flycheck-mode-line-prefix "FC ")
    (flycheck-disabled-checkers
     '(go-unconvert
@@ -195,6 +193,7 @@
 
 ;; Drag stuff up and down
 (use-package drag-stuff
+  :diminish
   :ensure t
   :init (drag-stuff-global-mode 1)
   :bind (([(control x) (down)] . drag-stuff-down)
@@ -248,6 +247,7 @@
 ;; Anzu
 (use-package anzu
   :ensure t
+  :diminish
   :bind (([remap query-replace] . anzu-query-replace)
          ([remap query-replace-regexp] . anzu-query-replace-regexp)
          :map isearch-mode-map
@@ -258,9 +258,16 @@
 
 ;; Swiper
 (use-package swiper
-  :ensure t
-  :bind
-  (("C-S-s" . 'swiper-isearch)))
+  :ensure t 
+  :diminish
+  :config
+  (if (executable-find "rg")
+      (setq counsel-grep-base-command
+            "rg -i -M 120 --no-heading --line-number --color never %s %s"))
+  :bind 
+  (("C-S-s" . 'swiper-isearch)
+   :map isearch-mode-map
+   ("C-'" . swiper-from-isearch)))
 
 ;; Easy-kill
 (use-package easy-kill
@@ -281,10 +288,13 @@
     (deadgrep--lookup-override default-directory))
   :bind
   (("C-c u" . 'deadgrep)
-   ("C-S-g" . (lambda () (interactive) (setq-local deadgrep-project-root-function 'my-deadgrep-no-project) (call-interactively 'deadgrep)))))
+   ("C-S-g" . (lambda () (interactive) (setq-local deadgrep-project-root-function 'my-deadgrep-no-project) (call-interactively 'deadgrep)))
+   :map deadgrep-mode-map
+   ("C-e" . deadgrep-edit-mode)))
 
 ;; Which key
 (use-package which-key
+  :diminish
   :ensure t
   :config
   (which-key-mode))
@@ -298,7 +308,7 @@
 
 ;; PlantUML
 (use-package plantuml-mode
-:ensure t
+  :ensure t
   :bind (:map plantuml-mode-map ([(control c) (control c)]
                                  . my-plantuml-preview))
   :config
@@ -348,6 +358,14 @@
   :ensure nil
   :bind (("<C-f6>" . github-browse-remote-kill)
          ("<f6>" . github-browse-remote)))
+
+; Avy
+(use-package avy
+  :ensure t
+  :bind ("C-c C-j" . avy-goto-word-1))
+
+;; Use ripgrep
+(use-package "ripgrep" :ensure t)
 
 ;;; KEEP IT
 ;;Web-mode
