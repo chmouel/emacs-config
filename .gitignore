@@ -22,7 +22,5 @@ transient/
 /.lsp-session-v1
 /persp-confs/
 /.cache/
-/amx-items
-/network-security.data
 /package-quickstart.el
 /var/
