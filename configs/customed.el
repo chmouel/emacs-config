@@ -247,16 +247,6 @@
  '(plantuml-jar-path "/usr/local/Cellar/plantuml/1.2019.13/libexec/plantuml.jar" t)
  '(powerline-default-separator 'curve)
  '(powerline-gui-use-vcs-glyph t)
- '(projectile-cache-file
-   (expand-file-name
-    (concat user-emacs-directory "/auto-save-list/projectile.cache")))
- '(projectile-keymap-prefix "")
- '(projectile-known-projects-file
-   (expand-file-name
-    (concat user-emacs-directory "/auto-save-list/projectile-bookmarks.eld")))
- '(projectile-mode-line-prefix " PRJ")
- '(projectile-project-root-files
-   '("rebar.config" "project.clj" "SConstruct" "pom.xml" "build.sbt" "build.gradle" "Gemfile" "requirements.txt" "package.json" "gulpfile.js" "Gruntfile.js" "bower.json" "composer.json" "Cargo.toml" "mix.exs" "tox.ini"))
  '(rcirc-always-use-server-buffer-flag t)
  '(rcirc-default-full-name "Chmouel Boudjnah")
  '(rcirc-default-nick "chmouel")

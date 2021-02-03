@@ -23,9 +23,13 @@
 ;; projectile
 (use-package projectile
   :after ivy
-  :hook (after-init-hook . projectile-mode)
+  :hook (after-init . projectile-mode)
   :commands (projectile-ensure-project projectile-project-root)
   :custom
+  (projectile-cache-file (locate-user-emacs-file "auto-save-list/projectile.cache"))
+  (projectile-known-projects-file
+   (locate-user-emacs-file "auto-save-list/projectile-bookmarks.eld"))
+  (projectile-mode-line-prefix "")
   (projectile-switch-project-action 'projectile-dired)
   (projectile-completion-system 'ivy)
   (projectile-mode-line-function 'my-projectile-mode-line)
@@ -46,13 +50,7 @@
 
 (defun my-projectile-mode-line ()
   (let ((project-name (projectile-project-name)))
-    (format " :%s" (or project-name "-"))))
-
-(defun my-projectile-mode-line ()
-  (let ((project-name
-         (projectile-project-name)))
-    (if (not (string= project-name "-"))
-        (format " PRJ[%s]" project-name) "")))
+    (format " 🗞%s" (or project-name "-"))))
 
 (defun my-projectile-and-dired()
   (interactive)
