@@ -11,7 +11,6 @@
   :interpreter ("emacs" . emacs-lisp-mode)
   :init
   (defun my-emacs-lisp-mode-hook ()
-    (smartparens-mode)
     (aggressive-indent-mode t)
     (company-mode)
     (turn-on-eldoc-mode)
