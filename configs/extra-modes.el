@@ -274,7 +274,8 @@
 
 ;; Info colours
 (use-package info-colors
-  :ensure t :hook (Info-selection-hook . info-colors-fontify-node))
+  :ensure t
+  :hook (Info-selection . info-colors-fontify-node))
 
 ;; Deadgrep
 (use-package deadgrep
