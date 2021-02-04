@@ -24,3 +24,4 @@ transient/
 /.cache/
 /package-quickstart.el
 /var/
+/configs/disabled/
