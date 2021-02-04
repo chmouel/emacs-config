@@ -20,7 +20,7 @@
     (require 'magit-process)
     (if (magit-toplevel ".")
         (magit-get "user.email")
-      user-mail-address))  
+      user-mail-address))
   (yas/global-mode 1)
   (require 'autoinsert)
   (auto-insert-mode)
@@ -29,7 +29,7 @@
   (define-auto-insert "\.py"
     '(lambda () (yas--expand-by-uuid 'python-mode "header"))))
   ;; (use-package dropdown-list :ensure t))
-  
+
 (use-package yasnippet-snippets :after yasnippet :diminish :ensure t)
 
 ;; RegexTool
@@ -71,7 +71,7 @@
 ;; FZF
 (use-package fzf
   :ensure t
-  :init (setenv "FZF_DEFAULT_COMMAND" "fd --type f")
+  :config (setenv "FZF_DEFAULT_COMMAND" "fd --type f")
   :commands (fzf/start fzf)
   :bind
   (("C-c F" . fzf)))
@@ -94,7 +94,6 @@
 
 ;; Flycheck
 (use-package flycheck
-  :disabled
   :ensure t
   :config
   (defun my-flycheck-mode-line-status-text (&optional status)
@@ -125,26 +124,22 @@
       emacs-lisp emacs-lisp-checkdoc))
    (flycheck-display-errors-delay 0.2)
    (flycheck-highlighting-mode 'lines))
-  :init
+  :config
   (global-flycheck-mode t))
 
 ;;Flycheck
 (use-package flycheck-yamllint
+  :after flycheck
+  :hook (flycheck-mode  . flycheck-yamllint-setup)
   :ensure t
-  :defer t
-  :init
-  (progn
-    (eval-after-load 'flycheck
-      '(add-hook 'flycheck-mode-hook 'flycheck-yamllint-setup))))
+  :defer t)
 
 (use-package flycheck-color-mode-line
-  :disabled
   :ensure t
   :defer t
-  :init
-  (progn
-    (eval-after-load 'flycheck
-      '(add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode))))
+  :after flycheck
+  :hook
+  (flycheck-mode . flycheck-color-mode-line-mode))
 
 ;;
 (use-package rich-minority
@@ -228,7 +223,8 @@
          ("\\.markdown\\'" . markdown-mode))
   :bind (:map markdown-mode-map
               ("C-`" . markdown-insert-code))
-  :init (setq markdown-command "multimarkdown"))
+  :custom
+  (markdown-command "multimarkdown"))
 
 ;; Direnv
 (use-package direnv
@@ -253,13 +249,13 @@
 
 ;; Swiper
 (use-package swiper
-  :ensure t 
+  :ensure t
   :diminish
   :config
   (if (executable-find "rg")
       (setq counsel-grep-base-command
             "rg -i -M 120 --no-heading --line-number --color never %s %s"))
-  :bind 
+  :bind
   (("C-S-s" . 'swiper-isearch)
    :map isearch-mode-map
    ("C-'" . swiper-from-isearch)))
