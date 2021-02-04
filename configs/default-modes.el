@@ -8,7 +8,7 @@
   abbrev-file-name (locate-user-emacs-file "auto-save-list/abbrev_defs"))
 
 ;; Hippy-Expand
-(use-package hippie-exp                 ; Powerful expansion and completion
+(use-package hippie-exp
   :bind (([remap dabbrev-expand] . hippie-expand))
   :custom
   (hippie-expand-try-functions-list
