@@ -34,12 +34,12 @@
      ;; ("k" sp-kill-sexp "Kill")
      ("q" nil "Quit" :color blue))
    smartparens-mode-map)
-  :init
-  (add-hook 'python-mode-hook 'smartparens-mode)
-  (add-hook 'go-mode-hook 'smartparens-mode)
-  (add-hook 'lisp-interaction-mode-hook 'smartparens-mode)
-  (add-hook 'emacs-lisp-mode-hook 'smartparens-mode)
-  (add-hook 'org-mode-hook 'smartparens-mode))
+  :hook
+  (python-mode . smartparens-mode)
+  (go-mode-hook . smartparens-mode)
+  (lisp-interaction-mode-hook . smartparens-mode)
+  (emacs-lisp-mode-hook . smartparens-mode)
+  (org-mode-hook . smartparens-mode))
 
 (setq-default compile-command "")
 (defun my-recompile (args)
