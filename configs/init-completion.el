@@ -5,8 +5,8 @@
   (marginalia-annotators
    '(marginalia-annotators-heavy
      marginalia-annotators-light))
-  :bind (:map minibuffer-local-completion-map
-              ("C-i" . marginalia-cycle-annotators))
+  :init
+  (marginalia-mode +1)
   :config
   ;; When using Selectrum, ensure that Selectrum is refreshed when cycling annotations.
   (advice-add
@@ -15,8 +15,7 @@
      (when
          (bound-and-true-p
           selectrum-mode)
-       (selectrum-exhibit))))
-  (marginalia-mode 1))
+       (selectrum-exhibit)))))
 
 (use-package prescient
   :ensure t
@@ -29,22 +28,26 @@
 (use-package selectrum-prescient
   :ensure t
   :after selectrum
-  :config
+  :init
   (selectrum-prescient-mode +1))
 
 (use-package selectrum
-  :hook (after-init . selectrum-mode)
   :ensure t
+  :init
+  (selectrum-mode +1)
+
   :custom-face
   (selectrum-current-candidate ((t
                                  (:inherit highlight
                                            :underline nil))))
+  (selectrum-secondary-highlight ((t
+                                   (:inherit ivy-highlight-face))))
   (selectrum-primary-highlight ((t
-                                 (:foreground "DeepSkyBlue1"
-                                              :weight bold))))
+                                 (:inherit ivy-minibuffer-match-face-2 ))))
   :bind
   (:map selectrum-minibuffer-map
         ("C-s" . selectrum-next-candidate)
+        ("C-RET" . selectrum-submit-exact-input)
         ("C-\\" . selectrum-next-candidate))
   :custom
   (selectrum-count-style 'nil)
@@ -62,27 +65,58 @@
          ("M-g g"   . consult-goto-line)
          ("C-\\"    . consult-buffer)
          ("C-x b"   . consult-buffer)
-         ("C-c u"   . my-consult-projectile-rg)
          ("M-s y"   . consult-yank)
          ("C-x 4 b" . consult-buffer-other-window)
          ("M-g m"   . consult-mark)
          ("M-s m" . consult-multi-occur)
+         ("C-c U" . consult-ripgrep)
          ("C-x 5 b" . consult-buffer-other-frame)         
          ("C-x r b" . consult-bookmark)
-         ("C-x C-r" . consult-recent-file))
+         ("C-x C-r" . consult-recent-file)))
+
+
+(use-package all-the-icons-ivy
+  :ensure t
+  :after (all-the-icons ivy)
+  :custom
+  (all-the-icons-spacer " ")
+  (all-the-icons-ivy-file-commands
+   '(counsel-dired-jump
+     counsel-find-file
+     counsel-file-jump
+     counsel-find-library
+     counsel-git
+     counsel-projectile-find-dir
+     counsel-projectile-find-file
+     counsel-recentf))
+  :config (all-the-icons-ivy-setup))
+
+(use-package ivy
+  :ensure t
+  :bind
+  (("C-\\" . (lambda() (interactive) (ivy-rich-mode +1) (ivy-switch-buffer)))
+   ("C-x b" . ivy-switch-buffer)
+   :map ivy-minibuffer-map
+   ("C-s" . ivy-next-line)
+   ("C-M-j" . ivy-partial)
+   ("C-j" . ivy-immediate-done)
+   ("C-\\" . ivy-next-line))
+  :custom
+  (counsel-switch-buffer-preview-virtual-buffers nil)
+  (ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
+  (ivy-extra-directories '("./"))
+  (ivy-count-format "")
+  (ivy-use-virtual-buffers t))
+
+(use-package ivy-rich
+  :custom (ivy-rich-path-style 'abbrev)
   :config
-  (defun my-consult-projectile-rg (&optional initial)
-    (interactive "P")
-    (if (and (eq projectile-require-project-root 'prompt)
-             (not (projectile-project-p)))
-        (projectile-switch-project)
-      (let ((thingapt (if initial (thing-at-point 'symbol) nil))
-            (ignored
-             (mapconcat (lambda (i)
-                          (concat "--glob !" (shell-quote-argument i)))
-                        (append
-                         (projectile--globally-ignored-file-suffixes-glob)
-                         (projectile-ignored-files-rel)
-                         (projectile-ignored-directories-rel))
-                        " ")))
-        (consult-ripgrep (projectile-project-root) thingapt)))))
+  (ivy-rich-modify-columns
+   'ivy-switch-buffer
+   '((ivy-rich-switch-buffer-size (:align right))
+     (ivy-rich-switch-buffer-major-mode (:width 20 :face font-lock-keyword-face)))))
+
+(use-package ivy-prescient
+  :ensure t
+  :config
+  (ivy-prescient-mode 1))
