@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: Python shbang
-# keyword: python-shbang
-# --
-#!/usr/bin/env python3
-
-$0
