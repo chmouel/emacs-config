@@ -25,6 +25,7 @@
   :hook (after-init . projectile-mode)
   :commands (projectile-ensure-project projectile-project-root)
   :custom
+  (projectile-completion-system 'ivy)
   (projectile-cache-file (locate-user-emacs-file "auto-save-list/projectile.cache"))
   (projectile-known-projects-file
    (locate-user-emacs-file "auto-save-list/projectile-bookmarks.eld"))
