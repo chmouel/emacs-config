@@ -1,6 +1,5 @@
 ;; (use-package python-docstring :config (python-docstring-install))
 (use-package fill-column-indicator
-  :ensure t
   :diminish
   :after python-mode)
 (use-package py-isort :ensure t
