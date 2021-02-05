@@ -10,8 +10,8 @@
   (mini-frame-mode +1)
   :custom
   (mini-frame-show-parameters
-   '((top . 0.2)
-     (height . 0.3)
+   '((top . 0.1)
+     (height . 0.5)
      (width . 0.7)
      (left . 0.5))))
 
