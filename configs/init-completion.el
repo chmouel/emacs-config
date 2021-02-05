@@ -109,6 +109,7 @@
   (ivy-use-virtual-buffers t))
 
 (use-package ivy-rich
+  :ensure t
   :custom (ivy-rich-path-style 'abbrev)
   :config
   (ivy-rich-modify-columns
