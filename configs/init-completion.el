@@ -51,6 +51,7 @@
         ("C-\\" . selectrum-next-candidate))
   :custom
   (selectrum-count-style 'nil)
+  (selectrum-max-window-height 25)
   (selectrum-extend-current-candidate-highlight t))
 
 (use-package consult
@@ -73,7 +74,6 @@
          ("C-x 5 b" . consult-buffer-other-frame)         
          ("C-x r b" . consult-bookmark)
          ("C-x C-r" . consult-recent-file)))
-
 
 (use-package all-the-icons-ivy
   :ensure t
@@ -102,6 +102,7 @@
    ("C-j" . ivy-immediate-done)
    ("C-\\" . ivy-next-line))
   :custom
+  (ivy-height 25)
   (counsel-switch-buffer-preview-virtual-buffers nil)
   (ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
   (ivy-extra-directories '("./"))
