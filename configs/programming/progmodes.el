@@ -61,6 +61,7 @@
 
 
 (defun my-programming-common-hook()
+  (electric-pair-local-mode +1)
   (if (fboundp 'global-undo-tree-mode)(global-undo-tree-mode nil))
   (highlight-numbers-mode 1)
   (local-set-key (kbd "RET") 'newline-and-indent)

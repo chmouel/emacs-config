@@ -86,7 +86,6 @@
  '(ediff-diff-options "-w")
  '(ediff-split-window-function 'split-window-horizontally)
  '(ediff-window-setup-function 'ediff-setup-windows-plain)
- '(electric-pair-mode t)
  '(electric-quote-replace-double t)
  '(elscreen-tab-width 23)
  '(emacs-lock-default-locking-mode 'kill)
