@@ -49,7 +49,7 @@
 
 (defun my-projectile-mode-line ()
   (let ((project-name (projectile-project-name)))
-    (format " 🗞%s" (or project-name "-"))))
+    (if (not (string= project-name "-")) (format " 🗞%s" project-name))))
 
 (defun my-projectile-and-dired()
   (interactive)
