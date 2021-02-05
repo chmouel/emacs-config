@@ -95,7 +95,7 @@
   :ensure t
   :bind
   (("C-\\" . (lambda() (interactive) (ivy-rich-mode +1) (ivy-switch-buffer)))
-   ("C-x b" . ivy-switch-buffer)
+   ("C-x b" . (lambda() (interactive) (ivy-rich-mode +1) (ivy-switch-buffer)))
    :map ivy-minibuffer-map
    ("C-s" . ivy-next-line)
    ("C-M-j" . ivy-partial)
