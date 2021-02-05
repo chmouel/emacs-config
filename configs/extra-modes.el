@@ -1,5 +1,7 @@
 ;; Dimnish commnand line
-(use-package diminish :ensure t)
+(use-package diminish :ensure t
+  :config
+  (diminish 'auto-revert-mode))
 
 (use-package yasnippet
   :ensure t
@@ -115,7 +117,7 @@
 
   :custom
   ((flycheck-mode-line '(:eval (my-flycheck-mode-line-status-text)))
-   (flycheck-mode-line-prefix "FC ")
+   (flycheck-mode-line-prefix "")
    (flycheck-disabled-checkers
     '(go-unconvert
       ;; go-staticcheck go-errcheck
@@ -134,14 +136,7 @@
   :ensure t
   :defer t)
 
-(use-package flycheck-color-mode-line
-  :ensure t
-  :defer t
-  :after flycheck
-  :hook
-  (flycheck-mode . flycheck-color-mode-line-mode))
-
-;;
+;
 (use-package rich-minority
   :ensure t
   :custom
@@ -279,7 +274,7 @@
     "Don't use project only current dir"
     (deadgrep--lookup-override default-directory))
   :bind
-  (;; ("C-c u" . 'deadgrep)
+  (("C-c u" . 'deadgrep)
    ("C-S-g" . (lambda () (interactive) (setq-local deadgrep-project-root-function 'my-deadgrep-no-project) (call-interactively 'deadgrep)))
    :map deadgrep-mode-map
    ("C-e" . deadgrep-edit-mode)))
@@ -354,7 +349,7 @@
 ; Avy
 (use-package avy
   :ensure t
-  :bind ("C-c C-j" . avy-goto-word-1))
+  :bind ("C-c C-c" . avy-goto-word-1))
 
 ;; Use ripgrep
 (use-package "ripgrep" :ensure t)
