@@ -63,7 +63,7 @@
          ("M-s g"   . consult-grep)
          ("M-g o"   . consult-outline)
          ("M-g g"   . consult-goto-line)
-         ("C-\\"    . consult-buffer)
+         ("C-c C-\\"    . consult-buffer)
          ("C-x b"   . consult-buffer)
          ("M-s y"   . consult-yank)
          ("C-x 4 b" . consult-buffer-other-window)
