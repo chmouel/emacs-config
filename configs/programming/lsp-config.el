@@ -22,6 +22,7 @@
 
 (use-package lsp-mode
   :ensure t
+  :diminish
   ;; uncomment to enable gopls http debug server
   ;; :custom (lsp-gopls-server-args '("-debug" "127.0.0.1:0"))
   :commands (lsp lsp-deferred)

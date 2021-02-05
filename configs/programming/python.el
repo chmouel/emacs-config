@@ -1,16 +1,24 @@
 ;; (use-package python-docstring :config (python-docstring-install))
 (use-package fill-column-indicator
   :ensure t
+  :diminish
   :after python-mode)
 (use-package py-isort :ensure t
+  :diminish
   :after python-mode)
 (use-package python-docstring :ensure t
+  :diminish
   :after python-mode)
 (use-package pytest :ensure t
   :after python-mode)
-(use-package yapfify :ensure t
+(use-package yapfify
+  :ensure t
+  :diminish
+  :config
+  (diminish 'yapf-mode)
   :after python-mode)
 (use-package hungry-delete :ensure t
+  :diminish
   :after python-mode)
 
 (defun my-py-insert-import (arg import)
