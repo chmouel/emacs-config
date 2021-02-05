@@ -3,6 +3,18 @@
   :config
   (diminish 'auto-revert-mode))
 
+;; Mini frame is niceD
+(use-package mini-frame
+  :ensure t
+  :init
+  (mini-frame-mode +1)
+  :custom
+  (mini-frame-show-parameters
+   '((top . 0.2)
+     (height . 0.3)
+     (width . 0.7)
+     (left . 0.5))))
+
 (use-package yasnippet
   :ensure t
   :diminish yas-minor-mode
