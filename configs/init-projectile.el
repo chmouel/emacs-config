@@ -63,7 +63,8 @@
 
 (defun my-projectile-and-ripgrep()
   (interactive)
-  (let ((projectile-switch-project-action 'counsel-projectile-rg))
+  (let ((consult-preview-key 'any)
+        (projectile-switch-project-action 'consult-ripgrep))
     (projectile-switch-project)))
 
 (defun my-projectile-find-file()

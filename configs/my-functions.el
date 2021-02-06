@@ -106,8 +106,10 @@
       (setenv "KUBECONFIG" kubeconfig)
     (error "Cannot find kubeconfig: %s" kubeconfig)))
 
-(defun my-search (counsel directory)
-  (if counsel (counsel-rg  (ag/dwim-at-point) (expand-file-name directory) "")
+(defun my-search (consult directory)
+  (if consult
+      (consult-ripgrep
+       (ag/dwim-at-point))
     (let ((search (ag/read-from-minibuffer "Search string")))
       (rg search "*" (expand-file-name directory)))))
 
@@ -117,7 +119,7 @@
 
 (defun my-search-here (&optional arg)
   (interactive "P")
-  (my-search arg "."))
+  (my-search arg default-directory))
 
 (global-set-key '[(super g)] 'my-search-here)
 
