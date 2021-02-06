@@ -1,8 +1,8 @@
 (use-package company
   :diminish
   :ensure t
-  ;; :init
-  ;; (add-to-list 'company-backends 'company-capf)
+  :config
+  (add-to-list 'company-backends 'company-capf)
   :bind
   (:map company-mode-map
         ("<backtab>" . company-yasnippet)
