@@ -193,6 +193,14 @@ mouse-3: go to end"))))
   :custom
   (recentf-save-file (locate-user-emacs-file "auto-save-list/recent-file-list.el")
                      recentf-max-saved-items 500 recentf-max-menu-items 15))
+
+;; Xref
+(use-package xref
+  :bind
+  (:map xref--xref-buffer-mode-map
+        ("N" . (lambda ()(interactive)(xref--search-property 'xref-group)))
+        ("P" . (lambda ()(interactive)(xref--search-property 'xref-group t)))))
+
 ;; VC
 ;; Eshell
 (use-package eshell
@@ -239,3 +247,4 @@ mouse-3: go to end"))))
   (bookmark-default-file (locate-user-emacs-file "auto-save-list/bookmarks.bmk"))
   (save-place-file (locate-user-emacs-file "auto-save-list/emacs-places.el"))
   (nsm-settings-file (locate-user-emacs-file "auto-save-list/network-security.data")))
+
