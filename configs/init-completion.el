@@ -64,7 +64,7 @@
          ("M-s g"   . consult-grep)
          ("M-g o"   . consult-outline)
          ("M-g g"   . consult-goto-line)
-         ("C-c C-\\"    . consult-buffer)
+         ("C-\\"    . consult-buffer)
          ("C-x b"   . consult-buffer)
          ("M-s y"   . consult-yank)
          ("C-x 4 b" . consult-buffer-other-window)
@@ -76,6 +76,7 @@
          ("C-x C-r" . consult-recent-file)))
 
 (use-package all-the-icons-ivy
+  :disabled
   :ensure t
   :after (all-the-icons ivy)
   :custom
@@ -92,6 +93,7 @@
   :config (all-the-icons-ivy-setup))
 
 (use-package ivy
+  :disabled
   :ensure t
   :bind
   (("C-\\" . (lambda() (interactive) (ivy-rich-mode +1) (ivy-switch-buffer)))
@@ -110,15 +112,17 @@
   (ivy-use-virtual-buffers t))
 
 (use-package ivy-rich
+  :disabled
   :ensure t
-  :custom (ivy-rich-path-style 'abbrev)
-  :config
+  :custom
+  (ivy-rich-path-style 'abbrev)
   (ivy-rich-modify-columns
    'ivy-switch-buffer
    '((ivy-rich-switch-buffer-size (:align right))
      (ivy-rich-switch-buffer-major-mode (:width 20 :face font-lock-keyword-face)))))
 
 (use-package ivy-prescient
+  :disabled
   :ensure t
   :config
   (ivy-prescient-mode 1))
