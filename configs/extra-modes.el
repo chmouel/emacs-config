@@ -242,19 +242,6 @@
   :ensure t
   :hook (after-init . global-anzu-mode))
 
-;; Swiper
-(use-package swiper
-  :ensure t
-  :diminish
-  :config
-  (if (executable-find "rg")
-      (setq counsel-grep-base-command
-            "rg -i -M 120 --no-heading --line-number --color never %s %s"))
-  :bind
-  (("C-S-s" . 'swiper-isearch)
-   :map isearch-mode-map
-   ("C-'" . swiper-from-isearch)))
-
 ;; Easy-kill
 (use-package easy-kill
   :ensure t
@@ -338,7 +325,6 @@
   (with-eval-after-load 'magit
     (add-hook 'magit-pre-refresh-hook #'diff-hl-magit-pre-refresh)
     (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh)))
-
 
 (use-package "github-browse-remote"
   ;;https://github.com/chmouel/chmouzies/blob/master/emacs/github-browse-remote.el
