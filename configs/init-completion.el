@@ -22,6 +22,7 @@
   :config
   (prescient-persist-mode t)
   :custom
+  (prescient-save-file (locate-user-emacs-file "auto-save-list/prescient-cache.el"))
   (prescient-sort-length-enable nil)
   (prescient-filter-method '(literal regexp initialism fuzzy prefix)))
 
