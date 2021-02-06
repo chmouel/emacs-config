@@ -244,6 +244,7 @@ mouse-3: go to end"))))
     (if my-delete-trailing-whitespace-enabled (delete-trailing-whitespace)))
   :custom
   ;; Bookmarks
+  (package-quickstart-file (locate-user-emacs-file "auto-save-list/package-quickstart.el"))
   (bookmark-default-file (locate-user-emacs-file "auto-save-list/bookmarks.bmk"))
   (save-place-file (locate-user-emacs-file "auto-save-list/emacs-places.el"))
   (nsm-settings-file (locate-user-emacs-file "auto-save-list/network-security.data")))
