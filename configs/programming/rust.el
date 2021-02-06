@@ -1,2 +1,2 @@
-(use-package rustic
+(use-package ruby-mode
   :ensure t)
