@@ -4,28 +4,6 @@
   (diminish 'auto-revert-mode))
 
 ;; Mini frame is niceD
-(use-package mini-frame
-  :disabled
-  :ensure t
-  :init
-  (mini-frame-mode +1)
-  :config
-  (let ((h (display-pixel-height))
-        (w (display-pixel-width)))
-    (setq mini-frame-show-parameters
-          (cond
-           ((and
-             (= w 1440) ;; Laptop
-             (= h 900))
-            '((left . 0)
-              (top . 0.3)
-              (width . 0.9)
-              (height . 1)))
-           (t '((top . 0.1)
-                (height . 0.5)
-                (width . 0.7)
-                (left . 0.5)))))))
-
 (use-package yasnippet
   :ensure t
   :diminish yas-minor-mode
