@@ -28,6 +28,7 @@
   :commands (lsp lsp-deferred)
   :custom ((lsp-auto-guess-root t)
            (lsp-document-highlight-delay 2.0 t)
+           (lsp-session-file (locate-user-emacs-file "auto-save-list/lsp-session"))
            (lsp-eldoc-enable-hover nil)
            (lsp-eldoc-render-all nil)
            (lsp-enable-file-watchers nil)
