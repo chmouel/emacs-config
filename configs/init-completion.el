@@ -36,7 +36,6 @@
   :ensure t
   :init
   (selectrum-mode +1)
-
   :custom-face
   (selectrum-current-candidate ((t
                                  (:inherit highlight
@@ -58,7 +57,6 @@
 (use-package consult
   :custom
   (consult-async-default-split "")
-  (consult-find-command '("fdfind" "--color=never" "--full-path"))
   (consult-project-root-function #'projectile-project-root)
   :ensure t
   :bind (("M-s i"   . consult-imenu)
@@ -71,11 +69,18 @@
          ("C-x 4 b" . consult-buffer-other-window)
          ("M-g m"   . consult-mark)
          ("M-s m" . consult-multi-occur)
-         ("C-c U" . consult-ripgrep)
+         ("C-c U" . consultipgrep)
          ("C-x 5 b" . consult-buffer-other-frame)         
          ("C-x r b" . consult-bookmark)
          ("C-x C-r" . consult-recent-file)))
 
+(use-package embark
+  :ensure t
+  :after selectrum
+  :bind (:map minibuffer-local-map
+              ("C-o" . embark-act)))              
+
+;;;IVY Disabled
 (use-package all-the-icons-ivy
   :disabled
   :ensure t
