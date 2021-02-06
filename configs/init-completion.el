@@ -71,20 +71,28 @@
   (selectrum-extend-current-candidate-highlight t))
 
 (use-package consult
+  :config
+  (defmacro my-consult-with-preview (binding &rest body)
+    (global-set-key
+     (kbd binding)
+     `(lambda nil (interactive)(let ((consult-preview-key 'any)) ,@body))))
+  (my-consult-with-preview "C-c U" (consult-ripgrep  (projectile-project-root) (thing-at-point 'symbol)))
+  (my-consult-with-preview "M-g g" (consult-goto-line))
+  (my-consult-with-preview "M-g M-g" (consult-goto-line))
   :custom
+  (consult-preview-key 'nil)
   (consult-async-default-split "")
   (consult-project-root-function #'projectile-project-root)
   :ensure t
   :bind (("M-s i"   . consult-imenu)
          ("M-s g"   . consult-grep)
          ("M-g o"   . consult-outline)
-         ("M-g g"   . consult-goto-line)
          ("C-\\"    . consult-buffer)
          ("M-s y"   . consult-yank)
          ("C-x 4 b" . consult-buffer-other-window)
+         ("C-x 5 b" . consult-buffer-other-frame)
          ("M-g m"   . consult-mark)
          ("M-s m" . consult-multi-occur)
-         ("C-c U" . consultipgrep)
          ("C-x 5 b" . consult-buffer-other-frame)         
          ("C-x r b" . consult-bookmark)
          ("C-x C-r" . consult-recent-file)))
@@ -125,7 +133,8 @@
    ("C-j" . ivy-immediate-done)
    ("C-\\" . ivy-next-line))
   :custom
-  (ivy-height 25)
+  (ivy-height 10)
+  (consult-project-root-function #'projectile-project-root)
   (counsel-switch-buffer-preview-virtual-buffers nil)
   (ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
   (ivy-extra-directories '("./"))
