@@ -374,6 +374,11 @@
   :ensure t
   :bind ("C-c C-c" . avy-goto-word-1))
 
+(use-package ace-isearch
+  :ensure t
+  :init
+  (global-ace-isearch-mode +1))
+
 ;; Use ripgrep
 (use-package "ripgrep" :ensure t)
 
