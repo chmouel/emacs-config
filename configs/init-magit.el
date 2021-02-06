@@ -30,6 +30,9 @@
   :hook
   (magit-status-mode-hook my-magit-status-mode-hook)
   :custom
+  (transient-history-file (locate-user-emacs-file "auto-save-list/transient.history.el"))
+  (transient-values-file (locate-user-emacs-file "auto-save-list/transient.values.el"))
+  (transient-levels-file (locate-user-emacs-file "auto-save-list/transient.levels.el"))
   (magit-completing-read-function 'selectrum-completing-read)
   (magit-display-buffer-function 'magit-display-buffer-fullframe-status-topleft-v1)
   :config
