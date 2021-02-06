@@ -36,6 +36,22 @@
   :ensure t
   :init
   (selectrum-mode +1)
+  :config
+  ;; https://github.com/raxod502/selectrum/issues/172#issuecomment-758039766
+  (defun my-filename-good-p (fn)
+    (not (seq-contains-p completion-ignored-extensions (file-name-extension fn t))))
+
+  (defun my-advice-selectrum-read-file-name (oldfun
+					                         prompt &optional dir default-filename mustmatch initial predicate)
+    "advice making `selectrum-read-file-name' honoring `completion-ignored-extensions'."
+    (let* ((predicate-new (if predicate
+			                  (lambda (fn) (and (funcall predicate fn)
+					                            (my-filename-good-p fn)))
+			                #'my-filename-good-p)))
+      (funcall oldfun prompt dir default-filename mustmatch initial predicate-new)))
+  (advice-add #'selectrum-read-file-name :around
+	          #'my-advice-selectrum-read-file-name)
+
   :custom-face
   (selectrum-current-candidate ((t
                                  (:inherit highlight
@@ -64,7 +80,6 @@
          ("M-g o"   . consult-outline)
          ("M-g g"   . consult-goto-line)
          ("C-\\"    . consult-buffer)
-         ("C-x b"   . consult-buffer)
          ("M-s y"   . consult-yank)
          ("C-x 4 b" . consult-buffer-other-window)
          ("M-g m"   . consult-mark)
