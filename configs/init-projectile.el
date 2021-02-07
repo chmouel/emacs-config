@@ -74,7 +74,7 @@
               (--filter (not (string-match my-project-ignore-files it))
                         (projectile-project-files project-root))
             (projectile-project-files project-root)))
-         (file (ido-completing-read "Find file: " (sort files #'string<))))
+         (file (completing-read "Find file: " (sort files #'string<))))
     (when file
       (funcall 'find-file (expand-file-name file project-root))
       (run-hooks 'projectile-find-file-hook))))
