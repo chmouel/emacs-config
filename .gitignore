@@ -19,5 +19,4 @@ anaconda-mode
 emojis/
 magithub/
 /.cache/
-/package-quickstart.el
 /configs/disabled/
