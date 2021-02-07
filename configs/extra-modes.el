@@ -332,10 +332,25 @@
   :bind (("<C-f6>" . github-browse-remote-kill)
          ("<f6>" . github-browse-remote)))
 
-; Avy
+(use-package helpful
+  :ensure t
+  :bind
+  (("C-h f" . helpful-callable)
+   ("C-h v" . helpful-variable)
+   ("C-h k" . helpful-key)
+   :map emacs-lisp-mode-map
+   ("C-h F" . helpful-function)
+   ("C-c C-d" . helpful-at-point)))
+
+;; Avy
 (use-package avy
   :ensure t
   :bind ("C-c C-c" . avy-goto-word-1))
+
+;; Avy
+(use-package avy-zap
+  :ensure t
+  :bind ("M-z" . avy-zap-to-char))
 
 ;; Use ripgrep
 (use-package "ripgrep" :ensure t)
