@@ -30,7 +30,6 @@
   (setq auto-insert-alist nil)
   (define-auto-insert "\.py"
     '(lambda () (yas--expand-by-uuid 'python-mode "header"))))
-;; (use-package dropdown-list :ensure t))
 
 (use-package yasnippet-snippets :after yasnippet :diminish :ensure t)
 
@@ -353,7 +352,7 @@
   :bind ("M-z" . avy-zap-to-char))
 
 ;; Use ripgrep
-(use-package "ripgrep" :ensure t)
+(use-package ripgrep :ensure t)
 
 ;;; KEEP IT
 ;;Web-mode
