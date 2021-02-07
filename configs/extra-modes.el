@@ -351,6 +351,17 @@
   :ensure t
   :bind ("M-z" . avy-zap-to-char))
 
+
+;; Ctrlxo
+(use-package ctrlxo
+  :ensure t
+  :bind
+  (("C-x o" . ctrlxo)
+   ("C-<tab>" . ctrlxo)
+   :map ctrlxo-map
+   ("<tab>" . ctrlxo-forward)
+   ("<S-tab>" . ctrlxo-backward)))
+
 ;; Use ripgrep
 (use-package ripgrep :ensure t)
 
