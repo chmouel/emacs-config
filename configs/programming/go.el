@@ -1,3 +1,8 @@
+(use-package gotest
+  :ensure t
+  :config
+  (autoload 'go-test--get-current-test-info "gotest" "" nil))
+
 (use-package go-playground
   :ensure t
   :after go-mode
@@ -27,6 +32,15 @@
          (before-save . lsp-format-buffer)
          (before-save . lsp-organize-imports))
   :config
+  (defun my-go-mode-hook ()
+    (setq gofmt-command "goimports")
+    (if (and buffer-file-name
+             (string-match "_test\\'"
+                           (file-name-sans-extension buffer-file-name)))
+        (progn
+          (local-set-key (kbd "C-S-a") 'go-test-current-project)
+          (local-set-key (kbd "C-S-y") 'go-test-current-file)
+          (local-set-key (kbd "C-S-r") 'go-test-current-test))))
   (defun my-go-import-add ()
     (interactive)
     (go-import-add nil (read-from-minibuffer "Import: ")))
@@ -39,14 +53,4 @@
     (interactive)
     (re-search-backward go-func-regexp nil t)))
 
-(defun my-go-mode-hook ()
-  (autoload 'go-test--get-current-test-info "gotest" "" nil)
-  (setq gofmt-command "goimports")
-  (if (and buffer-file-name
-           (string-match "_test\\'"
-                         (file-name-sans-extension buffer-file-name)))
-      (progn
-        (local-set-key (kbd "C-S-a") 'go-test-current-project)
-        (local-set-key (kbd "C-S-y") 'go-test-current-file)
-        (local-set-key (kbd "C-S-r") 'go-test-current-test))))
 
