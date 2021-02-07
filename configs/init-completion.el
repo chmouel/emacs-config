@@ -87,7 +87,7 @@
   :bind (("M-s i"   . consult-imenu)
          ("M-s g"   . consult-grep)
          ("M-g o"   . consult-outline)
-         ;; ("C-\\"    . consult-buffer)
+         ("C-\\"    . consult-buffer)
          ("M-s y"   . consult-yank)
          ("C-x 4 b" . consult-buffer-other-window)
          ("C-x 5 b" . consult-buffer-other-frame)
@@ -105,6 +105,7 @@
 
 ;;;IVY Disabled
 (use-package all-the-icons-ivy
+  :disabled
   :ensure t
   :after (all-the-icons ivy)
   :custom
@@ -121,6 +122,7 @@
   :config (all-the-icons-ivy-setup))
 
 (use-package ivy
+  :disabled
   :ensure t
   :bind
   (;("C-\\" . (lambda() (interactive) (ivy-rich-mode +1) (ivy-switch-buffer)))
@@ -131,7 +133,6 @@
    ("C-j" . ivy-immediate-done)
    ("C-\\" . ivy-next-line))
   :custom
-  (ivy-height 10)
   (consult-project-root-function #'projectile-project-root)
   (counsel-switch-buffer-preview-virtual-buffers nil)
   (ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
@@ -150,6 +151,7 @@
      (ivy-rich-switch-buffer-major-mode (:width 20 :face font-lock-keyword-face)))))
 
 (use-package ivy-prescient
+  :disabled
   :ensure t
   :config
   (ivy-prescient-mode 1))
