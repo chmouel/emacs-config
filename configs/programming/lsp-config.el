@@ -1,6 +1,10 @@
 (use-package company
   :diminish
   :ensure t
+  :custom
+  (company-idle-delay 0.3)
+  (company-minimum-prefix-length 1)
+  (company-tooltip-align-annotations t)  
   :config
   (add-to-list 'company-backends 'company-capf)
   :bind
@@ -23,34 +27,30 @@
 (use-package lsp-mode
   :ensure t
   :diminish
-  ;; uncomment to enable gopls http debug server
-  ;; :custom (lsp-gopls-server-args '("-debug" "127.0.0.1:0"))
   :commands (lsp lsp-deferred)
-  :custom ((lsp-auto-guess-root t)
-           (lsp-document-highlight-delay 2.0 t)
-           (lsp-session-file (locate-user-emacs-file "auto-save-list/lsp-session"))
-           (lsp-eldoc-enable-hover nil)
-           (lsp-eldoc-render-all nil)
-           (lsp-enable-file-watchers nil)
-           (lsp-pyls-plugins-flake8-enabled t)
-           (lsp-enable-symbol-highlighting nil)
-           (lsp-enable-links t)
-           (lsp-enable-snippet t)
-           (lsp-file-watch-threshold 500)
-           (lsp-gopls-complete-unimported t t)
-           (lsp-gopls-staticcheck t t)
-           (lsp-prefer-flymake nil t)
-           (lsp-idle-delay 1)
-           (lsp-treemacs-sync-mode nil)
-           (read-process-output-max (* 1024 1024))
-           (lsp-completion-provider :capf))
+  :custom
+  (lsp-auto-guess-root t)
+  (lsp-prefer-flymake nil)
+  (lsp-document-highlight-delay 2.0 t)
+  (lsp-session-file (locate-user-emacs-file "auto-save-list/lsp-session"))
+  (lsp-eldoc-enable-hover nil)
+  (lsp-eldoc-render-all nil)
+  (lsp-enable-file-watchers nil)
+  (lsp-pyls-plugins-flake8-enabled t)
+  (lsp-enable-symbol-highlighting nil)
+  (lsp-enable-links t)
+  (lsp-enable-snippet t)
+  (lsp-file-watch-threshold 500)
+  (lsp-gopls-complete-unimported t t)
+  (lsp-gopls-staticcheck t t)
+  (lsp-prefer-flymake nil t)
+  (lsp-idle-delay 1)
+  (lsp-treemacs-sync-mode nil)
+  (read-process-output-max (* 1024 1024))
+  (lsp-completion-provider :capf)
   :hook ((lsp-mode . lsp-enable-which-key-integration)
          (lsp-mode . lsp-modeline-code-actions-mode)
-         (lsp-mode . lsp-headerline-breadcrumb-mode))
-
-  :config (progn
-            ;; use flycheck, not flymake
-            (setq lsp-prefer-flymake nil)))
+         (lsp-mode . lsp-headerline-breadcrumb-mode)))
 
 ;; optional - provides fancy overlay information
 (use-package lsp-ui
@@ -66,18 +66,5 @@
    (lsp-ui-sideline-delay 0.5)
    (lsp-ui-doc-enable nil)))
 
-(use-package company
-  :ensure t
-  :config (progn
-            ;; don't add any dely before trying to complete thing being typed
-            ;; the call/response to gopls is asynchronous so this should have little
-            ;; to no affect on edit latency
-            (setq company-idle-delay 0.3)
-            ;; start completing after a single character instead of 3
-            (setq company-minimum-prefix-length 1)
-            ;; align fields in completions
-            (setq company-tooltip-align-annotations t)
-            )
-  )
 
 (provide 'lsp-config)
