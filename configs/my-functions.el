@@ -108,7 +108,7 @@
 
 (defun my-search (consult directory)
   (if consult
-      (consult-ripgrep
+      (counsel-rg
        (ag/dwim-at-point))
     (let ((search (ag/read-from-minibuffer "Search string")))
       (rg search "*" (expand-file-name directory)))))
