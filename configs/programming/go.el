@@ -12,6 +12,7 @@
 
 (use-package go-mode
   :ensure t
+  :after lsp
   :custom
   (gofmt-command "goimports")
   :bind (:map go-mode-map
@@ -33,6 +34,7 @@
          (before-save . lsp-organize-imports))
   :config
   (defun my-go-mode-hook ()
+    (lsp)
     (setq gofmt-command "goimports")
     (if (and buffer-file-name
              (string-match "_test\\'"
