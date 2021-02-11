@@ -154,7 +154,6 @@
     (concat user-emacs-directory "/gnus/init.el")))
  '(gnus-notifications-use-google-contacts nil)
  '(gnus-notifications-use-gravatar nil)
- '(gnus-topic-indent-level 4)
  '(gnus-user-agent '(gnus emacs))
  '(go-playground-ask-for-file-name t t)
  '(go-test-verbose t)
