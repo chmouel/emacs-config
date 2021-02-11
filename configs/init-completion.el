@@ -67,7 +67,7 @@
         ("C-\\" . selectrum-next-candidate))
   :custom
   (selectrum-count-style 'nil)
-  (selectrum-max-window-height 25)
+  (selectrum-max-window-height 15)
   (selectrum-extend-current-candidate-highlight t))
 
 (use-package consult
