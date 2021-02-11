@@ -2,10 +2,6 @@
 (if (file-exists-p (concat my-init-directory "/gnus/filter.el"))
     (load-file (concat my-init-directory "/gnus/filter.el")))
 
-;; Emojify on group mode cause i have mbox with emojis :D
-(use-package emojify
-  :ensure t)
-
 ;; Default paths
 (setq gnus-agent-directory "~/Gnus/agent"
       gnus-article-save-directory "~/Gnus/News"
@@ -84,12 +80,30 @@
          my-group-name-map)))
       (t (replace-regexp-in-string ".*/" "" group))))))
 
+;; Remove the backlash of GMAIL folders labels thingy
+(defun gnus-user-format-function-g (arg)
+  (let ((splitted
+         (cdr (split-string-and-unquote gnus-tmp-group "/"))))
+    (if splitted
+        (combine-and-quote-strings
+         (cdr (split-string-and-unquote gnus-tmp-group "/")) ".")
+      gnus-tmp-group)))
+(setq gnus-group-line-format "%M%S%p%P%5y:%B%(%ug%)\n")
+
 (defun my-gnus-group-mode-hook ()
-  (emojify-mode)
+  (define-key gnus-topic-mode-map "TAB" 'gnus-topic-select-group)
+  (local-set-key "TAB" 'gnus-topic-select-group)
   (local-set-key "j" 'next-line)
   (local-set-key "k" 'previous-line))
 (add-hook 'gnus-group-mode-hook 'my-gnus-group-mode-hook)
 
+(use-package mbsync
+  :ensure t
+  :hook (mbsync-exit . gnus-group-get-new-news)
+  :bind
+  ((:map
+    gnus-group-mode-map
+    ("S R" . mbsync))))
 
 ;; HighLine
 (use-package hl-line
@@ -113,15 +127,32 @@
 		gnus-article-hide-headers-if-wanted
 		gnus-article-hide-pgp
 		gnus-article-highlight
-		gnus-article-highlight-citation
-		))
+		gnus-article-highlight-citation))
 
-;GET MAIL EVERY 2mn
+(defun gnus-demon-scan-mail-or-news-and-update (level)
+  "Scan for new mail, updating the *Group* buffer."
+  (let ((win (current-window-configuration)))
+    (unwind-protect
+        (save-window-excursion
+          (save-excursion
+            (when (gnus-alive-p)
+              (save-excursion
+                (set-buffer gnus-group-buffer)
+                (gnus-group-get-new-news level)))))
+      (message "scanning for new mail done")
+      (set-window-configuration win))))
+
+(defun gnus-demon-scan-news-and-update ()
+  "Scan for new mail, updating the *Group* buffer."
+  (gnus-demon-scan-mail-or-news-and-update 1))
+
+;;; ** command
 (gnus-demon-add-handler 'gnus-group-get-new-news 2 t)
-(gnus-demon-add-handler 'gnus-demon-close-connections 30 t)
+;; (gnus-demon-add-handler 'gnus-demon-scan-news-and-update 1 nil)
+(gnus-demon-add-handler 'gnus-demon-scan-mail 1 nil)
 (gnus-demon-init)
 
-;Add topic-mode with custom format
+;; Add topic-mode with custom format
 (add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
 (setq gnus-topic-line-format "%i[ %u&topic-line; ] %v\n")
 (defun gnus-user-format-function-topic-line (dummy)
@@ -130,14 +161,17 @@
     (propertize
      (format "%s %d" name total-number-of-articles)
      'face topic-face)))
+
 ;;
 (use-package bbdb
+  :ensure t
   :config
   (bbdb-initialize 'gnus 'message)
   (bbdb-mua-auto-update-init 'gnus 'message)
 
   (add-hook 'message-setup-hook 'bbdb-mail-aliases)
-
+  (setq bbdb-create-hook nil)
+  (add-hook 'bbdb-create-hook (lambda (interactive) (bbdb-save nil)))
   (setq bbdb-offer-save 1                        ;; 1 means save-without-asking
         bbdb-update-records-p 'create            ;; Auto-create
         bbdb-snarf-rule-default 'mail            ;; Just snarf with mail by default
@@ -151,36 +185,55 @@
         bbdb-phone-style nil                     ;; No north american
         bbdb-mua-pop-up-window-size 2
         bbdb-mua-pop-up nil
+        bbdb-file (expand-file-name "~/Gnus/bbdb")
         bbdb-mua-update-interactive-p '(query . query)
         bbdb-pop-up-layout 'one-line))
 
+;; Export the unread inbox as json to plug into external command line
+;; emacsclient --eval "(my-is-there-any-mail-out-there-json)"|sed -e \
+;;              's/^"//;s/"$//' -e 's/\\"/"/g'|jq
+(defconst my-is-there-any-mail-out-there-limit-to ".*")
+(defun my-is-there-any-mail-out-there-json ()
+  (let ((win (current-window-configuration))
+        (hashtb (make-hash-table :size 20 :test #'equal))
+        unread current)
+    (unwind-protect
+        (save-window-excursion
+          (when (gnus-alive-p)
+            (with-current-buffer gnus-group-buffer
+              (beginning-of-buffer)
+              (while (and (not (eobp)))
+                (beginning-of-line)
+                (when (and
+                       (get-text-property (point) 'gnus-group)
+                       (string-match
+                        my-is-there-any-mail-out-there-limit-to
+                        (gnus-group-name-at-point)))
+                  (setq unread (get-text-property (point) 'gnus-unread))
+                  (when (and (numberp unread) (> unread 0))
+                    (puthash (gnus-group-name-at-point) unread hashtb)))
+                (forward-line)))))
+      (set-window-configuration win))
+    (json-serialize hashtb)))
 
-;;JD-Gnus desktop notifications
-(when (string-equal system-type "darwin")
-  (defun jd:xml-unescape-string (string)
-    (with-temp-buffer
-      (insert string)
-      (dolist (substitution '(("&amp;" . "&")
-                              ("&lt;" . "<")
-                              ("&gt;". ">")
-                              ("&apos;" . "'")
-                              ("&quot;" . "\"")))
-        (goto-char (point-min))
-        (while (search-forward (car substitution) nil t)
-          (replace-match (cdr substitution) t t nil)))
-      (buffer-string)))
-  (defun notifications-notify (&rest params)
-    (let ((title (plist-get params :title))
-          (body (plist-get params :body)))
-      (call-process "terminal-notifier" nil nil nil
-                    "terminal-notifier"
-                    "-contentImage" (or (plist-get params :image-path) "")
-                    "-appIcon" (or (plist-get params :app-icon) "")
-                    "-message" (jd:xml-unescape-string body)
-                    "-title" (jd:xml-unescape-string title)
-                    "-activate" "org.gnu.Emacs"
-                    "-sender" "org.gnu.Emacs"))))
-(add-hook 'gnus-after-getting-new-news-hook 'gnus-notifications)
+(defun my-is-there-any-mail-out-there-focus-group (group-regexp)
+  (let ((win (current-window-configuration))
+        found)
+    (unwind-protect
+        (save-window-excursion
+          (save-excursion
+            (when (gnus-alive-p)
+              (save-excursion
+                (set-buffer gnus-group-buffer)
+                (goto-char (point-min))
+                (when (re-search-forward group-regexp)
+                  (setq found (point))
+                  ))))))
+    (if found (progn
+                (switch-to-buffer "*Group*")
+                (goto-char found)
+                (gnus-group-select-group))
+      (set-window-configuration win))))
 
 ;; Gravatar
 (use-package gnus-gravatar
