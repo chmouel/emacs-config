@@ -38,6 +38,7 @@
   (python-mode . smartparens-mode)
   (go-mode-hook . smartparens-mode)
   (lisp-interaction-mode-hook . smartparens-mode)
+  (scheme-mode-hook . smartparens-mode)
   (emacs-lisp-mode-hook . smartparens-mode)
   (org-mode-hook . smartparens-mode))
 
@@ -62,7 +63,7 @@
 
 (defun my-programming-common-hook()
   (electric-pair-local-mode +1)
+  (highlight-numbers-mode +1)
   (if (fboundp 'global-undo-tree-mode)(global-undo-tree-mode nil))
-  (highlight-numbers-mode 1)
   (local-set-key (kbd "RET") 'newline-and-indent)
   (local-set-key (kbd "C-'") 'toggle-quotes))

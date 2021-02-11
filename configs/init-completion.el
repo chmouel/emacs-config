@@ -125,15 +125,14 @@
   :disabled
   :ensure t
   :bind
-  (("C-\\" . (lambda() (interactive) (ivy-rich-mode +1) (ivy-switch-buffer)))
-   ("C-x b" . (lambda() (interactive) (ivy-rich-mode +1) (ivy-switch-buffer)))
+  (;("C-\\" . (lambda() (interactive) (ivy-rich-mode +1) (ivy-switch-buffer)))
+                                        ;("C-x b" . (lambda() (interactive) (ivy-rich-mode +1) (ivy-switch-buffer)))
    :map ivy-minibuffer-map
    ("C-s" . ivy-next-line)
    ("C-M-j" . ivy-partial)
    ("C-j" . ivy-immediate-done)
    ("C-\\" . ivy-next-line))
   :custom
-  (ivy-height 10)
   (consult-project-root-function #'projectile-project-root)
   (counsel-switch-buffer-preview-virtual-buffers nil)
   (ivy-re-builders-alist '((t . ivy--regex-fuzzy)))

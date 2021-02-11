@@ -20,3 +20,8 @@
   (add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
   :bind (:map emacs-lisp-mode-map
               ("C-x C-e" . eval-buffer)))
+
+(use-package scheme
+  :ensure nil
+  :hook
+  (scheme-mode . my-programming-common-hook))

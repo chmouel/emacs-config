@@ -25,7 +25,6 @@
   :hook (after-init . projectile-mode)
   :commands (projectile-ensure-project projectile-project-root)
   :custom
-  (projectile-completion-system 'selectrum-completing-read)
   (projectile-cache-file (locate-user-emacs-file "auto-save-list/projectile.cache"))
   (projectile-known-projects-file
    (locate-user-emacs-file "auto-save-list/projectile-bookmarks.eld"))
@@ -75,7 +74,7 @@
               (--filter (not (string-match my-project-ignore-files it))
                         (projectile-project-files project-root))
             (projectile-project-files project-root)))
-         (file (ido-completing-read "Find file: " (sort files #'string<))))
+         (file (completing-read "Find file: " (sort files #'string<))))
     (when file
       (funcall 'find-file (expand-file-name file project-root))
       (run-hooks 'projectile-find-file-hook))))

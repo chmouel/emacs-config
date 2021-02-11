@@ -46,7 +46,7 @@
   (save-excursion
 	(let* ((completion-ignore-case t)
 		   (item (assoc-ignore-case
-				  (ido-completing-read "Email adress: " my-email-adresses nil t)
+				  (completing-read "Email adress: " my-email-adresses nil t)
 				  my-email-adresses))
 		   (email-adress (car item)))
 	  (beginning-of-buffer)

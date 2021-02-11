@@ -30,7 +30,6 @@
   (setq auto-insert-alist nil)
   (define-auto-insert "\.py"
     '(lambda () (yas--expand-by-uuid 'python-mode "header"))))
-;; (use-package dropdown-list :ensure t))
 
 (use-package yasnippet-snippets :after yasnippet :diminish :ensure t)
 
@@ -332,13 +331,39 @@
   :bind (("<C-f6>" . github-browse-remote-kill)
          ("<f6>" . github-browse-remote)))
 
-; Avy
+(use-package helpful
+  :ensure t
+  :bind
+  (("C-h f" . helpful-callable)
+   ("C-h v" . helpful-variable)
+   ("C-h k" . helpful-key)
+   :map emacs-lisp-mode-map
+   ("C-h F" . helpful-function)
+   ("C-c C-d" . helpful-at-point)))
+
+;; Avy
 (use-package avy
   :ensure t
   :bind ("C-c C-c" . avy-goto-word-1))
 
+;; Avy
+(use-package avy-zap
+  :ensure t
+  :bind ("M-z" . avy-zap-to-char))
+
+
+;; Ctrlxo
+(use-package ctrlxo
+  :ensure t
+  :bind
+  (("C-x o" . ctrlxo)
+   ("C-<tab>" . ctrlxo)
+   :map ctrlxo-map
+   ("<tab>" . ctrlxo-forward)
+   ("<S-tab>" . ctrlxo-backward)))
+
 ;; Use ripgrep
-(use-package "ripgrep" :ensure t)
+(use-package ripgrep :ensure t)
 
 ;;; KEEP IT
 ;;Web-mode
