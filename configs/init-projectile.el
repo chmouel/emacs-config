@@ -48,7 +48,11 @@
 
 (defun my-projectile-mode-line ()
   (let ((project-name (projectile-project-name)))
-    (if (not (string= project-name "-")) (format " 🗞%s" project-name))))
+    (if (not (string= project-name "-"))
+        (format
+         " %s"
+         (propertize
+          project-name 'face '(:foreground "Light Blue" :weight bold))))))
 
 (defun my-projectile-and-dired()
   (interactive)
