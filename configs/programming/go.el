@@ -12,7 +12,6 @@
 
 (use-package go-mode
   :ensure t
-  :after lsp
   :custom
   (gofmt-command "goimports")
   :bind (:map go-mode-map
@@ -26,7 +25,7 @@
               ("C-<return>" . my-recompile)
               ("C-M-<return>" . multi-compile-run)
               ("C-c t" . ff-find-other-file))
-  :hook ((go-mode . lsp-deferred)
+  :hook ((go-mode . lsp)
          (go-mode . subword-mode)
          (go-mode . my-go-mode-hook)
          (go-mode . my-programming-common-hook)
@@ -34,7 +33,6 @@
          (before-save . lsp-organize-imports))
   :config
   (defun my-go-mode-hook ()
-    (lsp)
     (setq gofmt-command "goimports")
     (if (and buffer-file-name
              (string-match "_test\\'"
@@ -54,5 +52,3 @@
   (defun my-go-prev-function()
     (interactive)
     (re-search-backward go-func-regexp nil t)))
-
-
