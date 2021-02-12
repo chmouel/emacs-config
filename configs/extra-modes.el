@@ -1,7 +1,9 @@
 ;; Dimnish commnand line
 (use-package diminish :ensure t
   :config
-  (diminish 'auto-revert-mode))
+  (eval-after-load 'view-mode '(diminish 'view-mode))
+  (eval-after-load 'subword '(diminish 'subword-mode))
+  (eval-after-load 'auto-revert-mode '(diminish 'auto-revert-mode)))
 
 (use-package yasnippet
   :ensure t
@@ -94,6 +96,17 @@
   (add-to-list 'ag-arguments "-z"))
 
 ;; Flycheck
+(use-package flycheck-indicator :ensure t
+  :hook (flycheck-mode . flycheck-indicator-mode)
+  :custom
+  (flycheck-indicator-status-icons
+   '((no-checker . "")
+     (not-checked . "")
+     (running . "*")
+     (finished "")
+     (interrupted "!")
+     (suspicious "!"))))
+
 (use-package flycheck
   :ensure t
   :config
@@ -115,8 +128,7 @@
       (concat " " flycheck-mode-line-prefix text)))
 
   :custom
-  ((flycheck-mode-line '(:eval (my-flycheck-mode-line-status-text)))
-   (flycheck-mode-line-prefix "")
+  ((flycheck-mode-line-prefix "")
    (flycheck-disabled-checkers
     '(go-unconvert
       ;; go-staticcheck go-errcheck
@@ -135,7 +147,7 @@
   :ensure t
   :defer t)
 
-;
+                                        ;
 (use-package rich-minority
   :ensure t
   :custom
@@ -167,7 +179,7 @@
 (use-package google-this :ensure t :bind (("C-c *" . google-this)))
 
 ;;
-(use-package highlight-indentation :ensure t)
+(use-package highlight-indentation :ensure t :diminish highlight-indentation-mode)
 
 ;; change ag interactivity
 (use-package wgrep-ag :commands (wgrep-ag-setup wgrep-ag-setup) :ensure t)
