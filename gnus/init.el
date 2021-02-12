@@ -14,6 +14,19 @@
       mail-source-directory "~/Gnus/Mail"
       nnmail-message-id-cache-file "~/Gnus/config/nnmail-cache")
 
+;; W3m
+(use-package w3m
+  :ensure t
+  :custom
+  (mm-inline-text-html-with-images t)
+  (mm-text-html-renderer 'gnus-w3m))
+
+;; Gravatar
+(use-package gnus-gravatar
+  :ensure nil
+  :hook
+  (gnus-article-prepare-hook . gnus-treat-from-gravatar))
+
 ;;Settings
 (setq gnus-summary-ignore-duplicates t
       gnus-suppress-duplicates t
@@ -81,29 +94,32 @@
       (t (replace-regexp-in-string ".*/" "" group))))))
 
 ;; Remove the backlash of GMAIL folders labels thingy
+(defun gnus-user-format-function-mapped (group) ()
+       (let ((mapped-name (assoc group my-group-name-map)))
+         (if (null mapped-name) group
+           (cdr mapped-name))))
+
 (defun gnus-user-format-function-g (arg)
   (let ((splitted
          (cdr (split-string-and-unquote gnus-tmp-group "/"))))
     (if splitted
-        (combine-and-quote-strings
-         (cdr (split-string-and-unquote gnus-tmp-group "/")) ".")
-      gnus-tmp-group)))
+        (gnus-user-format-function-mapped
+         (combine-and-quote-strings
+          (cdr (split-string-and-unquote gnus-tmp-group "/")) "."))
+      (gnus-user-format-function-mapped gnus-tmp-group))))
 (setq gnus-group-line-format "%M%S%p%P%5y:%B%(%ug%)\n")
 
 (defun my-gnus-group-mode-hook ()
   (define-key gnus-topic-mode-map "TAB" 'gnus-topic-select-group)
   (local-set-key "TAB" 'gnus-topic-select-group)
+  (local-set-key
+   (kbd "S R")
+   (lambda()
+     (interactive)
+     (async-shell-command "systemctl --user start mbsync.timer; systemctl --user start mbsync-perso.timer;journalctl --lines=30 --no-pager --user -x -u mbsync-perso.service -u mbsync.service")))
   (local-set-key "j" 'next-line)
   (local-set-key "k" 'previous-line))
 (add-hook 'gnus-group-mode-hook 'my-gnus-group-mode-hook)
-
-(use-package mbsync
-  :ensure t
-  :hook (mbsync-exit . gnus-group-get-new-news)
-  :bind
-  ((:map
-    gnus-group-mode-map
-    ("S R" . mbsync))))
 
 ;; HighLine
 (use-package hl-line
@@ -128,6 +144,21 @@
 		gnus-article-hide-pgp
 		gnus-article-highlight
 		gnus-article-highlight-citation))
+
+;; Highlight
+(use-package hl-line
+  :defer t
+  :after gnus
+  :hook
+  (gnus-summary-mode . my-setup-hl-line)
+  ;; (gnus-group-mode . my-setup-hl-line)
+  :custom-face
+  (hl-line ((t (:background "#44475a" :foreground "#bd93f9"))))
+  :config
+  (defun my-setup-hl-line ()
+    (hl-line-mode 1)
+    (setq-local cursor-type nil)
+    (visual-line-mode 1)))
 
 (defun gnus-demon-scan-mail-or-news-and-update (level)
   "Scan for new mail, updating the *Group* buffer."
@@ -155,6 +186,7 @@
 ;; Add topic-mode with custom format
 (add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
 (setq gnus-topic-line-format "%i[ %u&topic-line; ] %v\n")
+(setq gnus-topic-indent-level 2)
 (defun gnus-user-format-function-topic-line (dummy)
   (let ((topic-face
          (if (zerop total-number-of-articles) 'bold-italic 'bold)))
@@ -174,6 +206,7 @@
   (add-hook 'bbdb-create-hook (lambda (interactive) (bbdb-save nil)))
   (setq bbdb-offer-save 1                        ;; 1 means save-without-asking
         bbdb-update-records-p 'create            ;; Auto-create
+        bbdb-accept-message-alist '(("From" . ".*@\\(gmail\\|google\\|redhat\\)\\.com"))
         bbdb-snarf-rule-default 'mail            ;; Just snarf with mail by default
         bbdb-completion-display-record nil       ;; Don't display bbdb after completion
         bbdb-mail-avoid-redundancy nil           ;; always use full name
@@ -194,6 +227,7 @@
 ;;              's/^"//;s/"$//' -e 's/\\"/"/g'|jq
 (defconst my-is-there-any-mail-out-there-limit-to ".*")
 (defun my-is-there-any-mail-out-there-json ()
+  (interactive)
   (let ((win (current-window-configuration))
         (hashtb (make-hash-table :size 20 :test #'equal))
         unread current)
@@ -211,7 +245,8 @@
                         (gnus-group-name-at-point)))
                   (setq unread (get-text-property (point) 'gnus-unread))
                   (when (and (numberp unread) (> unread 0))
-                    (puthash (gnus-group-name-at-point) unread hashtb)))
+                    (let ((gnus-tmp-group (gnus-group-name-at-point)))
+                      (puthash (gnus-user-format-function-g gnus-tmp-group) unread hashtb))))
                 (forward-line)))))
       (set-window-configuration win))
     (json-serialize hashtb)))
@@ -230,13 +265,9 @@
                   (setq found (point))
                   ))))))
     (if found (progn
-                (switch-to-buffer "*Group*")
+                (switch-to-buffer gnus-group-buffer)
                 (goto-char found)
-                (gnus-group-select-group))
+                (gnus-group-select-group)
+                (gnus-summary-first-unread-article))
       (set-window-configuration win))))
 
-;; Gravatar
-(use-package gnus-gravatar
-  :ensure nil
-  :hook
-  (gnus-article-prepare-hook . gnus-treat-from-gravatar))
