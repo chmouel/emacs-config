@@ -4,7 +4,7 @@
   :custom
   (company-idle-delay 0.3)
   (company-minimum-prefix-length 1)
-  (company-tooltip-align-annotations t)  
+  (company-tooltip-align-annotations t)
   :config
   (add-to-list 'company-backends 'company-capf)
   :bind
@@ -27,7 +27,7 @@
 (use-package lsp-mode
   :ensure t
   :diminish
-  :commands (lsp lsp-deferred)
+  :commands (lsp lsp-deferred lsp-organize-imports)
   :custom
   (lsp-auto-guess-root t)
   (lsp-prefer-flymake nil)
