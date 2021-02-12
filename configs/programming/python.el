@@ -41,7 +41,6 @@
   (py-isort-buffer))
 
 (use-package python
-  :ensure nil
   :custom
   (flycheck-python-flake8-executable python-shell-interpreter)
   :bind (:map python-mode-map
@@ -55,7 +54,6 @@
   :hook ((python-mode . yapf-mode)
          (python-mode . lsp-deferred)
          (python-mode . flycheck-mode)
-         (python-mode . fci-mode)
          (python-mode . highlight-indentation-mode)
          (python-mode . highlight-indentation-mode)
          (python-mode . my-python-mode-hook)))
