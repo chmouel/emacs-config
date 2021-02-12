@@ -30,9 +30,9 @@
          (rest-chars (substring tstr 1))
          (emojified (cond
                      ((string= ":" first-char) ;;; Modified
-                      (replace-regexp-in-string "^:" "✍ " tstr))
+                      (replace-regexp-in-string "^:" "‼ " tstr))
                      ((string= "-" first-char) ;; No change
-                      (replace-regexp-in-string "^-" "✓ " tstr))
+                      (replace-regexp-in-string "^-" "ʾ" tstr))
                      (t tstr))))
     (propertize emojified 'face '(:foreground "Light Blue" :weight bold))))
 
@@ -43,8 +43,7 @@
                '(:eval (propertize (substring
                                     default-directory
                                     (+ 1 (string-match "/[^/]+/$" default-directory)) nil)
-                                   'face '(:foreground "#7d7d7d" :slant italic))
-                       )))
+                                   'face '(:foreground "#7d7d7d" :slant italic)))))
 (add-hook 'find-file-hook 'add-mode-line-dirtrack)
 
 ;;Non Customizables
