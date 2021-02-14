@@ -28,13 +28,25 @@
 (global-set-key (read-kbd-macro "C-2")      'split-window-vertically)
 
 ;; Redefine {for/back}ward paragraphs to just 4 lines
-(global-set-key '[(control down)] (lambda ()
-                                    (interactive)
-                                    (ignore-errors (next-logical-line 5))))
+(global-set-key '[(control down)]
+                (lambda ()
+                  (interactive)
+                  (ignore-errors (next-logical-line 5))))
 
-(global-set-key '[(control up)] (lambda ()
-                                    (interactive)
-                                    (ignore-errors (previous-logical-line 5))))
+(global-set-key '[(control up)]
+                (lambda ()
+                  (interactive)
+                  (ignore-errors (previous-logical-line 5))))
+
+;; Go to GNUS
+(global-set-key (kbd "C-c G")
+                (lambda ()
+                  (interactive)
+                  (if (and (boundp 'gnus-alive-p)
+                           (gnus-alive-p))
+                      (switch-to-buffer gnus-group-buffer)
+                    (gnus))))
+
 
 ;; C-up/down onn console
 (when (not window-system)
