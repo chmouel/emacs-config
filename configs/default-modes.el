@@ -125,11 +125,6 @@ With a prefix argument P, isearch for the symbol at point."
 (eval-after-load "view" '(my-view-vi-keys-map view-mode-map))
 (eval-after-load "man" '(my-view-vi-keys-map Man-mode-map))
 
-;;  M-z redefine to zap-up-to-char
-(use-package zap-up-to-char
-  :bind
-  ("M-z" . zap-up-to-char))
-
 ;;  Ediff
 (use-package ediff
   :custom
@@ -244,6 +239,7 @@ mouse-3: go to end"))))
     (if my-delete-trailing-whitespace-enabled (delete-trailing-whitespace)))
   :custom
   ;; Bookmarks
+  (url-history-file (locate-user-emacs-file "auto-save-list/url-history"))
   (package-quickstart-file (locate-user-emacs-file "auto-save-list/package-quickstart.el"))
   (bookmark-default-file (locate-user-emacs-file "auto-save-list/bookmarks.bmk"))
   (save-place-file (locate-user-emacs-file "auto-save-list/emacs-places.el"))
