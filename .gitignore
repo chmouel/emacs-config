@@ -13,10 +13,8 @@ tramp
 /packages/archives/gnu/archive-contents
 *.yas-compiled-snippets.el
 smex-items
-url
 request
 anaconda-mode
-emojis/
 magithub/
 /.cache/
 /configs/disabled/
