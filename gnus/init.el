@@ -82,8 +82,8 @@
    
    :map gnus-group-mode-map
    ("TAB" . gnus-group-select-group)
-   ("j" . next-line)
-   ("k" . previous-line)
+   ;; ("j" . next-line)
+   ;; ("k" . previous-line)
    ("S R" .
     (lambda()
       (interactive)
