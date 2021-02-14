@@ -93,6 +93,25 @@
                "journalctl --lines=30 --no-pager --user -x "
                "-u mbsync-perso.service -u mbsync.service")))))
   :config
+  ;; A three pane layout, Group buffer on the left, summary buffer top-right,
+  ;; article buffer bottom-right:
+  ;; https://www.emacswiki.org/emacs/GnusWindowLayout
+  (gnus-add-configuration
+   '(article
+     (horizontal 1.2
+	             (vertical 25
+			               (group 1.0))
+	             (vertical 1.0
+			               (summary 0.25 point)
+			               (article 1.0)))))
+  (gnus-add-configuration
+   '(summary
+     (horizontal 1.2
+	             (vertical 25
+			               (group 1.0))
+	             (vertical 1.0
+			               (summary 1.0 point)))))
+
   (gnus-demon-add-handler 'gnus-group-get-new-news 2 t)
   (gnus-demon-add-handler 'gnus-demon-scan-mail 1 nil)
   (gnus-demon-init)
