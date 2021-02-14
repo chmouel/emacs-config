@@ -358,12 +358,6 @@
   :ensure t
   :bind ("C-c C-c" . avy-goto-word-1))
 
-;; Avy
-(use-package avy-zap
-  :ensure t
-  :bind ("M-z" . avy-zap-to-char))
-
-
 ;; Ctrlxo
 (use-package ctrlxo
   :ensure t
