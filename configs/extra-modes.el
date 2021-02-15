@@ -53,6 +53,11 @@
   :bind (("M-<up>" . er/expand-region)
          ("M-<down>" . er/contract-region)))
 
+;; Avy
+(use-package avy-zap
+  :ensure t
+  :bind ("M-z" . avy-zap-to-char))
+
 ;; Popup for auto-complete and others
 (use-package popup :ensure t)
 
