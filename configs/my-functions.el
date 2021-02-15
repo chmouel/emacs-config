@@ -168,3 +168,21 @@
     ))
 
 (define-key isearch-mode-map [(meta z)] 'zap-to-isearch)
+
+;; Take a url (or replace to the raw one if it's a github url) download and eval it.
+(defun my-try-el(url)
+  "Quickly try a lisp file downloading and evaluating it"
+  (interactive "sEmacs lisp url to retrieve: ")
+  (let ((rawurl
+         (replace-regexp-in-string
+          "/blob" ""
+          (replace-regexp-in-string
+           "https://github.com" "https://raw.githubusercontent.com" url))))
+    (progn
+      (switch-to-buffer (url-retrieve-synchronously rawurl))
+      (save-excursion
+        (goto-char (point-min))
+        (delete-region (point) (search-forward "\n\n" nil t)))
+      (eval-buffer)
+      (emacs-lisp-mode)
+      (font-lock-fontify-buffer))))
