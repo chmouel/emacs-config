@@ -5,7 +5,6 @@
 ;; (global-set-key '[(control meta l)] 'mode-line-other-buffer)
 (global-set-key '[(control next)] 'end-of-buffer)
 (global-set-key '[(control prior)] 'beginning-of-buffer)
-(global-set-key '[(control tab)] 'other-window)
 (global-set-key '[(control c)(\])] 'next-error)
 (global-set-key '[(control c)(\[)] 'previous-error)
 
@@ -54,8 +53,7 @@
   (define-key function-key-map "\eO1;5A"    [C-up])
   (define-key function-key-map "\eO1;5B"  [C-down])
   (define-key function-key-map "\eO1;5C" [C-right])
-  (define-key function-key-map "\eO1;5D"  [C-left])
-  )
+  (define-key function-key-map "\eO1;5D"  [C-left]))
 
 ;; Mouse
 (global-set-key (read-kbd-macro "<mouse-3>") 'mouse-popup-menubar-stuff)
