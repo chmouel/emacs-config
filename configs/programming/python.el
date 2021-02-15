@@ -42,7 +42,7 @@
 
 (use-package python
   :custom
-  (flycheck-python-flake8-executable python-shell-interpreter)
+  (flycheck-python-flake8-executable "python3")
   :bind (:map python-mode-map
               ("C-'" . toggle-quotes)
               ("C-c t" . ff-find-other-file)
