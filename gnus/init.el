@@ -1,14 +1,9 @@
 ;;TOTRASH
-;; (setq gnus-thread-sort-functions
-;;       '(gnus-thread-sort-by-score
-;;         gnus-thread-sort-by-date
-;;   	  gnus-thread-sort-by-subject
-;;   	  gnus-thread-sort-by-total-score))
-
 (use-package gnus
   :hook
   (gnus-group-mode . gnus-topic-mode)
   (gnus-article-mode-hook . (lambda()(interactive)(set-fringe-style 1)))
+  (gnus-started . emacs-lock-mode)
   :defer t
   :custom
   ;; Global settings
@@ -37,7 +32,9 @@
   (gnus-topic-display-empty-topics nil)
   (gnus-topic-line-format "%i[ %(%{%n%}%) -- %A ]%v\n")
   (gnus-summary-thread-gathering-function 'gnus-gather-threads-by-references)
-  (gnus-thread-sort-functions '(gnus-thread-sort-by-number (not gnus-thread-sort-by-date)))
+  (gnus-thread-sort-functions
+   '(gnus-thread-sort-by-total-score
+     (not gnus-thread-sort-by-date)))
   (gnus-sum-thread-tree-false-root "")
   (gnus-sum-thread-tree-indent " ")
   (gnus-sum-thread-tree-leaf-with-other "├► ")
@@ -116,7 +113,7 @@
   (gnus-demon-add-handler 'gnus-demon-scan-mail 1 nil)
   (gnus-demon-init)
   :custom-face
-  (message-header-name ((t (:foreground "#50fa7b"))))
+  (message-header-name ((t (:foreground "#bd93f9" :weight bold))))
   (message-header-other ((t (:foreground "white"))))
   (message-header-subject ((t (:foreground "grey75" :weight normal)))))
 
@@ -129,7 +126,12 @@
 
   (add-hook 'message-setup-hook 'bbdb-mail-aliases)
   (setq bbdb-create-hook nil)
-  (add-hook 'bbdb-create-hook (lambda (interactive) (bbdb-save nil)))
+
+  (add-hook 'gnus-started-hook
+	        (lambda nil
+	          (remove-hook 'gnus-save-newsrc-hook 'bbdb-offer-save)))
+  (add-hook 'gnus-save-newsrc-hook 'bbdb-save)
+  
   (setq bbdb-offer-save 1                        ;; 1 means save-without-asking
         bbdb-update-records-p 'create            ;; Auto-create
         bbdb-accept-message-alist '(("From" . ".*@\\(gmail\\|google\\|redhat\\)\\.com"))
