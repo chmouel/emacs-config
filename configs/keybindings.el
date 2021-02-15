@@ -39,14 +39,15 @@
                   (ignore-errors (previous-logical-line 5))))
 
 ;; Go to GNUS
-(global-set-key (kbd "C-c G")
+(global-set-key (kbd "<f2>")
                 (lambda ()
                   (interactive)
-                  (if (and (boundp 'gnus-alive-p)
-                           (gnus-alive-p))
-                      (switch-to-buffer gnus-group-buffer)
-                    (gnus))))
-
+                  (let ((tab-index (or (tab-bar--tab-index-by-name "*Group*") -1)))
+                    (if (= tab-index -1)
+                        (progn
+                          (tab-bar-select-tab tab-index)
+                          (gnus)))
+                    (tab-bar-select-tab (1+ tab-index)))))
 
 ;; C-up/down onn console
 (when (not window-system)
