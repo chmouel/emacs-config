@@ -85,4 +85,30 @@
                 (gnus-summary-first-unread-article))
       (set-window-configuration win))))
 
-(provide 'my-gnus-functions)
+(defvar my-message-dangerous-mode 'nil)
+(defun my-change-background-on-dangerous-mode()
+  (if my-message-dangerous-mode
+      (progn
+        (face-remap-add-relative
+         'default
+         '(:foreground "#242424" :background "#f6f3e8")))))
+
+(defun my-change-ispell-local-to-francais ()
+  (interactive)
+  (progn
+    (ispell-change-dictionary "francais")
+    (ispell-message)))
+
+(defun my-email-adress-switch ()
+  (interactive)
+  (save-excursion
+	(let ((email-adress
+           (completing-read
+            "Email adress: "
+            my-email-adresses nil t)))
+      (message-goto-from)
+      (goto-char (point-at-bol))
+      (kill-line)
+      (insert (format "From: %s <%s>" user-full-name email-adress)))))
+
+(provide 'init-gnus-functions)
