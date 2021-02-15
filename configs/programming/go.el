@@ -28,9 +28,7 @@
   :hook ((go-mode . lsp)
          (go-mode . subword-mode)
          (go-mode . my-go-mode-hook)
-         (go-mode . my-programming-common-hook)
-         (before-save . lsp-format-buffer)
-         (before-save . lsp-organize-imports))
+         (go-mode . my-programming-common-hook))
   :config
   (defun my-go-mode-hook ()
     (setq gofmt-command "goimports")

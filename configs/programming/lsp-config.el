@@ -50,7 +50,9 @@
   (lsp-completion-provider :capf)
   :hook ((lsp-mode . lsp-enable-which-key-integration)
          (lsp-mode . lsp-modeline-code-actions-mode)
-         (lsp-mode . lsp-headerline-breadcrumb-mode)))
+         (lsp-mode . lsp-headerline-breadcrumb-mode)
+         (before-save . lsp-format-buffer)
+         (before-save . lsp-organize-imports)))
 
 ;; optional - provides fancy overlay information
 (use-package lsp-ui
