@@ -40,19 +40,21 @@
   (local-set-key '[(f8)] 'my-ispell-message-and-switch))
 (add-hook 'message-mode-hook 'my-message-mode-hook)
 
-;Switch Email Adresses
+(setq my-email-adresses
+      '(("samuel@chmouel.com")
+        ("chmouel@chmouel.com")
+        ("cboudjna@chmouel.com")
+        ("chmouel@redhat.com")))
+
+;; Switch Email Adresses
 (defun my-email-adress-switch ()
   (interactive)
   (save-excursion
-	(let* ((completion-ignore-case t)
-		   (item (assoc-ignore-case
-				  (completing-read "Email adress: " my-email-adresses nil t)
-				  my-email-adresses))
-		   (email-adress (car item)))
-	  (beginning-of-buffer)
-	  (if (re-search-forward "^From:" nil t)
-		  (delete-region (point) (progn (end-of-line)(point)))
-		(insert "From:"))
-	  (insert (concat " " user-full-name " <" email-adress ">"))
-	  (if (not (eolp))(insert "\n"))
-	  )))
+	(let ((email-adress
+           (completing-read
+            "Email adress: "
+            my-email-adresses nil t)))
+      (message-goto-from)
+      (goto-char (point-at-bol))
+      (kill-line)
+      (insert (format "From: %s <%s>" user-full-name email-adress)))))
