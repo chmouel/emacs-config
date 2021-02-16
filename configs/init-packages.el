@@ -358,6 +358,5 @@
 ;; Use ripgrep
 (use-package ripgrep :ensure t)
 
-;;; KEEP IT
-;;Web-mode
-(provide 'extras-modes)
+;;;
+(provide 'init-packages)
