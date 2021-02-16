@@ -21,6 +21,7 @@
               ("C-M-<up>" . my-go-prev-function)
               ("C-M-<down>" . my-go-next-function)
               ("C-c d" . godoc-at-point)
+              ("C-S-r" . go-run)
               ("C-S-w" . (lambda () (interactive) (kill-new (go-test--get-current-test))))
               ("C-<return>" . my-recompile)
               ("C-M-<return>" . multi-compile-run)
