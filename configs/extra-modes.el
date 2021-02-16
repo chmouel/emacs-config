@@ -195,7 +195,7 @@
   :config
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
   :bind
-  (("C-S-d" . dumb-jump-go)))
+  (("C-S-d" . xref-goto-xref)))
 
 ;; Drag stuff up and down
 (use-package drag-stuff
