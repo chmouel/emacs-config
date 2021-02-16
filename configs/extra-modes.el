@@ -15,7 +15,7 @@
   ;; Yassnippet
   (defun yas--expand-by-uuid (mode uuid)
     "Exapnd snippet template in MODE by its UUID"
-    (yas/expand-snippet
+    (yas-expand-snippet
      (yas--template-content
       (yas--get-template-by-uuid mode uuid))))
 
@@ -25,7 +25,7 @@
     (if (magit-toplevel ".")
         (magit-get "user.email")
       user-mail-address))
-  (yas/global-mode 1)
+  (yas-global-mode 1)
   (require 'autoinsert)
   (auto-insert-mode)
   (setq auto-insert-query nil)
@@ -114,24 +114,6 @@
 
 (use-package flycheck
   :ensure t
-  :config
-  (defun my-flycheck-mode-line-status-text (&optional status)
-    (let ((text (pcase (or status flycheck-last-status-change)
-                  (`not-checked "")
-                  (`no-checker "")
-                  (`running "🏃")
-                  (`errored "😱")
-                  (`finished
-                   (let-alist (flycheck-count-errors flycheck-current-errors)
-                     (cond
-                      (.error (format "😱 %s/%s" (or .error 0) (or .warning 0)))
-                      (.warning (format "🤨 %s/%s" (or .error 0) (or .warning 0)))
-                      t " ")
-                     ))
-                  (`interrupted "✋")
-                  (`suspicious "🤔"))))
-      (concat " " flycheck-mode-line-prefix text)))
-
   :custom
   ((flycheck-mode-line-prefix "")
    (flycheck-disabled-checkers
