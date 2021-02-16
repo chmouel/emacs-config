@@ -18,7 +18,7 @@
       (load-file (concat dir (pop files))))))
 
 (defun my-short-hostname()
-  (string-match "[0-9A-Za-z-]+" system-name)
+  (string-match "[0-9A-Za-z-]+" (system-name))
   (substring system-name (match-beginning 0) (match-end 0)))
 
 ;; Loading Packages
