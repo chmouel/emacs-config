@@ -1,4 +1,4 @@
-(defun my-cperl-mode-hook()
-  (which-func-mode 't)
-  )
-(add-hook 'cperl-mode-hook 'my-cperl-mode-hook)
+(use-package cperl
+  :hook
+  (cperl-mode . my-programming-common-hook)
+  (cperl-mode . which-func-mode))
