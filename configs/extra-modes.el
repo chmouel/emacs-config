@@ -177,7 +177,7 @@
   :config
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
   :bind
-  (("C-S-d" . xref-goto-xref)))
+  (("C-S-d" . xref-find-definitions)))
 
 ;; Drag stuff up and down
 (use-package drag-stuff
