@@ -67,6 +67,7 @@
   (fset 'yes-or-no-p 'y-or-n-p)  
   :custom
   ;; Bookmarks
+  (gnus-init-file (locate-user-emacs-file "gnus/init.el"))
   (url-history-file (locate-user-emacs-file "auto-save-list/url-history"))
   (package-quickstart-file (locate-user-emacs-file "auto-save-list/package-quickstart.el"))
   (bookmark-default-file (locate-user-emacs-file "auto-save-list/bookmarks.bmk"))

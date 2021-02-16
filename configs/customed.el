@@ -149,9 +149,6 @@
  '(global-git-commit-mode t)
  '(global-git-gutter-mode t)
  '(global-undo-tree-mode nil)
- '(gnus-init-file
-   (expand-file-name
-    (concat user-emacs-directory "/gnus/init.el")))
  '(gnus-notifications-use-google-contacts nil)
  '(gnus-notifications-use-gravatar nil)
  '(gnus-user-agent '(gnus emacs))
