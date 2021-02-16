@@ -178,12 +178,13 @@ With a prefix argument P, isearch for the symbol at point."
 
 ;; Comit mode
 (use-package comint
-  :init
-  (add-hook 'comint-mode-hook '(lambda ()
-                                 (local-set-key
-                                  '[(control meta l)]
-                                  (lambda () (interactive)
-                                    (switch-to-buffer (other-buffer nil)))))))
+  :hook
+  (comint-mode . (lambda ()
+                   (local-set-key
+                    '[(control meta l)]
+                    (lambda () (interactive)
+                      (switch-to-buffer (other-buffer nil)))))))
+
 ;;  Flyspell mode
 (use-package vc
   :hook
@@ -210,14 +211,13 @@ With a prefix argument P, isearch for the symbol at point."
 
 ;; Compilation colors
 (use-package ansi-color
-  :config
-  (add-hook
-   'compilation-filter-hook
-   '(lambda ()
-      (toggle-read-only)
-      (ansi-color-apply-on-region compilation-filter-start (point))
-      (toggle-read-only))))
+  :hook
+  (compilation-filter . (lambda ()
+                          (toggle-read-only)
+                          (ansi-color-apply-on-region compilation-filter-start (point))
+                          (toggle-read-only))))
 
+;; Start server mode
 (use-package server
   :hook
   (after-init . server-mode))
