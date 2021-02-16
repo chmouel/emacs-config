@@ -20,7 +20,7 @@
       (my-duplicate-region
        (point-at-bol)
        (point-at-eol) "\n")
-      (next-line))))
+      (forward-line))))
 
 ;; autoindent open-*-lines
 (defvar newline-and-indent t
@@ -40,17 +40,6 @@
         ))))
 (global-set-key (read-kbd-macro "C-;") 'my-comment-line-or-region)
 (global-set-key (read-kbd-macro "M-;") 'comment-dwim)
-
-;; Remap goto-line to show temporary the line number.
-;; http://whattheemacsd.com//key-bindings.el-01.html
-(defun goto-line-with-feedback ()
-  "Show line numbers temporarily, while prompting for the line number input"
-  (interactive)
-  (unwind-protect
-      (progn
-        (display-line-numbers-mode 1)
-        (goto-line (read-number "Goto line: ")))
-    (display-line-numbers-mode -1)))
 
 ;; http://emacsredux.com/blog/2013/05/30/joining-lines/
 (defun my-top-join-line ()
@@ -155,6 +144,6 @@
         (delete-region (point) (search-forward "\n\n" nil t)))
       (eval-buffer)
       (emacs-lisp-mode)
-      (font-lock-fontify-buffer))))
+      (font-lock-ensure))))
 
 (provide 'init-functions)
