@@ -156,3 +156,5 @@
       (eval-buffer)
       (emacs-lisp-mode)
       (font-lock-fontify-buffer))))
+
+(provide 'init-functions)
