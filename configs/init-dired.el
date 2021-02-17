@@ -18,44 +18,45 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-;; Dired
-(use-package dired
+(use-package dired-x
+  :hook ((dired-mode . dired-omit-mode))
   :custom
   ((dired-omit-files
     (concat "^\\.\\|^\\.?#\\|^\\.$\\|^\\.\\.$\\|"
             "^Thumbs.db$\\|\\.svn$\\|\\.git\\(ignore\\)?\\|"
             "\\.pyc$\\|^\\.coverage$\\|^TAGS$\\|^tags$\\|"
-            "\\.class$\\|\\.DS_Store\\|\\.localized$\\|__pycache__$")))
+            "\\.class$\\|\\.DS_Store\\|\\.localized$\\|__pycache__$")))  
   :config
-  (require 'dired-x)
-  :init
+  (setq dired-omit-verbose nil)
+  ;; hide backup, autosave, *.*~ files
+  ;; omit mode can be toggled using `C-x M-o' in dired buffer.
+  (setq dired-omit-files
+        (concat dired-omit-files "\\|^.DS_STORE$\\|^.projectile$\\|^.git$")))
+
+;; Dired
+(use-package dired
+  :hook
+  ((dired-mode . my-dired-mode-hook))
+  :config
   (if (executable-find "gls")
       (setq insert-directory-program "gls"))
+  
   (defun my-dired-mode-hook ()
-    (dired-omit-mode)
     (when (featurep 'tooltip) (tooltip-mode 0)))
-  (add-hook 'dired-mode-hook 'my-dired-mode-hook)
-  ;; Hack dired to launch files with 'l' key.
-  ;; http://omniorthogonal.blogspot.com/2008/05/useful-emacs-dired-launch-hack.html
-  (defun my-dired-launch-command ()
-    (interactive)
-    (dired-do-shell-command
-     (case system-type
-           (gnu/linux "xdg-open") ;;right for gnome (ubuntu), not for other systems
-           (darwin "open"))
-     nil
-     (dired-get-marked-files t current-prefix-arg)))
+  
   :bind
   (:map dired-mode-map
         ("W" . browse-url-of-dired-file)
-        ("l" . my-dired-launch-command)
         ("O" . dired-omit-mode)
         ("E" . wdired-change-to-wdired-mode)
         ("s" . dired-up-directory)
         ("j" . dired-next-line)
         ("k" . dired-previous-line)))
 
+(use-package dired-open :ensure t)
+
 (use-package all-the-icons-dired
+  :ensure t  
   :diminish
   :hook (dired-mode . all-the-icons-dired-mode)
   :config
@@ -91,7 +92,9 @@
         (message "Not display icons because of too many items.")))
     (advice-add #'all-the-icons-dired--refresh :override #'my-all-the-icons-dired--refresh)))
 
+;; diredfl:Extra Emacs font lock rules for a more colourful dired
 (use-package diredfl
+  :after dired
   :ensure t
   :config
   (diredfl-global-mode 1))
