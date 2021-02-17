@@ -38,6 +38,6 @@
        (locate-user-emacs-file
         (format "hosts/%s.el" (downcase (my-short-hostname))))))
   (if (file-exists-p localhostfile)
-      (load-file localhostfile)
+      (load-file localhostfile)))
 
 ;; END
