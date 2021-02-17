@@ -1,6 +1,11 @@
 (put 'dired-find-alternate-file 'disabled nil)
 (put 'set-goal-column 'disabled nil)
 (put 'scroll-left 'disabled nil)
+(put 'narrow-to-page 'disabled nil)
+(put 'downcase-region 'disabled nil)
+(put 'list-threads 'disabled nil)
+(put 'magit-edit-line-commit 'disabled nil)
+(put 'magit-diff-edit-hunk-commit 'disabled nil)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -226,9 +231,6 @@
  '(org-agenda-files nil)
  '(org-src-fontify-natively t)
  '(org-startup-folded nil)
- '(package-archives
-   '(("melpa-unstable" . "http://melpa.org/packages/")
-     ("GNU" . "http://elpa.gnu.org/packages/")))
  '(package-quickstart t)
  '(package-selected-packages
    '(w3m emojify bbdb ctrlxo helpful helm-swoop embark rustic mini-frame flycheck-color-mode-line avy-embark-collect icomplete-vertical svg-mode-line-themes marginalia selectrum-prescient embark-consult paste-of-code yaml-mode yaml easy-kill hungry-delete hungry-delete-mode exec-path-from-shell magit smart-mode-line-powerline-theme php-mode js2-mode jsx-mode rcirc-alertify ibuffer-projectile go-playground treemacs multi-compile aggressive-indent smartparens eshell-toggle rich-minority lsp-ui lsp-mode rg helm ido-vertical-mode plantuml-mode which-key deadgrep reformatter dockerfile-mode dumb-jump powerline yascroll auto-complete popup multiple-cursors yasnippet doom-themes crux diredfl diff-hl grip-mode markdown-mode "smex" git-messenger slack rainbow-delimiters treemacs-magit treemacs-all-the-icons poly-org poly-slim poly-markdown polymode cyphejor pinyinlib ivy-xref ivy-yasnippet ivy-prescient company-prescient yasnippet-snippets fzf evil-numbers company-box drag-stuff all-the-icons-ivy lsp-ivy lsp-treemacs yapfify bufler python-black eshell-did-you-mean go-dlv dired-sidebar blacken dash-functional minibuffer company-quickhelp mustache-mode all-the-icons-ibuffer go-test sqlite ripgrep zoom-mode centaur-tab awesome-tab all-the-icons-dired ace-window jira-markup-mode py-isort subr-x docker-tramp ibuffer-tramp kubernetes-tramp helm-org general direnv pytest ibuffer-git esh-autosuggest evil monokai-pro monokai-alt monokai-pro-theme goto-last-change ag gitconfig-mode yaml-imenu flycheck-rust rust-auto-use rust-playground multi-compile-run yapf-mode yapf adoc color-moccur github-issues direx lorem-ipsum pyimport flycheck-plantuml evil-matchit-mode elisp emacs-lisp elisp-mode emacs-lisp-mode info-colors magithub shell-mode message isearch abbrev dired dired-x lisp-mode misc anzu page diminish ns-win moe popup-kill-ring pdf-tools imenu-list github-clone indent-tools helm-lean applescript-mode go-impl the-org-mode-expansions flycheck-yamllint avy commenter gist zop-to-char jsfmt go-add-tags wgrep-ag flycheck-gometalinter go-stacktracer js-auto-beautify highlight-indentation esqlite go-errcheck go-snippets golint go-rename toggle-quotes zygospore window-number wgrep web use-package try smex smart-shift smart-mode-line rpm-spec-mode request-deferred regex-tool queue python-docstring pyfmt pcsv pcache paredit package-safe-delete message-x marmalade magit-find-file json-mode isearch-dabbrev ido-completing-read+ highlight-80+ google-this go-eldoc fringe-helper flx-ido find-file-in-git-repo expand-region dropdown-list csv-mode company-go company-anaconda comment-dwim-2 browse-kill-ring boxquote bm))
