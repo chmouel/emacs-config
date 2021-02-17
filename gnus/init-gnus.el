@@ -150,3 +150,5 @@
     (not (string= (file-name-nondirectory x) "init.el")))
   (file-expand-wildcards (concat user-emacs-directory "gnus/*.el"))))
 ;;
+
+(provide 'init-gnus)
