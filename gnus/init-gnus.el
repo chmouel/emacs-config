@@ -3,7 +3,7 @@
   :hook
   (gnus-group-mode . gnus-topic-mode)
   (gnus-article-mode-hook . (lambda()(interactive)(set-fringe-style 1)))
-  (gnus-started . emacs-lock-mode)
+  ;; (gnus-started . emacs-lock-mode)
   :defer t
   :custom
   ;; Global settings
@@ -147,7 +147,7 @@
  'load
  (seq-filter
   (lambda (x)
-    (not (string= (file-name-nondirectory x) "init.el")))
+    (not (string= (file-name-nondirectory x) "init-gnus.el")))
   (file-expand-wildcards (concat user-emacs-directory "gnus/*.el"))))
 ;;
 
