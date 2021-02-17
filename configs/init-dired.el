@@ -19,8 +19,7 @@
 ;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 ;; Dired
-(use-package "dired"
-  :ensure nil
+(use-package dired
   :custom
   ((dired-omit-files
     (concat "^\\.\\|^\\.?#\\|^\\.$\\|^\\.\\.$\\|"
