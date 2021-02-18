@@ -53,8 +53,6 @@
         ("j" . dired-next-line)
         ("k" . dired-previous-line)))
 
-(use-package dired-open :ensure t)
-
 (use-package all-the-icons-dired
   :ensure t  
   :diminish
