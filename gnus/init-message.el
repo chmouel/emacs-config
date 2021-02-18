@@ -14,12 +14,13 @@
         ("<f8>" . my-ispell-message-and-switch))
   :preface
   (fset 'mail 'message-mail)
+  :config
+  (setq my-email-adresses
+        '(("samuel@chmouel.com")
+          ("chmouel@chmouel.com")
+          ("cboudjna@redhat.com")
+          ("chmouel@redhat.com")))
   :custom
-  (my-email-adresses
-   '(("samuel@chmouel.com")
-     ("chmouel@chmouel.com")
-     ("cboudjna@redhat.com")
-     ("chmouel@redhat.com")))
   (message-auto-save-directory "~/Gnus/Mail/drafts")
   (message-directory "~/Gnus/Mail"))
 
