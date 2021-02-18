@@ -8,8 +8,6 @@
 (use-package ibuffer
   :disabled
   :ensure nil
-  :bind
-  ("C-x C-b" . ibuffer)
   :init
   (setq ibuffer-filter-group-name-face
         '(:inherit (font-lock-string-face bold))))
