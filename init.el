@@ -1,16 +1,7 @@
 ;;Chmouel Boudjnah <chmouel@chmouel.com>
-;; Initializations variables
-(defvar my-init-directory "~/.emacs.d")
-
 ;; Initializations Config
-(push (expand-file-name (concat my-init-directory "/modes/")) load-path)
-(push (expand-file-name (concat my-init-directory "/modes/local")) load-path)
-
-;; Initializations functions
-(defun my-load-file(file)
-  (let* ((dir (concat my-init-directory "/configs") )
-		 (fpath (concat dir "/" file ".el")))
-	(if (file-exists-p fpath)(load-file fpath) (format "File %s doen't exit" fpath) )))
+(push (locate-user-emacs-file "modes/") load-path)
+(push (locate-user-emacs-file "modes/local") load-path)
 
 (defun my-load-dir(dir)
   (let ((files (directory-files dir nil "\.el$")))
@@ -21,37 +12,32 @@
   (string-match "[0-9A-Za-z-]+" (system-name))
   (substring system-name (match-beginning 0) (match-end 0)))
 
-;; Loading Packages
-(if (fboundp 'normal-top-level-add-subdirs-to-load-path)
-    (let* ((my-lisp-dir (expand-file-name (concat my-init-directory "/packages/")))
-           (default-directory my-lisp-dir))
-      (setq load-path (cons my-lisp-dir load-path))
-      (normal-top-level-add-subdirs-to-load-path)))
-
-;; Custome customize (lol so funny!)
-(setq custom-file (concat my-init-directory "/configs/customed.el"))
-(load custom-file)
-
-;; Ensure package is installed
-(if (fboundp 'package-initialize)
-    (package-initialize))
+(require 'package)
+(setq package-archives '(("melpa" . "https://melpa.org/packages/")
+                         ("elpa" . "https://elpa.gnu.org/packages/")))
+(package-initialize)
+(unless package-archive-contents
+  (package-refresh-contents))
 
 ;; use-package
-(if (not (fboundp 'use-package))
-    (package-install 'use-package))
-(eval-when-compile (require 'use-package))
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+
+(require 'use-package)
+
+;; Load custom file
+(setq custom-file (locate-user-emacs-file "configs/customed.el"))
+(load custom-file)
 
 ;; Loading Configs files
-(my-load-dir (concat my-init-directory "/configs/"))
-(my-load-dir (concat my-init-directory "/configs/programming/"))
+(my-load-dir (locate-user-emacs-file "configs/"))
+(my-load-dir (locate-user-emacs-file "configs/programming/"))
 
-;; Loading Host
-(if (file-exists-p (downcase (concat my-init-directory "/hosts/" (my-short-hostname) ".el")))
-    (load-file (downcase (concat my-init-directory "/hosts/" (my-short-hostname) ".el"))))
+;; Loading local host file
+(let ((localhostfile
+       (locate-user-emacs-file
+        (format "hosts/%s.el" (downcase (my-short-hostname))))))
+  (if (file-exists-p localhostfile)
+      (load-file localhostfile)))
 
 ;; END
-(cd (expand-file-name "~/"))
-(put 'downcase-region 'disabled nil)
-(put 'list-threads 'disabled nil)
-(put 'magit-edit-line-commit 'disabled nil)
-(put 'magit-diff-edit-hunk-commit 'disabled nil)
