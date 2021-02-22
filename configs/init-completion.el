@@ -27,12 +27,14 @@
   (prescient-filter-method '(literal-prefix regexp initialism)))
 
 (use-package selectrum-prescient
+  :disabled
   :ensure t
   :after selectrum
   :init
   (selectrum-prescient-mode +1))
 
 (use-package selectrum
+  :disabled
   :ensure t
   :init
   (selectrum-mode +1)
@@ -71,6 +73,7 @@
   (selectrum-extend-current-candidate-highlight t))
 
 (use-package consult
+  :disabled
   :config
   (defmacro my-consult-with-preview (binding &rest body)
     (global-set-key
@@ -98,6 +101,7 @@
          ("C-x C-r" . consult-recent-file)))
 
 (use-package embark
+  :disabled
   :ensure t
   :after selectrum
   :bind (:map minibuffer-local-map
@@ -122,11 +126,12 @@
   :config (all-the-icons-ivy-setup))
 
 (use-package ivy
-  :disabled
   :ensure t
+  :init
+  (ivy-mode +1)
   :bind
-  (;("C-\\" . (lambda() (interactive) (ivy-rich-mode +1) (ivy-switch-buffer)))
-                                        ;("C-x b" . (lambda() (interactive) (ivy-rich-mode +1) (ivy-switch-buffer)))
+  (("C-\\" . (lambda() (interactive) (ivy-rich-mode +1) (ivy-switch-buffer)))
+   ("C-x b" . (lambda() (interactive) (ivy-rich-mode +1) (ivy-switch-buffer)))
    :map ivy-minibuffer-map
    ("C-s" . ivy-next-line)
    ("C-M-j" . ivy-partial)
@@ -140,8 +145,15 @@
   (ivy-count-format "")
   (ivy-use-virtual-buffers t))
 
+(use-package counsel :ensure t
+  :bind
+  (("M-x" . counsel-M-x)
+   ("C-c U" . counsel-grep)
+   ))
+
 (use-package ivy-rich
-  :disabled
+  :init
+  (ivy-rich-mode +1)
   :ensure t
   :custom
   (ivy-rich-path-style 'abbrev)
@@ -151,7 +163,6 @@
      (ivy-rich-switch-buffer-major-mode (:width 20 :face font-lock-keyword-face)))))
 
 (use-package ivy-prescient
-  :disabled
   :ensure t
   :config
   (ivy-prescient-mode 1))
