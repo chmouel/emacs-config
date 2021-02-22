@@ -4,24 +4,10 @@
   :bind
   (("C-x C-b" . bufler)))
 
-;;; DISABLED
-(use-package ibuffer
-  :disabled
-  :ensure nil
-  :bind
-  ("C-x C-b" . ibuffer)
-  :init
-  (setq ibuffer-filter-group-name-face
-        '(:inherit (font-lock-string-face bold))))
-
-(use-package all-the-icons-ibuffer
-  :ensure t
-  :init (all-the-icons-ibuffer-mode 1))
-
 ;; Group ibuffer's list by project root
 (use-package ibuffer-projectile
-  :disabled
   :ensure t
+  :after all-the-icons
   :functions all-the-icons-octicon ibuffer-do-sort-by-alphabetic
   :hook ((ibuffer . (lambda ()
                       (ibuffer-projectile-set-filter-groups)
