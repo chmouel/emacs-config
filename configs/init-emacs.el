@@ -229,8 +229,7 @@ With a prefix argument P, isearch for the symbol at point."
 
 ;; Which-func
 (use-package which-func
-  :disabled t
-  :init (which-function-mode)
+  :config (which-function-mode)
   :custom-face
   (which-func ((((class color) (min-colors 89)) (:foreground "#ffffff" :background "SlateBlue2"))))
   :config
