@@ -13,13 +13,14 @@
         '(:inherit (font-lock-string-face bold))))
 
 (use-package all-the-icons-ibuffer
+  :disabled
   :ensure t
   :init (all-the-icons-ibuffer-mode 1))
 
 ;; Group ibuffer's list by project root
 (use-package ibuffer-projectile
-  :disabled
   :ensure t
+  :after all-the-icons
   :functions all-the-icons-octicon ibuffer-do-sort-by-alphabetic
   :hook ((ibuffer . (lambda ()
                       (ibuffer-projectile-set-filter-groups)
