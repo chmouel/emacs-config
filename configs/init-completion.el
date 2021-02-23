@@ -130,8 +130,8 @@
   :init
   (ivy-mode +1)
   :bind
-  (("C-\\" . (lambda() (interactive) (ivy-rich-mode +1) (ivy-switch-buffer)))
-   ("C-x b" . (lambda() (interactive) (ivy-rich-mode +1) (ivy-switch-buffer)))
+  (("C-\\" . ivy-switch-buffer)
+   ("C-x b" . ivy-switch-buffer)
    :map ivy-minibuffer-map
    ("C-s" . ivy-next-line)
    ("C-M-j" . ivy-partial)
@@ -140,7 +140,9 @@
   :custom
   (consult-project-root-function #'projectile-project-root)
   (counsel-switch-buffer-preview-virtual-buffers nil)
-  (ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
+  (ivy-re-builders-alist
+   '((swiper . ivy--regex-plus)
+     (t      . ivy--regex-fuzzy)))
   (ivy-extra-directories '("./"))
   (ivy-count-format "")
   (ivy-use-virtual-buffers t))
