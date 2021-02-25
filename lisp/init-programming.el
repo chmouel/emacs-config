@@ -42,6 +42,15 @@
   :ensure t
   :defer t)
 
+;; My github-browse-remote that worksie for me
+;; Probably should handle master/main thing
+(use-package github-browse-remote
+  :if (file-directory-p "~/GIT/chmouzies/emacs")
+  :load-path "~/GIT/chmouzies/emacs"
+  :commands (github-browse-remote)
+  :bind
+  ("<f6>" . github-browse-remote))
+
 ;; Yasnippet
 (use-package yasnippet
   :defer t
@@ -66,7 +75,7 @@
     "Get email from GIT or use default"
     (require 'magit-process)
     (if (magit-toplevel ".")
-	(magit-get "user.email")
+		(magit-get "user.email")
       user-mail-address))
   (yas-global-mode 1)
   (require 'autoinsert)

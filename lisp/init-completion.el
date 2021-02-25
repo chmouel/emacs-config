@@ -8,6 +8,7 @@
   (marginalia-mode +1))
 
 (use-package swivb
+  :if (file-directory-p "~/GIT/projects/emacs-swivb")
   :commands (swivb)
   :load-path "~/GIT/projects/emacs-swivb" ; TODO: need to upload it in melpa
   :config
