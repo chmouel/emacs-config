@@ -105,24 +105,6 @@
     (bind-key "\t" 'hippie-expand yas-minor-mode-map)
     (add-to-list 'yas-prompt-functions 'shk-yas/helm-prompt)))
 
-(setq-default compile-command "")
-(defun my-recompile (args)
-  (interactive "P")
-  (cond
-   (args (call-interactively 'compile))
-   ((get-buffer "*Go Test*")
-    (progn
-      (pop-to-buffer "*Go Test*")
-      (recompile)))
-   ((get-buffer "*compilation*")
-    (progn
-      (pop-to-buffer "*compilation*")
-      (recompile)))
-   ((multi-compile--fill-command-list (buffer-file-name))
-    (call-interactively 'multi-compile-run))
-   ((not (string= "" compile-command)) (call-interactively 'recompile))
-   ((call-interactively 'compile))))
-
 (use-package emacs
   :bind
   (:map prog-mode-map
