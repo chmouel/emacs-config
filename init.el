@@ -1,43 +1,62 @@
-;;Chmouel Boudjnah <chmouel@chmouel.com>
-;; Initializations Config
-(push (locate-user-emacs-file "modes/") load-path)
-(push (locate-user-emacs-file "modes/local") load-path)
+;; Emacs init
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
-(defun my-load-dir(dir)
-  (let ((files (directory-files dir nil "\.el$")))
-    (while files
-      (load-file (concat dir (pop files))))))
 
-(defun my-short-hostname()
-  (string-match "[0-9A-Za-z-]+" (system-name))
-  (substring system-name (match-beginning 0) (match-end 0)))
+;; Startup time
+(defun efs/display-startup-time ()
+  (message
+   "Emacs loaded in %s with %d garbage collections."
+   (format
+    "%.2f seconds"
+    (float-time
+     (time-subtract after-init-time before-init-time)))
+   gcs-done))
 
-(require 'package)
-(setq package-archives '(("melpa" . "https://melpa.org/packages/")
-                         ("elpa" . "https://elpa.gnu.org/packages/")))
-(package-initialize)
-(unless package-archive-contents
-  (package-refresh-contents))
+(add-hook 'emacs-startup-hook #'efs/display-startup-time)
 
-;; use-package
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
 
-(require 'use-package)
+;;----------------------------------------------------------------------------
+;; Adjust garbage collection thresholds during startup, and thereafter
+;;----------------------------------------------------------------------------
+(setq normal-gc-cons-threshold (* 20 1024 1024))
+(setq gc-cons-threshold  (* 128 1024 1024))
+(add-hook
+'emacs-startup-hook
+(lambda () (setq gc-cons-threshold normal-gc-cons-threshold)))
 
-;; Load custom file
-(setq custom-file (locate-user-emacs-file "configs/customed.el"))
-(load custom-file)
 
-;; Loading Configs files
-(my-load-dir (locate-user-emacs-file "configs/"))
-(my-load-dir (locate-user-emacs-file "configs/programming/"))
+;;----------------------------------------------------------------------------
+;; Bootstrap config
+;;----------------------------------------------------------------------------
+(setq custom-file (expand-file-name "auto-save-list/custom.el" user-emacs-directory))
 
-;; Loading local host file
-(let ((localhostfile
-       (locate-user-emacs-file
-        (format "hosts/%s.el" (downcase (my-short-hostname))))))
-  (if (file-exists-p localhostfile)
-      (load-file localhostfile)))
+(require 'bind-key)
 
-;; END
+;; Init ELPA
+(require 'init-elpa)      ;; Machinery for installing required packages
+
+;; Init Early local
+(require 'init-local nil t)
+
+;; Requires
+(require 'init-emacs)
+(require 'init-functions)
+(require 'init-dired)
+(require 'init-packages)
+(require 'init-project)
+(require 'init-completion)
+(require 'init-eshell)
+(require 'init-magit)
+
+;; Programming modes
+(require 'init-programming)
+(require 'init-elisp)
+(require 'init-python)
+(require 'init-lsp)
+(require 'init-yaml)
+(require 'init-org)
+(require 'init-sh)
+(require 'init-makefile)
+(require 'init-javascript)
+(require 'init-go)
+(require 'init-html)
