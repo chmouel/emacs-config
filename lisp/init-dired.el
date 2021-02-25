@@ -47,5 +47,9 @@
   :hook
   (dired-mode . diredfl-mode))
 
+(use-package dired-quick-sort
+  :hook
+  (dired-mode . dired-quick-sort-setup))
+
 (provide 'init-dired)
 ;;; init-dired.el ends here

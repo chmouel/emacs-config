@@ -36,7 +36,7 @@
   :hook
   (after-save . executable-make-buffer-file-executable-if-script-p)
   (after-init . windmove-default-keybindings)
-
+  (after-init .   delete-selection-mode)
   ;;----------------------------------------------------------------------------
   ;; Allow access from emacsclient
   ;;----------------------------------------------------------------------------
@@ -45,7 +45,6 @@
 				  (unless (server-running-p)
 					(server-start))))
   :config
-  (cua-selection-mode +1)
   (global-unset-key "\C-x\C-z")
   (global-unset-key "\C-z")
   (fset 'yes-or-no-p 'y-or-n-p)
@@ -147,32 +146,21 @@
 (use-package isearch
   :ensure nil
   :defer t
-  :bind (([remap isearch-forward] . endless/isearch-symbol-with-prefix)
-		 :map isearch-mode-map
-		 ("C-." . isearch-forward-symbol-at-point)
-		 ("C-o" . my-isearch-occur)
-		 ("M-o" . my-isearch-moccur))
+  :bind
+  (:map
+   isearch-mode-map
+   ("C-." . isearch-forward-symbol-at-point)
+   ("C-o" . my-isearch-occur)
+   ("M-o" . my-isearch-moccur))
   :custom
   (isearch-allow-scroll t)
   :config
-  ;; http://endlessparentheses.com/quickly-search-for-occurrences-of-the-symbol-at-point.html
-  (defun endless/isearch-symbol-with-prefix (p)
-	"Like isearch, unless prefix argument is provided.
-With a prefix argument P, isearch for the symbol at point."
-	(interactive "P")
-	(let ((current-prefix-arg nil))
-	  (call-interactively
-	   (if p #'isearch-forward-symbol-at-point
-		 #'isearch-forward))))
-
   (defun my-isearch-moccur ()
 	(interactive)
 	(let ((case-fold-search isearch-case-fold-search))
 	  (multi-occur-in-matching-buffers
 	   (concat ".*\." (file-name-extension (buffer-file-name)) "$")
-	   (if isearch-regexp isearch-string (regexp-quote isearch-string)))
-	  ))
-
+	   (if isearch-regexp isearch-string (regexp-quote isearch-string)))))
   (defun my-isearch-occur ()
 	(interactive)
 	(let ((case-fold-search isearch-case-fold-search))
@@ -193,7 +181,7 @@ With a prefix argument P, isearch for the symbol at point."
   (recentf-max-saved-items 500)
   (recentf-exclude
    '("\\.?cache" ".cask" "url" "COMMIT_EDITMSG\\'" "bookmarks"
-	 "\\.\\(?:gz\\|gif\\|svg\\|png\\|jpe?g\\|bmp\\|xpm\\)$"
+	 "\\.\\(?:gz\\|gif\\|svg\\|elc\\|png\\|jpe?g\\|bmp\\|xpm\\)$"
 	 "\\.?ido\\.last$" "\\.revive$" "/G?TAGS$" "/.elfeed/"
 	 "^/tmp/" "^/var/folders/.+$" "^/ssh:" "/persp-confs/"
 	 (lambda (file) (file-in-directory-p file package-user-dir))))
