@@ -89,7 +89,7 @@
 		("C-S-<right>" . sp-forward-sexp)
 		("C-S-<left>" . sp-backward-sexp))  
   :hook
-  (prog-mode . electric-pair-local-mode))
+  (prog-mode . smartparens-mode))
 
 (use-package yasnippet
   :diminish yas-minor-mode
