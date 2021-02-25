@@ -104,8 +104,6 @@
     (yas-global-mode 1)
     (bind-key "\t" 'hippie-expand yas-minor-mode-map)
     (add-to-list 'yas-prompt-functions 'shk-yas/helm-prompt)))
-;;        (global-set-key (kbd "C-c y") (lambda () (interactive)
-;;                                         (yas/load-directory "~/elisp/snippets")))
 
 (setq-default compile-command "")
 (defun my-recompile (args)
