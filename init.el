@@ -39,6 +39,7 @@
 (require 'init-local nil t)
 
 ;; Requires
+(require 'init-theme)
 (require 'init-emacs)
 (require 'init-functions)
 (require 'init-dired)
