@@ -1,6 +1,6 @@
 (use-package magit
   :commands (magit-read-repository magit-toplevel)
-  :bind (;; ("C-x v v" . my-magit-commit-buffer)
+  :bind (("C-x v s-v" . my-magit-commit-buffer)
          ("C-x v -" . magit-pull-from-pushremote)
          ("C-x v s-=" . my-diff-current-unstaged-file)
          ("C-x v P" . magit-push-current-to-pushremote)
