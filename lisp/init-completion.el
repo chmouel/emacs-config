@@ -30,6 +30,7 @@
 
 (use-package icomplete
   :custom
+  (completion-cycle-threshold t)
   (icomplete-delay-completions-threshold 0)
   (icomplete-max-delay-chars 2)
   (icomplete-compute-delay 0)
