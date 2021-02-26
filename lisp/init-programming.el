@@ -102,17 +102,14 @@
 
 (use-package yasnippet
   :diminish yas-minor-mode
-  :init (yas-global-mode)
+  :hook
+  (after-init . yas-global-mode)
+  :custom
+  (yas-key-syntaxes '("w_" "w_." "^ "))
+  (yas-installed-snippets-dir "~/elisp/yasnippet-snippets")
+  (yas-expand-only-for-last-commands nil)
   :config
-  (progn
-    (yas-global-mode)
-    (add-hook 'hippie-expand-try-functions-list 'yas-hippie-try-expand)
-    (setq yas-key-syntaxes '("w_" "w_." "^ "))
-    (setq yas-installed-snippets-dir "~/elisp/yasnippet-snippets")
-    (setq yas-expand-only-for-last-commands nil)
-    (yas-global-mode 1)
-    (bind-key "\t" 'hippie-expand yas-minor-mode-map)
-    (add-to-list 'yas-prompt-functions 'shk-yas/helm-prompt)))
+  (add-hook 'hippie-expand-try-functions-list 'yas-hippie-try-expand))
 
 (use-package emacs
   :bind
