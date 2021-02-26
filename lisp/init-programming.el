@@ -22,8 +22,9 @@
 ;; My github-browse-remote that worksie for me
 ;; Probably should handle master/main thing
 (use-package github-browse-remote
-  :if (file-directory-p "~/GIT/chmouzies/emacs")
-  :load-path "~/GIT/chmouzies/emacs"
+  :if (and (boundp 'my-github-browse-remote-location)
+		   (file-directory-p my-github-browse-remote-location))
+  :load-path my-github-browse-remote-location
   :commands (github-browse-remote)
   :bind
   ("<f6>" . github-browse-remote))
