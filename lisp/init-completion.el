@@ -8,9 +8,9 @@
   (marginalia-mode +1))
 
 (use-package swivb
-  :if (file-directory-p "~/GIT/projects/emacs-swivb")
+  :if (and (boundp 'my-swivb-location) (file-directory-p my-swivb-location))
   :commands (swivb)
-  :load-path "~/GIT/projects/emacs-swivb" ; TODO: need to upload it in melpa
+  :load-path my-swivb-location ; TODO: need to upload it in melpa
   :config
   (setq swivb-actions '((:name "*Gnus*" :function "gnus" :buffer "*Group*")))
   :bind
