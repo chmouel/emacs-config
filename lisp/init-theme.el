@@ -1,3 +1,5 @@
+(use-package ubuntu-theme :after rand-theme)
+
 (use-package doom-themes
   :defer nil
   :custom-face
@@ -10,8 +12,7 @@
 
 (use-package rand-theme
   :custom
-  (rand-theme-wanted '(doom-outrun-electric))
-  ;; doom-laserwave doom-oceanic-next doom-material doom-moonlight doom-horizon doom-palenight doom-vibrant doom-snazzy doom-dracula
+  (rand-theme-wanted '(doom-laserwave doom-oceanic-next doom-material doom-horizon doom-palenight doom-vibrant doom-snazzy doom-dracula doom-outrun-electric))
   :init
   (rand-theme))
 
