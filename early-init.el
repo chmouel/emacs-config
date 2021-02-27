@@ -27,6 +27,8 @@ Deactivate this advice with:
 ;;
 ;; Frame by default
 ;;
+(defvar init-default-font-size "14" )
+
 (cond
  ((string= (my-short-hostname) "thebatman")
   (setq init-default-font-size "17" ))
