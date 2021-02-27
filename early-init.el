@@ -30,7 +30,7 @@ Deactivate this advice with:
 (cond
  ((string= (my-short-hostname) "thebatman")
   (setq init-default-font-size "17" ))
- ((string= (system-name) "ibra")
+ ((string= (my-short-hostname) "ibra")
   (setq init-default-font-size "15" )))
 
 (setq default-frame-alist
