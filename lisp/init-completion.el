@@ -28,6 +28,21 @@
      orderless-flex))
   (completion-styles '(orderless)))
 
+(use-package minibuffer
+  :defer t
+  :ensure nil
+  :custom
+  (completion-styles '(initials partial-completion flex))
+  :config
+  (defun defer-garbage-collection-h ()
+    (setq gc-cons-threshold most-positive-fixnum))
+
+  (defun restore-garbage-collection-h ()
+    (run-at-time
+     1 nil (lambda () (setq gc-cons-threshold my-gc-cons-threshold))))  
+  :hook ((minibuffer-setup . defer-garbage-collection-h)
+         (minibuffer-exit . restore-garbage-collection-h)))
+
 (use-package icomplete
   :custom
   (completion-cycle-threshold t)
