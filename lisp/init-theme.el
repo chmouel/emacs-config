@@ -12,7 +12,7 @@
 
 (use-package rand-theme
   :custom
-  (rand-theme-wanted '(doom-laserwave doom-oceanic-next doom-material doom-horizon doom-palenight doom-vibrant doom-snazzy doom-dracula doom-outrun-electric))
+  (rand-theme-wanted '(doom-laserwave ubuntu doom-oceanic-next doom-material doom-horizon doom-palenight doom-vibrant doom-snazzy doom-dracula doom-outrun-electric))
   :init
   (rand-theme))
 
