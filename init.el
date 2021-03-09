@@ -18,7 +18,8 @@
 ;;----------------------------------------------------------------------------
 ;; Adjust garbage collection thresholds during startup, and thereafter
 ;;----------------------------------------------------------------------------
-(setq normal-gc-cons-threshold (* 20 1024 1024))
+(defconst my-gc-cons-threshold (* 1024 1024 1024))
+(setq normal-gc-cons-threshold my-gc-cons-threshold)
 (setq gc-cons-threshold  (* 128 1024 1024))
 (add-hook
 'emacs-startup-hook
