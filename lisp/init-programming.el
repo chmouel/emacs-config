@@ -1,10 +1,18 @@
 (use-package highlight-indentation)
-(use-package highlight-numbers)
-(use-package toggle-quotes)
-(use-package multi-compile)
-(use-package rainbow-delimiters)
 
-;; Whitespace cleanup
+(use-package highlight-numbers
+  :hook (prog-mode . highlight-numbers-mode))
+
+(use-package toggle-quotes)
+
+(use-package multi-compile)
+
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
+
+(use-package highlight-parentheses
+  :hook (prog-mode . highlight-parentheses-mode))
+
 (use-package whitespace-cleanup-mode
   :hook (after-init . global-whitespace-cleanup-mode))
 
@@ -118,8 +126,6 @@
 		("C-<return>" . my-recompile)
 		("RET" . newline-and-indent))
   :hook
-  (prog-mode . subword-mode)
-  (prog-mode . rainbow-delimiters-mode)
-  (prog-mode . highlight-numbers-mode) )
+  (prog-mode . subword-mode))
 
 (provide 'init-programming)
