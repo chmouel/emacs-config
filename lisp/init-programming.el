@@ -10,12 +10,20 @@
   (prog-mode . highlight-numbers-mode) )
 
 (use-package highlight-indentation)
-(use-package highlight-numbers)
-(use-package toggle-quotes)
-(use-package multi-compile)
-(use-package rainbow-delimiters)
 
-;; Whitespace cleanup
+(use-package highlight-numbers
+  :hook (prog-mode . highlight-numbers-mode))
+
+(use-package toggle-quotes)
+
+(use-package multi-compile)
+
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
+
+(use-package highlight-parentheses
+  :hook (prog-mode . highlight-parentheses-mode))
+
 (use-package whitespace-cleanup-mode
   :hook (prog-mode . whitespace-cleanup-mode))
 
@@ -44,5 +52,25 @@
 
 ;; Dockerfile
 (use-package dockerfile-mode)
+
+(use-package yasnippet
+  :diminish yas-minor-mode
+  :hook
+  (after-init . yas-global-mode)
+  :custom
+  (yas-key-syntaxes '("w_" "w_." "^ "))
+  (yas-installed-snippets-dir "~/elisp/yasnippet-snippets")
+  (yas-expand-only-for-last-commands nil)
+  :config
+  (add-hook 'hippie-expand-try-functions-list 'yas-hippie-try-expand))
+
+(use-package emacs
+  :bind
+  (:map prog-mode-map
+		("C-'" . toggle-quotes)
+		("C-<return>" . my-recompile)
+		("RET" . newline-and-indent))
+  :hook
+  (prog-mode . subword-mode))
 
 (provide 'init-programming)
