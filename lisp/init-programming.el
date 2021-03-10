@@ -17,7 +17,7 @@
 
 ;; Whitespace cleanup
 (use-package whitespace-cleanup-mode
-  :hook (after-init . global-whitespace-cleanup-mode))
+  :hook (prog-mode . whitespace-cleanup-mode))
 
 ;; My github-browse-remote that worksie for me
 ;; Probably should handle master/main thing
@@ -38,7 +38,7 @@
 		("C-S-<left>" . sp-backward-sexp))
   (:map emacs-lisp-mode-map
 		("C-S-<right>" . sp-forward-sexp)
-		("C-S-<left>" . sp-backward-sexp))  
+		("C-S-<left>" . sp-backward-sexp))
   :hook
   (prog-mode . smartparens-mode))
 
