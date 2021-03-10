@@ -64,7 +64,7 @@
    ("C-p" . icomplete-backward-completions)
    ("<tab>" . minibuffer-complete)
    ("<return>" . icomplete-force-complete-and-exit))
-  :hook (after-init . icomplete-mode))
+  :hook (after-init . fido-mode))
 
 (use-package company-prescient
   :config
