@@ -20,13 +20,19 @@ Deactivate this advice with:
           (insert (format-time-string "[%F %T.%3N] "))))))
 (advice-add 'message :before 'my/ad-timestamp-message)
 
+(defun my-short-hostname()
+  (string-match "[0-9A-Za-z-]+" (system-name))
+  (downcase (substring system-name (match-beginning 0) (match-end 0))))
+
 ;;
 ;; Frame by default
 ;;
+(defvar init-default-font-size "14" )
+
 (cond
- ((string= (system-name) "TheBatman.local")
+ ((string= (my-short-hostname) "thebatman")
   (setq init-default-font-size "17" ))
- ((string= (system-name) "ibra")
+ ((string= (my-short-hostname) "ibra")
   (setq init-default-font-size "15" )))
 
 (setq default-frame-alist

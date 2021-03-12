@@ -1,3 +1,4 @@
+;; Copyright Chmouel Boudjnah <chmouel>
 ;; Emacs init
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
@@ -52,6 +53,8 @@
 
 ;; Programming modes
 (require 'init-programming)
+(require 'init-flycheck)
+(require 'init-yasnippet)
 (require 'init-elisp)
 (require 'init-python)
 (require 'init-lsp)
