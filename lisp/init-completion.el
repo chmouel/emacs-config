@@ -63,8 +63,7 @@
    ("C-n" . icomplete-forward-completions)
    ("C-p" . icomplete-backward-completions)
    ("<tab>" . minibuffer-complete)
-   ("<return>" . icomplete-force-complete-and-exit))
-  :hook (after-init . fido-mode))
+   ("<return>" . icomplete-force-complete-and-exit)))
 
 (use-package company-prescient
   :config
@@ -114,51 +113,51 @@
 
 (provide 'init-completion)
 
-;; ;; ;;;IVY Disabled
-;; (use-package ivy
-;;   :bind
-;;   ("C-\\" . ivy-switch-buffer)
-;;   ("C-x C-r" . ivy-switch-buffer)
-;;   :config
-;;   (setq ivy-height 10
-;;	ivy-re-builders-alist '((t . ivy--regex-fuzzy))
-;;	ivy-count-format ""
-;;	ivy-use-virtual-buffers t))
-;; ;; (use-package all-the-icons-ivy
-;; ;;   :disabled
-;; ;;   :after (all-the-icons ivy)
-;; ;;   :custom
-;; ;;   (all-the-icons-spacer " ")
-;; ;;   (all-the-icons-ivy-file-commands
-;; ;;    '(counsel-dired-jump
-;; ;;      counsel-find-file
-;; ;;      counsel-file-jump
-;; ;;      counsel-find-library
-;; ;;      counsel-git
-;; ;;      counsel-projectile-find-dir
-;; ;;      counsel-projectile-find-file
-;; ;;      counsel-recentf))
-;; ;;   :config (all-the-icons-ivy-setup))
-;; ;; :bind
-;; ;; (("C-\\" . ivy-switch-buffer)
-;; ;;  ("C-x b" . ivy-switch-buffer)
-;; ;;  :map ivy-minibuffer-map
-;; ;;  ("C-s" . ivy-next-line)
-;; ;;  ("C-M-j" . ivy-partial)
-;; ;;  ("C-j" . ivy-immediate-done)
-;; ;;  ("C-\\" . ivy-next-line))
-;; ;; :config
-;; ;; (setq read-file-name-function
-;; ;;	(lambda (&rest args)
-;; ;;	  (let ((completing-read-function #'completing-read-default))
-;; ;;	    (apply #'read-file-name-default args))))
-;; ;; :custom
-;; ;; (ivy-wrap t)
-;; ;; (consult-project-root-function #'projectile-project-root)
-;; ;; (counsel-switch-buffer-preview-virtual-buffers nil)
-;; ;; (ivy-extra-directories '("./"))
-;; ;; (ivy-count-format "")
-;; ;; (ivy-use-virtual-buffers t))
+;; IVY Disabled
+(use-package ivy
+  :bind
+  ("C-\\" . ivy-switch-buffer)
+  ("C-x C-r" . ivy-switch-buffer)
+  :bind
+  (("C-\\" . ivy-switch-buffer)
+   ("C-x b" . ivy-switch-buffer)
+   :map ivy-minibuffer-map
+   ("C-s" . ivy-next-line)
+   ("C-M-j" . ivy-partial)
+   ("C-j" . ivy-immediate-done)
+   ("C-\\" . ivy-next-line))
+  :config
+  (setq read-file-name-function
+	    (lambda (&rest args)
+	      (let ((completing-read-function #'completing-read-default))
+	        (apply #'read-file-name-default args))))
+  :custom
+  (ivy-wrap t)
+  (consult-project-root-function #'projectile-project-root)
+  (counsel-switch-buffer-preview-virtual-buffers nil)
+  (ivy-extra-directories '("./"))
+  (ivy-count-format "")
+  (ivy-use-virtual-buffers t)
+  :config
+  (setq ivy-height 10
+	    ivy-re-builders-alist '((t . ivy--regex-fuzzy))
+	    ivy-count-format ""
+	    ivy-use-virtual-buffers t))
+
+(use-package all-the-icons-ivy
+  :after (all-the-icons ivy)
+  :custom
+  (all-the-icons-spacer " ")
+  (all-the-icons-ivy-file-commands
+   '(counsel-dired-jump
+     counsel-find-file
+     counsel-file-jump
+     counsel-find-library
+     counsel-git
+     counsel-projectile-find-dir
+     counsel-projectile-find-file
+     counsel-recentf))
+  :config (all-the-icons-ivy-setup))
 
 ;; (use-package counsel :ensure t
 ;;   :disabled
@@ -175,8 +174,7 @@
 ;;    '((ivy-rich-switch-buffer-size (:align right))
 ;;      (ivy-rich-switch-buffer-major-mode (:width 20 :face font-lock-keyword-face)))))
 
-;; (use-package ivy-prescient
-;;   :disabled
-;;   :ensure t
-;;   :config
-;;   (ivy-prescient-mode 1))
+(use-package ivy-prescient
+  :ensure t
+  :config
+  (ivy-prescient-mode 1))
