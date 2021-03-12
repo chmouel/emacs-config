@@ -56,7 +56,6 @@
   (tab-width 4)
   (indent-tabs-mode nil)
   (fill-column 80)
-  (x-stretch-cursor t)
   ;; Backup
   (make-backup-files nil)
   ;; FilePath
@@ -207,7 +206,7 @@
   :custom
   (show-paren-style 'mixed)
   (show-paren-highlight-openparen t)
-  (show-paren-when-point-in-periphery t)
+  (show-paren-when-point-in-periphery nil)
   (show-paren-when-point-inside-paren t)
   :config
   :hook (after-init . show-paren-mode))

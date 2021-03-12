@@ -11,6 +11,7 @@
   (lsp-eldoc-render-all nil)
   (lsp-enable-file-watchers nil)
   (lsp-pyls-plugins-flake8-enabled t)
+  (lsp-pyls-plugins-flake8-max-line-length 200)
   (lsp-enable-symbol-highlighting nil)
   (lsp-enable-links t)
   (lsp-enable-snippet t)
