@@ -23,7 +23,7 @@
   ("C-x <left>" . indent-rigidly-left)
   ("C-x <right>" . indent-rigidly-right)
 
-  ( "C-2" . split-window-vertically)
+  ("C-2" . split-window-vertically)
 
   ;; Redefine {for/back}ward paragraphs to just 4 lines
   ("C-<down>" .
@@ -204,9 +204,8 @@
 ;; Paren mode
 (use-package paren
   :custom
-  (show-paren-style 'mixed)
   (show-paren-highlight-openparen t)
-  (show-paren-when-point-in-periphery nil)
+  (show-paren-when-point-in-periphery t)
   (show-paren-when-point-inside-paren t)
   :config
   :hook (after-init . show-paren-mode))
