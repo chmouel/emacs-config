@@ -6,7 +6,6 @@
 		("RET" . newline-and-indent))
   :hook
   (prog-mode . subword-mode)
-  (prog-mode . rainbow-delimiters-mode)
   (prog-mode . highlight-numbers-mode) )
 
 (use-package highlight-indentation)
@@ -17,9 +16,6 @@
 (use-package toggle-quotes)
 
 (use-package multi-compile)
-
-(use-package rainbow-delimiters
-  :hook (prog-mode . rainbow-delimiters-mode))
 
 (use-package highlight-parentheses
   :hook (prog-mode . highlight-parentheses-mode))
