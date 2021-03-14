@@ -114,7 +114,7 @@
 ;; IVY Disabled
 (use-package ivy
   :bind
-  ("C-\\" . ivy-switch-buffer)
+  ;; ("C-\\" . ivy-switch-buffer)
   ("C-x C-r" . ivy-switch-buffer)
   :bind
   (("C-\\" . ivy-switch-buffer)
@@ -176,3 +176,30 @@
   :ensure t
   :config
   (ivy-prescient-mode 1))
+
+(use-package selectrum
+  :hook (after-init . selectrum-mode)
+  :ensure t
+  :custom-face
+  (selectrum-current-candidate ((t
+                                 (:inherit highlight
+                                           :underline nil))))
+  (selectrum-secondary-highlight ((t
+                                   (:inherit ivy-highlight-face))))
+  (selectrum-primary-highlight ((t
+                                 (:inherit ivy-minibuffer-match-face-2 ))))
+  :bind
+  (:map selectrum-minibuffer-map
+        ("C-s" . selectrum-next-candidate)
+        ("C-RET" . selectrum-submit-exact-input)
+        ("C-\\" . selectrum-next-candidate))
+  :custom
+  (selectrum-count-style 'nil)
+  (selectrum-max-window-height 15)
+  (selectrum-extend-current-candidate-highlight t))
+
+(use-package selectrum-prescient
+  :ensure t
+  :after selectrum
+  :init
+  (selectrum-prescient-mode +1))
