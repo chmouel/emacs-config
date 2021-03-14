@@ -45,7 +45,6 @@
 
 (use-package icomplete
   :custom
-  (completion-cycle-threshold t)
   (icomplete-delay-completions-threshold 0)
   (icomplete-max-delay-chars 2)
   (icomplete-compute-delay 0)
@@ -77,8 +76,7 @@
   (prescient-sort-length-enable nil)
   (prescient-filter-method '(literal regexp fuzzy)))
 
-(use-package icomplete-vertical
-  :hook (after-init . icomplete-vertical-mode))
+(use-package icomplete-vertical)
 
 (use-package company
   :diminish
