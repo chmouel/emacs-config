@@ -1,4 +1,6 @@
 (use-package emacs
+  :ensure nil
+  :defer t
   :bind
   (:map prog-mode-map
 		("C-'" . toggle-quotes)
@@ -59,14 +61,5 @@
   (yas-expand-only-for-last-commands nil)
   :config
   (add-hook 'hippie-expand-try-functions-list 'yas-hippie-try-expand))
-
-(use-package emacs
-  :bind
-  (:map prog-mode-map
-		("C-'" . toggle-quotes)
-		("C-<return>" . my-recompile)
-		("RET" . newline-and-indent))
-  :hook
-  (prog-mode . subword-mode))
 
 (provide 'init-programming)
