@@ -114,16 +114,11 @@
 ;; IVY Disabled
 (use-package ivy
   :bind
-  ;; ("C-\\" . ivy-switch-buffer)
-  ("C-x C-r" . ivy-switch-buffer)
-  :bind
-  (("C-\\" . ivy-switch-buffer)
-   ("C-x b" . ivy-switch-buffer)
-   :map ivy-minibuffer-map
-   ("C-s" . ivy-next-line)
-   ("C-M-j" . ivy-partial)
-   ("C-j" . ivy-immediate-done)
-   ("C-\\" . ivy-next-line))
+  (:map ivy-minibuffer-map
+        ("C-s" . ivy-next-line)
+        ("C-M-j" . ivy-partial)
+        ("C-j" . ivy-immediate-done)
+        ("C-\\" . ivy-next-line))
   :config
   (setq read-file-name-function
 	    (lambda (&rest args)
