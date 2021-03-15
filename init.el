@@ -63,5 +63,6 @@
 (require 'init-sh)
 (require 'init-makefile)
 (require 'init-javascript)
+(require 'init-markdown)
 (require 'init-go)
 (require 'init-html)
