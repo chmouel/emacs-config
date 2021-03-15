@@ -50,4 +50,6 @@ Deactivate this advice with:
 
 (setq inhibit-splash-screen t)
 
+(setq package-quickstart t)
+
 (provide 'early-init)
