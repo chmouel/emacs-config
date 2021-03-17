@@ -74,8 +74,6 @@
   (prescient-sort-length-enable nil)
   (prescient-filter-method '(literal regexp fuzzy)))
 
-(use-package icomplete-vertical)
-
 (use-package company
   :diminish
   :ensure t
@@ -166,11 +164,6 @@ If current selection is a directory insert it in the current completion."
         ("C-M-j" . ivy-partial)
         ("C-j" . ivy-immediate-done)
         ("C-\\" . ivy-next-line))
-  ;; :config
-  ;; (setq read-file-name-function
-  ;;       (lambda (&rest args)
-  ;;         (let ((completing-read-function #'completing-read-default))
-  ;;           (apply #'read-file-name-default args))))
   :custom
   (ivy-wrap t)
   (consult-project-root-function #'projectile-project-root)
