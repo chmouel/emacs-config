@@ -5,7 +5,7 @@
   (after-init . yas-global-mode)
   :custom
   (auto-insert-query nil)
-  (yas-prompt-functions '(yas/dropdown-prompt))
+  (yas-prompt-functions '(yas-completing-prompt))
   (yas-key-syntaxes '("w_" "w_." "^ "))
   (yas-installed-snippets-dir "~/elisp/yasnippet-snippets")
   (yas-expand-only-for-last-commands nil)
