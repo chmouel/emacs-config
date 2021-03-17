@@ -108,17 +108,26 @@
   :ensure t
   :hook (company-mode . company-box-mode))
 
-;; (use-package ido-vertical-mode
-;;   :ensure t
-;;   :init
-;;   (ido-vertical-mode))
-
-;; (use-package ido
-;;   :init
-;;   (ido-mode))
-
 (use-package selectrum
-  :hook (after-init . selectrum-mode)
+  :preface (declare-function chmou-selectrum-insert-or-submit-current-candidate nil)
+  :init
+  (defun chmou-selectrum-classic-find-file-completion ()
+    "This tries to mimic the classic find file completion
+
+If multiple matches, go to next candidates.
+If only one match, select it.
+If current selection is a directory insert it in the current completion."
+    (interactive)
+    (progn
+      (let* ((index (selectrum--index-for-arg nil))
+             (selection (selectrum--get-candidate index))))
+      (cond
+       ((string-suffix-p "/" selection)
+        (selectrum-insert-current-candidate))
+       ((> (length (selectrum-get-current-candidates)) 1)
+        (selectrum-next-candidate))
+       ((= (length (selectrum-get-current-candidates)) 1)
+        (selectrum-select-current-candidate)))))
   :ensure t
   :custom-face
   (selectrum-current-candidate ((t
@@ -127,7 +136,7 @@
   :bind
   (:map selectrum-minibuffer-map
         ("C-s" . selectrum-next-candidate)
-        ("TAB" . selectrum-insert-current-candidate)
+        ("TAB" . selectrum-insert-or-submit-current-candidate)        
         ("C-RET" . selectrum-submit-exact-input)
         ("C-\\" . selectrum-next-candidate))
   :custom
