@@ -8,7 +8,7 @@
 		("RET" . newline-and-indent))
   :hook
   (prog-mode . subword-mode)
-  (prog-mode . highlight-numbers-mode) )
+  (prog-mode . highlight-numbers-mode))
 
 (use-package highlight-indentation)
 
