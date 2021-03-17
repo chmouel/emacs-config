@@ -57,6 +57,7 @@
   (indent-tabs-mode nil)
   (fill-column 80)
   ;; Backup
+  (enable-local-variables :all) ;; Is it a good idea ?? probably not :\
   (make-backup-files nil)
   ;; FilePath
   (server-auth-dir (locate-user-emacs-file "auto-save-list/server/"))
