@@ -31,8 +31,6 @@
 (use-package minibuffer
   :defer t
   :ensure nil
-  :custom
-  (completion-styles '(initials partial-completion flex))
   :config
   (defun defer-garbage-collection-h ()
     (setq gc-cons-threshold most-positive-fixnum))
