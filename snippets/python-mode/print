@@ -3,4 +3,4 @@
 # key: p
 # binding: M-p
 # --
-print($0)
+print(`yas-selected-text`$0)
