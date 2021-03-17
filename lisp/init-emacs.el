@@ -207,11 +207,9 @@
   (show-paren-highlight-openparen t)
   (show-paren-when-point-in-periphery t)
   (show-paren-when-point-inside-paren t)
-  :config
   :hook (after-init . show-paren-mode))
 
 (use-package delsel
-  :config
-  (delete-selection-mode 1))
+  :hook (after-init . delete-selection-mode))
 
 (provide 'init-emacs)
