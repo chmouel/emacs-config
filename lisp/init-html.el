@@ -5,11 +5,9 @@
     (flycheck-mode -1)
     (local-set-key (kbd "RET") 'newline-and-indent)
     (local-set-key '[(control c)(control v)] 'browse-url-of-buffer)
-    (local-set-key '[(control c)(control w)] 'sgml-validate)
-    )
+    (local-set-key '[(control c)(control w)] 'sgml-validate))
   (defun my-web-mode-hook ()
     "Hooks for Web mode."
-    (auto-complete-mode)
     (yas-activate-extra-mode 'html-mode)
     (my-html-mode-hook)
     (local-set-key '[(control x) (.)] 'web-mode-element-content-select)
