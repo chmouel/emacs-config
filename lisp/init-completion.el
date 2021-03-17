@@ -26,7 +26,7 @@
      orderless-prefixes
      orderless-literal
      orderless-flex))
-  (completion-styles '(orderless)))
+  (completion-styles '(regexp orderless)))
 
 (use-package minibuffer
   :defer t
@@ -99,6 +99,7 @@
 
 (use-package consult
   :bind
+  ("C-x C-r" . counsult-recent-file)
   ("C-c U" . consult-git-grep)
   ("M-g M-g" . consult-goto-line))
 
@@ -107,21 +108,53 @@
   :ensure t
   :hook (company-mode . company-box-mode))
 
-(provide 'init-completion)
+;; (use-package ido-vertical-mode
+;;   :ensure t
+;;   :init
+;;   (ido-vertical-mode))
+
+;; (use-package ido
+;;   :init
+;;   (ido-mode))
+
+(use-package selectrum
+  :hook (after-init . selectrum-mode)
+  :ensure t
+  :custom-face
+  (selectrum-current-candidate ((t
+                                 (:inherit highlight
+                                           :underline nil))))
+  :bind
+  (:map selectrum-minibuffer-map
+        ("C-s" . selectrum-next-candidate)
+        ("TAB" . selectrum-insert-current-candidate)
+        ("C-RET" . selectrum-submit-exact-input)
+        ("C-\\" . selectrum-next-candidate))
+  :custom
+  (selectrum-count-style 'nil)
+  (selectrum-max-window-height 15)
+  (selectrum-extend-current-candidate-highlight t))
+
+(use-package selectrum-prescient
+  :ensure t
+  :after selectrum
+  :init
+  (selectrum-prescient-mode +1))
 
 ;; IVY Disabled
 (use-package ivy
+  :ensure t
   :bind
   (:map ivy-minibuffer-map
         ("C-s" . ivy-next-line)
         ("C-M-j" . ivy-partial)
         ("C-j" . ivy-immediate-done)
         ("C-\\" . ivy-next-line))
-  :config
-  (setq read-file-name-function
-	    (lambda (&rest args)
-	      (let ((completing-read-function #'completing-read-default))
-	        (apply #'read-file-name-default args))))
+  ;; :config
+  ;; (setq read-file-name-function
+  ;;       (lambda (&rest args)
+  ;;         (let ((completing-read-function #'completing-read-default))
+  ;;           (apply #'read-file-name-default args))))
   :custom
   (ivy-wrap t)
   (consult-project-root-function #'projectile-project-root)
@@ -136,6 +169,7 @@
 	    ivy-use-virtual-buffers t))
 
 (use-package all-the-icons-ivy
+  :disabled
   :after (all-the-icons ivy)
   :custom
   (all-the-icons-spacer " ")
@@ -150,49 +184,11 @@
      counsel-recentf))
   :config (all-the-icons-ivy-setup))
 
-;; (use-package counsel :ensure t
-;;   :disabled
-;;   :bind
-;;   (("M-x" . counsel-M-x)
-;;    ("C-c U" . counsel-grep)))
-
-;; (use-package ivy-rich
-;;   :disabled
-;;   :custom
-;;   (ivy-rich-path-style 'abbrev)
-;;   (ivy-rich-modify-columns
-;;    'ivy-switch-buffer
-;;    '((ivy-rich-switch-buffer-size (:align right))
-;;      (ivy-rich-switch-buffer-major-mode (:width 20 :face font-lock-keyword-face)))))
-
 (use-package ivy-prescient
+  :disabled
   :ensure t
   :config
   (ivy-prescient-mode 1))
 
-(use-package selectrum
-  :hook (after-init . selectrum-mode)
-  :ensure t
-  :custom-face
-  (selectrum-current-candidate ((t
-                                 (:inherit highlight
-                                           :underline nil))))
-  (selectrum-secondary-highlight ((t
-                                   (:inherit ivy-highlight-face))))
-  (selectrum-primary-highlight ((t
-                                 (:inherit ivy-minibuffer-match-face-2 ))))
-  :bind
-  (:map selectrum-minibuffer-map
-        ("C-s" . selectrum-next-candidate)
-        ("C-RET" . selectrum-submit-exact-input)
-        ("C-\\" . selectrum-next-candidate))
-  :custom
-  (selectrum-count-style 'nil)
-  (selectrum-max-window-height 15)
-  (selectrum-extend-current-candidate-highlight t))
+(provide 'init-completion)
 
-(use-package selectrum-prescient
-  :ensure t
-  :after selectrum
-  :init
-  (selectrum-prescient-mode +1))
