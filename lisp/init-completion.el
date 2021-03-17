@@ -97,16 +97,16 @@
 		("C-p" . company-select-previous)
 		("C-n" . company-select-next)))
 
+(use-package company-box
+  :diminish
+  :ensure t
+  :hook (company-mode . company-box-mode))
+
 (use-package consult
   :bind
   ("C-x C-r" . counsult-recent-file)
   ("C-c U" . consult-git-grep)
   ("M-g M-g" . consult-goto-line))
-
-(use-package company-box
-  :diminish
-  :ensure t
-  :hook (company-mode . company-box-mode))
 
 (use-package selectrum
   :hook (after-init . selectrum-mode)
