@@ -45,29 +45,11 @@
 ;; Eldoc-Mode
 (use-package smartparens
   :diminish smartparens-mode
-  :bind
-  (:map lisp-interaction-mode-map
-		("C-S-<right>" . sp-forward-sexp)
-		("C-S-<left>" . sp-backward-sexp))
-  (:map emacs-lisp-mode-map
-		("C-S-<right>" . sp-forward-sexp)
-		("C-S-<left>" . sp-backward-sexp))
   :hook
+  (prog-mode . show-smartparens-mode)
   (prog-mode . smartparens-mode))
 
 ;; Dockerfile
 (use-package dockerfile-mode)
-
-(use-package yasnippet
-  :diminish yas-minor-mode
-  :hook
-  (after-init . yas-global-mode)
-  :custom
-  (yas-prompt-functions '(yas-completing-prompt))
-  (yas-key-syntaxes '("w_" "w_." "^ "))
-  (yas-installed-snippets-dir "~/elisp/yasnippet-snippets")
-  (yas-expand-only-for-last-commands nil)
-  :config
-  (add-hook 'hippie-expand-try-functions-list 'yas-hippie-try-expand))
 
 (provide 'init-programming)
