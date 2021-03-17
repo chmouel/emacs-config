@@ -59,7 +59,7 @@
           (local-set-key (kbd "C-S-r") 'pytest-one))
       (local-set-key '[(control return)] 'multi-compile-run)))
   
-  (add-to-list 'multi-compile-alist '(python-mode . (("pyhon-run" . (concat python-shell-interpreter " -E %path")))))
+  (add-to-list 'multi-compile-alist '(python-mode . (("pyhon-run" . "python3 -E %path"))))
   
   :hook ((python-mode . yapf-mode)
 	     (python-mode . lsp-deferred)
