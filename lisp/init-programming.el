@@ -4,7 +4,7 @@
   :bind
   (:map prog-mode-map
 		("C-'" . toggle-quotes)
-		("C-<return>" . my-recompile)
+		("C-<return>" . recompile)
 		("RET" . newline-and-indent))
   :hook
   (prog-mode . subword-mode)
@@ -17,8 +17,15 @@
 
 (use-package toggle-quotes)
 
-(use-package multi-compile)
-
+(use-package multi-compile
+  :demand t
+  :custom
+  (multi-compile-history-file
+   (locate-user-emacs-file "auto-save-list/multi-compile.cache"))
+  :bind
+  (:map prog-mode-map
+        ("C-<return>" . multi-compile-run)))
+  
 (use-package highlight-parentheses
   :hook (prog-mode . highlight-parentheses-mode))
 

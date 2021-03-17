@@ -32,12 +32,12 @@
     (save-excursion
       (goto-char (point-min))
       (while (or (python-info-current-line-comment-p)
-		 (python-info-docstring-p))
-	(forward-line))
+		         (python-info-docstring-p))
+	    (forward-line))
       (insert
        (concat
-	"import " import
-	(if arg (concat " as " (read-from-minibuffer "Import as: "))))
+	    "import " import
+	    (if arg (concat " as " (read-from-minibuffer "Import as: "))))
        "\n")))
 
   (defun my-py-import-add (arg import)
@@ -50,23 +50,23 @@
 
   (defun my-python-mode-hook()
     (if (and
-	 buffer-file-name
-	 (string-match
+	     buffer-file-name
+	     (string-match
           "\\(^test_\\|_test$\\)"
           (file-name-base (file-name-sans-extension buffer-file-name))))
-	(progn
+	    (progn
           (local-set-key '[(control return)] 'pytest-one)
           (local-set-key (kbd "C-S-r") 'pytest-one))
-      (local-set-key '[(control return)] 'my-recompile))
-    (setq-local
-     compile-command
-     (concat python-shell-interpreter " -E \"" buffer-file-name "\"")))
+      (local-set-key '[(control return)] 'multi-compile-run)))
+  
+  (add-to-list 'multi-compile-alist '(python-mode . (("pyhon-run" . (concat python-shell-interpreter " -E %path")))))
+  
   :hook ((python-mode . yapf-mode)
-	 (python-mode . lsp-deferred)
-	 (python-mode . flycheck-mode)
-	 (python-mode . hungry-delete-mode)
-	 (python-mode . highlight-indentation-mode)
-	 (python-mode . my-python-mode-hook)))
+	     (python-mode . lsp-deferred)
+	     (python-mode . flycheck-mode)
+	     (python-mode . hungry-delete-mode)
+	     (python-mode . highlight-indentation-mode)
+	     (python-mode . my-python-mode-hook)))
 
 
 (provide 'init-python)

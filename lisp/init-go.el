@@ -20,13 +20,13 @@
               ("C-c d" . godoc-at-point)
               ("C-S-r" . go-run)
               ("C-S-w" . (lambda () (interactive) (kill-new (go-test--get-current-test))))
-              ("C-<return>" . my-recompile)
-              ("C-M-<return>" . multi-compile-run)
               ("C-c t" . ff-find-other-file))
   :hook ((go-mode . lsp)
          (go-mode . subword-mode)
          (go-mode . my-go-mode-hook))
   :config
+  (add-to-list 'multi-compile-alist '(go-mode . (("go-run" . "go run %path"))))
+
   (defun my-go-mode-hook ()
     (setq gofmt-command "goimports")
     (if (and buffer-file-name
