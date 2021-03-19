@@ -103,7 +103,7 @@
 (use-package consult
   :bind
   ("C-x C-r" . counsult-recent-file)
-  ("C-c U" . consult-git-grep)
+  ("C-c U" . consult-ripgrep)
   ("M-g M-g" . consult-goto-line))
 
 (use-package embark
@@ -127,6 +127,12 @@
   (add-hook 'embark-candidate-collectors #'current-candidates+category)
   ;; No unnecessary computation delay after injection.
   (add-hook 'embark-setup-hook 'selectrum-set-selected-candidate))
+
+(use-package embark-consult
+  :after (embark consult)
+  :demand t ; only necessary if you have the hook below
+  :hook
+  (embark-collect-mode . embark-consult-preview-minor-mode))
 
 (use-package selectrum
   :hook (after-init . selectrum-mode)
