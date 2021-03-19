@@ -3,8 +3,7 @@
   :defer t
   :bind
   (:map prog-mode-map
-		("C-'" . toggle-quotes)
-		("C-<return>" . recompile)
+        ("M-RET" . (lambda () (interactive) (move-end-of-line 1) (newline-and-indent)))
 		("RET" . newline-and-indent))
   :hook
   (prog-mode . subword-mode)
@@ -15,7 +14,10 @@
 (use-package highlight-numbers
   :hook (prog-mode . highlight-numbers-mode))
 
-(use-package toggle-quotes)
+(use-package toggle-quotes
+  :bind
+  (:map prog-mode-map
+		("C-'" . toggle-quotes)))
 
 (use-package multi-compile
   :demand t
@@ -24,6 +26,7 @@
    (locate-user-emacs-file "auto-save-list/multi-compile.cache"))
   :bind
   (:map prog-mode-map
+        ("C-<return>" . recompile)
         ("C-<return>" . multi-compile-run)))
   
 (use-package highlight-parentheses
