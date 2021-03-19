@@ -1,3 +1,8 @@
+(use-package gcmh
+  :demand
+  :config
+  (gcmh-mode 1))
+
 (use-package multiple-cursors
   :bind (("C-c ." . mc/mark-all-dwim))
   :custom
