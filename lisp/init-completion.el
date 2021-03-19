@@ -78,22 +78,31 @@
   :diminish
   :ensure t
   :custom
-  (company-idle-delay 0.3)
+  (company-dabbrev-downcase nil "Don't downcase returned candidates.")
+  (company-show-numbers t "Numbers are helpful.")
+  (company-tooltip-limit 20 "The more the merrier.")
+  (company-tooltip-idle-delay 0.4 "Faster!")
+  (company-async-timeout 20 "Some requests can take a long time. That's fine.")
   (company-minimum-prefix-length 1)
   (company-tooltip-align-annotations t)
   :config
+  ;; Use the numbers 0-9 to select company completion candidates
+  (let ((map company-active-map))
+    (mapc (lambda (x) (define-key map (format "%d" x)
+                        `(lambda () (interactive) (company-complete-number ,x))))
+          (number-sequence 0 9)))
   (add-to-list 'company-backends 'company-capf)
   :bind
   (:map company-mode-map
-		("<backtab>" . company-yasnippet)
-		:map company-active-map
-		("C-p" . company-select-previous)
-		("C-n" . company-select-next)
-		("<tab>" . company-complete-common-or-cycle)
-		("<backtab>" . my-company-yasnippet)
-		:map company-search-map
-		("C-p" . company-select-previous)
-		("C-n" . company-select-next)))
+	    ("<backtab>" . company-yasnippet)
+	    :map company-active-map
+	    ("C-p" . company-select-previous)
+	    ("C-n" . company-select-next)
+	    ("<tab>" . company-complete-common-or-cycle)
+	    ("<backtab>" . my-company-yasnippet)
+	    :map company-search-map
+	    ("C-p" . company-select-previous)
+	    ("C-n" . company-select-next)))
 
 (use-package company-box
   :diminish
@@ -102,7 +111,7 @@
 
 (use-package consult
   :bind
-  ("C-x C-r" . counsult-recent-file)
+  ("C-x C-r" . consult-recent-file)
   ("C-c U" . consult-ripgrep)
   ("M-g M-g" . consult-goto-line))
 
