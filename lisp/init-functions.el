@@ -161,6 +161,6 @@
         ;; Now, try to succeed from inside of a bracket
         ((looking-at "\\s)") (forward-char) (backward-sexp arg))
         ((looking-back "\\s(" 1) (backward-char) (forward-sexp arg))))
-(global-set-key (read-kbd-macro "C-]") 'forward-or-backward-sexp)
+(global-set-key (read-kbd-macro "C-=") 'forward-or-backward-sexp)
 
  (provide 'init-functions)
