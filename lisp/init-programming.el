@@ -32,11 +32,17 @@
 (use-package whitespace-cleanup-mode
   :hook (prog-mode . whitespace-cleanup-mode))
 
-;; My github-browse-remote that worksie for me
-;; Probably should handle master/main thing
+;; https://github.com/chmouel/chmouzies/blob/master/emacs/github-browse-remote.el
+;; 
+;; My github-browse-remote fork that worksie for me when we have `upstream`
+;; branch instead of origin.
+;; It uses this binary
+;; https://github.com/chmouel/chmouzies/blob/master/git/git-browse
+;;
+;; Probably can be an advice.
 (use-package github-browse-remote
-  :if (and (boundp 'my-github-browse-remote-location)
-		   (file-directory-p my-github-browse-remote-location))
+  :if (and my-github-browse-remote-location
+           (file-directory-p my-github-browse-remote-location))
   :load-path my-github-browse-remote-location
   :commands (github-browse-remote)
   :bind
