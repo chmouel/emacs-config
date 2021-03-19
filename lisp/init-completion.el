@@ -8,7 +8,8 @@
   (marginalia-mode +1))
 
 (use-package swivb
-  :if (and (boundp 'my-swivb-location) (file-directory-p my-swivb-location))
+  ;; Emacs Swivb -- https://github.com/chmouel/emacs-swivb/
+  :if (and my-swivb-location (file-directory-p my-swivb-location))
   :commands (swivb)
   :load-path my-swivb-location ; TODO: need to upload it in melpa
   :config
@@ -152,7 +153,8 @@
 
 If multiple matches, go to next candidates, and rotate if we are at the bottom.
 If only one match, select it.
-If current selection is a directory insert it in the current completion."
+If current selection is a directory insert it in the current completion.
+See https://streamable.com/4785sz for demo."
     (interactive)
     (progn
       (let* ((index

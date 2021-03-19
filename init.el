@@ -2,6 +2,9 @@
 ;; Emacs init
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
+(defconst my-swivb-location nil)
+(defconst my-github-browse-remote-location nil)
+
 
 ;; Startup time
 (defun chmou-display-startup-time ()
