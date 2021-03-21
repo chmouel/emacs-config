@@ -202,13 +202,19 @@
   :hook (after-init . global-so-long-mode)
   :config (setq so-long-threshold 400))
 
+;; Tramp
+(use-package tramp
+  :ensure nil
+  :custom
+  (tramp-persistency-file-name
+   (locate-user-emacs-file "auto-save-list/tramp")))
+
 ;; Paren mode
 (use-package paren
   :custom
   (show-paren-highlight-openparen t)
   (show-paren-when-point-in-periphery t)
-  (show-paren-when-point-inside-paren t)
-  :hook (after-init . show-paren-mode))
+  (show-paren-when-point-inside-paren t))
 
 (use-package delsel
   :hook (after-init . delete-selection-mode))
