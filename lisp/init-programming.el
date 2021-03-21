@@ -53,6 +53,8 @@
 
 ;; Eldoc-Mode
 (use-package smartparens
+  :custom-face
+  (sp-show-pair-match-face ((t (:background "white" :foreground "black"))))
   :diminish smartparens-mode
   :hook
   (prog-mode . show-smartparens-mode)
