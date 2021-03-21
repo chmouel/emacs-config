@@ -114,6 +114,9 @@
 
 (use-package bufler
   :bind
-  (("C-x C-b" . bufler)))
+  ("C-x b" . bufler-switch-buffer)
+  ("C-x C-b" . bufler))
+
+(use-package restart-emacs)
 
 (provide 'init-packages)
