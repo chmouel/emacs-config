@@ -53,6 +53,9 @@
 
 ;; Eldoc-Mode
 (use-package smartparens
+  :bind
+  (([remap forward-sexp] . sp-forward-sexp)
+   ([remap backward-sexp] . sp-backward-sexp))
   :custom-face
   (sp-show-pair-match-face ((t (:background "white" :foreground "black"))))
   :diminish smartparens-mode
