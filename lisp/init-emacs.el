@@ -44,8 +44,7 @@
   ;;----------------------------------------------------------------------------
   (after-init . (lambda ()
                   (require 'server)
-                  (unless (and (fboundp 'server-running-p))
-                    (server-running-p)
+                  (unless (and (fboundp 'server-running-p) (server-running-p))
                     (server-start))))
   :config
   (global-unset-key "\C-x\C-z")

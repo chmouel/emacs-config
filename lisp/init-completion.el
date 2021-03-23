@@ -17,17 +17,11 @@
   :bind
   ("C-\\" . swivb))
 
-(use-package orderless
+(use-package selectrum-prescient
   :ensure t
-  :custom
-  (orderless-regexp-separator " +")
-  (orderless-matching-styles
-   '(orderless-strict-leading-initialism
-     orderless-regexp
-     orderless-prefixes
-     orderless-literal
-     orderless-flex))
-  (completion-styles '(regexp orderless)))
+  :after selectrum
+  :init
+  (selectrum-prescient-mode +1))
 
 (use-package minibuffer
   :defer t
@@ -187,12 +181,6 @@ See https://streamable.com/4785sz for demo."
   (selectrum-count-style 'nil)
   (selectrum-max-window-height 15)
   (selectrum-extend-current-candidate-highlight t))
-
-(use-package selectrum-prescient
-  :ensure t
-  :after selectrum
-  :init
-  (selectrum-prescient-mode +1))
 
 ;; IVY Disabled
 (use-package ivy
