@@ -39,7 +39,6 @@
   :hook
   (after-save . executable-make-buffer-file-executable-if-script-p)
   (after-init . windmove-default-keybindings)
-  (after-init .   delete-selection-mode)
   ;;----------------------------------------------------------------------------
   ;; Allow access from emacsclient
   ;;----------------------------------------------------------------------------
