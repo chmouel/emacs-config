@@ -39,7 +39,6 @@
   :hook
   (after-save . executable-make-buffer-file-executable-if-script-p)
   (after-init . windmove-default-keybindings)
-  (after-init .   delete-selection-mode)
   ;;----------------------------------------------------------------------------
   ;; Allow access from emacsclient
   ;;----------------------------------------------------------------------------
@@ -210,12 +209,18 @@
 
 ;; Paren mode
 (use-package paren
+  :ensure nil
   :custom
   (show-paren-highlight-openparen t)
   (show-paren-when-point-in-periphery t)
   (show-paren-when-point-inside-paren t))
 
 (use-package delsel
+  :ensure nil
   :hook (after-init . delete-selection-mode))
+
+(use-package winner
+  :ensure nil
+  :hook (after-init . winner-mode))
 
 (provide 'init-emacs)
