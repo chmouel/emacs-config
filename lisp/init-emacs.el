@@ -203,6 +203,7 @@
 
 ;; Paren mode
 (use-package paren
+  :ensure nil
   :custom
   (show-paren-highlight-openparen t)
   (show-paren-when-point-in-periphery t)
@@ -210,6 +211,11 @@
   :hook (after-init . show-paren-mode))
 
 (use-package delsel
+  :ensure nil
   :hook (after-init . delete-selection-mode))
+
+(use-package winner
+  :ensure nil
+  :hook (after-init . winner-mode))
 
 (provide 'init-emacs)
