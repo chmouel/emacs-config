@@ -21,4 +21,8 @@
  use-package-always-ensure t)
 (package-initialize)
 
+;; My custom packages location to be defined in init-local
+(defconst my-swivb-location nil) ;; https://github.com/chmouel/emacs-swivb/
+(defconst my-github-browse-remote-location nil) ;; https://git.io/JmpQk
+
 (provide 'init-elpa)
