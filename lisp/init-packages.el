@@ -14,7 +14,7 @@
          ("M-<down>" . er/contract-region)))
 
 (use-package comment-dwim-2
-  :bind (("M-;" . comment-dwim-2)))
+  :bind (([remap comment-dwim] . comment-dwim-2)))
 
 (use-package smart-shift
   :config (global-smart-shift-mode))
@@ -41,6 +41,9 @@
 (use-package crux
   :bind (("C-k" . crux-smart-kill-line)
          ("C-M-l" . crux-switch-to-previous-buffer)
+         ("C-M-j" . crux-top-join-line)
+         ("C-M-d" . crux-duplicate-current-line-or-region)
+         ([remap move-beginning-of-line] . crux-move-beginning-of-line)
          ("C-o" . crux-smart-open-line-above)
          ([shift return] . crux-smart-open-line )))
 
