@@ -3,6 +3,7 @@
   :defer t
   :bind
   (:map prog-mode-map
+        ("<backtab>" . yas-insert-snippet)
         ("M-RET" . (lambda () (interactive) (move-end-of-line 1) (newline-and-indent)))
 		("RET" . newline-and-indent))
   :hook
