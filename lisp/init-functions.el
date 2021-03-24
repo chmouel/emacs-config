@@ -9,77 +9,6 @@
     (tab-bar-select-tab (1+ tab-index))))
 (global-set-key (read-kbd-macro "<f2>") 'my-switch-to-gnus)
 
-;; Duplicate current line down
-(defun my-duplicate-region (beg end &optional sep)
-  "Duplicate the region"
-  (interactive "*r")
-  (let ((p (point)))
-    (copy-region-as-kill beg end)
-    (message "%d" (point))
-    (goto-char end)
-    (if (stringp sep) (insert sep))
-    (yank)
-    (goto-char p)))
-
-(defun my-duplicate-line-or-region ()
-  "duplicate the region if active otherwise the current line"
-  (interactive)
-  (if mark-active
-      (my-duplicate-region (point) (mark))
-    (progn
-      (my-duplicate-region
-       (point-at-bol)
-       (point-at-eol) "\n")
-      (forward-line))))
-(global-set-key '[(control meta d)] 'my-duplicate-line-or-region)
-
-;; autoindent open-*-lines
-(defvar newline-and-indent t)
-(defun my-comment-line-or-region ()
-  (interactive "*")
-  (if (and mark-active transient-mark-mode)
-      (comment-or-uncomment-region (region-beginning) (region-end) nil)
-    (progn
-      (save-excursion
-        (move-beginning-of-line nil)
-        (set-mark-command nil)
-        (move-end-of-line nil)
-        (comment-dwim nil)))))
-(global-set-key (read-kbd-macro "M-;") 'comment-dwim)
-
-;; http://emacsredux.com/blog/2013/05/30/joining-lines/
-(defun my-top-join-line ()
-  "Join the current line with the line beneath it."
-  (interactive)
-  (delete-indentation 1))
-(global-set-key (kbd "C-S-j") 'my-top-join-line)
-
-;; http://emacsredux.com/blog/2013/05/22/smarter-navigation-to-the-beginning-of-a-line/
-(defun smarter-move-beginning-of-line (arg)
-  (interactive "^p")
-  (setq arg (or arg 1))
-
-  ;; Move lines first
-  (when (/= arg 1)
-    (let ((line-move-visual nil))
-      (forward-line (1- arg))))
-
-  (let ((orig-point (point)))
-    (back-to-indentation)
-    (when (= orig-point (point))
-      (move-beginning-of-line 1))))
-
-;; remap C-a to `smarter-move-beginning-of-line'
-(global-set-key [remap move-beginning-of-line] 'smarter-move-beginning-of-line)
-
-;; From http://www.emacswiki.org/emacs/FullScreen#toc23
-(defun my-toggle-fullscreen ()
-  "Toggle full screen"
-  (interactive)
-  (set-frame-parameter
-   nil 'fullscreen
-   (when (not (frame-parameter nil 'fullscreen)) 'fullboth)))
-
 ;; I have a bunch of different 'profiles' for kubernetes by different cluster so
 ;; i don't mess between things
 ;; This allow me to set the KUBECONFIG variable between those easily
@@ -115,7 +44,6 @@
 (defun my-search-here (&optional arg)
   (interactive "P")
   (my-search arg default-directory))
-
 (global-set-key '[(super g)] 'my-search-here)
 
 ;;
