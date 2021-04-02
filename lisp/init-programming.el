@@ -67,4 +67,6 @@
 ;; Dockerfile
 (use-package dockerfile-mode)
 
+(use-package format-all)
+
 (provide 'init-programming)

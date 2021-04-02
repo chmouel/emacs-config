@@ -1,6 +1,6 @@
 (use-package yaml-mode :ensure t
   :hook
-  (yaml-mode . my-yaml-mode-hook)
+  (yaml-mode . format-all-mode)
   (yaml-mode . highlight-indentation-mode)
   (yaml-mode . lsp-deferred)
   :config
@@ -12,6 +12,7 @@
   (:map yaml-mode-map
         ("C-<return>" . imenu-list-smart-toggle)
         ("C--" . (lambda () (interactive) (call-interactively 'highlight-indentation-current-column-mode)))
+        ("C-S-f" . format-all-buffer)
         ("C-=" . whitespace-cleanup)))
 
 
