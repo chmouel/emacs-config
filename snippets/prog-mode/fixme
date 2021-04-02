@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
 # name: fixme
-# key: fi
+# key: fixme
 # --
 `(yas-with-comment "FIXME(chmou): ")`
