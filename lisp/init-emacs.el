@@ -8,6 +8,8 @@
   ("C-c \]" . next-error)
   ("C-c \[" . previous-error)
 
+  ("C-x B" . switch-to-buffer-other-window)
+
   ("C-x C-=" . ediff-buffers)
   ;; kill-current-buffer works weirdly for me, it switch to another buffer i am
   ;; not expected with and i have been using that keybining/lambda to a very long time
