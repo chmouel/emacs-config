@@ -2,4 +2,4 @@
 # name: fixme
 # key: fixme
 # --
-`(yas-with-comment "FIXME(chmou): ")`
+`comment-start`FIXME(chmou): $0`comment-end 
