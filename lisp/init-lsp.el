@@ -20,6 +20,7 @@
   (lsp-gopls-staticcheck t t)
   (lsp-prefer-flymake nil t)
   (lsp-idle-delay 1)
+  (lsp-headerline-breadcrumb-segments '(project file symbols))
   (lsp-treemacs-sync-mode nil)
   (read-process-output-max (* 1024 1024))
   (lsp-completion-provider :capf)
@@ -43,6 +44,14 @@
    (lsp-ui-sideline-delay 0.5)
    (lsp-ui-doc-enable nil)))
 
+
+(use-package dap-mode
+  :custom
+  (lsp-enable-dap-auto-configure nil)
+  :config
+  (dap-mode t)
+  (dap-ui-mode t)
+  :commands dap-debug)
 
 (use-package company
   :diminish
