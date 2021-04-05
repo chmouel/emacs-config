@@ -4,9 +4,24 @@
 
 (use-package go-playground
   :after go-mode
-  :init
-  (setq go-playground-ask-file-name t)
-  (setq go-playground-basedir "~/tmp/goplay"))
+  :config
+  (defun my-jump-go-playground-snippet (snippet)
+    (interactive
+     (list
+      (completing-read
+       "Snippet: "
+       (mapcar
+        (lambda (x)
+          (f-base x))
+        (f-directories go-playground-basedir)))))
+    (find-file
+     (concat
+      go-playground-basedir "/" snippet "/"
+      (s-replace-regexp "-at.*" "" snippet) ".go")))
+  :custom
+  (go-playground-ask-file-name t)
+  (go-playground-init-command "go mod init github.com/chmouel/%file-sans")
+  (go-playground-basedir "~/tmp/goplay"))
 
 (use-package go-mode
   :custom
@@ -19,10 +34,14 @@
               ("C-M-<down>" . my-go-next-function)
               ("C-c d" . godoc-at-point)
               ("C-S-r" . go-run)
+              ("C-M-<return>" . (lambda () (interactive) (compile "go mod vendor")(lsp-workspace-restart)))
               ("C-S-w" . (lambda () (interactive) (kill-new (go-test--get-current-test))))
               ("C-c t" . ff-find-other-file))
   :hook ((go-mode . lsp)
          (go-mode . subword-mode)
+         (go-mode . (lambda ()
+                      (interactive)
+                      (require 'dap-go)(dap-go-setup)))
          (go-mode . my-go-mode-hook))
   :config
   (add-to-list 'multi-compile-alist '(go-mode . (("go-run" . "go run %path"))))
