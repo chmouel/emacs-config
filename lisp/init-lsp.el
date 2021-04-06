@@ -3,6 +3,7 @@
   :diminish
   :commands (lsp lsp-deferred lsp-organize-imports)
   :custom
+  (lsp-server-install-dir (locate-user-emacs-file "auto-save-list/lsp"))
   (lsp-auto-guess-root t)
   (lsp-prefer-flymake nil)
   (lsp-document-highlight-delay 2.0 t)
@@ -20,6 +21,7 @@
   (lsp-gopls-staticcheck t t)
   (lsp-prefer-flymake nil t)
   (lsp-idle-delay 1)
+  (lsp-disabled-clients '((python-mode . pyls)))
   (lsp-headerline-breadcrumb-segments '(project file symbols))
   (lsp-treemacs-sync-mode nil)
   (read-process-output-max (* 1024 1024))
@@ -32,22 +34,29 @@
 
 ;; optional - provides fancy overlay information
 (use-package lsp-ui
-  :ensure t
   :commands lsp-ui-mode
   :custom  ;; disable inline documentation
   ((lsp-ui-sideline-enable nil)
    (lsp-ui-doc-max-height 15)
    (lsp-ui-doc-max-width 30)
+   (lsp-ui-doc-show-with-cursor nil)
+   (lsp-ui-doc-position 'bottom)
    (lsp-ui-flycheck-enable t t)
    (lsp-ui-imenu-enable t)
    (lsp-ui-peek-enable t)
    (lsp-ui-sideline-delay 0.5)
    (lsp-ui-doc-enable nil)))
 
+(use-package lsp-treemacs
+  :after (lsp-mode treemacs))
 
 (use-package dap-mode
+  :after lsp
   :custom
   (lsp-enable-dap-auto-configure nil)
+  :preface
+  (setq dap-breakpoints-file (locate-user-emacs-file "auto-save-list/dap-breakpoints")
+        dap-utils-extension-path (locate-user-emacs-file "auto-save-list/lsp-extensions"))
   :config
   (dap-mode t)
   (dap-ui-mode t)
