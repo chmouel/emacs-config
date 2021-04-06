@@ -15,6 +15,9 @@
 (eval-when-compile
   (require 'use-package))
 
+(use-package use-package-hydra
+  :ensure t)
+
 ;;; Fire up package.el
 (setq-default
  use-package-always-defer t
