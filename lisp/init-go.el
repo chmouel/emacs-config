@@ -4,6 +4,9 @@
 
 (use-package go-playground
   :after go-mode
+  :bind (:map
+         go-mode-map
+         ("C-c ," . my-jump-go-playground-snippet))
   :config
   (defun my-jump-go-playground-snippet (snippet)
     (interactive
