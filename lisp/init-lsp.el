@@ -21,7 +21,6 @@
   (lsp-gopls-staticcheck t t)
   (lsp-prefer-flymake nil t)
   (lsp-idle-delay 1)
-  (lsp-disabled-clients '((python-mode . pyls)))
   (lsp-headerline-breadcrumb-segments '(project file symbols))
   (lsp-treemacs-sync-mode nil)
   (read-process-output-max (* 1024 1024))
