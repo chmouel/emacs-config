@@ -136,6 +136,16 @@
      try-complete-lisp-symbol)))
 
 (use-package tab-bar
+  :hydra (hydra-tabs (:hint nil)
+                     "
+  _n_: new  _k_: kill _[_: previous _]_: next   "
+                     ("\[" tab-previous)
+                     ("\]" tab-next)
+                     ("f" find-file-other-tab)
+                     ("n" tab-new :color green)
+                     ("k" tab-close :color red)
+                     ("q"   nil "quit" :color blue))
+  :bind ("s-t" . hydra-tabs/body)
   :custom
   (tab-bar-new-button-show 'nil)
   (tab-bar-history-mode 'nil)
