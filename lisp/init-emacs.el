@@ -136,15 +136,24 @@
      try-complete-lisp-symbol)))
 
 (use-package tab-bar
-  :hydra (hydra-tabs (:hint nil)
-                     "
-  _n_: new  _k_: kill _[_: previous _]_: next   "
-                     ("\[" tab-previous)
-                     ("\]" tab-next)
-                     ("f" find-file-other-tab)
-                     ("n" tab-new :color green)
-                     ("k" tab-close :color red)
-                     ("q"   nil "quit" :color blue))
+  :hydra (hydra-tabs ()
+                     "Tabs"
+                     ("n" tab-new "new")
+                     ("k" tab-close "kill")
+                     ("f" find-file-other-tab "find-file")
+                     ("\[" tab-previous "previous")
+                     ("\]" tab-next "next")
+                     ("p" (lambda ()
+                            (interactive)
+                            (let ((tab-bar-new-tab-choice 'my-projectile-and-find-file))
+                              (tab-new)))
+                      "projectfile")
+                     ("P" (lambda ()
+                            (interactive)
+                            (let ((tab-bar-new-tab-choice 'my-projectile-and-dired))
+                              (tab-new)))
+                      "projectdired")
+                     ("q" nil "quit"))
   :bind ("s-t" . hydra-tabs/body)
   :custom
   (tab-bar-new-button-show 'nil)
