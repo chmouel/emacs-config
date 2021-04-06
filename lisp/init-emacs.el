@@ -137,17 +137,17 @@
 
 (use-package tab-bar
   :custom
-  (tab-bar-new-button-show 'nil
-   tab-bar-history-mode 't
-   tab-bar-new-tab-to 'rightmost
-   tab-bar-tab-hints 't)
+  (tab-bar-new-button-show 'nil)
+  (tab-bar-history-mode 'nil)
+  (tab-bar-new-tab-to 'rightmost)
+  (tab-bar-tab-hints 't)
   :config
   (cond ((memq window-system '(mac ns))
          (setq tab-bar-select-tab-modifiers '(super)))
         ((memq window-system '(x))
          (setq tab-bar-select-tab-modifiers '(meta))))
   (tab-bar-mode 1)
-  (setq tab-bar-new-tab-choice (lambda () (dired "."))))
+  (setq tab-bar-new-tab-choice "."))
 
 (use-package isearch
   :ensure nil
