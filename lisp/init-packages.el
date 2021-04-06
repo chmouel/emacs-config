@@ -72,7 +72,7 @@
    ("C-e" . deadgrep-edit-mode)))
 
 (use-package which-key
-  :config
+  :init
   (which-key-mode +1))
 
 (use-package diff-hl
