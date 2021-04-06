@@ -136,19 +136,23 @@
      try-complete-lisp-symbol)))
 
 (use-package tab-bar
-  :hydra (hydra-tabs ()
-                     "Tabs"
+  :hydra (hydra-tabs (:timeout 10)
+                     ""
                      ("n" tab-new "new")
                      ("k" tab-close "kill")
                      ("f" find-file-other-tab "find-file")
                      ("\[" tab-previous "previous")
                      ("\]" tab-next "next")
-                     ("p" (lambda ()
+                     ("<return>" tab-bar-select-tab-by-name "select")
+                     ("m" tab-bar-move-tab "move")
+                     ("r" tab-bar-rename-tab "rename")
+                     ("M" (lambda () (interactive) (tab-bar-move-tab -1)) "moveleft")
+                     ("P" (lambda ()
                             (interactive)
                             (let ((tab-bar-new-tab-choice 'my-projectile-and-find-file))
                               (tab-new)))
                       "projectfile")
-                     ("P" (lambda ()
+                     ("p" (lambda ()
                             (interactive)
                             (let ((tab-bar-new-tab-choice 'my-projectile-and-dired))
                               (tab-new)))
