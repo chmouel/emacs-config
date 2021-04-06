@@ -72,8 +72,6 @@
    ("C-e" . deadgrep-edit-mode)))
 
 (use-package which-key
-  :hook
-  (lsp-mode . lsp-enable-which-key-integration)
   :config
   (which-key-mode +1))
 
