@@ -47,9 +47,11 @@
    (lsp-ui-doc-enable nil)))
 
 (use-package lsp-treemacs
+  :disabled
   :after (lsp-mode treemacs))
 
 (use-package dap-mode
+  :disabled
   :after lsp
   :custom
   (lsp-enable-dap-auto-configure nil)
