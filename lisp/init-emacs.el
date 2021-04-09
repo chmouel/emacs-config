@@ -1,4 +1,16 @@
 (use-package emacs
+  :preface
+  ;; FilePath
+  (setq server-auth-dir (locate-user-emacs-file "auto-save-list/server/")
+        url-configuration-directory (locate-user-emacs-file "auto-save-list/url/")
+        url-cookie-file (locate-user-emacs-file "auto-save-list/cookies")
+        tramp-persistency-file-name (locate-user-emacs-file "auto-save-list/tramp")
+        gnus-init-file (locate-user-emacs-file "lisp/init-gnus.el")
+        url-history-file (locate-user-emacs-file "auto-save-list/url-history")
+        package-quickstart-file (locate-user-emacs-file "auto-save-list/package-quickstart.el")
+        bookmark-default-file (locate-user-emacs-file "auto-save-list/bookmarks.bmk")
+        save-place-file (locate-user-emacs-file "auto-save-list/emacs-places.el")
+        nsm-settings-file (locate-user-emacs-file "auto-save-list/network-security.data"))
   :bind
   ("M-u" . upcase-dwim)
   ("M-l" . downcase-dwim)
@@ -59,18 +71,7 @@
   (fill-column 80)
   ;; Backup
   (enable-local-variables :all) ;; Is it a good idea ?? probably not :\
-  (make-backup-files nil)
-  ;; FilePath
-  (server-auth-dir (locate-user-emacs-file "auto-save-list/server/"))
-  (url-configuration-directory (locate-user-emacs-file "auto-save-list/url/"))
-  (url-cookie-file (locate-user-emacs-file "auto-save-list/cookies"))
-  (tramp-persistency-file-name (locate-user-emacs-file "auto-save-list/tramp"))
-  (gnus-init-file (locate-user-emacs-file "lisp/init-gnus.el"))
-  (url-history-file (locate-user-emacs-file "auto-save-list/url-history"))
-  (package-quickstart-file (locate-user-emacs-file "auto-save-list/package-quickstart.el"))
-  (bookmark-default-file (locate-user-emacs-file "auto-save-list/bookmarks.bmk"))
-  (save-place-file (locate-user-emacs-file "auto-save-list/emacs-places.el"))
-  (nsm-settings-file (locate-user-emacs-file "auto-save-list/network-security.data")))
+  (make-backup-files nil))
 
 ;; Diff
 (use-package diff
@@ -224,13 +225,6 @@
   :ensure nil
   :hook (after-init . global-so-long-mode)
   :config (setq so-long-threshold 400))
-
-;; Tramp
-(use-package tramp
-  :ensure nil
-  :custom
-  (tramp-persistency-file-name
-   (locate-user-emacs-file "auto-save-list/tramp")))
 
 ;; Paren mode
 (use-package paren
