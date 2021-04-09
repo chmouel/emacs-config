@@ -29,7 +29,16 @@
 (use-package go-mode
   :custom
   (gofmt-command "goimports")
+  :hydra (hydra-golang (:timeout 10)
+                       ""
+                       ("a" my-go-import-add "Add Import")
+                       ("pp" (lambda () (interactive) (go-import-add nil "github.com/kr/pretty")) "ImpPrety")
+                       ("r" go-run "Run")
+                       ("v" (lambda () (interactive) (compile "go mod vendor")) "vendor")
+                       ("t" (lambda () (interactive) (compile "go mod tidy")) "tidy")
+                       ("q" nil "quit"))
   :bind (:map go-mode-map
+              ("s-." . hydra-golang/body)
               ("C-c a" . my-go-import-add)
               ("C-c i" . go-goto-imports)
               ("C-c C-r" . go-remove-unused-imports)
