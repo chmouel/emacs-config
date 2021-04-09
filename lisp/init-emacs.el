@@ -70,6 +70,7 @@
   (indent-tabs-mode nil)
   (fill-column 80)
   ;; Backup
+  (vc-follow-symlinks t)
   (enable-local-variables :all) ;; Is it a good idea ?? probably not :\
   (make-backup-files nil))
 
