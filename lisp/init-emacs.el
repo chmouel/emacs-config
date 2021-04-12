@@ -78,8 +78,7 @@
 (use-package diff
   :custom
   (diff-font-lock-prettify t)
-  (diff-font-lock-syntax nil)
-  (diff-switches "-uw"))
+  (diff-font-lock-syntax nil))
 
 ;; Ediff
 (use-package ediff
