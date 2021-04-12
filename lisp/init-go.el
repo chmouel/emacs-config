@@ -23,7 +23,7 @@
       (s-replace-regexp "-at.*" "" snippet) ".go")))
   :custom
   (go-playground-ask-file-name t)
-  (go-playground-init-command "go mod init github.com/chmouel/%file-sans")
+  (go-playground-init-command "go mod init github.com/chmouel/$(basename $PWD|sed 's/-at.*//')")
   (go-playground-basedir "~/tmp/goplay"))
 
 (use-package go-mode
@@ -51,9 +51,6 @@
               ("C-c t" . ff-find-other-file))
   :hook ((go-mode . lsp)
          (go-mode . subword-mode)
-         (go-mode . (lambda ()
-                      (interactive)
-                      (require 'dap-go)(dap-go-setup)))
          (go-mode . my-go-mode-hook))
   :config
   (add-to-list 'multi-compile-alist '(go-mode . (("go-run" . "go run %path"))))
