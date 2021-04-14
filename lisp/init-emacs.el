@@ -61,6 +61,9 @@
                   (unless (and (fboundp 'server-running-p) (server-running-p))
                     (server-start))))
   :config
+  (global-set-key (kbd "C-S-<up>") (kbd "C-u 2 M-v"))
+  (global-set-key (kbd "C-S-<down>") (kbd "C-u 2 C-v"))
+
   (global-unset-key "\C-x\C-z")
   (global-unset-key "\C-z")
   (fset 'yes-or-no-p 'y-or-n-p)
