@@ -91,4 +91,27 @@
         ((looking-back "\\s(" 1) (backward-char) (forward-sexp arg))))
 (global-set-key (read-kbd-macro "C-=") 'forward-or-backward-sexp)
 
- (provide 'init-functions)
+;; Copy current buffer path to clipboard, handle gopath too
+;; adapted from a SO answer.
+(defun my-copy-current-buffer-path (&optional gopath)
+  "Copy current path unless its a GOPATH module"
+  (interactive)
+  (let* ((path (if (equal major-mode 'dired-mode)
+                   (expand-file-name default-directory)
+                 (buffer-file-name)))
+         (pkg (if (and gopath (s-contains? (concat (getenv "GOPATH") "/src/github.com") path))
+                  (directory-file-name (file-name-directory (s-replace
+                                                             (concat (getenv "GOPATH") "/src/")
+                                                             "" path)))
+                path)))
+    (when pkg
+      (with-temp-buffer
+        (insert pkg)
+        (clipboard-kill-region (point-min) (point-max)))
+      (message pkg))))
+
+(defun my-copy-gopath ()
+  (interactive)
+  (my-copy-current-buffer-path 't))
+
+(provide 'init-functions)
