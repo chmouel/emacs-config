@@ -1,3 +1,5 @@
+(use-package go-gen-test)
+
 (use-package gotest
   :custom
   (go-test-verbose t)
