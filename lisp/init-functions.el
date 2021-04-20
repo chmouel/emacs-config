@@ -107,11 +107,16 @@
     (when pkg
       (with-temp-buffer
         (insert pkg)
-        (clipboard-kill-region (point-min) (point-max)))
-      (message pkg))))
+        (clipboard-kill-region (point-min) (point-max))))))
 
 (defun my-copy-gopath ()
   (interactive)
   (my-copy-current-buffer-path 't))
+
+(defun my-copy-current-dir-path ()
+  (interactive)
+  (directory-file-name
+   (file-name-directory
+    (my-copy-current-buffer-path))))
 
 (provide 'init-functions)
