@@ -1,7 +1,7 @@
 ;; Enable vertico
 (use-package vertico
   :custom-face
-  (vertico-current ((t (:foreground "light salmon"))))
+  (vertico-current ((t (:foreground "red"))))
   :custom
   (vertico-count-format '())
   :config
