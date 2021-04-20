@@ -56,10 +56,9 @@
           (file-name-base (file-name-sans-extension buffer-file-name))))
 	    (progn
           (local-set-key '[(control return)] 'pytest-one)
-          (local-set-key (kbd "C-S-r") 'pytest-one))
-      (local-set-key '[(control return)] 'multi-compile-run)))
+          (local-set-key (kbd "C-S-r") 'pytest-one))))
   
-  (add-to-list 'multi-compile-alist '(python-mode . (("pyhon-run" . "python3 -E %path"))))
+  ;; (add-to-list 'multi-compile-alist '(python-mode . (("pyhon-run" . "python3 -E %path"))))
   
   :hook ((python-mode . yapf-mode)
 	     (python-mode . lsp-deferred)

@@ -5,6 +5,8 @@
   (:map prog-mode-map
         ("<backtab>" . yas-insert-snippet)
         ("M-RET" . (lambda () (interactive) (move-end-of-line 1) (newline-and-indent)))
+        ("C-M-<return>" . compile)
+        ("C-<return>" . recompile)        
 		("RET" . newline-and-indent))
   :hook
   (prog-mode . subword-mode)
@@ -24,11 +26,8 @@
   :demand t
   :custom
   (multi-compile-history-file
-   (locate-user-emacs-file "auto-save-list/multi-compile.cache"))
-  :bind
-  (:map prog-mode-map
-        ("C-<return>" . recompile)
-        ("C-<return>" . multi-compile-run)))
+   (locate-user-emacs-file "auto-save-list/multi-compile.cache")))
+  
   
 (use-package highlight-parentheses
   :hook (prog-mode . highlight-parentheses-mode))

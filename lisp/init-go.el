@@ -1,4 +1,8 @@
 (use-package gotest
+  :custom
+  (go-test-verbose t)
+  :hook
+  (go-mode . (lambda ()(interactive) (setq go-run-args "-v")))
   :config
   (autoload 'go-test--get-current-test-info "gotest" "" nil))
 
@@ -6,6 +10,7 @@
   :after go-mode
   :bind (:map
          go-mode-map
+         ("C-c y" . my-copy-gopath)
          ("C-c ," . my-jump-go-playground-snippet))
   :config
   (defun my-jump-go-playground-snippet (snippet)
@@ -31,6 +36,7 @@
   (gofmt-command "goimports")
   :hydra (hydra-golang (:timeout 10)
                        ""
+                       ("R" (lambda () (interactive) (call-interactively 'lsp-workspace-restart)) "Restart Workspace")
                        ("a" my-go-import-add "Add Import")
                        ("pp" (lambda () (interactive) (go-import-add nil "github.com/kr/pretty")) "ImpPrety")
                        ("r" go-run "Run")
@@ -46,14 +52,14 @@
               ("C-M-<down>" . my-go-next-function)
               ("C-c d" . godoc-at-point)
               ("C-S-r" . go-run)
-              ("C-M-<return>" . (lambda () (interactive) (compile "go mod vendor")(lsp-workspace-restart)))
+              ("C-M-<return>" . recompile)
               ("C-S-w" . (lambda () (interactive) (kill-new (go-test--get-current-test))))
               ("C-c t" . ff-find-other-file))
   :hook ((go-mode . lsp)
          (go-mode . subword-mode)
          (go-mode . my-go-mode-hook))
   :config
-  (add-to-list 'multi-compile-alist '(go-mode . (("go-run" . "go run %path"))))
+  ;; (add-to-list 'multi-compile-alist '(go-mode . (("go-run" . "go run %path"))))
 
   (defun my-go-mode-hook ()
     (setq gofmt-command "goimports")
