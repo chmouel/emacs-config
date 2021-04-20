@@ -61,4 +61,5 @@
 (require 'init-javascript)
 (require 'init-markdown)
 (require 'init-go)
+(require 'init-rust)
 (require 'init-html)
