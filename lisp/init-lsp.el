@@ -25,6 +25,9 @@
   (lsp-treemacs-sync-mode nil)
   (read-process-output-max (* 1024 1024))
   (lsp-completion-provider :capf)
+  :bind
+  (:map prog-mode-map
+        ("C-c ?" . lsp-ui-doc-show))
   :hook ((lsp-mode . lsp-enable-which-key-integration)
          (lsp-mode . lsp-modeline-code-actions-mode)
          (lsp-mode . lsp-headerline-breadcrumb-mode)
