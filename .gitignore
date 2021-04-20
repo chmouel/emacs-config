@@ -1,3 +1,4 @@
 lisp/init-local.el
 auto-save-list/
 elpa/
+/.cache/
