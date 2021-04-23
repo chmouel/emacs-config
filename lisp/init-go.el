@@ -1,3 +1,5 @@
+(use-package go-gen-test)
+
 (use-package gotest
   :custom
   (go-test-verbose t)
@@ -38,7 +40,8 @@
                        ""
                        ("R" (lambda () (interactive) (call-interactively 'lsp-workspace-restart)) "Restart Workspace")
                        ("a" my-go-import-add "Add Import")
-                       ("pp" (lambda () (interactive) (go-import-add nil "github.com/kr/pretty")) "ImpPrety")
+                       ("P" (lambda () (interactive) (go-import-add nil "github.com/kr/pretty")) "ImpPrety")
+                       ("p" go-playground "Playground")
                        ("r" go-run "Run")
                        ("v" (lambda () (interactive) (compile "go mod vendor")) "vendor")
                        ("t" (lambda () (interactive) (compile "go mod tidy")) "tidy")
@@ -52,14 +55,25 @@
               ("C-M-<down>" . my-go-next-function)
               ("C-c d" . godoc-at-point)
               ("C-S-r" . go-run)
-              ("C-M-<return>" . recompile)
+              ("C-<return>" . my-recompile)
               ("C-S-w" . (lambda () (interactive) (kill-new (go-test--get-current-test))))
               ("C-c t" . ff-find-other-file))
   :hook ((go-mode . lsp)
          (go-mode . subword-mode)
          (go-mode . my-go-mode-hook))
   :config
-  ;; (add-to-list 'multi-compile-alist '(go-mode . (("go-run" . "go run %path"))))
+  (defun my-recompile (args)
+    (interactive "P")
+    (cond
+     ((get-buffer "*Go Test*")
+      (progn
+        (pop-to-buffer "*Go Test*")
+        (recompile)))
+     ((get-buffer "*compilation*")
+      (progn
+        (pop-to-buffer "*compilation*")
+        (recompile)))
+     ((call-interactively 'compile))))
 
   (defun my-go-mode-hook ()
     (setq gofmt-command "goimports")

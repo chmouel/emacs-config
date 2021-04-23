@@ -5,6 +5,7 @@
   :custom
   (vertico-count-format '())
   :config
+  (define-key vertico-map (kbd "C-j") #'vertico-exit-input)
   (define-key vertico-map (kbd "C-s") #'vertico-next)
   :init
   (vertico-mode))
