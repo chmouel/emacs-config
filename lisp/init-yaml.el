@@ -3,6 +3,7 @@
   (yaml-mode . format-all-mode)
   (yaml-mode . highlight-indentation-mode)
   (yaml-mode . lsp-deferred)
+  (yaml-mode . electric-pair-local-mode)
   :config
   (font-lock-add-keywords
    'yaml-mode
