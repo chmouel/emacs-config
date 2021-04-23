@@ -14,6 +14,7 @@
   :demand t
   :custom
   (completion-styles '(orderless))
+  (orderless-matching-styles '(orderless-literal orderless-regexp orderless-initialism orderless-flex))
   (orderless-component-separator "`")
   (completion-category-defaults nil)
   (completion-category-overrides
