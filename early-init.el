@@ -24,6 +24,9 @@ Deactivate this advice with:
   (string-match "[0-9A-Za-z-]+" (system-name))
   (downcase (substring system-name (match-beginning 0) (match-end 0))))
 
+;; Set warnings to error only
+(setq log-warning-minimum-level :error)
+
 ;;
 ;; Frame by default
 ;;
