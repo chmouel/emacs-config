@@ -12,6 +12,8 @@
   :after go-mode
   :bind (:map
          go-mode-map
+         ("C-c r" . lsp-workspace-restart)
+         ("<f2>" . lsp-rename)
          ("C-c y" . my-copy-gopath)
          ("C-c ," . my-jump-go-playground-snippet))
   :config
