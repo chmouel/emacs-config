@@ -1,6 +1,8 @@
 ;; IVY Disabled
 (use-package ivy
   :ensure t
+  :demand
+  :hook (after-init . ivy-mode)
   :bind
   (:map ivy-minibuffer-map
         ("C-s" . ivy-next-line)
@@ -15,7 +17,7 @@
   (ivy-count-format "")
   (ivy-use-virtual-buffers t)
   :config
-  (setq ivy-height 10
+  (setq ivy-height 15
         ivy-re-builders-alist '((t . ivy--regex-fuzzy))
         ivy-count-format ""
         ivy-use-virtual-buffers t))
