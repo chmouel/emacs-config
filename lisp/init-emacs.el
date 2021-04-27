@@ -31,6 +31,8 @@
   ("C-x f" . find-file-at-point)
   ("M-q" . fill-region)
 
+  ("C-\\" . (lambda () (interactive) (find-file (completing-read "Recent File: " recentf-list))))
+
   ("C-c <up>" . backward-paragraph)
   ("C-c <down>" . forward-paragraph)
 
