@@ -8,7 +8,14 @@
         ("C-M-<return>" . compile)
         ("C-<return>" . recompile)        
 		("RET" . newline-and-indent))
+  :config
+  (defvar prelude-clean-whitespace-on-save 'nil)
+  (defun prelude-cleanup-maybe ()
+    "Invoke `whitespace-cleanup' if `prelude-clean-whitespace-on-save' is not nil."
+    (when prelude-clean-whitespace-on-save
+      (whitespace-cleanup)))
   :hook
+  (before-save . prelude-cleanup-maybe)
   (prog-mode . subword-mode)
   (prog-mode . highlight-numbers-mode))
 
