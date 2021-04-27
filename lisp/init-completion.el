@@ -8,6 +8,7 @@
   (marginalia-mode +1))
 
 (use-package swivb
+  :disabled
   ;; Emacs Swivb -- https://github.com/chmouel/emacs-swivb/
   :if (and my-swivb-location (file-directory-p my-swivb-location))
   :commands (swivb)
