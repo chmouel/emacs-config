@@ -10,20 +10,19 @@
         ("C-j" . ivy-immediate-done)
         ("C-\\" . ivy-next-line))
   :custom
-  (ivy-wrap t)
   (consult-project-root-function #'projectile-project-root)
   (counsel-switch-buffer-preview-virtual-buffers nil)
   (ivy-extra-directories '("./"))
   (ivy-count-format "")
   (ivy-use-virtual-buffers t)
   :config
-  (setq ivy-height 15
-        ivy-re-builders-alist '((t . ivy--regex-fuzzy))
+  (setq ivy-height 10
+        ivy-wrap nil
+        ivy-re-builders-alist '((t . orderless-ivy-re-builder))
         ivy-count-format ""
         ivy-use-virtual-buffers t))
 
 (use-package all-the-icons-ivy
-  :disabled
   :after (all-the-icons ivy)
   :custom
   (all-the-icons-spacer " ")
