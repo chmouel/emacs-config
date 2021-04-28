@@ -59,6 +59,7 @@
   :bind
   ("C-x C-r" . consult-recent-file)
   ("C-c U" . consult-ripgrep)
+  ("s-g" . consult-goto-line)
   ("M-g M-g" . consult-goto-line))
 
 (use-package embark
