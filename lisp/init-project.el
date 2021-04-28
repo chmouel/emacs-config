@@ -62,10 +62,12 @@
         (unless (string= "-" project-name)
           (format " ⏤ %s" project-name))))))
   :bind (("C-c b" . projectile-switch-to-buffer)
+         ("C-c B" . projectile-ibuffer)
          ("C-c o" . my-projectile-and-find-file)
          ("C-c i" . my-projectile-and-ripgrep)
+         ("C-c \\" . projectile-recentf)
          ("C-c f" . projectile-find-file)
-         ("C-c S-<return>" . projectile-commander)
+         ("C-c P" . projectile-commander)
          ("C-c <return>" . projectile-switch-open-project)
          ("C-c p" . my-projectile-and-dired)))
 
