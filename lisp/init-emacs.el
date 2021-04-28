@@ -164,7 +164,8 @@
                               (tab-new)))
                       "projectdired")
                      ("q" nil "quit"))
-  :bind ("s-t" . hydra-tabs/body)
+  :bind
+  ("s-<tab>" . hydra-tabs/body)
   :custom
   (tab-bar-new-button-show 'nil)
   (tab-bar-history-mode 'nil)
