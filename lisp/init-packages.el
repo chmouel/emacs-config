@@ -13,6 +13,9 @@
   :bind (("M-<up>" . er/expand-region)
          ("M-<down>" . er/contract-region)))
 
+(use-package easy-kill
+  :bind (([remap kill-ring-save] . easy-kill)))
+
 (use-package comment-dwim-2
   :bind (([remap comment-dwim] . comment-dwim-2)))
 
