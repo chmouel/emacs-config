@@ -44,7 +44,8 @@
 (require 'init-packages)
 (require 'init-project)
 (require 'init-completion)
-(require 'init-vertico)
+;; (require 'init-vertico)
+(require 'init-selectrum)
 (require 'init-eshell)
 (require 'init-magit)
 
