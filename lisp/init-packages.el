@@ -3,6 +3,12 @@
   :config
   (gcmh-mode 1))
 
+; Browse Kill Ring 
+(use-package browse-kill-ring
+  :custom
+  (browse-kill-ring-show-preview nil)
+  :bind (("C-c k" . browse-kill-ring)))
+
 (use-package multiple-cursors
   :bind (("C-c ." . mc/mark-all-dwim))
   :custom
