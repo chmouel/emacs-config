@@ -21,6 +21,12 @@
 
 (use-package highlight-indentation)
 
+(use-package treemacs
+  :bind
+  ("<f2>" . treemacs)
+  :custom
+  (treemacs-position 'right))
+
 (use-package highlight-numbers
   :hook (prog-mode . highlight-numbers-mode))
 
