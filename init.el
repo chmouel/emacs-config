@@ -39,6 +39,7 @@
 ;; Requires
 (require 'init-theme)
 (require 'init-emacs)
+(require 'init-popmark)
 (require 'init-functions)
 (require 'init-dired)
 (require 'init-packages)
