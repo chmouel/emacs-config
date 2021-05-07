@@ -103,4 +103,70 @@
   :ensure t
   :hook (company-mode . company-box-mode))
 
+(eval-after-load "company"
+  '(progn
+     (require 'company)
+     (require 'all-the-icons)
+
+     (defface company-icon+ `((t (:inherit company-tooltip)))
+       "Face for the margin icon in the `company-mode' tooltip."
+       :group 'company-faces)
+
+     (defface company-current-icon+ `((t (:inherit company-tooltip-selection)))
+       "Face for the margin icon for the current candidate in the `company-mode' tooltip."
+       :group 'company-faces)
+
+     (defconst all-the-icons-lsp-kinds+
+       (apply
+        #'cons
+        (cl-loop
+         for parent-face in '(company-icon+ company-current-icon+)
+         collect `((text        . ,(all-the-icons-material "text_fields"                 :face parent-face))
+                   (method      . ,(all-the-icons-material "functions" :face `(:inherit (all-the-icons-lyellow ,parent-face))))
+                   (function    . ,(all-the-icons-material "functions" :face `(:inherit (all-the-icons-lyellow ,parent-face))))
+                   (constructor . ,(all-the-icons-material "create"                    :face parent-face))
+                   (field       . ,(all-the-icons-material "adjust" :face `(:inherit (all-the-icons-lorange ,parent-face))))
+                   (variable    . ,(all-the-icons-material "adjust"                      :face parent-face))
+                   (class       . ,(all-the-icons-material "class" :face `(:inherit (all-the-icons-lred ,parent-face))))
+                   (interface   . ,(all-the-icons-material "settings_input_component"    :face parent-face))
+                   (module      . ,(all-the-icons-material "view_module"                 :face parent-face))
+                   (property    . ,(all-the-icons-material "settings"                    :face parent-face))
+                   (unit        . ,(all-the-icons-material "straighten"                  :face parent-face))
+                   (value       . ,(all-the-icons-material "filter_1"                    :face parent-face))
+                   (enum        . ,(all-the-icons-material "plus_one" :face `(:inherit (all-the-icons-lorange ,parent-face))))
+                   (keyword     . ,(all-the-icons-material "filter_center_focus"         :face parent-face))
+                   (snippet     . ,(all-the-icons-material "short_text"                  :face parent-face))
+                   (template    . ,(all-the-icons-material "short_text"                  :face parent-face))
+                   (color       . ,(all-the-icons-material "palette"                     :face parent-face))
+                   (file        . ,(all-the-icons-material "insert_drive_file"           :face parent-face))
+                   (folder      . ,(all-the-icons-material "folder"                      :face parent-face))
+                   (reference   . ,(all-the-icons-material "collections_bookmark"        :face parent-face))
+                   (struct      . ,(all-the-icons-material "streetview"                  :face parent-face)))))
+       "Association between `eglot' LSP kinds and annotation icons for `company-mode'.
+To reduce the amount of redundant processing in the margin function, this is defined
+as a cons cell of icon alists, with the car alist being for regular candidates in the
+company popup and the cdr alist for the current-candidate.
+
+This structure means you don't have to do any processing, or propertising to pick an
+icon for a candidate. A simple alist lookup is all you need... it might be worth
+turning this into a hashset.")
+
+     (defconst all-the-icons-default-completion-icon+
+       (cons (all-the-icons-faicon "leaf" :face 'company-icon+)
+             (all-the-icons-faicon "leaf" :face 'company-current-icon+)))
+
+     (setq company-format-margin-function
+           (defun company-format-margin-function+ (candidate selected)
+             (concat
+              (make-string company-tooltip-margin ? )
+              (or
+               (when-let ((kind (company-call-backend 'kind candidate)))
+                 (alist-get kind
+                            (if selected
+                                (cdr all-the-icons-lsp-kinds+)
+                              (car all-the-icons-lsp-kinds+))))
+               (if selected
+                   (cdr all-the-icons-default-completion-icon+)
+                 (car all-the-icons-default-completion-icon+))))))))
+
 (provide 'init-lsp)
