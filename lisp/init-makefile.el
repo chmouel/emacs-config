@@ -5,7 +5,6 @@
   :hook
   (makefile-mode . indent-tabs-mode)
   (makefile-mode . my-makefile-mode-hook)
-  (makefile-mode . my-programming-common-hook)
-  (makefile-mode . whitespace-mode))
+  (makefile-mode . my-programming-common-hook))
 
 (provide 'init-makefile)
