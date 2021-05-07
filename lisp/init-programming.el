@@ -1,23 +1,20 @@
+
 (use-package emacs
   :ensure nil
   :defer t
+  :hook
+  (before-save . (lambda ()
+                   (interactive)
+                   (when (or (derived-mode-p 'prog-mode)
+                             (eq major-mode 'yaml-mode))
+                     (delete-trailing-whitespace))))
   :bind
   (:map prog-mode-map
         ("<backtab>" . yas-insert-snippet)
         ("M-RET" . (lambda () (interactive) (move-end-of-line 1) (newline-and-indent)))
         ("C-M-<return>" . compile)
-        ("C-<return>" . recompile)        
-		("RET" . newline-and-indent))
-  :config
-  (defvar prelude-clean-whitespace-on-save 'nil)
-  (defun prelude-cleanup-maybe ()
-    "Invoke `whitespace-cleanup' if `prelude-clean-whitespace-on-save' is not nil."
-    (when prelude-clean-whitespace-on-save
-      (whitespace-cleanup)))
-  :hook
-  (before-save . prelude-cleanup-maybe)
-  (prog-mode . subword-mode)
-  (prog-mode . highlight-numbers-mode))
+        ("C-<return>" . recompile)
+		("RET" . newline-and-indent)))
 
 (use-package highlight-indentation)
 
@@ -40,16 +37,13 @@
   :custom
   (multi-compile-history-file
    (locate-user-emacs-file "auto-save-list/multi-compile.cache")))
-  
-  
+
+
 (use-package highlight-parentheses
   :hook (prog-mode . highlight-parentheses-mode))
 
-(use-package whitespace-cleanup-mode
-  :hook (prog-mode . whitespace-cleanup-mode))
-
 ;; https://github.com/chmouel/chmouzies/blob/master/emacs/github-browse-remote.el
-;; 
+;;
 ;; My github-browse-remote fork that worksie for me when we have `upstream`
 ;; branch instead of origin.
 ;; It uses this binary
