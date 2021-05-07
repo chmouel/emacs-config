@@ -1,4 +1,7 @@
-(use-package go-gen-test)
+(use-package go-gen-test
+  :config
+  (let ((gentest-executable (executable-find "gotests")))
+    (setq go-gen-test-executable gentest-executable)))
 
 (use-package gotest
   :custom
