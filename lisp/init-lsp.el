@@ -27,6 +27,7 @@
   (lsp-completion-provider :capf)
   :bind
   (:map prog-mode-map
+        ("C-c ! L" . ls-ui-flycheck-list)
         ("C-c ?" . lsp-ui-doc-show))
   :hook ((lsp-mode . lsp-enable-which-key-integration)
          (lsp-mode . lsp-modeline-code-actions-mode)
