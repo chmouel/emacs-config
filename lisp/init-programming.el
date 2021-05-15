@@ -20,7 +20,7 @@
 
 (use-package treemacs
   :bind
-  ("<f2>" . treemacs)
+  ("<f10>" . treemacs)
   :custom
   (treemacs-position 'right))
 
