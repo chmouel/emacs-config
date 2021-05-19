@@ -1,4 +1,3 @@
-
 (use-package emacs
   :ensure nil
   :defer t
@@ -7,6 +6,10 @@
                    (interactive)
                    (when (or (derived-mode-p 'prog-mode)
                              (eq major-mode 'yaml-mode))
+                     (whitespace-cleanup))))
+  (before-save . (lambda ()
+                   (interactive)
+                   (when (or (derived-mode-p 'markdown-mode))
                      (delete-trailing-whitespace))))
   :bind
   (:map prog-mode-map
@@ -14,7 +17,7 @@
         ("M-RET" . (lambda () (interactive) (move-end-of-line 1) (newline-and-indent)))
         ("C-M-<return>" . compile)
         ("C-<return>" . recompile)
-		("RET" . newline-and-indent)))
+        ("RET" . newline-and-indent)))
 
 (use-package highlight-indentation)
 
@@ -30,7 +33,7 @@
 (use-package toggle-quotes
   :bind
   (:map prog-mode-map
-		("C-'" . toggle-quotes)))
+        ("C-'" . toggle-quotes)))
 
 (use-package multi-compile
   :demand t
