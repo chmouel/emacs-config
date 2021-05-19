@@ -22,7 +22,6 @@
   (lsp-prefer-flymake nil t)
   (lsp-idle-delay 1)
   (lsp-headerline-breadcrumb-segments '(project file symbols))
-  (lsp-treemacs-sync-mode nil)
   (read-process-output-max (* 1024 1024))
   (lsp-completion-provider :capf)
   :bind
@@ -53,7 +52,8 @@
 (use-package lsp-treemacs
   :bind
   ("C-<f10>" . lsp-treemacs-errors-list)
-
+  :config
+  (lsp-treemacs-sync-mode t)
   :after (lsp-mode treemacs))
 
 (use-package dap-mode
