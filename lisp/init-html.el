@@ -3,7 +3,6 @@
   :config
   (defun my-html-mode-hook()
     (flycheck-mode -1)
-    (local-set-key (kbd "RET") 'newline-and-indent)
     (local-set-key '[(control c)(control v)] 'browse-url-of-buffer)
     (local-set-key '[(control c)(control w)] 'sgml-validate))
   (defun my-web-mode-hook ()

@@ -61,26 +61,12 @@
               ("C-M-<down>" . my-go-next-function)
               ("C-c d" . godoc-at-point)
               ("C-S-r" . go-run)
-              ("C-<return>" . my-recompile)
               ("C-S-w" . (lambda () (interactive) (kill-new (go-test--get-current-test))))
               ("C-c t" . ff-find-other-file))
   :hook ((go-mode . lsp)
          (go-mode . subword-mode)
          (go-mode . my-go-mode-hook))
   :config
-  (defun my-recompile (args)
-    (interactive "P")
-    (cond
-     ((get-buffer "*Go Test*")
-      (progn
-        (pop-to-buffer "*Go Test*")
-        (recompile)))
-     ((get-buffer "*compilation*")
-      (progn
-        (pop-to-buffer "*compilation*")
-        (recompile)))
-     ((call-interactively 'compile))))
-
   (defun my-go-mode-hook ()
     (setq gofmt-command "goimports")
     (if (and buffer-file-name
