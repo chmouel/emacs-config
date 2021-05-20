@@ -20,8 +20,6 @@
   ("C-c \]" . next-error)
   ("C-c \[" . previous-error)
 
-  ("C-x B" . switch-to-buffer-other-window)
-
   ("C-x C-=" . ediff-buffers)
   ;; kill-current-buffer works weirdly for me, it switch to another buffer i am
   ;; not expected with and i have been using that keybining/lambda to a very long time
@@ -30,8 +28,6 @@
 
   ("C-x f" . find-file-at-point)
   ("M-q" . fill-region)
-
-  ("C-\\" . (lambda () (interactive) (find-file (completing-read "Recent File: " recentf-list))))
 
   ("C-c <up>" . backward-paragraph)
   ("C-c <down>" . forward-paragraph)
@@ -123,6 +119,12 @@
      regexp-search-ring
      extended-command-history))
   (savehist-autosave-interval 300))
+
+(use-package ibuffer
+  :bind
+  ("C-x C-b" . ibuffer)
+  :custom
+  (ibuffer-never-show-predicates '("^\\*dired")))
 
 ;; Hippy-Expand
 (use-package hippie-exp
