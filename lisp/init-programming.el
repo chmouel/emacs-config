@@ -1,4 +1,3 @@
-
 (use-package emacs
   :ensure nil
   :defer t
@@ -7,6 +6,10 @@
                    (interactive)
                    (when (or (derived-mode-p 'prog-mode)
                              (eq major-mode 'yaml-mode))
+                     (whitespace-cleanup))))
+  (before-save . (lambda ()
+                   (interactive)
+                   (when (or (derived-mode-p 'markdown-mode))
                      (delete-trailing-whitespace))))
   :config
   (defun my-recompile (args)
@@ -46,7 +49,7 @@
 (use-package toggle-quotes
   :bind
   (:map prog-mode-map
-		("C-'" . toggle-quotes)))
+        ("C-'" . toggle-quotes)))
 
 (use-package multi-compile
   :demand t

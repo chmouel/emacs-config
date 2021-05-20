@@ -67,6 +67,7 @@
   (fset 'yes-or-no-p 'y-or-n-p)
 
   :custom
+  (package-native-compile t)
   (tab-width 4)
   (indent-tabs-mode nil)
   (fill-column 80)
