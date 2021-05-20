@@ -8,12 +8,28 @@
                    (when (or (derived-mode-p 'prog-mode)
                              (eq major-mode 'yaml-mode))
                      (delete-trailing-whitespace))))
+  :config
+  (defun my-recompile (args)
+    (interactive "P")
+    (cond
+     ((get-buffer "*Go Test*")
+      (progn
+        (pop-to-buffer "*Go Test*")
+        (recompile)))
+     ((get-buffer "*compilation*")
+      (progn
+        (pop-to-buffer "*compilation*")
+        (recompile)))
+     ((and
+       (fboundp 'projectile-project-root)
+       (projectile-project-root)
+       (call-interactively 'projectile-test-project)))
+     ((call-interactively 'compile))))
   :bind
   (:map prog-mode-map
         ("<backtab>" . yas-insert-snippet)
-        ("M-RET" . (lambda () (interactive) (move-end-of-line 1) (newline-and-indent)))
         ("C-M-<return>" . compile)
-        ("C-<return>" . recompile)
+        ("C-<return>" . my-recompile)
 		("RET" . newline-and-indent)))
 
 (use-package highlight-indentation)
