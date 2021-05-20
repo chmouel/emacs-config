@@ -53,9 +53,10 @@
          ("C-M-j" . crux-top-join-line)
          ("C-M-d" . crux-duplicate-current-line-or-region)
          ([remap move-beginning-of-line] . crux-move-beginning-of-line)
-         ("C-o" . crux-smart-open-line-above)
-         ([shift return] . crux-smart-open-line )))
-
+         ([remap open-line] . crux-smart-open-line-above)
+         ("C-\\" . crux-recentf-find-file)
+         ("C-S-<return>" . crux-smart-open-line-above)
+         ("S-<return>" . crux-smart-open-line)))
 
 (use-package anzu
   :bind (([remap query-replace] . anzu-query-replace)
@@ -126,10 +127,13 @@
 
 (use-package ripgrep)
 
-(use-package bufler
-  :bind
-  ("C-x C-b" . bufler))
-
 (use-package restart-emacs)
+
+(use-package ibuffer-projectile
+  :hook
+  (ibuffer . (lambda ()
+               (ibuffer-projectile-set-filter-groups)
+               )))
+           
 
 (provide 'init-packages)
