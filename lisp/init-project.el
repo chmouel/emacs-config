@@ -54,6 +54,7 @@
   (projectile-mode-line-prefix "")
   (projectile-switch-project-action 'projectile-dired)
   (projectile-mode-line-function 'my-projectile-mode-line)
+  (projectile-sort-order 'recently-active)
   (frame-title-format
    '(""
      "%b"
@@ -68,6 +69,7 @@
          ("C-c \\" . projectile-recentf)
          ("C-c f" . projectile-find-file)
          ("C-c P" . projectile-commander)
+         ("M-<return>" . projectile-test-project)
          ("C-c <return>" . projectile-switch-open-project)
          ("C-c p" . my-projectile-and-dired)))
 
