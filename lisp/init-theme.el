@@ -24,6 +24,6 @@
   :custom
   (custom-safe-themes 't)
   :init
-  (load-theme 'doom-one-light))
+  (load-theme 'doom-outrun-electric))
 
 (provide 'init-theme)
