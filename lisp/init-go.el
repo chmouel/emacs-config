@@ -40,7 +40,8 @@
 
 (use-package go-mode
   :custom
-  (gofmt-command "goimports")
+  (lsp-go-use-gofumpt t)
+  (gofmt-command "gofumpt")
   :hydra (hydra-golang (:timeout 10)
                        ""
                        ("R" (lambda () (interactive) (call-interactively 'lsp-workspace-restart)) "Restart Workspace")
