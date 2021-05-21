@@ -125,7 +125,15 @@
   :bind
   ("C-x C-b" . ibuffer)
   :custom
-  (ibuffer-never-show-predicates '("^\\*dired")))
+  (ibuffer-show-empty-filter-groups nil)
+  (ibuffer-use-header-line nil)
+  :hook
+  (ibuffer-mode . hl-line-mode)
+  :config
+  (defun my-real-buffer-p (buf)
+    (not (buffer-file-name buf)))
+  (with-eval-after-load "ibuf-ext"
+    (add-to-list 'ibuffer-never-show-predicates #'my-real-buffer-p)))
 
 ;; Hippy-Expand
 (use-package hippie-exp
