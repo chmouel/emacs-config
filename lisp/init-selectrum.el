@@ -41,6 +41,7 @@ See https://streamable.com/4785sz for demo."
   (:map selectrum-minibuffer-map
         ("C-s" . selectrum-next-candidate)
         ("TAB" . chmou-selectrum-classic-find-file-completion)        
+        ("C-l" . selectrum-insert-current-candidate)
         ("C-RET" . selectrum-submit-exact-input)
         ("C-\\" . selectrum-next-candidate))
   :custom
