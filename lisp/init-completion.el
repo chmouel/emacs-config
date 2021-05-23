@@ -22,8 +22,12 @@
   :demand t
   :custom
   (completion-styles '(orderless))
-  (orderless-matching-styles '(orderless-literal orderless-regexp orderless-initialism orderless-flex))
-  (orderless-component-separator "`")
+  (orderless-matching-styles
+   '(orderless-strict-leading-initialism
+     orderless-regexp
+     orderless-prefixes
+     orderless-literal))
+  (orderless-component-separator " ")
   (completion-category-defaults nil)
   (completion-category-overrides
    '((file (styles basic flex initials substring))
