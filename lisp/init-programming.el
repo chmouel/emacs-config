@@ -1,12 +1,14 @@
 (use-package emacs
   :ensure nil
   :defer t
+  ;; :hook
+  ;; (before-save . before-save-clean-whitespace
   :hook
   (before-save . (lambda ()
                    (interactive)
-                   (when (or (derived-mode-p 'prog-mode)
-                             (eq major-mode 'yaml-mode))
-                     (whitespace-cleanup))))
+                   (when (or (derived-mode-p 'markdown-mode)
+                             (derived-mode-p 'yaml-mode))
+                     (delete-trailing-whitespace))))
   :config
   (defun my-recompile (args)
     (interactive "P")
@@ -29,11 +31,12 @@
         ("<backtab>" . yas-insert-snippet)
         ("C-M-<return>" . compile)
         ("C-<return>" . my-recompile)
-		("RET" . newline-and-indent)))
+        ("RET" . newline-and-indent)))
 
 (use-package highlight-indentation)
 
 (use-package treemacs
+  :disabled
   :bind
   ("<f10>" . treemacs)
   :custom
@@ -52,7 +55,6 @@
   :custom
   (multi-compile-history-file
    (locate-user-emacs-file "auto-save-list/multi-compile.cache")))
-
 
 (use-package highlight-parentheses
   :hook (prog-mode . highlight-parentheses-mode))
