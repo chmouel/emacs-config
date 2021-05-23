@@ -1,10 +1,6 @@
 (use-package markdown-mode
   :hook
-  (markdown-mode . smartparens-mode)
-  (before-save . (lambda ()
-                   (interactive)
-                   (when (or (derived-mode-p 'markdown-mode))
-                     (delete-trailing-whitespace)))))
+  (markdown-mode . smartparens-mode))
 
 (use-package poly-markdown :after markdown-mode)
 

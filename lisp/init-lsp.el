@@ -18,12 +18,15 @@
   (lsp-enable-snippet t)
   (lsp-file-watch-threshold 500)
   (lsp-gopls-complete-unimported t t)
+  (lsp-yaml-format-enable t)
   (lsp-gopls-staticcheck t t)
   (lsp-prefer-flymake nil t)
   (lsp-idle-delay 1)
   (lsp-headerline-breadcrumb-segments '(project file symbols))
   (read-process-output-max (* 1024 1024))
   (lsp-completion-provider :capf)
+  :config
+  (setq centaur-lsp-format-on-save-ignore-modes '(c-mode c++-mode markdown-mode yaml-mode python-mode))
   :bind
   (:map prog-mode-map
         ("C-c ! L" . lsp-ui-flycheck-list)
@@ -31,8 +34,14 @@
   :hook ((lsp-mode . lsp-enable-which-key-integration)
          (lsp-mode . lsp-modeline-code-actions-mode)
          (lsp-mode . lsp-headerline-breadcrumb-mode)
-         (before-save . lsp-format-buffer)
-         (before-save . lsp-organize-imports)))
+         (lsp-mode . (lambda ()
+                       ;; Integrate `which-key'
+                       ;; (lsp-enable-which-key-integration)
+                       ;; Format and organize imports
+                       (unless (apply #'derived-mode-p centaur-lsp-format-on-save-ignore-modes)
+                         (add-hook 'before-save-hook #'lsp-format-buffer t t)
+                         (add-hook 'before-save-hook #'lsp-organize-imports t t))))))
+
 
 ;; optional - provides fancy overlay information
 (use-package lsp-ui
@@ -48,13 +57,6 @@
    (lsp-ui-peek-enable t)
    (lsp-ui-sideline-delay 0.5)
    (lsp-ui-doc-enable nil)))
-
-(use-package lsp-treemacs
-  :bind
-  ("C-<f10>" . lsp-treemacs-errors-list)
-  :config
-  (lsp-treemacs-sync-mode t)
-  :after (lsp-mode treemacs))
 
 (use-package dap-mode
   :disabled
