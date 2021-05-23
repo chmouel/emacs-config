@@ -2,9 +2,8 @@
   :hook
   (yaml-mode . format-all-mode)
   (yaml-mode . highlight-indentation-mode)
-  (yaml-mode . lsp-deferred)
   (yaml-mode . electric-pair-local-mode)
-  (yaml-mode . (lambda () (interactive) (setq-local prelude-clean-whitespace-on-save 't)))
+  (yaml-mode . highlight-indentation-mode)
   :config
   (font-lock-add-keywords
    'yaml-mode
