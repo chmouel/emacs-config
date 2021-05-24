@@ -4,6 +4,7 @@
   :demand
   :hook (after-init . ivy-mode)
   :bind
+  ("C-\\" . ivy-switch-buffer)
   (:map ivy-minibuffer-map
         ("C-s" . ivy-next-line)
         ("C-M-j" . ivy-partial)
@@ -17,10 +18,18 @@
   (ivy-use-virtual-buffers t)
   (ivy-height 12)
   (ivy-on-del-error-function #'ignore)
+  (ivy-magic-tilde nil)
   (ivy-fixed-height-minibuffer t)
   (ivy-wrap nil)
   (ivy-count-format "")
   (ivy-use-virtual-buffers t))
+
+(use-package counsel)
+
+;; Ivy integration for Projectile
+(use-package counsel-projectile
+  :hook (counsel-mode . counsel-projectile-mode)
+  :init (setq counsel-projectile-grep-initial-input '(ivy-thing-at-point)))
 
 (use-package ivy-rich
   :hook ((counsel-projectile-mode . ivy-rich-mode) ; MUST after `counsel-projectile'
@@ -30,6 +39,7 @@
                                   (or (and ivy-rich-mode 'abbreviate) 'name)))))
   :init
   ;; For better performance
+  (ivy-rich-mode t)
   (setq ivy-rich-parse-remote-buffer nil))
 
 ;; Additional key bindings for Ivy
@@ -74,6 +84,7 @@ This is for use in `ivy-re-builders-alist'."
   (ivy-prescient-mode 1))
 
 (use-package ivy-posframe
+  :disabled
   :custom-face
   (ivy-posframe-border ((t (:background ,(face-foreground 'font-lock-comment-face)))))
   :hook (ivy-mode . ivy-posframe-mode)
