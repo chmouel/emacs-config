@@ -74,6 +74,7 @@
 
 (use-package company
   :diminish
+  :disabled
   :ensure t
   :custom
   (company-dabbrev-downcase nil "Don't downcase returned candidates.")

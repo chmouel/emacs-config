@@ -18,22 +18,6 @@
   :bind
   ("C-\\" . swivb))
 
-(use-package orderless
-  :demand t
-  :custom
-  (completion-styles '(orderless))
-  (orderless-matching-styles
-   '(orderless-strict-leading-initialism
-     orderless-regexp
-     orderless-prefixes
-     orderless-literal))
-  (orderless-component-separator " ")
-  (completion-category-defaults nil)
-  (completion-category-overrides
-   '((file (styles basic flex initials substring))
-     (buffer (styles basic flex initials substring))
-     (info-menu (styles basic flex initials substring)))))
-
 (use-package minibuffer
   :defer t
   :ensure nil
@@ -46,10 +30,6 @@
      1 nil (lambda () (setq gc-cons-threshold my-gc-cons-threshold))))  
   :hook ((minibuffer-setup . defer-garbage-collection-h)
          (minibuffer-exit . restore-garbage-collection-h)))
-
-(use-package company-prescient
-  :config
-  (company-prescient-mode))
 
 (use-package prescient
   :config
