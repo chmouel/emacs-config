@@ -25,6 +25,7 @@
   (lsp-headerline-breadcrumb-segments '(project file symbols))
   (read-process-output-max (* 1024 1024))
   (lsp-completion-provider :capf)
+  :init (setq lsp-keymap-prefix "C-c l")
   :config
   (setq centaur-lsp-format-on-save-ignore-modes '(c-mode c++-mode markdown-mode yaml-mode python-mode))
   :bind
