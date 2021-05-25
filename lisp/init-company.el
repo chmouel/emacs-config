@@ -48,9 +48,14 @@
   :init
   (setq company-tooltip-align-annotations t
         company-tooltip-limit 12
-        company-idle-delay 0
-        company-echo-delay (if (display-graphic-p) nil 0)
+        company-dabbrev-downcase nil
+        company-show-numbers t
+        company-tooltip-limit 20
+        company-tooltip-idle-delay 0.4
+        company-async-timeout 20
         company-minimum-prefix-length 1
+        company-tooltip-align-annotations t
+        company-echo-delay (if (display-graphic-p) nil 0)
         company-require-match nil
         company-dabbrev-ignore-case nil
         company-dabbrev-downcase nil
