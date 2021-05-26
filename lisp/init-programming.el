@@ -87,6 +87,10 @@
   (prog-mode . show-smartparens-mode)
   (prog-mode . smartparens-mode))
 
+(use-package json-mode
+  :config
+  (setq jsons-path-printer 'jsons-print-path-jq))
+
 ;; Dockerfile
 (use-package dockerfile-mode)
 
