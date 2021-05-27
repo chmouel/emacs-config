@@ -74,23 +74,17 @@
 
 (use-package company
   :diminish
-  :disabled
   :ensure t
   :custom
-  (company-dabbrev-downcase nil "Don't downcase returned candidates.")
-  (company-show-numbers t "Numbers are helpful.")
-  (company-tooltip-limit 20 "The more the merrier.")
-  (company-tooltip-idle-delay 0.4 "Faster!")
-  (company-async-timeout 20 "Some requests can take a long time. That's fine.")
+  (company-dabbrev-downcase nil)
+  (company-show-numbers t)
+  (company-tooltip-limit 20)
+  (company-tooltip-idle-delay 0.4)
+  (company-async-timeout 20)
   (company-minimum-prefix-length 1)
   (company-tooltip-align-annotations t)
   (company-format-margin-function #'company-vscode-light-icons-margin)
   :config
-  ;; Use the numbers 0-9 to select company completion candidates
-  (let ((map company-active-map))
-    (mapc (lambda (x) (define-key map (format "%d" x)
-                        `(lambda () (interactive) (company-complete-number ,x))))
-          (number-sequence 0 9)))
   (add-to-list 'company-backends 'company-capf)
   :bind
   (:map company-mode-map

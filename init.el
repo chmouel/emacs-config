@@ -45,7 +45,6 @@
 (require 'init-packages)
 (require 'init-project)
 (require 'init-completion)
-(require 'init-company)
 ;; (require 'init-vertico)
 ;; (require 'init-selectrum)
 (require 'init-ivy)
