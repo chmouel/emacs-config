@@ -85,15 +85,22 @@
   (company-tooltip-align-annotations t)
   (company-format-margin-function #'company-vscode-light-icons-margin)
   :config
-  (add-to-list 'company-backends 'company-capf)
+  (define-key company-active-map (kbd "TAB") 'company-select-next)
+  (define-key company-active-map (kbd "<backtab>") 'company-select-previous)
+  (define-key company-active-map (kbd "RET") nil)
+  (defun my-company-yasnippet ()
+    "Hide the current completeions and show snippets."
+    (interactive)
+    (company-cancel)
+    (call-interactively 'company-yasnippet))  
   :bind
   (:map company-mode-map
         ("<backtab>" . company-yasnippet)
         :map company-active-map
         ("C-p" . company-select-previous)
         ("C-n" . company-select-next)
-        ("<tab>" . company-complete-common-or-cycle)
-        ("<backtab>" . my-company-yasnippet)
+        ;; ("<tab>" . company-complete-common-or-cycle)
+        ;; ("<backtab>" . my-company-yasnippet)
         :map company-search-map
         ("C-p" . company-select-previous)
         ("C-n" . company-select-next)))

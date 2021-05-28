@@ -30,6 +30,7 @@
 
 ;;; Code:
 (use-package company
+  :disabled
   :diminish
   :defines (company-dabbrev-ignore-case company-dabbrev-downcase)
   :commands company-cancel
@@ -64,11 +65,6 @@
         company-backends '((company-capf :with company-yasnippet)
                            (company-dabbrev-code company-keywords company-files)
                            company-dabbrev))
-  (defun my-company-yasnippet ()
-    "Hide the current completeions and show snippets."
-    (interactive)
-    (company-cancel)
-    (call-interactively 'company-yasnippet))
   :config
   ;; `yasnippet' integration
   (with-no-warnings
