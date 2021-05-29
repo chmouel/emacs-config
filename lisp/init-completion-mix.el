@@ -43,7 +43,7 @@
 
 (use-package vertico
   :custom-face
-  (vertico-current ((t ())))
+  (vertico-current ((t (:foreground "thistle"))))
   :custom
   (vertico-count-format '())
   :config
