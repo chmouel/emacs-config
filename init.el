@@ -47,7 +47,8 @@
 (require 'init-completion)
 ;; (require 'init-vertico)
 ;; (require 'init-selectrum)
-(require 'init-ivy)
+;; (require 'init-ivy)
+(require 'init-completion-mix)
 (require 'init-eshell)
 (require 'init-magit)
 
