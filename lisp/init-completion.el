@@ -7,17 +7,6 @@
   :init
   (marginalia-mode +1))
 
-(use-package swivb
-  :disabled
-  ;; Emacs Swivb -- https://github.com/chmouel/emacs-swivb/
-  :if (and my-swivb-location (file-directory-p my-swivb-location))
-  :commands (swivb)
-  :load-path my-swivb-location ; TODO: need to upload it in melpa
-  :config
-  (setq swivb-actions '((:name "*Gnus*" :function "gnus" :buffer "*Group*")))
-  :bind
-  ("C-\\" . swivb))
-
 (use-package minibuffer
   :defer t
   :ensure nil

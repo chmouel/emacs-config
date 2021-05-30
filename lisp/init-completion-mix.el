@@ -14,7 +14,7 @@
 (use-package ivy-prescient
   :commands ivy-prescient-re-builder
   :init
-  (setq ivy-prescient-retain-classic-highlighting t
+  (setq ivy-prescient-retain-classic-highlighting nil
         ivy-re-builders-alist
         '((t . ivy-prescient-re-builder))
         ivy-prescient-sort-commands
@@ -27,6 +27,16 @@
                centaur-load-theme))
   (ivy-prescient-mode 1))
 
+(use-package ivy-rich
+  :hook ((ivy-rich-mode . (lambda ()
+                            (setq ivy-virtual-abbreviate
+                                  (or (and ivy-rich-mode 'abbreviate) 'name)))))
+  :init
+  ;; For better performance
+  (ivy-rich-mode t)
+  (setq ivy-rich-parse-remote-buffer nil))
+
+(use-package counsel-jq)
 
 (use-package orderless
   :demand t
