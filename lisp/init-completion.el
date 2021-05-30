@@ -43,6 +43,7 @@
   :bind
   ("C-x C-r" . consult-recent-file)
   ("C-c U" . consult-ripgrep)
+  ("C-S-s" . consult-isearch)
   ("s-g" . consult-goto-line)
   ("M-g M-g" . consult-goto-line))
 

@@ -197,7 +197,7 @@
   (:map
    isearch-mode-map
    ("C-." . isearch-forward-symbol-at-point)
-   ("C-o" . my-isearch-occur)
+   ("C-o" . isearch-occur)
    ("M-o" . my-isearch-moccur))
   :custom
   (isearch-allow-scroll t)
