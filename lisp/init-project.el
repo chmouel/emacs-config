@@ -52,6 +52,7 @@
   (projectile-known-projects-file
    (locate-user-emacs-file "auto-save-list/projectile-bookmarks.eld"))
   (projectile-mode-line-prefix "")
+  (projectile-sort-order 'recentf)
   (projectile-switch-project-action 'projectile-dired)
   (projectile-mode-line-function 'my-projectile-mode-line)
   (projectile-sort-order 'recently-active)
