@@ -1,19 +1,9 @@
-(use-package ubuntu-theme :after rand-theme)
+(use-package kaolin-themes)
 
 (use-package doom-themes
   :defer nil
   :custom-face
-  (icomplete-first-match ((t (:inherit mode-line-emphasis))))
-  ;; (mode-line-buffer-id ((t (:foreground "Light Blue"))))
-  ;; (tab-bar-tab ((t (:foreground "orange"))))
-  ;; (font-lock-variable-name-face ((t (:foreground "#50fa7b"))))
-  ;; (highlight-indentation-face ((t (:inherit default :foreground "#878787"))))
-  ;; (hl-line ((t (:background "DodgerBlue4"))))
-  )
-
-(use-package rand-theme
-  :custom
-  (rand-theme-wanted '(ubuntu doom-oceanic-next doom-material doom-horizon doom-palenight doom-vibrant doom-snazzy doom-dracula doom-outrun-electric)))
+  (icomplete-first-match ((t (:inherit mode-line-emphasis)))))
 
 (use-package doom-modeline
   :defer nil
@@ -24,6 +14,6 @@
   :custom
   (custom-safe-themes 't)
   :init
-  (load-theme 'doom-outrun-electric))
+  (load-theme 'kaolin-valley-dark))
 
 (provide 'init-theme)
