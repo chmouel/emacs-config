@@ -1,3 +1,16 @@
+(defun my-gotest-maybe-run()
+  (interactive)
+  (let ((testrunname)
+        (gotest (cadr (go-test--get-current-test-info))))
+    (save-excursion
+      (goto-char (line-beginning-position))
+      (re-search-forward "name: \"\\([^\"]*\\)\"" (line-end-position) t))
+    (setq testrunname (s-replace " " "_" (match-string-no-properties 1)))
+    (if testrunname
+        (setq gotest (format "%s/%s" gotest testrunname)))
+    (go-test--go-test (s-concat "-run " gotest "\\$ ."))))
+
+
 (use-package go-gen-test
   :config
   (let ((gentest-executable (executable-find "gotests")))
@@ -75,7 +88,7 @@
         (progn
           (local-set-key (kbd "C-S-a") 'go-test-current-project)
           (local-set-key (kbd "C-S-y") 'go-test-current-file)
-          (local-set-key (kbd "C-S-r") 'go-test-current-test))))
+          (local-set-key (kbd "C-S-r") 'my-gotest-maybe-run))))
   (defun my-go-import-add ()
     (interactive)
     (go-import-add nil (read-from-minibuffer "Import: ")))
