@@ -28,8 +28,6 @@
   :bind (:map
          go-mode-map
          ("C-c r" . lsp-workspace-restart)
-         ("<f2>" . lsp-rename)
-         ("C-c y" . my-copy-gopath)
          ("C-c ," . my-jump-go-playground-snippet))
   :config
   (defun my-jump-go-playground-snippet (snippet)
@@ -67,6 +65,8 @@
   :bind (:map go-mode-map
               ("s-." . hydra-golang/body)
               ("C-c a" . my-go-import-add)
+              ("<f2>" . lsp-rename)
+              ("C-c y" . my-copy-gopath)              
               ("C-c i" . go-goto-imports)
               ("C-c C-r" . go-remove-unused-imports)
               ("C-M-<up>" . my-go-prev-function)
