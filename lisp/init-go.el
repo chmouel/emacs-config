@@ -1,27 +1,27 @@
-(defun my-gotest-maybe-run()
-  (interactive)
-  (let ((testrunname)
-        (gotest (cadr (go-test--get-current-test-info))))
-    (save-excursion
-      (goto-char (line-beginning-position))
-      (re-search-forward "name: \"\\([^\"]*\\)\"" (line-end-position) t))
-    (setq testrunname (s-replace " " "_" (match-string-no-properties 1)))
-    (if testrunname
-        (setq gotest (format "%s/%s" gotest testrunname)))
-    (go-test--go-test (s-concat "-run " gotest "\\$ ."))))
-
-
 (use-package go-gen-test
   :config
   (let ((gentest-executable (executable-find "gotests")))
     (setq go-gen-test-executable gentest-executable)))
 
 (use-package gotest
+  :commands (my-gotest-maybe-run)
+  :after go-mode
   :custom
   (go-test-verbose t)
   :hook
   (go-mode . (lambda ()(interactive) (setq go-run-args "-v")))
   :config
+  (defun my-gotest-maybe-run()
+    (interactive)
+    (let ((testrunname)
+          (gotest (cadr (go-test--get-current-test-info))))
+      (save-excursion
+        (goto-char (line-beginning-position))
+        (re-search-forward "name: \"\\([^\"]*\\)\"" (line-end-position) t))
+      (setq testrunname (s-replace " " "_" (match-string-no-properties 1)))
+      (if testrunname
+          (setq gotest (format "%s/%s" gotest testrunname)))
+      (go-test--go-test (s-concat "-run " gotest "\\$ ."))))  
   (autoload 'go-test--get-current-test-info "gotest" "" nil))
 
 (use-package go-playground
