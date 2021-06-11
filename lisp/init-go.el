@@ -4,7 +4,7 @@
     (setq go-gen-test-executable gentest-executable)))
 
 (use-package gotest
-  :commands (my-gotest-maybe-ts-run)
+  :commands (my-gotest-maybe-ts-run go-test--get-current-test-info)
   :after go-mode
   :custom
   (go-test-verbose t)
@@ -21,8 +21,7 @@
       (setq testrunname (s-replace " " "_" (match-string-no-properties 1)))
       (if testrunname
           (setq gotest (format "%s/%s" gotest testrunname)))
-      (go-test--go-test (s-concat "-run " gotest "\\$ ."))))  
-  (autoload 'go-test--get-current-test-info "gotest" "" nil))
+      (go-test--go-test (s-concat "-run " gotest "\\$ .")))))
 
 (use-package go-playground
   :after go-mode
