@@ -4,14 +4,14 @@
     (setq go-gen-test-executable gentest-executable)))
 
 (use-package gotest
-  :commands (my-gotest-maybe-run)
+  :commands (my-gotest-maybe-ts-run)
   :after go-mode
   :custom
   (go-test-verbose t)
   :hook
   (go-mode . (lambda ()(interactive) (setq go-run-args "-v")))
   :config
-  (defun my-gotest-maybe-run()
+  (defun my-gotest-maybe-ts-run()
     (interactive)
     (let ((testrunname)
           (gotest (cadr (go-test--get-current-test-info))))
@@ -88,7 +88,7 @@
         (progn
           (local-set-key (kbd "C-S-a") 'go-test-current-project)
           (local-set-key (kbd "C-S-y") 'go-test-current-file)
-          (local-set-key (kbd "C-S-r") 'my-gotest-maybe-run))))
+          (local-set-key (kbd "C-S-r") 'my-gotest-maybe-ts-run))))
   (defun my-go-import-add ()
     (interactive)
     (go-import-add nil (read-from-minibuffer "Import: ")))
