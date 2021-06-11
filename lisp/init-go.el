@@ -18,9 +18,9 @@
       (save-excursion
         (goto-char (line-beginning-position))
         (re-search-forward "name: \"\\([^\"]*\\)\"" (line-end-position) t))
-      (setq testrunname (s-replace " " "_" (match-string-no-properties 1)))
+      (setq testrunname (match-string-no-properties 1))
       (if testrunname
-          (setq gotest (format "%s/%s" gotest testrunname)))
+          (setq gotest (format "%s/%s" gotest (s-replace " " "_"  testrunname))))
       (go-test--go-test (s-concat "-run " gotest "\\$ .")))))
 
 (use-package go-playground
