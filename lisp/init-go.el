@@ -27,7 +27,6 @@
   :after go-mode
   :bind (:map
          go-mode-map
-         ("C-c r" . lsp-workspace-restart)
          ("C-c ," . my-jump-go-playground-snippet))
   :config
   (defun my-jump-go-playground-snippet (snippet)
@@ -68,6 +67,7 @@
               ("<f2>" . lsp-rename)
               ("C-c y" . my-copy-gopath)              
               ("C-c i" . go-goto-imports)
+              ("C-c r" . lsp-workspace-restart)
               ("C-c C-r" . go-remove-unused-imports)
               ("C-M-<up>" . my-go-prev-function)
               ("C-M-<down>" . my-go-next-function)
