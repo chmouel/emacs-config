@@ -32,7 +32,7 @@
   :bind
   (:map prog-mode-map
         ("C-c ! L" . lsp-ui-flycheck-list)
-        ("C-c ?" . lsp-ui-doc-show))
+        ("C-c ?" . lsp-describe-thing-at-point))
   :hook ((lsp-mode . lsp-enable-which-key-integration)
          (lsp-mode . lsp-modeline-code-actions-mode)
          (lsp-mode . lsp-headerline-breadcrumb-mode)
