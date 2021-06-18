@@ -1,3 +1,15 @@
+(defun my-gotest-maybe-run()
+  (interactive)
+  (let ((testrunname)
+        (gotest (cadr (go-test--get-current-test-info))))
+    (save-excursion
+      (goto-char (line-beginning-position))
+      (re-search-forward "name:[[:blank:]]*\"\\([^\"]*\\)\"" (line-end-position) t))
+    (setq testrunname (match-string-no-properties 1))
+    (if testrunname
+        (setq gotest (format "%s/%s" gotest (s-replace " " "_" testrunname))))
+    (go-test--go-test (s-concat "-run " gotest "\\$ ."))))
+
 (use-package go-gen-test
   :config
   (let ((gentest-executable (executable-find "gotests")))
