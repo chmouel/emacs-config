@@ -237,12 +237,6 @@
   (push (expand-file-name recentf-save-file) recentf-exclude)
   (add-to-list 'recentf-filename-handlers 'abbreviate-file-name))
 
-;; Sho long
-(use-package so-long
-  :ensure nil
-  :hook (after-init . global-so-long-mode)
-  :config (setq so-long-threshold 400))
-
 ;; Paren mode
 (use-package paren
   :ensure nil
