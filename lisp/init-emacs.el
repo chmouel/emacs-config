@@ -249,6 +249,11 @@
   :ensure nil
   :hook (after-init . delete-selection-mode))
 
+
+(use-package calendar
+  :ensure nil
+  :custom (calendar-week-start-day 1))
+
 (use-package winner
   :ensure nil
   :hook (after-init . winner-mode))
