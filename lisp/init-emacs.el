@@ -249,7 +249,6 @@
   :ensure nil
   :hook (after-init . delete-selection-mode))
 
-
 (use-package calendar
   :ensure nil
   :custom
