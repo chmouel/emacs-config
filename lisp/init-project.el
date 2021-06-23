@@ -11,7 +11,6 @@
          (propertize
           project-name 'face '(:foreground "Light Blue" :weight bold))))))
 
-
 (defun my-projectile-and-find-file()
   (interactive)
   (let ((projectile-switch-project-action 'my-projectile-find-file))
@@ -38,8 +37,8 @@
 
 (use-package project
   :ensure t
-  :bind
-  ("C-c u" . project-find-regexp)
+  ;; :bind
+  ;; ("C-c u" . project-find-regexp)
   :custom
   (project-list-file (locate-user-emacs-file "auto-save-list/project-list.file")))
 
@@ -68,6 +67,7 @@
          ("C-c o" . my-projectile-and-find-file)
          ("C-c i" . my-projectile-and-ripgrep)
          ("C-c \\" . projectile-recentf)
+         ("C-c u" . (lambda() (interactive)(let ((projectile-use-git-grep t)) (projectile-grep))))
          ("C-c f" . projectile-find-file)
          ("C-c P" . projectile-commander)
          ("M-<return>" . projectile-test-project)

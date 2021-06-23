@@ -134,6 +134,11 @@
   (ibuffer . (lambda ()
                (ibuffer-projectile-set-filter-groups)
                )))
-           
+
+(use-package wgrep
+  :custom
+  (wgrep-enable-key "e")
+  (wgrep-auto-save-buffer t)
+  :hook (grep-setup . wgrep-setup))
 
 (provide 'init-packages)

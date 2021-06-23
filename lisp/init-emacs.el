@@ -282,4 +282,13 @@
   :ensure nil
   :hook (after-init . winner-mode))
 
+(use-package grep
+  :ensure nil
+  :hook
+  (grep-mode .
+             (lambda ()
+               (switch-to-buffer-other-window "*grep*")))
+  :custom
+  (grep-highlight-matches 'always))
+
 (provide 'init-emacs)
