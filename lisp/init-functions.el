@@ -127,7 +127,8 @@
     (progn
       (magit-status-setup-buffer repo)
       (unless (magit-anything-modified-p t repo)
+        (magit-git-command-topdir "hub sync")
         (call-interactively 'magit-fetch-from-upstream)
-        (call-interactively 'magit-push-current-to-upstream)))))
+        (call-interactively 'magit-section-show-level-4-all)))))
 
 (provide 'init-functions)
