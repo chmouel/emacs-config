@@ -119,4 +119,16 @@
    (file-name-directory
     (my-copy-current-buffer-path))))
 
+
+;; sync
+(defun my-sync-dir ()
+  (interactive)
+  (dolist (repo (magit-list-repos))
+    (progn
+      (magit-status-setup-buffer repo)
+      (unless (magit-anything-modified-p t repo)
+        (magit-git-command-topdir "hub sync")
+        (call-interactively 'magit-fetch-from-upstream)
+        (call-interactively 'magit-section-show-level-4-all)))))
+
 (provide 'init-functions)
