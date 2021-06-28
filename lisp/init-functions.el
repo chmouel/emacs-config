@@ -123,6 +123,7 @@
 ;; sync
 (defun my-sync-dir ()
   (interactive)
+  (require 'magit-repos)
   (dolist (repo (magit-list-repos))
     (progn
       (magit-status-setup-buffer repo)
