@@ -8,9 +8,9 @@
          ("C-<f5>" . magit-show-refs)
          ("C-c g" . magit-status))
   :bind (:map magit-refs-mode-map
-              ("K" . magit-branch-delete)
-              ("k" . magit-section-backward)
-              ("j" . magit-section-forward)
+              ;; ("K" . magit-branch-delete)
+              ;; ("k" . magit-section-backward)
+              ;; ("j" . magit-section-forward)
               ("." . (lambda ()
                        (interactive)
                        (magit-checkout (magit-branch-at-point)))))
