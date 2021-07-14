@@ -56,5 +56,23 @@
   (global-git-commit-mode))
 
 
+(use-package smerge-mode
+  :bind ("s-m" . hydra-smerge/body)
+  :init
+  (defun my-smerge-first ()
+    (interactive)
+    (progn
+      (goto-char (point-min))
+      (smerge-next)))
+  (defhydra
+    hydra-smerge
+    (:quit-key "C-g")
+    "smerge"
+    ("f" my-smerge-first "First")
+    ("n" smerge-next "Next")
+    ("p" smerge-prev "Previous")
+    ("u" smerge-keep-upper "Keep Upper")
+    ("l" smerge-keep-lower "Keep Lower")
+    ("b" smerge-keep-all "Keep Both")))
 
 (provide 'init-magit)
