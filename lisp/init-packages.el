@@ -141,4 +141,13 @@
   (wgrep-auto-save-buffer t)
   :hook (grep-setup . wgrep-setup))
 
+;; Direnv
+(use-package direnv
+  :ensure t
+  :custom
+  (direnv-always-show-summary t)
+  (direnv-show-paths-in-summary nil)
+  :config
+  (direnv-mode))
+
 (provide 'init-packages)
