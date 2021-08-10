@@ -36,7 +36,7 @@ Deactivate this advice with:
  ((string= (my-short-hostname) "thebatman")
   (setq init-default-font-size "17" ))
  ((string= (my-short-hostname) "ibra")
-  (setq init-default-font-size "20" )))
+  (setq init-default-font-size "17" )))
 
 (setq default-frame-alist
       `((tool-bar-lines . 0)
