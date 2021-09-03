@@ -3,3 +3,4 @@ auto-save-list/
 elpa/
 /.cache/
 /eln-cache/
+/session.*
