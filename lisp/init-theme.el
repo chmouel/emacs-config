@@ -14,6 +14,6 @@
   :custom
   (custom-safe-themes 't)
   :init
-  (load-theme 'kaolin-shiva))
+  (load-theme 'doom-one))
 
 (provide 'init-theme)
