@@ -94,6 +94,10 @@
 ;; Dockerfile
 (use-package dockerfile-mode)
 
+;; Lua
+(use-package lua-mode)
+
+;; Format buffers!
 (use-package format-all)
 
 (provide 'init-programming)
