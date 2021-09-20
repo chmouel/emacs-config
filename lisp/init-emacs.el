@@ -109,16 +109,18 @@
 (use-package savehist
   :ensure nil
   :hook (after-init . savehist-mode)
+  :config
+  (setq savehist-additional-variables
+        '(mark-ring
+          global-mark-ring
+          search-ring
+          regexp-search-ring
+          register-alist
+          extended-command-history))
   :custom
   (savehist-file (locate-user-emacs-file "auto-save-list/save-history.el"))
   (enable-recursive-minibuffers t)
   (history-length 1000)
-  (savehist-additional-variables
-   '(mark-ring
-     global-mark-ring
-     search-ring
-     regexp-search-ring
-     extended-command-history))
   (savehist-autosave-interval 300))
 
 (use-package ibuffer
