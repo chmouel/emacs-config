@@ -36,11 +36,11 @@
 (use-package highlight-indentation)
 
 (use-package treemacs
-  :disabled
   :bind
   ("<f10>" . treemacs)
   :custom
   (treemacs-position 'right))
+(use-package treemacs-all-the-icons)
 
 (use-package highlight-numbers
   :hook (prog-mode . highlight-numbers-mode))
