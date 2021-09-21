@@ -36,10 +36,6 @@
     (let ((search (read-from-minibuffer "Search string: ")))
       (ripgrep-regexp search (expand-file-name directory)))))
 
-(defun my-search-project (&optional arg)
-  (interactive "P")
-  (my-search arg (projectile-ensure-project (projectile-project-root))))
-
 (defun my-search-here (&optional arg)
   (interactive "P")
   (my-search arg default-directory))

@@ -11,7 +11,6 @@
   :defer t
   :custom
   (eshell-toggle-size-fraction 3)
-  (eshell-toggle-use-projectile-root t)
   (eshell-toggle-run-command "ls")
   (eshell-toggle-init-function #'eshell-toggle-init-eshell)
   :bind

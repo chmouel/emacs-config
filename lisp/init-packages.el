@@ -129,12 +129,6 @@
 
 (use-package restart-emacs)
 
-(use-package ibuffer-projectile
-  :hook
-  (ibuffer . (lambda ()
-               (ibuffer-projectile-set-filter-groups)
-               )))
-
 (use-package wgrep
   :custom
   (wgrep-enable-key "e")
