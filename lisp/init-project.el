@@ -1,4 +1,5 @@
-;; Project
+;; Projects
+
 (defun my-project-and-dired()
   (interactive)
   (let ((project-switch-commands 'project-dired))

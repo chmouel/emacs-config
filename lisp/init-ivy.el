@@ -11,7 +11,7 @@
         ("C-j" . ivy-immediate-done)
         ("C-\\" . ivy-next-line))
   :custom
-  (consult-project-root-function #'projectile-project-root)
+  (consult-project-root-function #'project-root)
   (counsel-switch-buffer-preview-virtual-buffers nil)
   (ivy-extra-directories '("./"))
   (ivy-count-format "")
@@ -26,14 +26,8 @@
 
 (use-package counsel)
 
-;; Ivy integration for Projectile
-(use-package counsel-projectile
-  :hook (counsel-mode . counsel-projectile-mode)
-  :init (setq counsel-projectile-grep-initial-input '(ivy-thing-at-point)))
-
 (use-package ivy-rich
-  :hook ((counsel-projectile-mode . ivy-rich-mode) ; MUST after `counsel-projectile'
-         (ivy-rich-mode . (lambda ()
+  :hook ((ivy-rich-mode . (lambda ()
                             "Use abbreviate in `ivy-rich-mode'."
                             (setq ivy-virtual-abbreviate
                                   (or (and ivy-rich-mode 'abbreviate) 'name)))))
@@ -53,8 +47,6 @@
      counsel-file-jump
      counsel-find-library
      counsel-git
-     counsel-projectile-find-dir
-     counsel-projectile-find-file
      counsel-recentf))
   :config (all-the-icons-ivy-setup))
 

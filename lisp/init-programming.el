@@ -21,10 +21,6 @@
       (progn
         (pop-to-buffer "*compilation*")
         (recompile)))
-     ((and
-       (fboundp 'projectile-project-root)
-       (projectile-project-root)
-       (call-interactively 'projectile-test-project)))
      ((call-interactively 'compile))))
   :bind
   (:map prog-mode-map

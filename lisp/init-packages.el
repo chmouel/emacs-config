@@ -129,12 +129,6 @@
 
 (use-package restart-emacs)
 
-(use-package ibuffer-projectile
-  :hook
-  (ibuffer . (lambda ()
-               (ibuffer-projectile-set-filter-groups)
-               )))
-
 (use-package wgrep
   :custom
   (wgrep-enable-key "e")
@@ -149,5 +143,12 @@
   (direnv-show-paths-in-summary nil)
   :config
   (direnv-mode))
+
+(use-package buffer-move
+  :bind
+  ("M-S-<left>" . buf-move-left)
+  ("M-S-<right>" . buf-move-right)
+  ("M-S-<up>" . buf-move-up)
+  ("M-S-<down>" . buf-move-down))
 
 (provide 'init-packages)

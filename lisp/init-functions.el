@@ -7,7 +7,6 @@
           (tab-bar-select-tab tab-index)
           (gnus)))
     (tab-bar-select-tab (1+ tab-index))))
-(global-set-key (read-kbd-macro "<f2>") 'my-switch-to-gnus)
 
 ;; I have a bunch of different 'profiles' for kubernetes by different cluster so
 ;; i don't mess between things
@@ -36,10 +35,6 @@
        (ag/dwim-at-point))
     (let ((search (read-from-minibuffer "Search string: ")))
       (ripgrep-regexp search (expand-file-name directory)))))
-
-(defun my-search-project (&optional arg)
-  (interactive "P")
-  (my-search arg (projectile-ensure-project (projectile-project-root))))
 
 (defun my-search-here (&optional arg)
   (interactive "P")
