@@ -36,7 +36,6 @@
 (use-package highlight-indentation)
 
 (use-package treemacs
-  :disabled
   :bind
   ("<f10>" . treemacs)
   :custom
