@@ -35,12 +35,6 @@
       (funcall 'find-file (expand-file-name file project-root))
       (run-hooks 'projectile-find-file-hook))))
 
-(use-package project
-  :ensure t
-  ;; :bind
-  ;; ("C-c u" . project-find-regexp)
-  :custom
-  (project-list-file (locate-user-emacs-file "auto-save-list/project-list.file")))
 
 ;; projectile
 (use-package projectile
@@ -62,16 +56,38 @@
       (let ((project-name (projectile-project-name)))
         (unless (string= "-" project-name)
           (format " ⏤ %s" project-name))))))
-  :bind (("C-c b" . projectile-switch-to-buffer)
-         ("C-c B" . projectile-ibuffer)
-         ("C-c o" . my-projectile-and-find-file)
-         ("C-c i" . my-projectile-and-ripgrep)
-         ("C-c \\" . projectile-recentf)
-         ("C-c u" . (lambda() (interactive)(let ((projectile-use-git-grep t)) (projectile-grep))))
-         ("C-c f" . projectile-find-file)
-         ("C-c P" . projectile-commander)
-         ("M-<return>" . projectile-test-project)
-         ("C-c <return>" . projectile-switch-open-project)
-         ("C-c p" . my-projectile-and-dired)))
+  :bind (;; ("C-c b" . projectile-switch-to-buffer)
+         ;; ("C-c B" . projectile-ibuffer)
+                                        ;("C-c o" . my-projectile-and-find-file)
+         ;; ("C-c i" . my-projectile-and-ripgrep)
+         ;; ("C-c \\" . projectile-recentf)
+         ;; ("C-c u" . (lambda() (interactive)(let ((projectile-use-git-grep t)) (projectile-grep))))
+         ;; ("C-c f" . projectile-find-file)
+         ;; ("C-c P" . projectile-commander)
+         ;; ("M-<return>" . projectile-test-project)
+         ;; ("C-c <return>" . projectile-switch-open-project)
+         ;; ("C-c p" . my-projectile-and-dired)
+         ))
+
+(defun my-project-and-dired()
+  (interactive)
+  (let ((project-switch-commands 'project-dired))
+    (call-interactively 'project-switch-project)))
+
+(defun my-project-and-find-file()
+  (interactive)
+  (let ((project-switch-commands 'project-find-file))
+    (call-interactively 'project-switch-project)))
+
+(use-package project
+  :ensure t
+  :bind
+  ("C-c b" . project-switch-to-buffer)
+  ("C-c o" . my-project-and-find-file)
+  ("C-c p" . my-project-and-dired)
+  ("C-c f" . project-find-file)
+  ("C-c u" . project-or-external-find-regexp)
+  :custom
+  (project-list-file (locate-user-emacs-file "auto-save-list/project-list.file")))
 
 (provide 'init-project)
