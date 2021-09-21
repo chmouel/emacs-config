@@ -14,6 +14,10 @@
   :custom
   (custom-safe-themes 't)
   :init
-  (load-theme 'doom-outrun-electric))
+  (cond
+   ((string= (my-short-hostname) "thebatman")
+    (load-theme 'doom-one))
+   ((string= (my-short-hostname) "ibra")
+    (load-theme 'doom-outrun-electric))))
 
 (provide 'init-theme)
