@@ -7,7 +7,6 @@
           (tab-bar-select-tab tab-index)
           (gnus)))
     (tab-bar-select-tab (1+ tab-index))))
-(global-set-key (read-kbd-macro "<f2>") 'my-switch-to-gnus)
 
 ;; I have a bunch of different 'profiles' for kubernetes by different cluster so
 ;; i don't mess between things
