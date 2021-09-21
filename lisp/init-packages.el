@@ -150,4 +150,11 @@
   :config
   (direnv-mode))
 
+(use-package buffer-move
+  :bind
+  ("M-S-<left>" . buf-move-left)
+  ("M-S-<right>" . buf-move-right)
+  ("M-S-<up>" . buf-move-up)
+  ("M-S-<down>" . buf-move-down))
+
 (provide 'init-packages)
