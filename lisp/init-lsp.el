@@ -31,7 +31,6 @@
   (setq centaur-lsp-format-on-save-ignore-modes '(c-mode c++-mode markdown-mode yaml-mode python-mode))
   :bind
   (:map prog-mode-map
-        ("C-c ! L" . lsp-ui-flycheck-list)
         ("C-c ?" . lsp-describe-thing-at-point))
   :hook ((lsp-mode . lsp-enable-which-key-integration)
          (lsp-mode . lsp-modeline-code-actions-mode)
@@ -59,6 +58,11 @@
    (lsp-ui-peek-enable t)
    (lsp-ui-sideline-delay 0.5)
    (lsp-ui-doc-enable nil)))
+
+(use-package lsp-treemacs
+  :bind
+  (:map prog-mode-map
+        ("C-c ! L" . lsp-treemacs-errors-list)))
 
 (use-package dap-mode
   :disabled
