@@ -26,6 +26,8 @@
   ("C-x C-k" . (lambda ()
                  (interactive)(kill-buffer (current-buffer))))
 
+  ("C-]" . switch-to-buffer)
+  
   ("C-x f" . find-file-at-point)
   ("M-q" . fill-region)
 
