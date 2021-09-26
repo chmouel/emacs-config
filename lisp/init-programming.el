@@ -38,6 +38,13 @@
   (treemacs-position 'right))
 (use-package treemacs-all-the-icons)
 
+(use-package tree-sitter
+  :init
+  (global-tree-sitter-mode)
+  :hook (tree-sitter-after-on . tree-sitter-hl-mode))
+
+(use-package tree-sitter-langs :after tree-sitter)
+
 (use-package highlight-numbers
   :hook (prog-mode . highlight-numbers-mode))
 
