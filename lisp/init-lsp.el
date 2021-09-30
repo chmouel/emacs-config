@@ -31,6 +31,7 @@
   (setq centaur-lsp-format-on-save-ignore-modes '(c-mode c++-mode markdown-mode yaml-mode python-mode))
   :bind
   (:map prog-mode-map
+        ("<f12>" . lsp-find-definition)
         ("C-c ?" . lsp-describe-thing-at-point))
   :hook ((lsp-mode . lsp-enable-which-key-integration)
          (lsp-mode . lsp-modeline-code-actions-mode)
