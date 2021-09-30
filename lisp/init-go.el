@@ -11,6 +11,10 @@
   :hook
   (go-mode . (lambda ()(interactive) (setq go-run-args "-v")))
   :config
+  (defun my-go-test-current-project()
+    (interactive)
+    (let ((default-directory (project-root (project-current t))))
+      (go-test-current-project)))
   (defun my-gotest-maybe-ts-run()
     (interactive)
     (let ((testrunname)
@@ -67,6 +71,7 @@
               ("C-c a" . my-go-import-add)
               ("<f2>" . lsp-rename)
               ("C-c y" . my-copy-gopath)              
+              ("C-c Y" . (lambda () (interactive) (let ((f (go-test--get-current-test)))(message (format "function %s has been copied to kill ring" f)(kill-new f)))))
               ("C-c i" . go-goto-imports)
               ("C-c r" . lsp-workspace-restart)
               ("C-c C-r" . go-remove-unused-imports)
@@ -74,7 +79,6 @@
               ("C-M-<down>" . my-go-next-function)
               ("C-c d" . godoc-at-point)
               ("C-S-r" . go-run)
-              ("C-S-w" . (lambda () (interactive) (kill-new (go-test--get-current-test))))
               ("C-c t" . ff-find-other-file))
   :hook ((go-mode . lsp)
          (go-mode . subword-mode)
@@ -86,7 +90,7 @@
              (string-match "_test\\'"
                            (file-name-sans-extension buffer-file-name)))
         (progn
-          (local-set-key (kbd "C-S-a") 'go-test-current-project)
+          (local-set-key (kbd "C-S-a") 'my-go-test-current-project)
           (local-set-key (kbd "C-S-y") 'go-test-current-file)
           (local-set-key (kbd "C-S-r") 'my-gotest-maybe-ts-run))))
   (defun my-go-import-add ()
