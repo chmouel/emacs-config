@@ -33,9 +33,7 @@
 
 (use-package treemacs
   :bind
-  ("<f10>" . treemacs)
-  :custom
-  (treemacs-position 'right))
+  ("<f10>" . treemacs))
 (use-package treemacs-all-the-icons)
 
 (use-package highlight-numbers
