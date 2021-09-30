@@ -2,8 +2,6 @@
 
 (use-package emacs
   :bind
-  ("M-<left>" . backward-global-mark)
-  ("M-<right>" . forward-global-mark)
   ("<mouse-9>" . forward-global-mark)
   ("<mouse-8>" . backward-global-mark)
   :init
