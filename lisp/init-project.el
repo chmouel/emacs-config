@@ -17,6 +17,7 @@
   ("C-c o" . my-project-and-find-file)
   ("C-c p" . my-project-and-dired)
   ("C-c f" . project-find-file)
+  ("C-3"   . project-find-file)
   ("C-c u" . project-or-external-find-regexp)
   :custom
   (project-list-file (locate-user-emacs-file "auto-save-list/project-list.file")))
