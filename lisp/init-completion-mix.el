@@ -36,8 +36,6 @@
   (ivy-rich-mode t)
   (setq ivy-rich-parse-remote-buffer nil))
 
-(use-package counsel-jq)
-
 (use-package orderless
   :demand t
   :custom
