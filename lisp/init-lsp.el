@@ -63,7 +63,8 @@
 (use-package lsp-treemacs
   :bind
   (:map prog-mode-map
-        ("C-c ! L" . lsp-treemacs-errors-list)))
+        ("C-c ! L" . lsp-treemacs-errors-list)
+        ("<f11>" . lsp-treemacs-errors-list)))
 
 (use-package dap-mode
   :disabled
