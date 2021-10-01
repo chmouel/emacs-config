@@ -118,13 +118,13 @@
    ("C-h F" . helpful-function)
    ("C-c C-d" . helpful-at-point)))
 
-(use-package ctrlxo
-  :bind
-  (("C-x o" . ctrlxo)
-   ("C-<tab>" . ctrlxo)
-   :map ctrlxo-map
-   ("<tab>" . ctrlxo-forward)
-   ("<S-tab>" . ctrlxo-backward)))
+;; (use-package ctrlxo
+;;   :bind
+;;   (("C-x o" . ctrlxo)
+;;    ("C-<tab>" . ctrlxo)
+;;    :map ctrlxo-map
+;;    ("<tab>" . ctrlxo-forward)
+;;    ("<S-tab>" . ctrlxo-backward)))
 
 (use-package ripgrep)
 
