@@ -9,6 +9,8 @@
 
 (use-package org-protocol :ensure nil)
 
+(use-package ob-restclient :after (restclient))
+
 (use-package org-capture
   :ensure nil
   :commands (org-capture)

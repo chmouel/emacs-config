@@ -101,4 +101,10 @@
 ;; Format buffers!
 (use-package format-all)
 
+(use-package restclient
+  :commands (restclient-mode)
+  :mode ("\\.rest\\'" . restclient-mode)
+  :config
+  (add-to-list 'restclient-content-type-modes '("application/json" . json-mode)))
+
 (provide 'init-programming)
