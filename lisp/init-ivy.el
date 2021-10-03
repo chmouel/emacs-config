@@ -76,7 +76,6 @@ This is for use in `ivy-re-builders-alist'."
   (ivy-prescient-mode 1))
 
 (use-package ivy-posframe
-  :hook (after-init . ivy-posframe-mode)
   :custom-face
   (ivy-posframe-border ((t (:background ,(face-foreground 'font-lock-comment-face)))))
   :hook (ivy-mode . ivy-posframe-mode)
@@ -89,6 +88,7 @@ This is for use in `ivy-re-builders-alist'."
         `((background-color . ,(face-background 'tooltip))))
 
   :config
+  (ivy-posframe-mode)
   (add-hook 'after-load-theme-hook
             (lambda ()
               (posframe-delete-all)
