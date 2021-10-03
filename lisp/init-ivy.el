@@ -76,20 +76,19 @@ This is for use in `ivy-re-builders-alist'."
   (ivy-prescient-mode 1))
 
 (use-package ivy-posframe
-  :disabled
+  :hook (after-init . ivy-posframe-mode)
   :custom-face
   (ivy-posframe-border ((t (:background ,(face-foreground 'font-lock-comment-face)))))
   :hook (ivy-mode . ivy-posframe-mode)
   :init
   (setq ivy-posframe-display-functions-alist
-        '((t . ivy-posframe-display-at-frame-top-center)))
+        '((t . ivy-posframe-display-at-frame-center)))
   
   (setq ivy-posframe-border-width 3
         ivy-posframe-parameters
         `((background-color . ,(face-background 'tooltip))))
 
   :config
-  (ivy-posframe-mode)
   (add-hook 'after-load-theme-hook
             (lambda ()
               (posframe-delete-all)
