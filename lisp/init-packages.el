@@ -57,7 +57,11 @@
          ([remap open-line] . crux-smart-open-line-above)
          ("C-\\" . crux-recentf-find-file)
          ("C-S-<return>" . crux-smart-open-line-above)
-         ("S-<return>" . crux-smart-open-line)))
+         ("S-<return>" . crux-smart-open-line)
+         ("C-x C-<end>" . (lambda (arg)
+                            (interactive "p")
+                            (crux-transpose-windows arg)
+                            (other-window arg)))))
 
 (use-package anzu
   :bind (([remap query-replace] . anzu-query-replace)
@@ -146,6 +150,7 @@
   (direnv-mode))
 
 (use-package buffer-move
+  :disabled
   :bind
   ("M-S-<left>" . buf-move-left)
   ("M-S-<right>" . buf-move-right)
