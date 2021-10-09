@@ -26,7 +26,9 @@
   
   (defun my-dired-mode-hook ()
     (when (featurep 'tooltip) (tooltip-mode 0)))
-  
+
+  :custom
+  (dired-kill-when-opening-new-dired-buffer 't)
   :bind
   ("C-x C-j" . dired-jump)
   (:map dired-mode-map
