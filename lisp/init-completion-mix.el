@@ -1,3 +1,5 @@
+(use-package counsel)
+
 (use-package ivy
   :ensure t
   :demand

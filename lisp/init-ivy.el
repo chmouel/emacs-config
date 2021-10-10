@@ -1,4 +1,6 @@
 ;; IVY Disabled
+(use-package counsel)
+
 (use-package ivy
   :ensure t
   :demand
@@ -23,8 +25,6 @@
   (ivy-wrap nil)
   (ivy-count-format "")
   (ivy-use-virtual-buffers t))
-
-(use-package counsel)
 
 (use-package ivy-rich
   :hook ((ivy-rich-mode . (lambda ()
