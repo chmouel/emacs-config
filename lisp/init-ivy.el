@@ -24,8 +24,6 @@
   (ivy-count-format "")
   (ivy-use-virtual-buffers t))
 
-(use-package counsel)
-
 (use-package ivy-rich
   :hook ((ivy-rich-mode . (lambda ()
                             "Use abbreviate in `ivy-rich-mode'."
