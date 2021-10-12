@@ -82,6 +82,11 @@
   (diff-font-lock-prettify t)
   (diff-font-lock-syntax nil))
 
+;; XREF
+(use-package xref
+  :custom
+  (xref-search-program 'ripgrep))
+
 ;; Ediff
 (use-package ediff
   :custom
@@ -177,7 +182,7 @@
   :config
   (cond ((memq window-system '(mac ns))
          (setq tab-bar-select-tab-modifiers '(super)))
-        ((memq window-system '(x))
+        (t
          (setq tab-bar-select-tab-modifiers '(meta))))
   (tab-bar-mode 1)
   (setq tab-bar-new-tab-choice "."))

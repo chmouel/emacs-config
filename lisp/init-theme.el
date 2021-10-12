@@ -2,6 +2,10 @@
 
 (use-package doom-themes
   :defer nil
+  :custom
+  (doom-ayu-light-brighter-comments t)
+  (doom-ayu-light-brighter-modeline nil)
+  (doom-ayu-light-padded-modeline t)
   :custom-face
   (icomplete-first-match ((t (:inherit mode-line-emphasis)))))
 
@@ -21,6 +25,8 @@
    ((string= (my-short-hostname) "thebatman")
     (load-theme 'doom-one))
    ((string= (my-short-hostname) "ibra")
-    (load-theme 'doom-outrun-electric))))
+    (load-theme 'doom-outrun-electric))
+   ((string= (my-short-hostname) "windaube")
+    (load-theme 'doom-opera-light))))
 
 (provide 'init-theme)

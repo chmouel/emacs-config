@@ -1,3 +1,5 @@
+(use-package counsel)
+
 (use-package ivy
   :ensure t
   :demand
@@ -28,6 +30,7 @@
   (ivy-prescient-mode 1))
 
 (use-package ivy-rich
+  :after counsel
   :hook ((ivy-rich-mode . (lambda ()
                             (setq ivy-virtual-abbreviate
                                   (or (and ivy-rich-mode 'abbreviate) 'name)))))

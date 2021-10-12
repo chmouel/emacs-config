@@ -31,17 +31,20 @@ Deactivate this advice with:
 ;; Frame by default
 ;;
 (defvar init-default-font-size "14" )
+(defvar init-default-font "Roboto Mono Light" )
 
 (cond
  ((string= (my-short-hostname) "thebatman")
   (setq init-default-font-size "17" ))
  ((string= (my-short-hostname) "ibra")
-  (setq init-default-font-size "17" )))
+  (setq init-default-font-size "17" ))
+ ((string= (my-short-hostname) "windaube")
+  (setq init-default-font-size "15" )))
 
 (setq default-frame-alist
       `((tool-bar-lines . 0)
         (menu-bar-lines . ,(if (display-graphic-p) 1 0))
-	(font . ,(format "Roboto Mono Light %s" init-default-font-size))
+	    (font . ,(format "%s %s" init-default-font init-default-font-size))
         (width . 132)
         (height . 43)))
 
