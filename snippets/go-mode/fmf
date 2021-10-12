@@ -3,4 +3,4 @@
 # key: fmf
 # binding: M-P
 # --
-fmt.Printf("${1:$$(yas-choose-value '("%+v" "%d" "%s"))}\n", $0)
+fmt.Printf("${1:$$(yas-choose-value '("%+v" "%d" "%s"))}\n", $2)
