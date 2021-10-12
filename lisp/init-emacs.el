@@ -64,9 +64,9 @@
 
   (global-unset-key "\C-x\C-z")
   (global-unset-key "\C-z")
-  (fset 'yes-or-no-p 'y-or-n-p)
 
   :custom
+  (use-short-answers t)
   (package-native-compile t)
   (tab-width 4)
   (indent-tabs-mode nil)

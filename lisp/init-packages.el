@@ -51,6 +51,7 @@
   :bind (("C-k" . crux-smart-kill-line)
          ("C-S-k" . crux-kill-whole-line)
          ("C-M-l" . crux-switch-to-previous-buffer)
+         ("C-l" . crux-switch-to-previous-buffer)
          ("C-M-j" . crux-top-join-line)
          ("C-M-d" . crux-duplicate-current-line-or-region)
          ([remap move-beginning-of-line] . crux-move-beginning-of-line)
