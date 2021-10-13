@@ -173,6 +173,7 @@
                      ("M" (lambda () (interactive) (tab-bar-move-tab -1)) "moveleft")
                      ("q" nil "quit"))
   :bind
+  ("C-M-l" . tab-recent)
   ("s-<tab>" . hydra-tabs/body)
   :custom
   (tab-bar-new-button-show 'nil)
