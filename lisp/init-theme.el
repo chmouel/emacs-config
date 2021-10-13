@@ -25,7 +25,7 @@
    ((string= (my-short-hostname) "thebatman")
     (load-theme 'doom-one))
    ((string= (my-short-hostname) "ibra")
-    (load-theme 'doom-moonlight))
+    (load-theme 'doom-nord-light))
    ((string= (my-short-hostname) "windaube")
     (load-theme 'doom-opera-light))))
 
