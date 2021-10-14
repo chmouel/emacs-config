@@ -36,30 +36,6 @@
   ("s-g" . consult-goto-line)
   ("M-g M-g" . consult-goto-line))
 
-(use-package consult-dir
-  :bind
-  ("C-c o" . consult-dir)
-  :config
-  ;; https://karthinks.com/software/jumping-directories-in-eshell/
-  (defun eshell/j (&optional regexp)
-    (let ((eshell-dirs (delete-dups
-                        (mapcar 'abbreviate-file-name
-                                (ring-elements eshell-last-dir-ring)))))
-      (cond
-       ((and (not regexp) (featurep 'consult-dir))
-        (let* ((consult-dir--source-eshell
-                `(:name "Eshell"
-                        :narrow ?e
-                        :category file
-                        :face consult-file
-                        :items ,eshell-dirs))
-               (consult-dir-sources (cons consult-dir--source-eshell
-                                          consult-dir-sources)))
-          (eshell/cd (substring-no-properties
-                      (consult-dir--pick "Switch directory: ")))))
-       (t (eshell/cd (if regexp (eshell-find-previous-directory regexp)
-                       (completing-read "cd: " eshell-dirs))))))))
-
 (use-package embark
   :bind
   ("M-o" . embark-act))
