@@ -89,7 +89,14 @@
   (prog-mode . smartparens-mode))
 
 (use-package json-mode
+  :hook
+  (json-mode . hs-minor-mode)
+  :bind
+  (:map json-mode-map
+        ("C-M-<right>" . hs-show-block)
+        ("C-M-<left>" . hs-hide-block))
   :config
+  (setcdr (assoc 'js-mode hs-special-modes-alist) '("[{[]" "[}\\]]" "/[*/]" nil))
   (setq jsons-path-printer 'jsons-print-path-jq))
 
 ;; Dockerfile
