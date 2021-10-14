@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: assNE
+# key: assNE
+# --
+assert.NilError(t, err)
