@@ -1,11 +1,21 @@
 (use-package kaolin-themes)
 
+;; Maybe we can do something a bit more smart with those config
 (use-package doom-themes
   :defer nil
-  :custom
-  (doom-ayu-light-brighter-comments t)
-  (doom-ayu-light-brighter-modeline nil)
-  (doom-ayu-light-padded-modeline t)
+  :config
+  (setq
+   doom-one-light-brighter-modeline nil
+   doom-one-light-padded-modeline t
+   doom-one-light-brighter-comments t
+   
+   doom-nord-light-brighter-modeline nil
+   doom-nord-light-padded-modeline t
+   doom-nord-light-brighter-comments t
+   
+   doom-ayu-light-brighter-comments t
+   doom-ayu-light-brighter-modeline nil
+   doom-ayu-light-padded-modeline t)
   :custom-face
   (icomplete-first-match ((t (:inherit mode-line-emphasis)))))
 
@@ -25,7 +35,7 @@
    ((string= (my-short-hostname) "thebatman")
     (load-theme 'doom-one))
    ((string= (my-short-hostname) "ibra")
-    (load-theme 'doom-outrun-electric))
+    (load-theme 'doom-one-light))
    ((string= (my-short-hostname) "windaube")
     (load-theme 'doom-opera-light))))
 
