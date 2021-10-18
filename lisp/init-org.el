@@ -1,39 +1,47 @@
 ;; Org-Mode
 
 (defconst org-directory "~/Documents/orgs")
-(defconst org-inbox-file (expand-file-name "inbox.org" org-directory))
-(defconst org-capture-file (expand-file-name "capture.org" org-directory))
 
-(set-register ?o (cons 'file org-inbox-file))
-(set-register ?c (cons 'file org-capture-file))
+(defconst org-todo-file (expand-file-name "todo.org" org-directory))
+(defconst org-notes-file (expand-file-name "notes.org" org-directory))
+(defconst org-links-file (expand-file-name "links.org" org-directory))
 
-(use-package org-protocol :ensure nil)
+(set-register ?o (cons 'file org-todo-file))
+(set-register ?c (cons 'file org-notes-file))
 
-(use-package ob-restclient :after (restclient))
+(require 'org-protocol nil t)
+
+(use-package org-capture-pop-frame
+  :after org)
+
+(use-package ob-restclient :after (restclient org))
 
 (use-package org-capture
   :ensure nil
   :commands (org-capture)
   :bind
   ("C-c v c" . org-capture)
-  ("C-c v t" . (lambda () (interactive) (org-capture nil "t"))) ;; TODO
-  ("C-c v j" . (lambda () (interactive) (find-file org-inbox-file))) ;; TODO
+  ("C-c v t" . (lambda () (interactive) (org-capture nil "t"))) 
+  ("C-c v n" . (lambda () (interactive) (org-capture nil "n"))) 
+  ("C-c v l" . (lambda () (interactive) (org-capture nil "l"))) 
+  ("C-c v j" . (lambda () (interactive) (find-file org-todo-file))) ;; TODO
   :config
   (setq org-capture-templates
-        '(("t" "TODO" entry
-           (file+olp+datetree org-inbox-file)
+        '(
+          ("t" "TODO" entry
+           (file+olp+datetree org-todo-file)
            "* TODO %?\nCaptured at %U"
            :empty-lines 1)
 
           ("l" "Link" entry
-           (file org-inbox-file)
+           (file org-links-file)
            "* %a\n%U\n%?\n%i"
            :empty-lines 1)
-          
-          ("Pn" "(Protocol quote)" entry (file+headline org-capture-file "Notes from the web")
+
+          ("Pn" "Notes" entry (file+headline org-notes-file "Notes from the web")
            "* %:description\nCaptured at %U\n%c\n #+BEGIN_QUOTE %?\n%i\n#+END_QUOTE\n\n")
 
-          ("Pb" "(Protocol bookmark)" entry (file+datetree org-capture-file)
+          ("Pb" "Links" entry (file+datetree org-links-file)
            "* %:description \nCaptured at %U\n[[%:link][%:description]]\n%?\n")
           
           ("r" "Snippet" entry
@@ -57,9 +65,16 @@
                                   ("NEXT" ("WAITING") ("CANCELLED"))
                                   ("DONE" ("WAITING") ("CANCELLED"))))
   (org-use-tag-inheritance t)
-  (org-tag-alist '(("linux") ("tkac") ("emacs") ("org")
-                   ("openshift") ("redhat") ("tektoncd")
-                   ("docs") ("code") ("review")
+  (org-tag-alist '(("linux")
+                   ("pac")
+                   ("emacs")
+                   ("org")
+                   ("openshift")
+                   ("redhat")
+                   ("tektoncd")
+                   ("docs")
+                   ("code")
+                   ("review")
                    (:startgroup . nil)
                    ("#home" . ?h) ("#work" . ?w) ("#errand" . ?e) ("#health" . ?l)
                    (:endgroup . nil)
