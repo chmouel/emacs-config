@@ -62,7 +62,6 @@
                        ("P" (lambda () (interactive) (go-import-add nil "github.com/kr/pretty")) "ImpPrety")
                        ("p" go-playground "Playground")
                        ("r" (lambda () (interactive) (call-interactively 'lsp-workspace-restart)) "Restart Workspace")
-                       ("y" my-copy-gopath "Copy Gopath")
                        ("v" (lambda () (interactive) (compile "go mod vendor")) "vendor")
                        ("t" (lambda () (interactive) (compile "go mod tidy")) "tidy")
                        ("q" nil "quit"))
@@ -70,8 +69,10 @@
               ("s-." . hydra-golang/body)
               ("C-c a" . my-go-import-add)
               ("<f2>" . lsp-rename)
-              ("C-c y" . my-copy-gopath)              
-              ("C-c Y" . (lambda () (interactive) (let ((f (go-test--get-current-test)))(message (format "function %s has been copied to kill ring" f)(kill-new f)))))
+              ("C-c Y" . (lambda () (interactive)
+                           (let ((f (go-test--get-current-test)))
+                             (message (format "function %s has been copied to kill ring" f)
+                                      (kill-new f)))))
               ("C-c i" . go-goto-imports)
               ("C-c r" . lsp-workspace-restart)
               ("C-c l D" . dap-hydra)
@@ -88,6 +89,7 @@
   (defun my-go-mode-hook ()
     (require 'dap-go)
     (setq gofmt-command "goimports")
+
     (if (and buffer-file-name
              (string-match "_test\\'"
                            (file-name-sans-extension buffer-file-name)))
