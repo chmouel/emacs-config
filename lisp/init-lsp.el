@@ -113,7 +113,6 @@
         ("C-n" . company-select-next)))
 
 (use-package company-box
-  :disabled
   :diminish
   :ensure t
   :hook (company-mode . company-box-mode))
