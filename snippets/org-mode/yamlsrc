@@ -1,7 +1,7 @@
 # -*- mode: snippet -*-
 # name: yamlsrc
-# key: _yaml
+# key: srcyaml
 # --
 #+BEGIN_SRC yaml
-${0}
+$0
 #+END_SRC
