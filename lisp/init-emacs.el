@@ -19,7 +19,6 @@
   ("C-<prior>" . beginning-of-buffer)
   ("C-c \]" . next-error)
   ("C-c \[" . previous-error)
-  ("C-<tab>" . other-window)
   ("C-x C-=" . ediff-buffers)
   ;; kill-current-buffer works weirdly for me, it switch to another buffer i am
   ;; not expected with and i have been using that keybining/lambda to a very long time
@@ -59,9 +58,6 @@
                   (unless (and (fboundp 'server-running-p) (server-running-p))
                     (server-start))))
   :config
-  (global-set-key (kbd "C-S-<up>") (kbd "C-u 2 M-v"))
-  (global-set-key (kbd "C-S-<down>") (kbd "C-u 2 C-v"))
-
   (global-unset-key "\C-x\C-z")
   (global-unset-key "\C-z")
 
