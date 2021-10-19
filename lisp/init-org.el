@@ -11,9 +11,6 @@
 
 (require 'org-protocol nil t)
 
-(use-package org-capture-pop-frame
-  :after org)
-
 (use-package ob-restclient :after (restclient org))
 
 (use-package org-capture
