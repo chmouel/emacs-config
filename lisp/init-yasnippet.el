@@ -14,17 +14,19 @@
   (add-hook 'hippie-expand-try-functions-list 'yas-hippie-try-expand)
   ;; Yassnippet
   (defun yas--expand-by-uuid (mode uuid)
-	"Exapnd snippet template in MODE by its UUID"
+	"Expand snippet template in MODE by its UUID"
 	(yas-expand-snippet
 	 (yas--template-content
 	  (yas--get-template-by-uuid mode uuid))))
 
   (defun yas--magit-email-or-default ()
 	"Get email from GIT or use default"
-	(require 'magit-process)
-	(if (magit-toplevel ".")
-		(magit-get "user.email")
+	(if (and (fboundp 'magit-toplevel)
+             (magit-toplevel "."))
+	    (magit-get "user.email")
 	  user-mail-address))
+  (define-auto-insert "\.go"
+    '(lambda () (yas--expand-by-uuid 'go-mode "header")))
   (yas-global-mode 1))
 
 (use-package autoinsert
