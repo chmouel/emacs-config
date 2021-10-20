@@ -1,6 +1,6 @@
 ;; Org-Mode
 
-(defconst org-directory "~/Documents/orgs")
+(defconst org-directory "~/Sync/orgs")
 
 (defconst org-todo-file (expand-file-name "todo.org" org-directory))
 (defconst org-notes-file (expand-file-name "notes.org" org-directory))
@@ -17,19 +17,63 @@
   :ensure nil
   :commands (org-capture)
   :bind
-  ("C-c v c" . org-capture)
-  ("C-c v t" . (lambda () (interactive) (org-capture nil "t"))) 
-  ("C-c v n" . (lambda () (interactive) (org-capture nil "n"))) 
-  ("C-c v l" . (lambda () (interactive) (org-capture nil "l"))) 
-  ("C-c v j" . (lambda () (interactive) (find-file org-todo-file))) ;; TODO
+  ("C-c c c" . org-capture)
+  ("C-c c t" . (lambda () (interactive) (org-capture nil "t"))) 
+  ("C-c c n" . (lambda () (interactive) (org-capture nil "n"))) 
+  ("C-c c l" . (lambda () (interactive) (org-capture nil "l"))) 
+  ("C-c c p" . (lambda () (interactive) (org-capture nil "p"))) 
+  ("C-c c j" . (lambda () (interactive) (find-file org-todo-file))) ;; TODO
   :config
+  (defun my-capture-code-snippet ()
+    (format
+     "file:%s::%s
+
+In function ~%s~
+#+BEGIN_SRC %s
+%s
+#+END_SRC"
+     (abbreviate-file-name buffer-file-name)
+     (if (region-active-p)
+         (format "%s-%s"
+                 (line-number-at-pos
+                  (region-beginning))
+                 (line-number-at-pos (region-end)))
+       (line-number-at-pos))
+     (cond
+      ((fboundp 'which-function)
+       (which-function))
+      ((eq major-mode 'go-mode)
+       (save-excursion
+         (go-goto-function-name)
+         (substring-no-properties (thing-at-point 'sexp))))
+      ((eq major-mode 'python-mode) ;; pytest regexp
+       (save-excursion
+         (re-search-backward
+          "^[ \t]\\{0,4\\}\\(class\\|\\(?:async \\)?def\\)[ \t]+\\([a-zA-Z0-9_]+\\)" nil t)
+         (buffer-substring-no-properties (match-beginning 2) (match-end 2)))))
+     (replace-regexp-in-string "-mode$" "" (symbol-name major-mode))
+     (if (region-active-p)
+         (buffer-substring-no-properties (region-beginning) (region-end))
+       (buffer-substring-no-properties
+        (line-beginning-position)
+        (line-end-position)))))
   (setq org-capture-templates
-        '(
-          ("t" "TODO" entry
+        '(("t" "TODO simple" entry
            (file+olp+datetree org-todo-file)
            "* TODO %?\nCaptured at %U"
            :empty-lines 1)
 
+          ("p" "Pipelines as Code: TODO" entry
+           (file+olp org-todo-file "Pipelines as Code" "TODOS")
+           "* TODO %?\n\n%(with-current-buffer (org-capture-get :original-buffer) (my-capture-code-snippet))\n
+Captured at %U"
+           :empty-lines 1)
+
+          ("P" "Pipelines as Code: Notes" entry
+           (file+olp org-todo-file "Pipelines as Code" "Notes")
+           "* %?\nCaptured at %U"
+           :empty-lines 1)
+          
           ("l" "Link" entry
            (file org-links-file)
            "* %a\n%U\n%?\n%i"
@@ -62,19 +106,11 @@
                                   ("NEXT" ("WAITING") ("CANCELLED"))
                                   ("DONE" ("WAITING") ("CANCELLED"))))
   (org-use-tag-inheritance t)
-  (org-tag-alist '(("linux")
-                   ("pac")
+  (org-tag-alist '(("pac")
                    ("emacs")
-                   ("org")
                    ("openshift")
                    ("redhat")
                    ("tektoncd")
-                   ("docs")
-                   ("code")
-                   ("review")
-                   (:startgroup . nil)
-                   ("#home" . ?h) ("#work" . ?w) ("#errand" . ?e) ("#health" . ?l)
-                   (:endgroup . nil)
                    (:startgroup . nil)
                    ("#link" . ?i) ("#read" . ?r) ("#project" . ?p)
                    (:endgroup . nil)))
