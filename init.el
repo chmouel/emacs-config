@@ -42,6 +42,7 @@
 (require 'init-popmark)
 (require 'init-functions)
 (require 'init-dired)
+(require 'init-sessions)
 (require 'init-packages)
 (require 'init-project)
 (require 'init-completion)
