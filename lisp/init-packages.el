@@ -9,6 +9,14 @@
   (browse-kill-ring-show-preview nil)
   :bind (("C-c k" . browse-kill-ring)))
 
+(use-package mwim
+  :bind (([remap beginning-of-line] . mwim))
+  :custom
+  (mwim-position-functions
+   '(mwim-code-beginning
+     mwim-line-beginning
+     mwim-comment-beginning)))
+
 (use-package multiple-cursors
   :bind (("C-c ." . mc/mark-all-dwim))
   :custom
