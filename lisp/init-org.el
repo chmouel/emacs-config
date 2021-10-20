@@ -58,24 +58,29 @@ In function ~%s~
         (line-beginning-position)
         (line-end-position)))))
   (setq org-capture-templates
-        '(("t" "TODO simple" entry
-           (file+olp+datetree org-todo-file)
+        '(("t" "Simple>TODO" entry
+           (file+olp org-todo-file "TODOS")
            "* TODO %?\nCaptured at %U"
            :empty-lines 1)
 
-          ("p" "Pipelines as Code: TODO" entry
-           (file+olp org-todo-file "Pipelines as Code" "TODOS")
+          ("n" "Simple>NOTES" entry
+           (file+olp org-notes-file "NOTES")
+           "* TODO %?\nCaptured at %U"
+           :empty-lines 1)
+
+          ("p" "Pipelines as Code>TODO" entry
+           (file+olp org-todo-file "Pipelines as Code")
            "* TODO %?\n\n%(with-current-buffer (org-capture-get :original-buffer) (my-capture-code-snippet))\n
 Captured at %U"
            :empty-lines 1)
 
-          ("P" "Pipelines as Code: Notes" entry
-           (file+olp org-todo-file "Pipelines as Code" "Notes")
+          ("P" "Pipelines as Code>Notes" entry
+           (file+olp org-notes-file "Pipelines as Code")
            "* %?\nCaptured at %U"
            :empty-lines 1)
           
           ("l" "Link" entry
-           (file org-links-file)
+           (file+olp org-links-file "LINKS")
            "* %a\n%U\n%?\n%i"
            :empty-lines 1)
 
