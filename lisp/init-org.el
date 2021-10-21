@@ -119,7 +119,8 @@ Captured at %U"
                    (:startgroup . nil)
                    ("#link" . ?i) ("#read" . ?r) ("#project" . ?p)
                    (:endgroup . nil)))
-  (org-replace-disputed-keys t)
+  
+  (org-special-ctrl-a/e t)
   (org-log-done 'time)
   (org-log-redeadline 'time)
   (org-log-reschedule 'time)
@@ -129,5 +130,9 @@ Captured at %U"
   (org-yank-adjusted-subtrees t)
   (org-completion-use-ido t)
   (org-return-follows-link t))
+
+(use-package org-download
+  :hook (org-mode . org-download-enable)
+  :after org)
 
 (provide 'init-org)
