@@ -67,24 +67,29 @@ In function ~%s~
         (line-beginning-position)
         (line-end-position)))))
   (setq org-capture-templates
-        '(("t" "TODO simple" entry
-           (file+olp+datetree org-todo-file)
+        '(("t" "Simple>TODO" entry
+           (file+olp org-todo-file "TODOS")
            "* TODO %?\nCaptured at %U"
            :empty-lines 1)
 
-          ("p" "Pipelines as Code: TODO" entry
-           (file+olp org-todo-file "Pipelines as Code" "TODOS")
+          ("n" "Simple>NOTES" entry
+           (file+olp org-notes-file "NOTES")
+           "* TODO %?\nCaptured at %U"
+           :empty-lines 1)
+
+          ("p" "Pipelines as Code>TODO" entry
+           (file+olp org-todo-file "Pipelines as Code")
            "* TODO %?\n\n%(with-current-buffer (org-capture-get :original-buffer) (my-capture-code-snippet))\n
 Captured at %U"
            :empty-lines 1)
 
-          ("P" "Pipelines as Code: Notes" entry
-           (file+olp org-todo-file "Pipelines as Code" "Notes")
+          ("P" "Pipelines as Code>Notes" entry
+           (file+olp org-notes-file "Pipelines as Code")
            "* %?\nCaptured at %U"
            :empty-lines 1)
           
           ("l" "Link" entry
-           (file org-links-file)
+           (file+olp org-links-file "LINKS")
            "* %a\n%U\n%?\n%i"
            :empty-lines 1)
 
@@ -123,7 +128,8 @@ Captured at %U"
                    (:startgroup . nil)
                    ("#link" . ?i) ("#read" . ?r) ("#project" . ?p)
                    (:endgroup . nil)))
-  (org-replace-disputed-keys t)
+  
+  (org-special-ctrl-a/e t)
   (org-log-done 'time)
   (org-log-redeadline 'time)
   (org-log-reschedule 'time)
@@ -133,9 +139,6 @@ Captured at %U"
   (org-yank-adjusted-subtrees t)
   (org-completion-use-ido t)
   (org-return-follows-link t))
-
-
-
 
 (use-package org-superstar
   :after org
@@ -158,5 +161,10 @@ Captured at %U"
                                      ))
   (org-superstar-special-todo-items t)
   (org-superstar-leading-bullet ""))
+
+(use-package org-download
+  :hook (org-mode . org-download-enable)
+  :after org)
+
 
 (provide 'init-org)
