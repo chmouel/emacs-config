@@ -13,6 +13,15 @@
 
 (use-package ob-restclient :after (restclient org))
 
+(use-package visual-fill-column
+  :hook (org-mode . efs/org-mode-visual-fill)
+  :config
+  (defun efs/org-mode-visual-fill ()
+    (setq visual-fill-column-width 120
+          visual-fill-column-center-text t)
+    (visual-fill-column-mode 1)))
+
+
 (use-package org-capture
   :ensure nil
   :commands (org-capture)
@@ -124,5 +133,30 @@ Captured at %U"
   (org-yank-adjusted-subtrees t)
   (org-completion-use-ido t)
   (org-return-follows-link t))
+
+
+
+
+(use-package org-superstar
+  :after org
+  :hook (org-mode . org-superstar-mode)
+  :config
+  (set-face-attribute 'org-superstar-header-bullet nil :inherit 'fixed-pitched :height 180)
+  :custom
+  ;; set the leading bullet to be a space. For alignment purposes I use an em-quad space (U+2001)
+  (org-superstar-headline-bullets-list '(" "))
+  (org-superstar-todo-bullet-alist '(("DONE" . ?✔)
+                                     ("TODO" . ?⌖)
+                                     ("ISSUE" . ?)
+                                     ("BRANCH" . ?)
+                                     ("FORK" . ?)
+                                     ("MR" . ?)
+                                     ("MERGED" . ?)
+                                     ("GITHUB" . ?A)
+                                     ("WRITING" . ?✍)
+                                     ("WRITE" . ?✍)
+                                     ))
+  (org-superstar-special-todo-items t)
+  (org-superstar-leading-bullet ""))
 
 (provide 'init-org)
