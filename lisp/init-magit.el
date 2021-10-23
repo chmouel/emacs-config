@@ -1,6 +1,6 @@
 (use-package magit
   :commands (magit-read-repository magit-toplevel)
-  :bind (("C-x v s-v" . my-magit-commit-buffer)
+  :bind (("C-x v V" . my-magit-commit-buffer)
          ("C-x v -" . magit-pull-from-pushremote)
          ("C-x v =" . magit-diff-buffer-file)
          ("C-x v l" . magit-log-buffer-file)
@@ -46,6 +46,14 @@
     (local-set-key '[(control =)] 'magit-commit-create))
   (global-git-commit-mode))
 
+
+(use-package git-commit
+  :config
+  (add-to-list
+   'git-commit-setup-hook
+   ;; I can't find out how to do that in another way
+   (lambda () (interactive)
+     (call-interactively 'git-commit-signoff))))
 
 (use-package smerge-mode
   :bind ("s-m" . hydra-smerge/body)
