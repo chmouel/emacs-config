@@ -5,13 +5,12 @@
 (defconst org-todo-file (expand-file-name "todo.org" org-directory))
 (defconst org-notes-file (expand-file-name "notes.org" org-directory))
 (defconst org-links-file (expand-file-name "links.org" org-directory))
+(defconst org-snippet-file (expand-file-name "snippets.org" org-directory))
 
 (set-register ?o (cons 'file org-todo-file))
 (set-register ?c (cons 'file org-notes-file))
 
 (require 'org-protocol nil t)
-
-(use-package ob-restclient :after (restclient org))
 
 (use-package visual-fill-column
   :hook (org-mode . efs/org-mode-visual-fill)
@@ -93,16 +92,8 @@ Captured at %U"
            "* %a\n%U\n%?\n%i"
            :empty-lines 1)
 
-          ("Pn" "Notes" entry (file+headline org-notes-file "Notes from the web")
-           "* %:description\nCaptured at %U\n%c\n #+BEGIN_QUOTE %?\n%i\n#+END_QUOTE\n\n")
-
-          ("Pb" "Links" entry (file+datetree org-links-file)
-           "* %:description \nCaptured at %U\n[[%:link][%:description]]\n%?\n")
-          
-          ("r" "Snippet" entry
-           (file+olp+datetree org-capture-file)
-           "* %?\n%x"
-           :empty-lines 1))))
+          ("Pl" "Protocol Link" entry (file+olp org-links-file "WEB") "* %?[[%:link][%:description]]\n")
+          ("Pn" "Protocol Notes" entry (file+olp org-notes-file "WEB") "* [[%:link][%:description]]\n#+BEGIN_QUOTE %?\n%:initial\n#+END_QUOTE\n\n" :empty-lines 1)))))
 
 (use-package org
   :ensure nil
@@ -141,6 +132,7 @@ Captured at %U"
   (org-return-follows-link t))
 
 (use-package org-superstar
+  :disable
   :after org
   :hook (org-mode . org-superstar-mode)
   :config
