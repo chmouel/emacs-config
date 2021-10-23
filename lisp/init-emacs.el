@@ -285,4 +285,21 @@
   :custom
   (grep-highlight-matches 'always))
 
+(use-package term
+  :ensure nil
+  :bind
+  ("C-`" . my-toggle-term)
+  :config
+  ;;https://gist.github.com/msoeken/4b2e3ee07b7252f8cb99
+  (defun my-toggle-term ()
+    "Toggles between terminal and current buffer (creates terminal, if none exists)"
+    (interactive)
+    (if (string= (buffer-name) "*ansi-term*")
+        (other-window 1)
+      (if (get-buffer "*ansi-term*")
+          (pop-to-buffer "*ansi-term*")
+        (progn
+          (ansi-term (getenv "SHELL"))
+          (setq show-trailing-whitespace nil))))))
+
 (provide 'init-emacs)

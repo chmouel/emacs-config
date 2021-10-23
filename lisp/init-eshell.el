@@ -8,6 +8,7 @@
   :hook (eshell-mode . esh-autosuggest-mode))
 
 (use-package eshell-toggle
+  :disabled
   :defer t
   :custom
   (eshell-toggle-size-fraction 3)
