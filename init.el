@@ -2,7 +2,7 @@
 ;; Emacs init
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
-;; Startup time
+;; HAHAH Startup time
 (defun chmou-display-startup-time ()
   (message
    "Emacs loaded in %s with %d garbage collections."
