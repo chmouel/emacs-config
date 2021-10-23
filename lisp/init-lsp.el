@@ -61,6 +61,8 @@
    (lsp-ui-doc-enable nil)))
 
 (use-package lsp-treemacs
+  :custom
+  (lsp-treemacs-error-list-current-project-only t)
   :bind
   (:map prog-mode-map
         ("C-c ! L" . lsp-treemacs-errors-list)
