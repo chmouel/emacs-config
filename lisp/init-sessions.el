@@ -2,6 +2,7 @@
   :custom
   (desktop-path (list (locate-user-emacs-file "auto-save-list")))
   (desktop-auto-save-timeout 600)
+  (desktop-save nil)
   (desktop-globals-to-save
    '((comint-input-ring        . 50)
      (compile-history          . 30)
