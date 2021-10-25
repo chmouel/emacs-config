@@ -20,6 +20,12 @@
           visual-fill-column-center-text t)
     (visual-fill-column-mode 1)))
 
+(setq org-bars-installation-dir (expand-file-name "org-bars" package-user-dir))
+(use-package org-bars
+  :after org
+  :if (file-directory-p org-bars-installation-dir)
+  :load-path org-bars-installation-dir
+  :hook (org-mode . org-bars-mode))
 
 (use-package org-capture
   :ensure nil
@@ -73,7 +79,7 @@ In function ~%s~
 
           ("n" "Simple>NOTES" entry
            (file+olp org-notes-file "NOTES")
-           "* TODO %?\nCaptured at %U"
+           "* %c %?\nCaptured at %U"
            :empty-lines 1)
 
           ("p" "Pipelines as Code>TODO" entry
@@ -93,7 +99,7 @@ Captured at %U"
            :empty-lines 1)
 
           ("Pl" "Protocol Link" entry (file+olp org-links-file "WEB") "* %?[[%:link][%:description]]\n")
-          ("Pn" "Protocol Notes" entry (file+olp org-notes-file "WEB") "* [[%:link][%:description]]\n#+BEGIN_QUOTE %?\n%:initial\n#+END_QUOTE\n\n" :empty-lines 1)))))
+          ("Pn" "Protocol Notes" entry (file+olp org-notes-file "WEB") "* [[%:link][%:description]]\n#+BEGIN_QUOTE %?\n%:initial\n#+END_QUOTE\n\n" :empty-lines 1))))
 
 (use-package org
   :ensure nil
@@ -132,7 +138,7 @@ Captured at %U"
   (org-return-follows-link t))
 
 (use-package org-superstar
-  :disable
+  :disabled
   :after org
   :hook (org-mode . org-superstar-mode)
   :config
