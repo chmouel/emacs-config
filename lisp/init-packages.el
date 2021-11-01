@@ -29,7 +29,7 @@
 
 (use-package easy-kill
   :config
-  (defun easy-kill-on-go-function (_n)
+  (defun easy-kill-on-go-path (_n)
     (pcase (if (s-contains?
                 (concat (getenv "GOPATH") "/src/github.com")
                 (buffer-file-name))
@@ -40,7 +40,7 @@
                   "" (buffer-file-name)))))
       (`nil (easy-kill-echo "No `gopath' at point"))
       (name (easy-kill-adjust-candidate 'go-name name))))
-  (add-to-list 'easy-kill-alist '(?G go-function "\n\n"))
+  (add-to-list 'easy-kill-alist '(?G go-path "\n\n"))
   :bind (([remap kill-ring-save] . easy-kill)))
 
 (use-package comment-dwim-2
