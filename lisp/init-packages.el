@@ -102,10 +102,17 @@
   (defun my-deadgrep-no-project()
     "Don't use project only current dir"
     (deadgrep--lookup-override default-directory))
+  (defun my-deadgrep-project-el()
+    "Use projectel root"
+    (project-root (project-current t)))
   :bind
   (("C-S-g" . (lambda ()
 				(interactive)
 				(setq-local deadgrep-project-root-function 'my-deadgrep-no-project)
+				(call-interactively 'deadgrep)))
+   ("C-c u" . (lambda ()
+				(interactive)
+				(setq-local deadgrep-project-root-function 'my-deadgrep-project-el)
 				(call-interactively 'deadgrep)))
    :map deadgrep-mode-map
    ("C-e" . deadgrep-edit-mode)))
