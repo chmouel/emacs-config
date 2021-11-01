@@ -62,6 +62,7 @@
   (global-unset-key "\C-z")
 
   :custom
+  (kill-whole-line t)
   (use-short-answers t)
   (package-native-compile t)
   (tab-width 4)
