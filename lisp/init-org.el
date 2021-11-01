@@ -20,13 +20,6 @@
           visual-fill-column-center-text t)
     (visual-fill-column-mode 1)))
 
-(setq org-bars-installation-dir (expand-file-name "org-bars" package-user-dir))
-(use-package org-bars
-  :after org
-  :if (file-directory-p org-bars-installation-dir)
-  :load-path org-bars-installation-dir
-  :hook (org-mode . org-bars-mode))
-
 (use-package org-capture
   :ensure nil
   :commands (org-capture)
