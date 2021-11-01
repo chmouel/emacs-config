@@ -9,14 +9,6 @@
   (browse-kill-ring-show-preview nil)
   :bind (("C-c k" . browse-kill-ring)))
 
-(use-package mwim
-  :bind (([remap beginning-of-line] . mwim))
-  :custom
-  (mwim-position-functions
-   '(mwim-code-beginning
-     mwim-line-beginning
-     mwim-comment-beginning)))
-
 (use-package multiple-cursors
   :bind (("C-c ." . mc/mark-all-dwim))
   :custom
@@ -24,8 +16,13 @@
 
 (use-package expand-region
   :config (setq er/try-expand-list (remove 'er/mark-comment er/try-expand-list))
-  :bind (("M-<up>" . er/expand-region)
-         ("M-<down>" . er/contract-region)))
+  :hydra (hydra-expand-region
+          (:timeout 10)
+          ""
+          ("C-+" er/expand-region "Increase")
+          ("C--" er/contract-region "Decrease")
+          ("q" nil "quit"))
+  :bind ("C-+" . hydra-expand-region/body))
 
 (use-package easy-kill
   :config
@@ -65,8 +62,8 @@
 
 (use-package drag-stuff
   :config (drag-stuff-global-mode 1)
-  :bind (([(control x) (down)] . drag-stuff-down)
-         ([(control x) (up)] . drag-stuff-up)))
+  :bind (("M-<up>" . drag-stuff-up)
+         ("M-<down>" . drag-stuff-down)))
 
 (use-package crux
   :bind (("C-k" . crux-smart-kill-line)
@@ -74,6 +71,7 @@
          ("C-l" . crux-switch-to-previous-buffer)
          ("C-S-l" . crux-other-window-or-switch-buffer)
          ("C-M-j" . crux-top-join-line)
+         ("C-a" . crux-move-beginning-of-line)
          ("M-S-<down>" . crux-duplicate-current-line-or-region)
          ("M-S-<up>" . (lambda (arg)
                          (interactive "P")
@@ -152,14 +150,6 @@
    :map emacs-lisp-mode-map
    ("C-h F" . helpful-function)
    ("C-c C-d" . helpful-at-point)))
-
-;; (use-package ctrlxo
-;;   :bind
-;;   (("C-x o" . ctrlxo)
-;;    ("C-<tab>" . ctrlxo)
-;;    :map ctrlxo-map
-;;    ("<tab>" . ctrlxo-forward)
-;;    ("<S-tab>" . ctrlxo-backward)))
 
 (use-package ripgrep)
 
