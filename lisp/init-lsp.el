@@ -114,9 +114,5 @@
         ("C-p" . company-select-previous)
         ("C-n" . company-select-next)))
 
-(use-package company-box
-  :diminish
-  :ensure t
-  :hook (company-mode . company-box-mode))
 
 (provide 'init-lsp)
