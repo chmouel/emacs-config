@@ -32,6 +32,8 @@
 (use-package highlight-indentation)
 
 (use-package treemacs
+  :custom
+  (treemacs-position 'right)
   :bind
   ("<f10>" . treemacs))
 (use-package treemacs-all-the-icons)
