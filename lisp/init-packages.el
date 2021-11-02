@@ -19,10 +19,10 @@
   :hydra (hydra-expand-region
           (:timeout 10)
           ""
-          ("C-+" er/expand-region "Increase")
+          ("C-0" er/expand-region "Increase")
           ("C--" er/contract-region "Decrease")
           ("q" nil "quit"))
-  :bind ("C-+" . hydra-expand-region/body))
+  :bind ("C-0" . hydra-expand-region/body))
 
 (use-package easy-kill
   :config
