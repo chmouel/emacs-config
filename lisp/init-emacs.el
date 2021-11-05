@@ -62,6 +62,7 @@
   (global-unset-key "\C-z")
 
   :custom
+  (initial-scratch-message nil)
   (kill-whole-line t)
   (use-short-answers t)
   (package-native-compile t)
@@ -287,6 +288,7 @@
   (grep-highlight-matches 'always))
 
 (use-package term
+  :disabled
   :ensure nil
   :bind
   ("C-`" . my-toggle-term)

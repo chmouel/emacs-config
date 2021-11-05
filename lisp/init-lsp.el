@@ -69,6 +69,7 @@
         ("<f11>" . lsp-treemacs-errors-list)))
 
 (use-package dap-mode
+  :disabled
   :after lsp
   :preface
   (setq dap-breakpoints-file (locate-user-emacs-file "auto-save-list/dap-breakpoints")
@@ -78,7 +79,7 @@
   (dap-ui-mode t)
   (dap-tooltip-mode 1)
   (tooltip-mode 1)
-  ;(dap-ui-controls-mode 0)
+                                        ;(dap-ui-controls-mode 0)
   :commands dap-debug)
 
 (use-package company
@@ -114,9 +115,5 @@
         ("C-p" . company-select-previous)
         ("C-n" . company-select-next)))
 
-(use-package company-box
-  :diminish
-  :ensure t
-  :hook (company-mode . company-box-mode))
 
 (provide 'init-lsp)

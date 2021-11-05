@@ -9,14 +9,6 @@
   (browse-kill-ring-show-preview nil)
   :bind (("C-c k" . browse-kill-ring)))
 
-(use-package mwim
-  :bind (([remap beginning-of-line] . mwim))
-  :custom
-  (mwim-position-functions
-   '(mwim-code-beginning
-     mwim-line-beginning
-     mwim-comment-beginning)))
-
 (use-package multiple-cursors
   :bind (("C-c ." . mc/mark-all-dwim))
   :custom
@@ -24,12 +16,17 @@
 
 (use-package expand-region
   :config (setq er/try-expand-list (remove 'er/mark-comment er/try-expand-list))
-  :bind (("M-<up>" . er/expand-region)
-         ("M-<down>" . er/contract-region)))
+  :hydra (hydra-expand-region
+          (:timeout 10)
+          ""
+          ("C-0" er/expand-region "Increase")
+          ("C--" er/contract-region "Decrease")
+          ("q" nil "quit"))
+  :bind ("C-0" . hydra-expand-region/body))
 
 (use-package easy-kill
   :config
-  (defun easy-kill-on-go-function (_n)
+  (defun easy-kill-on-go-path (_n)
     (pcase (if (s-contains?
                 (concat (getenv "GOPATH") "/src/github.com")
                 (buffer-file-name))
@@ -40,7 +37,7 @@
                   "" (buffer-file-name)))))
       (`nil (easy-kill-echo "No `gopath' at point"))
       (name (easy-kill-adjust-candidate 'go-name name))))
-  (add-to-list 'easy-kill-alist '(?G go-function "\n\n"))
+  (add-to-list 'easy-kill-alist '(?G go-path "\n\n"))
   :bind (([remap kill-ring-save] . easy-kill)))
 
 (use-package comment-dwim-2
@@ -65,8 +62,8 @@
 
 (use-package drag-stuff
   :config (drag-stuff-global-mode 1)
-  :bind (([(control x) (down)] . drag-stuff-down)
-         ([(control x) (up)] . drag-stuff-up)))
+  :bind (("M-<up>" . drag-stuff-up)
+         ("M-<down>" . drag-stuff-down)))
 
 (use-package crux
   :bind (("C-k" . crux-smart-kill-line)
@@ -74,6 +71,7 @@
          ("C-l" . crux-switch-to-previous-buffer)
          ("C-S-l" . crux-other-window-or-switch-buffer)
          ("C-M-j" . crux-top-join-line)
+         ("C-a" . crux-move-beginning-of-line)
          ("M-S-<down>" . crux-duplicate-current-line-or-region)
          ("M-S-<up>" . (lambda (arg)
                          (interactive "P")
@@ -102,10 +100,17 @@
   (defun my-deadgrep-no-project()
     "Don't use project only current dir"
     (deadgrep--lookup-override default-directory))
+  (defun my-deadgrep-project-el()
+    "Use projectel root"
+    (project-root (project-current t)))
   :bind
   (("C-S-g" . (lambda ()
 				(interactive)
 				(setq-local deadgrep-project-root-function 'my-deadgrep-no-project)
+				(call-interactively 'deadgrep)))
+   ("C-c u" . (lambda ()
+				(interactive)
+				(setq-local deadgrep-project-root-function 'my-deadgrep-project-el)
 				(call-interactively 'deadgrep)))
    :map deadgrep-mode-map
    ("C-e" . deadgrep-edit-mode)))
@@ -145,14 +150,6 @@
    :map emacs-lisp-mode-map
    ("C-h F" . helpful-function)
    ("C-c C-d" . helpful-at-point)))
-
-;; (use-package ctrlxo
-;;   :bind
-;;   (("C-x o" . ctrlxo)
-;;    ("C-<tab>" . ctrlxo)
-;;    :map ctrlxo-map
-;;    ("<tab>" . ctrlxo-forward)
-;;    ("<S-tab>" . ctrlxo-backward)))
 
 (use-package ripgrep)
 

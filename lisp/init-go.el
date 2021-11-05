@@ -75,7 +75,6 @@
                                       (kill-new f)))))
               ("C-c i" . go-goto-imports)
               ("C-c r" . lsp-workspace-restart)
-              ("C-c l D" . dap-hydra)
               ("C-c C-r" . go-remove-unused-imports)
               ("C-M-<up>" . my-go-prev-function)
               ("C-M-<down>" . my-go-next-function)
@@ -87,7 +86,6 @@
          (go-mode . my-go-mode-hook))
   :config
   (defun my-go-mode-hook ()
-    (require 'dap-go)
     (setq gofmt-command "goimports")
 
     (if (and buffer-file-name

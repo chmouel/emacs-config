@@ -17,6 +17,10 @@
   :bind
   ("C-`" . eshell-toggle))
 
+(use-package vterm-toggle
+  :bind
+  ("C-`" . vterm-toggle))
+
 (use-package esh-module
   :defer t
   :ensure nil
