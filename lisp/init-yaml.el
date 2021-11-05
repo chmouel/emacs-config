@@ -13,7 +13,6 @@
      ("kind:\s*\\(.*\\)\n" 1 'font-lock-keyword-face prepend)))
   :bind
   (:map yaml-mode-map
-        ("C-<return>" . imenu-list-smart-toggle)
         ("<backtab>" . outline-toggle-children)
         ("C--" . (lambda () (interactive) (call-interactively 'highlight-indentation-current-column-mode)))
         ("C-S-f" . format-all-buffer)
