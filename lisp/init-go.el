@@ -24,8 +24,9 @@
         (re-search-forward "name:[[:blank:]]*\"\\([^\"]*\\)\"" (line-end-position) t))
       (setq testrunname (match-string-no-properties 1))
       (if testrunname
-          (setq gotest (format "%s/%s" gotest (s-replace " " "_"  testrunname))))
-      (go-test--go-test (s-concat "-run " gotest "\\$ .")))))
+          (setq gotest (format "%s/%s" gotest (shell-quote-argument
+                                               (replace-regexp-in-string " " "_" testrunname)))))
+      (go-test--go-test (concat "-run " gotest "\\$ .")))))
 
 (use-package go-playground
   :after go-mode
