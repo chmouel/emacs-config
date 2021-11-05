@@ -128,6 +128,7 @@ Captured at %U"
   (org-refile-targets '((org-agenda-files . (:maxlevel . 6))))
   (org-yank-adjusted-subtrees t)
   (org-completion-use-ido t)
+  (org-adapt-indentiation nil)
   (org-return-follows-link t))
 
 (use-package org-superstar
