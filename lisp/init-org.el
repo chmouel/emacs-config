@@ -16,13 +16,18 @@
   :hook (org-mode . efs/org-mode-visual-fill)
   :config
   (defun efs/org-mode-visual-fill ()
-    (setq visual-fill-column-width 120
+    (setq visual-fill-column-width 140
           visual-fill-column-center-text t)
     (visual-fill-column-mode 1)))
 
 (use-package org-capture
   :ensure nil
   :commands (org-capture)
+  :hook
+  (org-shiftup-final . windmove-up)
+  (org-shiftleft-final . windmove-left)
+  (org-shiftdown-final . windmove-down)
+  (org-shiftright-final . windmove-right)
   :bind
   ("C-c c c" . org-capture)
   ("C-c c t" . (lambda () (interactive) (org-capture nil "t"))) 
