@@ -7,7 +7,7 @@
          ("C-x v P" . magit-push-current-to-pushremote)
          ("<f5>" . magit-status)
          ("C-<f5>" . magit-show-refs)
-         ("C-c G" . magit-file-dispatch)
+         ("C-x g" . magit-file-dispatch)
          ("C-c g" . magit-status))
   :bind (:map magit-refs-mode-map
               ;; ("K" . magit-branch-delete)
