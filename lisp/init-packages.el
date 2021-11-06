@@ -29,6 +29,10 @@
 (use-package easy-kill
   :config
   ;; M-w ^ for begin and M-w $ for end of line
+  (defun easy-kill-on-path (_n)
+    (easy-kill-adjust-candidate 'path (file-name-directory (buffer-file-name))))
+  (add-to-list 'easy-kill-alist '(?P path "\n\n"))
+  ;; M-w ^ for begin and M-w $ for end of line
   (defun easy-kill-on-eol (_n)
     (easy-kill-adjust-candidate 'eol (point) (line-end-position)))
   (add-to-list 'easy-kill-alist '(?$ eol "\n\n"))
