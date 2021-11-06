@@ -1,8 +1,6 @@
 (use-package emacs
   :ensure nil
   :defer t
-  ;; :hook
-  ;; (before-save . before-save-clean-whitespace
   :hook
   (before-save . (lambda ()
                    (interactive)
