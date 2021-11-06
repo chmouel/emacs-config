@@ -3,7 +3,7 @@
   :config
   (gcmh-mode 1))
 
-; Browse Kill Ring 
+;;; Browse Kill Ring 
 (use-package browse-kill-ring
   :custom
   (browse-kill-ring-show-preview nil)
@@ -20,8 +20,8 @@
           (:timeout 10)
           ""
           ("C-." er/expand-region "Increase")
-          ("<delete>" kill-region "Yank")
-          ("<return>" copy-region-as-kill "Yank")
+          ("<return>" copy-region-as-kill "Copy")
+          ("<delete>" kill-region "Cut")
           ("-" er/contract-region "Decrease")
           ("q" nil "quit"))
   :bind ("C-." . hydra-expand-region/body))
