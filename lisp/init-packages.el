@@ -20,12 +20,21 @@
           (:timeout 10)
           ""
           ("C-." er/expand-region "Increase")
-          ("C--" er/contract-region "Decrease")
+          ("<delete>" kill-region "Yank")
+          ("<return>" copy-region-as-kill "Yank")
+          ("-" er/contract-region "Decrease")
           ("q" nil "quit"))
   :bind ("C-." . hydra-expand-region/body))
 
 (use-package easy-kill
   :config
+  ;; M-w ^ for begin and M-w $ for end of line
+  (defun easy-kill-on-eol (_n)
+    (easy-kill-adjust-candidate 'eol (point) (line-end-position)))
+  (add-to-list 'easy-kill-alist '(?$ eol "\n\n"))
+  (defun easy-kill-on-bol (_n)
+    (easy-kill-adjust-candidate 'bol (point) (line-beginning-position)))
+  (add-to-list 'easy-kill-alist '(?^ bol "\n\n"))
   (defun easy-kill-on-go-path (_n)
     (pcase (if (s-contains?
                 (concat (getenv "GOPATH") "/src/github.com")
