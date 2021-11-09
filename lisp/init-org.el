@@ -1,3 +1,4 @@
+
 ;; Org-Mode
 
 (defconst org-directory "~/Sync/orgs")
@@ -80,14 +81,14 @@ In function ~%s~
            "* %c %?\nCaptured at %U"
            :empty-lines 1)
 
-          ("p" "Pipelines as Code>TODO" entry
-           (file+olp org-todo-file "Pipelines as Code")
+          ("p" "Work>TODO" entry
+           (file+olp org-todo-file "Work")
            "* TODO %?\n\n%(with-current-buffer (org-capture-get :original-buffer) (my-capture-code-snippet))\n
 Captured at %U"
            :empty-lines 1)
 
-          ("P" "Pipelines as Code>Notes" entry
-           (file+olp org-notes-file "Pipelines as Code")
+          ("P" "Work>Notes" entry
+           (file+olp org-notes-file "Work")
            "* %?\nCaptured at %U"
            :empty-lines 1)
           
@@ -113,6 +114,7 @@ Captured at %U"
   (:map org-mode-map
         ("C-o" . crux-smart-open-line-above))
   :custom
+  (org-archive-location "archive.org::* Archives %s")
   (org-use-speed-commands t)
   (org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)" "CANCELED(c@/!)" "ONEDAY(o)" )))
   (org-todo-state-tags-triggers '(("CANCELLED" ("CANCELLED" . t))
@@ -122,13 +124,11 @@ Captured at %U"
                                   ("NEXT" ("WAITING") ("CANCELLED"))
                                   ("DONE" ("WAITING") ("CANCELLED"))))
   (org-use-tag-inheritance t)
-  (org-tag-alist '(("pac")
+  (org-tag-alist '(("linux")
                    ("emacs")
-                   ("openshift")
-                   ("redhat")
-                   ("tektoncd")
+                   ("programming")
                    (:startgroup . nil)
-                   ("#link" . ?i) ("#read" . ?r) ("#project" . ?p)
+                   ("pipelinesascode") ("openshift") ("redhat") ("tektoncd")
                    (:endgroup . nil)))
   
   (org-special-ctrl-a/e t)
