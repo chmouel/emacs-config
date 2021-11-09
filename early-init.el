@@ -36,6 +36,8 @@ Deactivate this advice with:
 (cond
  ((string= (my-short-hostname) "thebatman")
   (setq init-default-font-size "17" ))
+ ((string= (my-short-hostname) "pignon")
+  (setq init-default-font-size "17" ))
  ((string= (my-short-hostname) "ibra")
   (setq init-default-font-size "17" ))
  ((string= (my-short-hostname) "windaube")
