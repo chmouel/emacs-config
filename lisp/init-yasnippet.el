@@ -20,16 +20,6 @@
 	  user-mail-address))
   (yas-global-mode 1))
 
-(use-package autoinsert
-  :hook
-  (after-init . auto-insert-mode)
-  :custom
-  (auto-insert-query nil)
-  (auto-insert-alist nil)
-  :config
-  (define-auto-insert "\.py"
-	'(lambda () (yas--expand-by-uuid 'python-mode "header"))))
-
 (use-package yasnippet-snippets :after yasnippet)
 
 (provide 'init-yasnippet)
