@@ -1,3 +1,4 @@
+
 ;; Org-Mode
 
 (defconst org-directory "~/Sync/orgs")
@@ -80,14 +81,14 @@ In function ~%s~
            "* %c %?\nCaptured at %U"
            :empty-lines 1)
 
-          ("p" "Pipelines as Code>TODO" entry
-           (file+olp org-todo-file "Pipelines as Code")
+          ("p" "Work>TODO" entry
+           (file+olp org-todo-file "Work")
            "* TODO %?\n\n%(with-current-buffer (org-capture-get :original-buffer) (my-capture-code-snippet))\n
 Captured at %U"
            :empty-lines 1)
 
-          ("P" "Pipelines as Code>Notes" entry
-           (file+olp org-notes-file "Pipelines as Code")
+          ("P" "Work>Notes" entry
+           (file+olp org-notes-file "Work")
            "* %?\nCaptured at %U"
            :empty-lines 1)
           
@@ -96,18 +97,26 @@ Captured at %U"
            "* %a\n%U\n%?\n%i"
            :empty-lines 1)
 
-          ("Pl" "Protocol Link" entry (file+olp org-links-file "WEB") "* %?[[%:link][%:description]]\n")
-          ("Pn" "Protocol Notes" entry (file+olp org-notes-file "WEB") "* [[%:link][%:description]]\n#+BEGIN_QUOTE %?\n%:initial\n#+END_QUOTE\n\n" :empty-lines 1))))
+          ("Pl" "Protocol Link" entry (file+olp org-notes-file "Random") "* %?[[%:link][%:description]]\n")
+          ("Pn" "Protocol Notes" entry (file+olp org-notes-file "Random") "* [[%:link][%:description]]\n#+BEGIN_QUOTE %?\n%:initial\n#+END_QUOTE\n\n" :empty-lines 1))))
+
+(use-package org-bullets
+  :ensure t
+  :hook (org-mode . org-bullets-mode))
 
 (use-package org
   :ensure nil
   :mode (("\\.org$" . org-mode))
   :commands (org-agenda org-capture)
+  :hook
+  (org-mode . org-indent-mode)
   :bind
   (:map org-mode-map
-        ("C-c k" . org-cut-subtree))
+        ("C-o" . crux-smart-open-line-above))
   :custom
-  (org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)" "CANCELED(c@/!)")))
+  (org-archive-location "archives.org::* Archives %s")
+  (org-use-speed-commands t)
+  (org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)" "CANCELED(c@/!)" "ONEDAY(o)" )))
   (org-todo-state-tags-triggers '(("CANCELLED" ("CANCELLED" . t))
                                   ("WAITING" ("WAITING" . t))
                                   (done ("WAITING"))
@@ -115,26 +124,26 @@ Captured at %U"
                                   ("NEXT" ("WAITING") ("CANCELLED"))
                                   ("DONE" ("WAITING") ("CANCELLED"))))
   (org-use-tag-inheritance t)
-  (org-tag-alist '(("pac")
+  (org-tag-alist '(("linux")
                    ("emacs")
-                   ("openshift")
-                   ("redhat")
-                   ("tektoncd")
+                   ("programming")
                    (:startgroup . nil)
-                   ("#link" . ?i) ("#read" . ?r) ("#project" . ?p)
+                   ("pipelinesascode") ("openshift") ("redhat") ("tektoncd")
                    (:endgroup . nil)))
   
   (org-special-ctrl-a/e t)
-  (org-log-done 'time)
-  (org-log-redeadline 'time)
-  (org-log-reschedule 'time)
-  (org-log-into-drawer t)
-  (org-enforce-todo-dependencies t)
-  (org-refile-targets '((org-agenda-files . (:maxlevel . 6))))
-  (org-yank-adjusted-subtrees t)
+  (org-special-ctrl-o nil)
+  (org-startup-truncated nil)
   (org-completion-use-ido t)
-  (org-adapt-indentiation nil)
-  (org-return-follows-link t))
+  (org-todo-keyword-faces
+   '(("IDEA" . (:foreground "GoldenRod" :weight bold))
+     ("NEXT" . (:foreground "IndianRed1" :weight bold))
+     ("STARTED" . (:foreground "OrangeRed" :weight bold))
+     ("WAITING" . (:foreground "coral" :weight bold))
+     ("CANCELED" . (:foreground "LimeGreen" :weight bold))
+     ("DELEGATED" . (:foreground "LimeGreen" :weight bold))
+     ("SOMEDAY" . (:foreground "LimeGreen" :weight bold))))
+  (org-adapt-indentiation nil))
 
 (use-package org-superstar
   :disabled
