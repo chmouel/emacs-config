@@ -36,6 +36,8 @@
     (load-theme 'doom-one))
    ((string= (my-short-hostname) "ibra")
     (load-theme 'doom-dark+))
+   ((string= (my-short-hostname) "pignon")
+    (load-theme 'doom-dark+))
    ((string= (my-short-hostname) "windaube")
     (load-theme 'doom-opera-light))))
 
