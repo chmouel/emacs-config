@@ -2,7 +2,6 @@
   :commands (magit-read-repository magit-toplevel)
   :bind (("C-x v V" . my-magit-commit-buffer)
          ("C-x v -" . magit-pull-from-pushremote)
-         ("C-x v =" . magit-diff-buffer-file)
          ("C-x v l" . magit-log-buffer-file)
          ("C-x v P" . magit-push-current-to-pushremote)
          ("<f5>" . magit-status)
