@@ -114,7 +114,7 @@ Captured at %U"
   (:map org-mode-map
         ("C-o" . crux-smart-open-line-above))
   :custom
-  (org-archive-location "archive.org::* Archives %s")
+  (org-archive-location "archives.org::* Archives %s")
   (org-use-speed-commands t)
   (org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)" "CANCELED(c@/!)" "ONEDAY(o)" )))
   (org-todo-state-tags-triggers '(("CANCELLED" ("CANCELLED" . t))
