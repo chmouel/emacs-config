@@ -11,7 +11,6 @@
   (lsp-eldoc-enable-hover nil)
   (lsp-eldoc-render-all nil)
   (lsp-enable-file-watchers nil)
-  (lsp-pyls-plugins-flake8-enabled t)
   (lsp-pyls-plugins-flake8-max-line-length 200)
   (lsp-pyls-plugins-pycodestyle-max-line-length 500)
   (lsp-enable-symbol-highlighting nil)
