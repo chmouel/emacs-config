@@ -28,7 +28,18 @@
 ;;----------------------------------------------------------------------------
 (setq custom-file (expand-file-name "auto-save-list/custom.el" user-emacs-directory))
 
-(require 'bind-key)
+(require 'package)
+(setq package-archives '(("melpa" . "https://melpa.org/packages/")
+                         ("org" . "https://orgmode.org/elpa/")
+                         ("elpa" . "https://elpa.gnu.org/packages/")))
+
+(package-initialize)
+(unless package-archive-contents
+  (package-refresh-contents))
+
+  ;; Initialize use-package on non-Linux platforms
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
 
 ;; Init ELPA
 (require 'init-elpa)      ;; Machinery for installing required packages
