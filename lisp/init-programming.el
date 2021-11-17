@@ -1,13 +1,13 @@
 (use-package emacs
   :ensure nil
   :defer t
-  :hook
-  (before-save . (lambda ()
-                   (interactive)
-                   (when (or (derived-mode-p 'markdown-mode)
-                             (derived-mode-p 'yaml-mode))
-                     (delete-trailing-whitespace))))
   :config
+  (add-hook 'before-save-hook
+            (lambda ()
+              (interactive)
+              (when (or (derived-mode-p 'markdown-mode)
+                        (derived-mode-p 'yaml-mode))
+                (delete-trailing-whitespace))))
   (defun my-recompile (args)
     (interactive "P")
     (cond
