@@ -31,7 +31,7 @@
   :custom
   (custom-safe-themes 't)
   :custom-face
-  (tab-bar-tab ((t (:inherit doom-modeline-bar :weight bold :background nil))))
+  (tab-bar-tab ((t (:inherit doom-modeline-bar :weight demibold :background nil))))
   :init
   (cond
    ((string= (my-short-hostname) "thebatman")
