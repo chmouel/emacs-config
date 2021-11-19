@@ -175,9 +175,11 @@
   ("s-<tab>" . hydra-tabs/body)
   :custom
   (tab-bar-new-button-show 'nil)
+  (tab-bar-close-button nil)
   (tab-bar-history-mode 'nil)
   (tab-bar-new-tab-to 'rightmost)
   (tab-bar-tab-hints 't)
+  (tab-bar-separator "  ")
   :config
   (cond ((memq window-system '(mac ns))
          (setq tab-bar-select-tab-modifiers '(super)))

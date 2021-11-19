@@ -30,6 +30,8 @@
 (use-package emacs
   :custom
   (custom-safe-themes 't)
+  :custom-face
+  (tab-bar-tab ((t (:inherit doom-modeline-bar :weight bold :background nil))))
   :init
   (cond
    ((string= (my-short-hostname) "thebatman")
