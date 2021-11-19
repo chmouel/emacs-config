@@ -90,6 +90,7 @@
 
 (use-package json-mode
   :hook
+  (json-mode . lsp)
   (json-mode . hs-minor-mode)
   :bind
   (:map json-mode-map
