@@ -276,9 +276,9 @@
   (calendar-mark-holidays-flag t)
   (calendar-week-start-day 1))
 
-(use-package winner
-  :ensure nil
-  :hook (after-init . winner-mode))
+;; (use-package winner
+;;   :ensure nil
+;;   :hook (after-init . winner-mode))
 
 (use-package grep
   :ensure nil
