@@ -30,16 +30,10 @@ Deactivate this advice with:
 ;;
 ;; Frame by default
 ;;
-(defvar init-default-font-size "14" )
+(defvar init-default-font-size "17" )
 (defvar init-default-font "Roboto Mono Light" )
 
 (cond
- ((string= (my-short-hostname) "thebatman")
-  (setq init-default-font-size "17" ))
- ((string= (my-short-hostname) "pignon")
-  (setq init-default-font-size "17" ))
- ((string= (my-short-hostname) "ibra")
-  (setq init-default-font-size "17" ))
  ((string= (my-short-hostname) "windaube")
   (setq init-default-font-size "15" )))
 
