@@ -7,7 +7,6 @@
         tramp-persistency-file-name (locate-user-emacs-file "auto-save-list/tramp")
         gnus-init-file (locate-user-emacs-file "lisp/init-gnus.el")
         url-history-file (locate-user-emacs-file "auto-save-list/url-history")
-        package-quickstart-file (locate-user-emacs-file "auto-save-list/package-quickstart.el")
         bookmark-default-file (locate-user-emacs-file "auto-save-list/bookmarks.bmk")
         save-place-file (locate-user-emacs-file "auto-save-list/emacs-places.el")
         nsm-settings-file (locate-user-emacs-file "auto-save-list/network-security.data"))

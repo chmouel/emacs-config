@@ -61,5 +61,5 @@ Deactivate this advice with:
 (setq inhibit-splash-screen t)
 
 (setq package-quickstart t)
-
+(setq package-quickstart-file (locate-user-emacs-file "auto-save-list/package-quickstart.el"))
 (provide 'early-init)

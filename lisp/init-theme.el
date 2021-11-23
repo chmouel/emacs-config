@@ -34,8 +34,6 @@
   (tab-bar-tab ((t (:inherit doom-modeline-bar :weight demibold :background nil))))
   :init
   (cond
-   ((string= (my-short-hostname) "thebatman")
-    (load-theme 'doom-one))
    ((string= (my-short-hostname) "ibra")
     (load-theme 'doom-dark+))
    ((string= (my-short-hostname) "pignon")
