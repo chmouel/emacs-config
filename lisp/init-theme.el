@@ -27,18 +27,4 @@
 (use-package all-the-icons-completion
   :hook (after-init . all-the-icons-completion-mode))
 
-(use-package emacs
-  :custom
-  (custom-safe-themes 't)
-  :custom-face
-  (tab-bar-tab ((t (:inherit doom-modeline-bar :weight demibold :background nil))))
-  :init
-  (cond
-   ((string= (my-short-hostname) "ibra")
-    (load-theme 'doom-dark+))
-   ((string= (my-short-hostname) "pignon")
-    (load-theme 'doom-outrun-electric))
-   ((string= (my-short-hostname) "windaube")
-    (load-theme 'doom-opera-light))))
-
 (provide 'init-theme)
