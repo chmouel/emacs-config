@@ -107,7 +107,8 @@
 (use-package lua-mode)
 
 ;; Format buffers!
-(use-package format-all)
+(use-package format-all
+  :commands (format-all-mode format-all-ensure-formatter))
 
 (use-package restclient
   :commands (restclient-mode)
