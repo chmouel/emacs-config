@@ -31,6 +31,7 @@
   :bind
   (:map prog-mode-map
         ("<f12>" . lsp-find-definition)
+        ("<f2>" . lsp-rename)
         ("C-c ?" . lsp-describe-thing-at-point))
   :hook ((lsp-mode . lsp-enable-which-key-integration)
          (lsp-mode . lsp-modeline-code-actions-mode)

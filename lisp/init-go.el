@@ -69,7 +69,6 @@
   :bind (:map go-mode-map
               ("s-." . hydra-golang/body)
               ("C-c a" . my-go-import-add)
-              ("<f2>" . lsp-rename)
               ("C-c Y" . (lambda () (interactive)
                            (let ((f (go-test--get-current-test)))
                              (message (format "function %s has been copied to kill ring" f)
