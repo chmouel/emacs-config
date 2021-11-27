@@ -39,12 +39,14 @@
   ("C-<down>" .
    (lambda ()
      (interactive)
-     (ignore-errors (next-logical-line 5))))
+     (ignore-errors (next-logical-line 5))
+     (pulse-momentary-highlight-one-line (point))))
 
   ("C-<up>" .
    (lambda ()
      (interactive)
-     (ignore-errors (previous-logical-line 5))))
+     (ignore-errors (previous-logical-line 5))
+     (pulse-momentary-highlight-one-line (point))))
 
   :hook
   (after-save . executable-make-buffer-file-executable-if-script-p)
