@@ -1,8 +1,8 @@
-(use-package lsp-pyright
-  :ensure t
-  :hook (python-mode . (lambda ()
-                         (require 'lsp-pyright)
-                         (lsp))))  ; or lsp-deferred
+;; (use-package lsp-pyright
+;;   :ensure t
+;;   :hook (python-mode . (lambda ()
+;;                          (require 'lsp-pyright)
+;;                          (lsp))))  ; or lsp-deferred
 
 (use-package py-isort
   :diminish
@@ -55,6 +55,8 @@
     (py-isort-buffer))
 
   (defun my-python-mode-hook()
+    (lsp)
+    (flycheck-add-next-checker 'lsp '(warning . python-pylint))
     (if (and
 	     buffer-file-name
 	     (string-match
@@ -64,10 +66,9 @@
           (local-set-key '[(control return)] 'pytest-one)
           (local-set-key (kbd "C-S-r") 'pytest-one))))
   
-  ;; (add-to-list 'multi-compile-alist '(python-mode . (("pyhon-run" . "python3 -E %path"))))
+  (add-to-list 'multi-compile-alist '(python-mode . (("pyhon-run" . "python3 -E %path"))))
   
   :hook ((python-mode . yapf-mode)
-	     (python-mode . lsp-deferred)
 	     (python-mode . flycheck-mode)
 	     (python-mode . hungry-delete-mode)
 	     (python-mode . highlight-indentation-mode)

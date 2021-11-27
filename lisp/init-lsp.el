@@ -48,10 +48,15 @@
 ;; optional - provides fancy overlay information
 (use-package lsp-ui
   :commands lsp-ui-mode
-  :custom  ;; disable inline documentation
+  :after lsp-mode flycheck
+  :custom
   ((lsp-ui-sideline-enable nil)
    (lsp-ui-doc-max-height 15)
    (lsp-ui-doc-max-width 30)
+   (lsp-ui-sideline-ignore-duplicate t)
+   (lsp-pyls-plugins-pylint-enabled 't)
+   (lsp-pyls-plugins-pycodestyle-enabled 'nil)
+   (lsp-pyls-plugins-mccabe-enabled 'nil)
    (lsp-ui-doc-show-with-cursor nil)
    (lsp-ui-doc-position 'bottom)
    (lsp-ui-flycheck-enable t t)
