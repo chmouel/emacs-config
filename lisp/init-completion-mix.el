@@ -53,12 +53,12 @@
   (completion-category-defaults nil))
 
 (use-package vertico
-  ;; :custom-face
-  ;; (vertico-current ((t (:foreground "thistle"))))
   :custom
   (vertico-count-format '())
   :config
-  (define-key vertico-map (kbd "C-j") #'vertico-exit-input)
+  (define-key vertico-map (kbd "C-j") #'vertico-exit)
+  (define-key vertico-map (kbd "<return>") #'vertico-exit-input)
+  (define-key vertico-map (kbd "C-<return>") #'vertico-exit)
   (define-key vertico-map (kbd "C-s") #'vertico-next)
   :init
   (vertico-mode))
