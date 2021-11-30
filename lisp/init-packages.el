@@ -9,6 +9,8 @@
   (browse-kill-ring-show-preview nil)
   :bind (("C-c k" . browse-kill-ring)))
 
+(use-package rpm-spec-mode)
+
 (use-package multiple-cursors
   :bind (("C-c ." . mc/mark-all-dwim))
   :custom
