@@ -14,8 +14,9 @@
   :ensure t
   :bind
   ("C-c b" . project-switch-to-buffer)
-  ("C-c o" . my-project-and-ff)
-  ("C-c p" . my-project-and-dired)
+  ("C-x p o" . my-project-and-ff)
+  ("C-x p p" . my-project-and-dired)
+  ("C-x p P" . project-switch-project)
   ("C-c f" . project-find-file)
   ("C-c h" . project-find-regexp)
   :custom
