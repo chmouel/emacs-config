@@ -35,7 +35,9 @@ Deactivate this advice with:
 
 (cond
  ((string= (my-short-hostname) "windaube")
-  (setq init-default-font-size "15" )))
+  (setq init-default-font-size "15" ))
+ ((string= (my-short-hostname) "pignon")
+  (setq init-default-font "RobotoMono Nerd Font Light" )))
 
 (setq default-frame-alist
       `((tool-bar-lines . 0)
