@@ -9,6 +9,9 @@
   (browse-kill-ring-show-preview nil)
   :bind (("C-c k" . browse-kill-ring)))
 
+(use-package ace-jump-mode
+  :bind ("C-0" . ace-jump-word-mode))
+
 (use-package multiple-cursors
   :bind (("C-c ." . mc/mark-all-dwim))
   :custom
