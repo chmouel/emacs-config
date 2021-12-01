@@ -1,21 +1,18 @@
 ;; Projects
-
-(defun my-project-and-dired()
-  (interactive)
-  (let ((project-switch-commands 'project-dired))
-    (call-interactively 'project-switch-project)))
-
-(defun my-project-and-ff()
-  (interactive)
-  (let ((project-switch-commands 'project-find-file))
-    (call-interactively 'project-switch-project)))
-
 (use-package project
   :ensure t
   :bind
   ("C-c b" . project-switch-to-buffer)
-  ("C-c o" . my-project-and-ff)
-  ("C-c p" . my-project-and-dired)
+  ("C-x p o" . (lambda ()
+                 (interactive)
+                 (let ((project-switch-commands 'project-find-file))
+                   (call-interactively 'project-switch-project))))
+  ("C-x p p" . (lambda ()
+                 (interactive)
+                 (let ((project-switch-commands 'project-dired))
+                   (call-interactively 'project-switch-project))))
+  ("C-x p p" . my-project-and-dired)
+  ("C-x p P" . project-switch-project)
   ("C-c f" . project-find-file)
   ("C-c h" . project-find-regexp)
   :custom
