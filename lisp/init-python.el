@@ -29,7 +29,7 @@
   :bind (:map python-mode-map
               ("C-c t" . ff-find-other-file)
               ("M-q" . fill-paragraph)
-              ("M-<return>" . compile)
+              ("M-<return>" . multi-compile-run)
               ("C-c i" . my-py-import-add)
               ("C-c \[" . flycheck-previous-error)
               ("C-c \]" . flycheck-next-error))
