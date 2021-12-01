@@ -11,7 +11,6 @@
                  (interactive)
                  (let ((project-switch-commands 'project-dired))
                    (call-interactively 'project-switch-project))))
-  ("C-x p p" . my-project-and-dired)
   ("C-x p P" . project-switch-project)
   ("C-c f" . project-find-file)
   ("C-c h" . project-find-regexp)
