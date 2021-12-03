@@ -40,7 +40,7 @@ Deactivate this advice with:
   (setq init-default-font "Roboto Mono")
   (setq init-default-font-size "13" ))
  ((string= (my-short-hostname) "pignon")
-  (setq init-default-font "RobotoMono Nerd Font Light" )))
+  (setq init-default-font "RobotoMono Nerd Font" )))
 
 (setq default-frame-alist
       `((tool-bar-lines . 0)
