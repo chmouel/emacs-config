@@ -31,11 +31,14 @@ Deactivate this advice with:
 ;; Frame by default
 ;;
 (defvar init-default-font-size "17" )
-(defvar init-default-font "Roboto Mono Light" )
+(defvar init-default-font "Roboto Mono Light")
 
 (cond
  ((string= (my-short-hostname) "windaube")
   (setq init-default-font-size "15" ))
+ ((string= (my-short-hostname) "domac")
+  (setq init-default-font "Roboto Mono")
+  (setq init-default-font-size "13" ))
  ((string= (my-short-hostname) "pignon")
   (setq init-default-font "RobotoMono Nerd Font Light" )))
 
