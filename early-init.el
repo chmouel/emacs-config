@@ -31,27 +31,23 @@ Deactivate this advice with:
 ;; Frame by default
 ;;
 (defvar init-default-font-size "17" )
-(defvar init-default-font "Roboto Mono Light")
-(defvar init-alpha-transparency '(100 . 100))
+(defvar init-default-font "Roboto Mono")
 
 (cond
  ((string= (my-short-hostname) "windaube")
   (setq init-default-font-size "15" ))
  ((string= (my-short-hostname) "domac")
   (setq init-default-font "Roboto Mono")
-  (setq init-default-font-size "13")
-  (setq init-alpha-transparency '(95 . 70)))
+  (setq init-default-font-size "13"))
  ((string= (my-short-hostname) "pignon")
-  (setq init-alpha-transparency '(95 . 70))
-  (setq init-default-font "RobotoMono Nerd Font" )))
+  (setq init-default-font "Roboto Mono" )))
 
 (setq default-frame-alist
-      `((tool-bar-lines . 0)
-        (menu-bar-lines . ,(if (display-graphic-p) 1 0))
-        (font . ,(format "%s %s" init-default-font init-default-font-size))
-        (width . 132)
-        (alpha . ,init-alpha-transparency)
-        (height . 43)))
+`((tool-bar-lines . 0)
+  (menu-bar-lines . ,(if (display-graphic-p) 1 0))
+  (font . ,(format "%s %s" init-default-font init-default-font-size))
+  (width . 132)
+  (height . 43)))
 
 (setq frame-inhibit-implied-resize t)
 
