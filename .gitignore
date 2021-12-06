@@ -1,4 +1,5 @@
 lisp/init-local.el
+!auto-save-list/.gitignore
 auto-save-list/
 elpa/
 /.cache/
