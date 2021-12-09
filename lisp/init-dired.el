@@ -39,6 +39,11 @@
         ("j" . dired-next-line)
         ("k" . dired-previous-line)))
 
+(use-package dired-subtree
+  :after dired
+  :bind (:map dired-mode-map
+              ("TAB" . dired-subtree-toggle)))
+
 (use-package all-the-icons-dired
   :diminish
   :hook (dired-mode . all-the-icons-dired-mode))
