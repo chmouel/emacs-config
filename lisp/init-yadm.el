@@ -54,4 +54,4 @@
         (magit-with-toplevel
           (magit-stage-1 nil (list file)))))))
 
-(provide 'yadm-status)
+(provide 'init-yadm)
