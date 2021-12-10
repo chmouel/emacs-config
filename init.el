@@ -1,4 +1,4 @@
-;; Copyright Chmouel Boudjnah <chmouel>
+;; Copyright Chmouel Boudjnah <chmouel@chmouel.com>
 ;; Emacs init
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
