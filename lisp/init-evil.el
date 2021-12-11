@@ -1,6 +1,8 @@
 (use-package evil
   :config
   (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
+  (evil-set-initial-state 'dired-mode 'emacs)
+  (evil-set-initial-state 'view-mode 'emacs)
   :custom
   (evil-want-integration nil)
   (evil-want-keybinding nil)
