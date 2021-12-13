@@ -35,19 +35,14 @@ Deactivate this advice with:
 
 (cond
  ((string= (my-short-hostname) "windaube")
-  (setq init-default-font-size "15" ))
- ((string= (my-short-hostname) "domac")
-  (setq init-default-font "Roboto Mono")
-  (setq init-default-font-size "13"))
- ((string= (my-short-hostname) "pignon")
-  (setq init-default-font "Roboto Mono" )))
+  (setq init-default-font-size "15" )))
 
 (setq default-frame-alist
-`((tool-bar-lines . 0)
-  (menu-bar-lines . ,(if (display-graphic-p) 1 0))
-  (font . ,(format "%s %s" init-default-font init-default-font-size))
-  (width . 132)
-  (height . 43)))
+      `((tool-bar-lines . 0)
+        (menu-bar-lines . ,(if (display-graphic-p) 1 0))
+        (font . ,(format "%s %s" init-default-font init-default-font-size))
+        (width . 132)
+        (height . 43)))
 
 (setq frame-inhibit-implied-resize t)
 
