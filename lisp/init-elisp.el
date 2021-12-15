@@ -26,7 +26,8 @@
   :ensure nil
   :defer t
   :interpreter ("emacs" . emacs-lisp-mode)
-  :config
+  :custom
+  (scheme-program-name "guile")
   :hook
   (lisp-mode . aggressive-indent-mode)
   (lisp-mode . company-mode)
