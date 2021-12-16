@@ -34,6 +34,10 @@ Deactivate this advice with:
 (defvar init-default-font "Roboto Mono")
 
 (cond
+ ((and
+   (string= (getenv "WAYLAND_DISPLAY") "wayland-1")
+   (string= (my-short-hostname) "domac"))
+  (setq init-default-font-size "13" ))
  ((string= (my-short-hostname) "windaube")
   (setq init-default-font-size "15" )))
 
