@@ -63,6 +63,7 @@
   (global-unset-key "\C-z")
 
   :custom
+  (reb-re-syntax #'string)
   (initial-scratch-message nil)
   (kill-whole-line t)
   (use-short-answers t)
