@@ -1,8 +1,8 @@
-;; (use-package lsp-pyright
-;;   :ensure t
-;;   :hook (python-mode . (lambda ()
-;;                          (require 'lsp-pyright)
-;;                          (lsp))))  ; or lsp-deferred
+(use-package lsp-pyright
+  :ensure t
+  :hook (python-mode . (lambda ()
+                         (require 'lsp-pyright)
+                         (lsp))))  ; or lsp-deferred
 
 (use-package py-isort
   :diminish
@@ -55,7 +55,6 @@
     (py-isort-buffer))
 
   (defun my-python-mode-hook()
-    (lsp)
     (flycheck-add-next-checker 'lsp '(warning . python-pylint))
     (if (and
 	     buffer-file-name
