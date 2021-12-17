@@ -1,5 +1,9 @@
 (use-package kaolin-themes)
 
+(use-package emacs
+  :config
+  (global-tab-line-mode 1))
+
 ;; Maybe we can do something a bit more smart with those config
 (use-package doom-themes
   :defer nil
