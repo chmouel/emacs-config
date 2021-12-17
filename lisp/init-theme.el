@@ -17,6 +17,7 @@
    doom-ayu-light-brighter-modeline nil
    doom-ayu-light-padded-modeline t)
   :custom-face
+  (tab-line-tab-current ((t nil)))
   (icomplete-first-match ((t (:inherit mode-line-emphasis)))))
 
 (use-package doom-modeline
