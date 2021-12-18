@@ -194,4 +194,6 @@
   ("M-S-<up>" . buf-move-up)
   ("M-S-<down>" . buf-move-down))
 
+(use-package rainbow-mode)
+
 (provide 'init-packages)
