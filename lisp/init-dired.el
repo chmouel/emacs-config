@@ -29,6 +29,7 @@
 
   :custom
   (dired-kill-when-opening-new-dired-buffer 't)
+  :bind
   (:map dired-mode-map
         ("W" . browse-url-of-dired-file)
         ("O" . dired-omit-mode)
@@ -39,12 +40,14 @@
 
 (use-package dired-subtree
   :after dired
-  :bind (:map dired-mode-map
-              ("TAB" . dired-subtree-toggle)))
+  :bind
+  ("C-x C-j" . dired-jump)
+  (:map dired-mode-map
+        ("TAB" . dired-subtree-toggle)))
 
 (use-package dirvish
   :bind
-  ("C-x C-j" . dirvish)
+  ("C-x j" . dirvish)
   (:map dirvish-mode-map
         ("W" . browse-url-of-dired-file)
         ("O" . dired-omit-mode)
@@ -55,9 +58,7 @@
   :custom
   (dirvish-body-fontsize-increment 0)
   (dirvish-icon-delimiter " ")
-  (dirvish-use-large-header nil)
-  :config
-  (dirvish-override-dired-jump))
+  (dirvish-use-large-header nil))
 
 ;; diredfl:Extra Emacs font lock rules for a more colourful dired
 (use-package diredfl
