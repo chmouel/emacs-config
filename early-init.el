@@ -39,8 +39,6 @@ Deactivate this advice with:
    (string= (my-short-hostname) "domac"))
   (set-frame-parameter (selected-frame) 'alpha '(95 . 90))
   (setq init-default-font-size "13" ))
- ((string= (my-short-hostname) "domac")
-  (set-frame-parameter (selected-frame) 'alpha '(95 . 90)))
  ((string= (my-short-hostname) "windaube")
   (setq init-default-font-size "15" )))
 
