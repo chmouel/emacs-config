@@ -44,6 +44,7 @@
 
 (use-package dirvish
   :bind
+  ("C-x C-j" . dirvish)
   (:map dirvish-mode-map
         ("W" . browse-url-of-dired-file)
         ("O" . dired-omit-mode)
@@ -51,7 +52,6 @@
         ("s" . dired-up-directory)
         ("j" . dired-next-line)
         ("k" . dired-previous-line))
-  ("C-x C-j" . dirvish)
   :custom
   (dirvish-body-fontsize-increment 0)
   (dirvish-icon-delimiter " ")
