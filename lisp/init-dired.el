@@ -44,6 +44,13 @@
 
 (use-package dirvish
   :bind
+  (:map dirvish-mode-map
+        ("W" . browse-url-of-dired-file)
+        ("O" . dired-omit-mode)
+        ("E" . wdired-change-to-wdired-mode)
+        ("s" . dired-up-directory)
+        ("j" . dired-next-line)
+        ("k" . dired-previous-line))
   ("C-x C-j" . dirvish)
   :custom
   (dirvish-body-fontsize-increment 0)
