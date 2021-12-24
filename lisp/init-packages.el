@@ -153,10 +153,6 @@
     (add-hook 'magit-pre-refresh-hook #'diff-hl-magit-pre-refresh)
     (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh)))
 
-(use-package good-scroll
-  :hook
-  (after-init . good-scroll-mode))
-
 (use-package helpful
   :bind
   (([remap describe-function] . helpful-callable)
