@@ -27,6 +27,13 @@
         ("C-<return>" . my-recompile)
         ("RET" . newline-and-indent)))
 
+(use-package ansi-color
+  :config
+  (defun my-colorize-compilation-buffer ()
+    (when (eq major-mode 'compilation-mode)
+      (ansi-color-apply-on-region compilation-filter-start (point-max))))
+  :hook (compilation-filter . my-colorize-compilation-buffer))
+
 (use-package highlight-indentation)
 
 (use-package treemacs
