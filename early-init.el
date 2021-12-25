@@ -37,7 +37,6 @@ Deactivate this advice with:
  ((and
    (string= (getenv "WAYLAND_DISPLAY") "wayland-1")
    (string= (my-short-hostname) "domac"))
-  (set-frame-parameter (selected-frame) 'alpha '(95 . 90))
   (setq init-default-font-size "13" ))
  ((string= (my-short-hostname) "windaube")
   (setq init-default-font-size "15" )))
@@ -46,6 +45,7 @@ Deactivate this advice with:
       `((tool-bar-lines . 0)
         (menu-bar-lines . ,(if (display-graphic-p) 1 0))
         (font . ,(format "%s %s" init-default-font init-default-font-size))
+        (alpha 95 90)
         (width . 132)
         (height . 43)))
 
