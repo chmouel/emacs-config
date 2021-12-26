@@ -2,8 +2,7 @@
 
 (use-package emacs
   :config
-  (set-frame-parameter (selected-frame) 'alpha '(95 . 90))
-  (global-tab-line-mode 1))
+  (set-frame-parameter (selected-frame) 'alpha '(95 . 90)))
 
 ;; Maybe we can do something a bit more smart with those config
 (use-package doom-themes

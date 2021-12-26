@@ -183,12 +183,18 @@
   (tab-bar-new-tab-to 'rightmost)
   (tab-bar-tab-hints 't)
   (tab-bar-separator "  ")
+  (tab-line-close-button-show nil)
+  (tab-line-new-button-show nil)
   :config
+  (when (boundp 'tab-bar-history-mode)
+    (tab-bar-history-mode t))
+  (setq tab-bar-format '(tab-bar-format-tabs tab-bar-separator))
   (cond ((memq window-system '(mac ns))
          (setq tab-bar-select-tab-modifiers '(super)))
         (t
          (setq tab-bar-select-tab-modifiers '(meta))))
   (tab-bar-mode 1)
+  (global-tab-line-mode 1)
   (setq tab-bar-new-tab-choice "."))
 
 (use-package isearch
