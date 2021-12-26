@@ -179,7 +179,7 @@
   ("C-M-l" . tab-recent)
   ("s-<tab>" . hydra-tabs/body)
   :custom
-  (tab-bar-show -1)
+  (tab-bar-show 1)
   (tab-bar-new-button-show 'nil)
   (tab-bar-close-button nil)
   (tab-bar-history-mode 'nil)
