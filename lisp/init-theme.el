@@ -28,7 +28,9 @@
 (use-package doom-modeline
   :defer nil
   :init (doom-modeline-mode 1)
-  :custom ((doom-modeline-height 10)))
+  :custom
+  ((doom-modeline-env-version nil)
+   (doom-modeline-height 10)))
 
 (use-package all-the-icons-completion
   :hook (after-init . all-the-icons-completion-mode))
