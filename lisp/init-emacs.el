@@ -2,6 +2,7 @@
   :preface
   ;; FilePath
   (setq server-auth-dir (locate-user-emacs-file "auto-save-list/server/")
+        multisession-directory (locate-user-emacs-file "auto-save-list/multisession/")
         url-configuration-directory (locate-user-emacs-file "auto-save-list/url/")
         url-cookie-file (locate-user-emacs-file "auto-save-list/cookies")
         tramp-persistency-file-name (locate-user-emacs-file "auto-save-list/tramp")
