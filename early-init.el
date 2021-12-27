@@ -31,7 +31,7 @@ Deactivate this advice with:
 ;; Frame by default
 ;;
 (defvar init-default-font-size "17" )
-(defvar init-default-font "Roboto Mono")
+(defvar init-default-font "JetBrains Mono")
 
 (cond
  ((and
