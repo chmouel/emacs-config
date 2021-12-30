@@ -98,4 +98,32 @@
         (call-interactively 'magit-fetch-from-upstream)
         (call-interactively 'magit-section-show-level-4-all)))))
 
+
+;;
+(defun my-move-to-biggest (&optional arg)
+  "A bit like crux transpose windows (where this function started from) but keep
+   the largest window on focus.  If there is more than two window, focus to the
+   largest window. if you are already on the largest window then switch to the
+   last one (if prefix switch last one + prefix) Like this for i3/sway
+   https://git.io/Jy94D or dwm centeredmaster
+   https://dwm.suckless.org/patches/centeredmaster/"
+  (interactive "p")
+  (let ((this-win (selected-window))
+        (this-buffer (window-buffer))
+        (largest (get-largest-window))
+        (this-win-size
+         (* (window-total-width) (window-total-height))))
+    (if (or (< (count-windows) 1)
+            (eq this-win largest))
+        (other-window arg)
+      (select-window largest))
+    (set-window-buffer this-win (current-buffer))
+    (set-window-buffer (selected-window) this-buffer)
+    (if (> this-win-size
+           (* (window-total-width) (window-total-height)))
+        (other-window -1))))
+(global-set-key (read-kbd-macro "C-c o") 'my-move-to-biggest)
+
+
+
 (provide 'init-functions)
