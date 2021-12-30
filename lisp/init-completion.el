@@ -30,6 +30,7 @@
 
 (use-package consult
   :bind
+  ("C-x B" . consult-bookmark)
   ("C-x C-r" . consult-recent-file)
   ("C-|" . consult-recent-file)
   ("C-c U" . consult-ripgrep)
