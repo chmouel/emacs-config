@@ -191,7 +191,7 @@
   ("M-S-<down>" . buf-move-down))
 
 (use-package circe
-  :commands (irc)
+  :commands (circe-connect)
   :custom
   (circe-reduce-lurker-spam t)
   (circe-format-say "{nick:-16s} {body}")
@@ -218,18 +218,18 @@
       '((text-properties . (face circe-fool-face
                                  lui-do-not-track t)))))
   (add-hook 'circe-message-option-functions 'my-circe-message-option-bot)
-  (defun irc ()
+  (defun circe-connect ()
     "Connect to IRC"
     (interactive)
     (circe "Libera Chat"))
-  (defun my-libera-pass (&rest params)
+  (defun my-libera-pass (server)
     (require 'password-store)
-    (password-store-get "irc/libera"))
+    (password-store-get (concat "irc/" server)))
   (setq circe-network-options
         '(("Libera Chat"
            :nick "chmouel"
-           :channels ("#emacs" "#emacs-circe" "#archlinux" "#flatpak" "systemcrafters")
-           :nickserv-password my-nickserv-password))))
+           :channels (:after-auth "#emacs" "#emacs-circe" "#archlinux" "#flatpak" "#systemcrafters")
+           :nickserv-password my-libera-pass))))
 
 (use-package rainbow-mode)
 
