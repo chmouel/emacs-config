@@ -64,6 +64,7 @@
   (global-unset-key "\C-z")
 
   :custom
+  (windmove-wrap-around t)
   (mouse-autoselect-window t)
   (reb-re-syntax #'string)
   (initial-scratch-message nil)
