@@ -190,6 +190,47 @@
   ("M-S-<up>" . buf-move-up)
   ("M-S-<down>" . buf-move-down))
 
+(use-package circe
+  :commands (irc)
+  :custom
+  (circe-reduce-lurker-spam t)
+  (circe-format-say "{nick:-16s} {body}")
+  :config
+  (setq lui-track-bar-behavior 'before-switch-to-buffer)
+  (enable-lui-track-bar)
+  (enable-circe-color-nicks)
+  (setq
+   lui-time-stamp-position 'right-margin
+   lui-fill-type nil)
+
+  (add-hook 'lui-mode-hook 'my-lui-setup)
+  (defun my-lui-setup ()
+    (setq
+     fringes-outside-margins t
+     right-margin-width 5
+     word-wrap t
+     wrap-prefix "    "))
+  
+  (setq circe-format-self-say "<{nick}> {body}")
+  (defvar my-circe-bot-list '("fsbot" "rudybot"))
+  (defun my-circe-message-option-bot (nick &rest ignored)
+    (when (member nick my-circe-bot-list)
+      '((text-properties . (face circe-fool-face
+                                 lui-do-not-track t)))))
+  (add-hook 'circe-message-option-functions 'my-circe-message-option-bot)
+  (defun irc ()
+    "Connect to IRC"
+    (interactive)
+    (circe "Libera Chat"))
+  (defun my-libera-pass (&rest params)
+    (require 'password-store)
+    (password-store-get "irc/libera"))
+  (setq circe-network-options
+        '(("Libera Chat"
+           :nick "chmouel"
+           :channels ("#emacs" "#emacs-circe" "#archlinux" "#flatpak" "systemcrafters")
+           :nickserv-password my-nickserv-password))))
+
 (use-package rainbow-mode)
 
 (provide 'init-packages)
