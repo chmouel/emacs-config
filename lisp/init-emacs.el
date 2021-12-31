@@ -170,14 +170,15 @@
                      ("f" find-file-other-tab "find-file")
                      ("\[" tab-previous "previous")
                      ("\]" tab-next "next")
-                     ("<return>" tab-bar-select-tab-by-name "select")
+                     ("<return>" nil "quit")
+                     ("t" tab-bar-select-tab-by-name "select")
                      ("m" tab-bar-move-tab "move")
                      ("r" tab-bar-rename-tab "rename")
                      ("M" (lambda () (interactive) (tab-bar-move-tab -1)) "moveleft")
                      ("q" nil "quit"))
   :bind
   ("C-M-l" . tab-recent)
-  ("s-<tab>" . hydra-tabs/body)
+  ("C-c x x" . hydra-tabs/body)
   :custom
   (tab-bar-show 1)
   (tab-bar-new-button-show 'nil)
