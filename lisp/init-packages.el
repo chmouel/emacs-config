@@ -228,8 +228,12 @@
   (setq circe-network-options
         '(("Libera Chat"
            :nick "chmouel"
-           :channels (:after-auth "#emacs" "#emacs-circe" "#archlinux" "#flatpak" "#systemcrafters")
+           :channels (:after-auth "#emacs" "#archlinux" "#systemcrafters")
            :nickserv-password my-libera-pass))))
+
+(use-package resize-window
+  :bind
+  ("C-c ;" . resize-window))
 
 (use-package rainbow-mode)
 
