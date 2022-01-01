@@ -185,7 +185,7 @@
   (tab-bar-close-button nil)
   (tab-bar-history-mode 'nil)
   (tab-bar-new-tab-to 'rightmost)
-  (tab-bar-tab-hints 't)
+  (tab-bar-tab-hints nil)
   (tab-bar-separator "  ")
   (tab-line-close-button-show nil)
   (tab-line-new-button-show nil)
