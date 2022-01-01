@@ -191,7 +191,6 @@
   ("M-S-<down>" . buf-move-down))
 
 (use-package circe
-  :commands (circe-connect)
   :custom
   (circe-reduce-lurker-spam t)
   (circe-format-say "{nick:-16s} {body}")
@@ -202,15 +201,6 @@
   (setq
    lui-time-stamp-position 'right-margin
    lui-fill-type nil)
-
-  (add-hook 'lui-mode-hook 'my-lui-setup)
-  (defun my-lui-setup ()
-    (setq
-     fringes-outside-margins t
-     right-margin-width 5
-     word-wrap t
-     wrap-prefix "    "))
-  
   (setq circe-format-self-say "<{nick}> {body}")
   (defvar my-circe-bot-list '("fsbot" "rudybot"))
   (defun my-circe-message-option-bot (nick &rest ignored)
@@ -218,18 +208,9 @@
       '((text-properties . (face circe-fool-face
                                  lui-do-not-track t)))))
   (add-hook 'circe-message-option-functions 'my-circe-message-option-bot)
-  (defun circe-connect ()
-    "Connect to IRC"
-    (interactive)
-    (circe "Libera Chat"))
-  (defun my-libera-pass (server)
+  (defun my-circe-via-pass (server)
     (require 'password-store)
-    (password-store-get (concat "irc/" server)))
-  (setq circe-network-options
-        '(("Libera Chat"
-           :nick "chmouel"
-           :channels (:after-auth "#emacs" "#archlinux" "#systemcrafters")
-           :nickserv-password my-libera-pass))))
+    (password-store-get (concat "irc/" server))))
 
 (use-package resize-window
   :bind
