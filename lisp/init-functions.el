@@ -122,8 +122,27 @@
     (if (> this-win-size
            (* (window-total-width) (window-total-height)))
         (other-window -1))))
-(global-set-key (read-kbd-macro "C-c o") 'my-move-to-biggest)
+(global-set-key (read-kbd-macro "C-S-o") 'my-move-to-biggest)
 
+(defun my-precious-layouts ()
+  "if only one window split in two, two resize the one focused small and the
+unfocused big, if 3 grow big the middle one, 1/6 of frame the side ones, if you
+have more than 3 then well you better start using resize-window.el "
+  (interactive)
+  (if (eq (length (window-list)) 1)
+      (split-window-right))
+  (cond ((eq (length (window-list)) 2)
+         ;; can't get window-resize work as expected so let shrink window minus the total frame width
+         (shrink-window (- (window-total-width) (/ (frame-width) 4)) t))
+        ((eq (length (window-list)) 3)
+         (select-window (frame-first-window))
+         (shrink-window
+          (-(window-total-width) (/ (frame-width) 6)) t)
+         (select-window (nth 2 (window-list nil nil (frame-first-window))))
+         (shrink-window
+          (-(window-total-width) (/ (frame-width) 6)) t)))
+  (select-window (get-largest-window)))
+(global-set-key (read-kbd-macro "C-c o") 'my-precious-layouts)
 
 
 (provide 'init-functions)
