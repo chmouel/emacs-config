@@ -41,8 +41,58 @@
   (my-search arg default-directory))
 (global-set-key '[(super g)] 'my-search-here)
 
-;;
-(defun my/frame-move-resize (position)
+;;https://www.emacswiki.org/emacs/NavigatingParentheses
+(defun forward-or-backward-sexp (&optional arg)
+  "Go to the matching parenthesis character if one is adjacent to point."
+  (interactive "^p")
+  (cond ((looking-at "\\s(") (forward-sexp arg))
+        ((looking-back "\\s)" 1) (backward-sexp arg))
+        ;; Now, try to succeed from inside of a bracket
+        ((looking-at "\\s)") (forward-char) (backward-sexp arg))
+        ((looking-back "\\s(" 1) (backward-char) (forward-sexp arg))))
+(global-set-key (read-kbd-macro "C-=") 'forward-or-backward-sexp)
+
+;; Sync directories with gh repo sync
+(defun my-sync-dir ()
+  (interactive)
+  (require 'magit-repos)
+  (dolist (repo (magit-list-repos))
+    (progn
+      (magit-status-setup-buffer repo)
+      (unless (magit-anything-modified-p t repo)
+        (magit-git-command-topdir "gh repo sync")
+        (call-interactively 'magit-fetch-from-upstream)
+        (call-interactively 'magit-section-show-level-4-all)))))
+
+
+;; https://www.reddit.com/r/emacs/comments/rtvpvw/switching_to_a_buffer_of_the_same_mode/hqwvc9l/
+(defun my-change-buffer-same-major-mode (change-buffer)
+  "Call CHANGE-BUFFER until the current buffer has the initial `major-mode'."
+  (let ((initial (current-buffer))
+        (mode major-mode))
+    (funcall change-buffer)
+    (let ((first-change (current-buffer)))
+      (catch 'loop
+        (while (not (eq major-mode mode))
+          (funcall change-buffer)
+          (when (eq (current-buffer) first-change)
+            (switch-to-buffer initial)
+            (throw 'loop t)))))))
+
+(defun my-next-buffer-same-major-mode ()
+  "Like `next-buffer' for buffers in the current `major-mode'."
+  (interactive)
+  (my-change-buffer-same-major-mode 'next-buffer))
+(global-set-key (read-kbd-macro "C-M-<right>") 'my-next-buffer-same-major-mode)
+
+(defun my-previous-buffer-same-major-mode ()
+  "Like `previous-buffer' for buffers in the current `major-mode'."
+  (interactive)
+  (my-change-buffer-same-major-mode 'previous-buffer))
+(global-set-key (read-kbd-macro "C-M-<left>") 'my-previous-buffer-same-major-mode)
+
+;; adapted from  a SO answer somewhere
+(defun my-frame-move-resize (position)
   "Resize selected frame to cover exactly 1/3 of screen area, and
    move frame to given third of current screen. Symbol POSITION can
    be either left, center, right."
@@ -57,49 +107,6 @@
     (set-frame-size (selected-frame) (/ WIDTH 2) HEIGHT t)
     (set-frame-position (selected-frame) x 0)))
 
-;; Take a url (or replace to the raw one if it's a github url) download and eval it.
-(defun my-try-el(url)
-  "Quickly try a lisp file downloading and evaluating it"
-  (interactive "sEmacs lisp url to retrieve: ")
-  (let ((rawurl
-         (replace-regexp-in-string
-          "/blob" ""
-          (replace-regexp-in-string
-           "https://github.com" "https://raw.githubusercontent.com" url))))
-    (progn
-      (switch-to-buffer (url-retrieve-synchronously rawurl))
-      (save-excursion
-        (goto-char (point-min))
-        (delete-region (point) (search-forward "\n\n" nil t)))
-      (eval-buffer)
-      (emacs-lisp-mode)
-      (font-lock-ensure))))
-
-;;https://www.emacswiki.org/emacs/NavigatingParentheses
-(defun forward-or-backward-sexp (&optional arg)
-  "Go to the matching parenthesis character if one is adjacent to point."
-  (interactive "^p")
-  (cond ((looking-at "\\s(") (forward-sexp arg))
-        ((looking-back "\\s)" 1) (backward-sexp arg))
-        ;; Now, try to succeed from inside of a bracket
-        ((looking-at "\\s)") (forward-char) (backward-sexp arg))
-        ((looking-back "\\s(" 1) (backward-char) (forward-sexp arg))))
-(global-set-key (read-kbd-macro "C-=") 'forward-or-backward-sexp)
-
-;; sync
-(defun my-sync-dir ()
-  (interactive)
-  (require 'magit-repos)
-  (dolist (repo (magit-list-repos))
-    (progn
-      (magit-status-setup-buffer repo)
-      (unless (magit-anything-modified-p t repo)
-        (magit-git-command-topdir "gh repo sync")
-        (call-interactively 'magit-fetch-from-upstream)
-        (call-interactively 'magit-section-show-level-4-all)))))
-
-
-;;
 (defun my-move-to-biggest (&optional arg)
   "A bit like crux transpose windows (where this function started from) but keep
    the largest window on focus.  If there is more than two window, focus to the
