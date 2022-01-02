@@ -1,5 +1,6 @@
 ;; Go to GNUS
 (defun my-switch-to-gnus ()
+  "Select the tab or switch to gnus"
   (interactive)
   (let ((tab-index (or (tab-bar--tab-index-by-name "*Group*") -1)))
     (if (= tab-index -1)
@@ -29,18 +30,6 @@
       (setenv "KUBECONFIG" kubeconfig)
     (error "Cannot find kubeconfig: %s" kubeconfig)))
 
-(defun my-search (consult directory)
-  (if consult
-      (counsel-rg
-       (ag/dwim-at-point))
-    (let ((search (read-from-minibuffer "Search string: ")))
-      (ripgrep-regexp search (expand-file-name directory)))))
-
-(defun my-search-here (&optional arg)
-  (interactive "P")
-  (my-search arg default-directory))
-(global-set-key '[(super g)] 'my-search-here)
-
 ;;https://www.emacswiki.org/emacs/NavigatingParentheses
 (defun forward-or-backward-sexp (&optional arg)
   "Go to the matching parenthesis character if one is adjacent to point."
@@ -52,7 +41,8 @@
         ((looking-back "\\s(" 1) (backward-char) (forward-sexp arg))))
 (global-set-key (read-kbd-macro "C-=") 'forward-or-backward-sexp)
 
-;; Sync directories with gh repo sync
+;; Sync directories with gh repo sync, gh repo sync is not great, may just adapt
+;; in "pure" magit commands
 (defun my-sync-dir ()
   (interactive)
   (require 'magit-repos)
@@ -107,6 +97,7 @@
     (set-frame-size (selected-frame) (/ WIDTH 2) HEIGHT t)
     (set-frame-position (selected-frame) x 0)))
 
+;; translated from something I have done on sway with i3ipc
 (defun my-move-to-biggest (&optional arg)
   "A bit like crux transpose windows (where this function started from) but keep
    the largest window on focus.  If there is more than two window, focus to the
@@ -131,6 +122,7 @@
         (other-window -1))))
 (global-set-key (read-kbd-macro "C-S-o") 'my-move-to-biggest)
 
+;; translated from something I have done on sway with i3ipc
 (defun my-precious-layouts ()
   "if only one window split in two, two resize the one focused small and the
 unfocused big, if 3 grow big the middle one, 1/6 of frame the side ones, if you
