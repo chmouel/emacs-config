@@ -190,6 +190,11 @@
   (tab-line-close-button-show nil)
   (tab-line-new-button-show nil)
   :config
+  (defun my-tab-bar-format-menu-bar ()
+    "Show menu."
+    `((menu-bar menu-item (propertize " " 'face 'tab-bar-tab-inactive)
+                tab-bar-menu-bar :help "Menu Bar")))
+  (add-to-list 'tab-bar-format #'my-tab-bar-format-menu-bar)
   (when (boundp 'tab-bar-history-mode)
     (tab-bar-history-mode t))
   (setq tab-bar-format '(tab-bar-format-tabs tab-bar-separator))
