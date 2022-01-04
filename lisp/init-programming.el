@@ -15,6 +15,10 @@
       (progn
         (pop-to-buffer "*Go Test*")
         (recompile)))
+     ((get-buffer "*pytest*")
+      (progn
+        (pop-to-buffer "*pytest*")
+        (recompile)))
      ((get-buffer "*compilation*")
       (progn
         (pop-to-buffer "*compilation*")
