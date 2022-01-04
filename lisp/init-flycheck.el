@@ -20,6 +20,7 @@
    (flycheck-disabled-checkers
 	'(go-unconvert
 	  html-tidy xml-xmlint
+      python-mypy
 	  emacs-lisp emacs-lisp-checkdoc))
    (flycheck-display-errors-delay 0.2)
    (flycheck-highlighting-mode 'lines))

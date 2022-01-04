@@ -1,4 +1,6 @@
 (use-package lsp-pyright
+  :custom
+  (lsp-pyright-typechecking-mode "off")
   :ensure t)
 
 (use-package py-isort
