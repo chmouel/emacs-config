@@ -41,20 +41,26 @@
 (use-package dired-subtree
   :after dired
   :bind
-  ("C-x C-j" . dired-jump)
+  ("C-x j" . dired-jump)
   (:map dired-mode-map
         ("TAB" . dired-subtree-toggle)))
 
 (use-package dirvish
   :bind
-  ("C-x j" . dirvish)
+  ("C-x C-j" . dirvish)
   (:map dirvish-mode-map
         ("W" . browse-url-of-dired-file)
         ("O" . dired-omit-mode)
         ("E" . wdired-change-to-wdired-mode)
-        ("s" . dired-up-directory)
+        ("h" . dirvish-up-directory)
+        ("s" . dirvish-up-directory)
+        ("l" . dirvish-find-file)
         ("j" . dired-next-line)
         ("k" . dired-previous-line))
+  :config
+  (setq dirvish-preview-dispatchers
+        (remove
+         'dirvish-preview-directory-exa-dispatcher dirvish-preview-dispatchers))
   :custom
   (dirvish-body-fontsize-increment 0)
   (dirvish-icon-delimiter " ")
