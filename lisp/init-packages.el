@@ -7,16 +7,6 @@
   :bind
   ("C-x C-b" . bufler))
 
-(use-package isearch-mb
-  :after isearch-mode
-  :config
-  (isearch-mb-mode)
-  (add-to-list 'isearch-mb--with-buffer #'consult-isearch)
-  (add-to-list 'isearch-mb--after-exit #'anzu-isearch-query-replace)
-  :bind
-  (:map isearch-mb-minibuffer-map
-        ([remap previous-matching-history-element] . consult-isearch)))
-
 ;;; Browse Kill Ring 
 (use-package browse-kill-ring
   :custom
