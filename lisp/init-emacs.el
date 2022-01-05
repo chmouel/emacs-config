@@ -128,6 +128,8 @@
   :custom
   (savehist-file (locate-user-emacs-file "auto-save-list/save-history.el"))
   (enable-recursive-minibuffers t)
+  (history-delete-duplicates t)
+  (savehist-save-minibuffer-history t)
   (history-length 1000)
   (savehist-autosave-interval 300))
 
