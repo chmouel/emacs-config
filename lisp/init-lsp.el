@@ -96,7 +96,6 @@
   (company-tooltip-limit 20)
   (company-tooltip-idle-delay 0.4)
   (company-async-timeout 20)
-  (company-minimum-prefix-length 1)
   (company-tooltip-align-annotations t)
   (company-format-margin-function #'company-vscode-light-icons-margin)
   :config

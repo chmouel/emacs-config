@@ -3,6 +3,10 @@
   :config
   (gcmh-mode 1))
 
+(use-package bufler
+  :bind
+  ("C-x C-b" . bufler))
+
 ;;; Browse Kill Ring 
 (use-package browse-kill-ring
   :custom
