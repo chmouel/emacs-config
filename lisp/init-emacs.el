@@ -194,8 +194,9 @@
     "Show menu."
     `((menu-bar menu-item (propertize " " 'face 'tab-bar-tab-inactive)
                 tab-bar-menu-bar :help "Menu Bar")))
-  (setq tab-bar-format
-        '(my-tab-bar-format-menu-bar tab-bar-format-tabs tab-bar-separator))
+  (if (boundp 'tab-bar-format)
+      (setq tab-bar-format
+            '(my-tab-bar-format-menu-bar tab-bar-format-tabs tab-bar-separator)))
   (when (boundp 'tab-bar-history-mode)
     (tab-bar-history-mode t))
   (cond ((memq window-system '(mac ns))
