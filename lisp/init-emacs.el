@@ -205,7 +205,7 @@
          (setq tab-bar-select-tab-modifiers '(meta))))
   (tab-bar-mode 1)
   (global-tab-line-mode 1)
-  (setq tab-bar-new-tab-choice "."))
+  (setq tab-bar-new-tab-choice 'my-project-dirvish))
 
 (use-package isearch
   :ensure nil
