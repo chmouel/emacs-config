@@ -9,11 +9,15 @@
                    (call-interactively 'project-switch-project))))
   ("C-x p p" . (lambda ()
                  (interactive)
-                 (let ((project-switch-commands 'project-dired))
+                 (let ((project-switch-commands 'my-project-dirvish))
                    (call-interactively 'project-switch-project))))
   ("C-x p P" . project-switch-project)
   ("C-c f" . project-find-file)
   ("C-c h" . project-find-regexp)
+  :config
+  (defun my-project-dirvish ()
+    (interactive)
+    (dirvish (project-root (project-current t))))
   :custom
   (project-list-file (locate-user-emacs-file "auto-save-list/project-list.file")))
 
