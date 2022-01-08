@@ -31,7 +31,9 @@
           ("<delete>" kill-region "Cut")
           ("-" er/contract-region "Decrease")
           ("q" nil "quit"))
-  :bind ("C-." . hydra-expand-region/body))
+  :bind
+  (("C-c C-<UP>" . er/expand-region)
+   ("C-." . hydra-expand-region/body)))
 
 (use-package easy-kill
   :config
