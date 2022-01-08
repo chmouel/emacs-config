@@ -1,8 +1,3 @@
-(use-package lsp-pyright
-  :custom
-  (lsp-pyright-typechecking-mode "off")
-  :ensure t)
-
 (use-package py-isort
   :diminish
   :after python-mode)
@@ -54,9 +49,8 @@
     (py-isort-buffer))
 
   (defun my-python-mode-hook()
-    (require 'lsp-pyright)
     (lsp)
-    (flycheck-add-next-checker 'lsp '(warning . python-pylint))
+    ;; (flycheck-add-next-checker 'lsp '(warning . python-pylint))
     (if (and
 	     buffer-file-name
 	     (string-match
