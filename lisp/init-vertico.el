@@ -16,14 +16,29 @@
 
 ;; Enable vertico
 (use-package vertico
-  :custom-face
-  (vertico-current ((t (:foreground "red"))))
   :custom
   (vertico-count-format '())
-  :config
-  (define-key vertico-map (kbd "C-j") #'vertico-exit-input)
-  (define-key vertico-map (kbd "C-s") #'vertico-next)
+  :bind
+  (:map vertico-map
+        ("C-s" . vertico-next)
+        ("<return>" . vertico-exit)
+        ("<C-return>" . vertico-exit-input)
+        ("C-j" . (lambda () (interactive)
+	               (if minibuffer--require-match
+	        	       (minibuffer-complete-and-exit)
+	                 (exit-minibuffer)))))
   :init
-  (vertico-mode))
+  (vertico-reverse-mode t)
+  (vertico-mode t))
+
+(use-package vertico-directory
+  :ensure nil
+  :after vertico
+  :bind (:map vertico-map
+              ("DEL"   . vertico-directory-delete-char)
+              ("M-DEL" . vertico-directory-delete-word)
+              ("C-w"   . vertico-directory-delete-word)
+              ("RET"   . vertico-directory-enter)))
+
 
 (provide 'init-vertico)
