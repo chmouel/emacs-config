@@ -3,16 +3,13 @@
   :custom
   (completion-styles '(orderless))
   (orderless-matching-styles
-   '(orderless-strict-leading-initialism
+   '(orderless-flex
+     orderless-strict-leading-initialism
      orderless-regexp
      orderless-prefixes
      orderless-literal))
   (orderless-component-separator " ")
-  (completion-category-defaults nil)
-  (completion-category-overrides
-   '((file (styles basic flex initials substring))
-     (buffer (styles basic flex initials substring))
-     (info-menu (styles basic flex initials substring)))))
+  (completion-category-defaults nil))
 
 ;; Enable vertico
 (use-package vertico
