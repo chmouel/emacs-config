@@ -3,6 +3,10 @@
   :config
   (gcmh-mode 1))
 
+
+(use-package smooth-scrolling
+  :hook (after-init . smooth-scrolling-mode))
+
 (use-package bufler
   :bind
   ("C-x C-b" . bufler))
