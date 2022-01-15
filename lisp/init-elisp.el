@@ -16,12 +16,6 @@
   :bind (:map emacs-lisp-mode-map
               ("C-x C-e" . eval-buffer)))
 
-;; (use-package sly
-;;   :custom
-;;   (inferior-lisp-program "sbcl"))
-
-;; (use-package sly-quicklisp)  
-
 (use-package lisp
   :ensure nil
   :defer t

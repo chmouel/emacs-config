@@ -15,6 +15,9 @@
   ("C-c f" . project-find-file)
   ("C-c h" . project-find-regexp)
   :config
+  (defun my-project-or-curdir-counsel-fzf (&optional arg)
+    (interactive "P")
+    (counsel-fzf))
   (defun my-project-dirvish ()
     (interactive)
     (dirvish (project-root (project-current t))))

@@ -35,6 +35,7 @@
         ("O" . dired-omit-mode)
         ("E" . wdired-change-to-wdired-mode)
         ("s" . dired-up-directory)
+        ("f" . my-project-or-curdir-counsel-fzf)
         ("j" . dired-next-line)
         ("k" . dired-previous-line)))
 
@@ -54,7 +55,9 @@
         ("E" . wdired-change-to-wdired-mode)
         ("h" . dirvish-up-directory)
         ("s" . dirvish-up-directory)
+        ("f" . my-project-or-curdir-counsel-fzf)
         ("l" . dirvish-find-file)
+        ("/" . isearch-forward)
         ("j" . dired-next-line)
         ("k" . dired-previous-line))
   :config
