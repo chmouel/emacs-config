@@ -1,10 +1,12 @@
 (use-package evil
   :config
   (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
-  (evil-define-key 'normal 'global (kbd "C-k") (lambda () (interactive)(scroll-lock-previous-line 5)))
-  (evil-define-key 'normal 'global (kbd "C-j") (lambda () (interactive)(scroll-lock-next-line 5)))
-  (evil-define-key 'normal 'global (kbd "<tab>") 'next-buffer)
-  (evil-define-key 'normal 'global (kbd "<S-tab>") 'previous-buffer)
+  (evil-define-key 'normal 'global (kbd "C-k") (lambda () (interactive)(previous-logical-line 5)))
+  (evil-define-key 'normal 'global (kbd "C-j") (lambda () (interactive)(next-logical-line 5)))
+  (with-eval-after-load 'evil-maps
+    (define-key evil-motion-state-map (kbd "SPC") nil)
+    (define-key evil-motion-state-map (kbd "RET") nil)
+    (define-key evil-motion-state-map (kbd "TAB") nil))
   (evil-set-initial-state 'dired-mode 'emacs)
   (evil-set-initial-state 'view-mode 'emacs)
   :custom
