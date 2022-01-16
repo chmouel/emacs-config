@@ -9,6 +9,13 @@
     (define-key evil-motion-state-map (kbd "TAB") nil))
   (evil-set-initial-state 'dired-mode 'emacs)
   (evil-set-initial-state 'view-mode 'emacs)
+  ;; I prefer Emacs way after pressing ":" in evil-mode
+  (define-key evil-ex-completion-map (kbd "C-a") 'move-beginning-of-line)
+  (define-key evil-ex-completion-map (kbd "C-b") 'backward-char)
+  (define-key evil-ex-completion-map (kbd "M-p") 'previous-complete-history-element)
+  (define-key evil-ex-completion-map (kbd "M-n") 'next-complete-history-element)
+  (define-key evil-normal-state-map "go" 'avy-goto-char)
+  (define-key evil-normal-state-map (kbd "q") nil)
   :custom
   (evil-undo-system 'undo-redo)
   (evil-want-integration nil)
@@ -18,15 +25,15 @@
   ("C-~" . evil-mode)
   :commands (evil-local-mode))
 
-(use-package scroll-lock
-  :ensure nil
-  :commands
-  (scroll-lock-previous-line scroll-lock-next-line))
-
 (use-package evil-commentary
   :after evil
   :ensure t
   :bind (:map evil-normal-state-map
               ("gc" . evil-commentary)))
+
+(use-package evil-matchit
+  :config
+  (define-key evil-normal-state-map (kbd "%") 'evilmi-jump-items)
+  (global-evil-matchit-mode t))
 
 (provide 'init-evil)

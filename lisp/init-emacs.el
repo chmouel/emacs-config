@@ -326,4 +326,10 @@
           (ansi-term (getenv "SHELL"))
           (setq show-trailing-whitespace nil))))))
 
+; Scroll locking enablement
+(use-package scroll-lock
+  :ensure nil
+  :commands
+  (scroll-lock-previous-line scroll-lock-next-line))
+
 (provide 'init-emacs)
