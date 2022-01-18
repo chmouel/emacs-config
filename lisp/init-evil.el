@@ -22,7 +22,7 @@
   (evil-want-keybinding nil)
   (evil-want-C-u-scroll t)
   :bind
-  ("C-~" . evil-mode)
+  ("<f9>" . evil-mode)
   :commands (evil-local-mode))
 
 (use-package evil-commentary
@@ -30,6 +30,11 @@
   :ensure t
   :bind (:map evil-normal-state-map
               ("gc" . evil-commentary)))
+
+(use-package evil-collection
+  :after evil
+  :config
+  (evil-collection-init))
 
 (use-package evil-matchit
   :config
