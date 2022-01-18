@@ -9,7 +9,7 @@
                    (call-interactively 'project-switch-project))))
   ("C-x p p" . (lambda ()
                  (interactive)
-                 (let ((project-switch-commands 'my-project-dirvish))
+                 (let ((project-switch-commands 'project-dired))
                    (call-interactively 'project-switch-project))))
   ("C-x p P" . project-switch-project)
   ("C-c f" . project-find-file)
