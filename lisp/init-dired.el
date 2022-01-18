@@ -30,6 +30,7 @@
     (when (featurep 'tooltip) (tooltip-mode 0)))
 
   :custom
+  (dired-dwim-target t)
   (dired-kill-when-opening-new-dired-buffer 't)
   :bind
   (:map dired-mode-map
