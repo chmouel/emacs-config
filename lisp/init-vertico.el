@@ -4,7 +4,6 @@
   (completion-styles '(orderless))
   (orderless-matching-styles
    '(orderless-flex
-     orderless-strict-leading-initialism
      orderless-regexp
      orderless-prefixes
      orderless-literal))
