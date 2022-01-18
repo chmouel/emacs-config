@@ -205,7 +205,7 @@
          (setq tab-bar-select-tab-modifiers '(meta))))
   (tab-bar-mode 1)
   (global-tab-line-mode 1)
-  (setq tab-bar-new-tab-choice 'dirvish))
+  (setq tab-bar-new-tab-choice 'dired-jump))
 
 (use-package isearch
   :ensure nil
