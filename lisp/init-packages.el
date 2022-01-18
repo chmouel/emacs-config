@@ -1,8 +1,11 @@
+(use-package password-store)
+
 (use-package gcmh
   :demand
   :config
   (gcmh-mode 1))
 
+(use-package hydra)
 
 (use-package smooth-scrolling
   :hook (after-init . smooth-scrolling-mode))
