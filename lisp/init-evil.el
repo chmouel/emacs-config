@@ -1,8 +1,8 @@
 (use-package evil
   :config
   (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
-  (evil-define-key 'normal 'global (kbd "C-k") (lambda () (interactive)(previous-logical-line 5)))
-  (evil-define-key 'normal 'global (kbd "C-j") (lambda () (interactive)(next-logical-line 5)))
+  (evil-define-key 'normal 'global (kbd "C-k") (lambda () (interactive)(previous-logical-line 10)))
+  (evil-define-key 'normal 'global (kbd "C-j") (lambda () (interactive)(next-logical-line 10)))
   (with-eval-after-load 'evil-maps
     (define-key evil-motion-state-map (kbd "SPC") nil)
     (define-key evil-motion-state-map (kbd "RET") nil)
