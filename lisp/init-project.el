@@ -14,13 +14,6 @@
   ("C-x p P" . project-switch-project)
   ("C-c f" . project-find-file)
   ("C-c h" . project-find-regexp)
-  :config
-  (defun my-project-or-curdir-counsel-fzf (&optional arg)
-    (interactive "P")
-    (counsel-fzf))
-  (defun my-project-dirvish ()
-    (interactive)
-    (dirvish (project-root (project-current t))))
   :custom
   (project-list-file (locate-user-emacs-file "auto-save-list/project-list.file")))
 

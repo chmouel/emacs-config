@@ -15,6 +15,8 @@
   (setq dired-omit-files
         (concat dired-omit-files "\\|^.DS_STORE$\\|^.projectile$\\|^.git$")))
 
+(use-package fzf)
+
 ;; Dired
 (use-package dired
   :ensure nil  
@@ -35,7 +37,7 @@
         ("O" . dired-omit-mode)
         ("E" . wdired-change-to-wdired-mode)
         ("s" . dired-up-directory)
-        ("f" . my-project-or-curdir-counsel-fzf)
+        ("f" . fzf)
         ("j" . dired-next-line)
         ("k" . dired-previous-line)))
 
@@ -55,7 +57,7 @@
         ("E" . wdired-change-to-wdired-mode)
         ("h" . dirvish-up-directory)
         ("s" . dirvish-up-directory)
-        ("f" . my-project-or-curdir-counsel-fzf)
+        ("f" . fzf)
         ("l" . dirvish-find-file)
         ("/" . isearch-forward)
         ("j" . dired-next-line)
