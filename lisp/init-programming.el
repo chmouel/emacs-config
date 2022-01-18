@@ -112,7 +112,8 @@
   (setq jsons-path-printer 'jsons-print-path-jq))
 
 ;; Dockerfile
-(use-package dockerfile-mode)
+(use-package dockerfile-mode
+  :mode "\\(Docker\\|Container\\)file\\'")
 
 ;; Lua
 (use-package lua-mode)
