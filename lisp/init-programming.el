@@ -48,6 +48,8 @@
 (use-package treemacs-all-the-icons)
 
 (use-package tree-sitter
+  :if (not (string-match "^aarch" system-configuration))
+  :disabled
   :init
   (global-tree-sitter-mode)
   :hook (tree-sitter-after-on . tree-sitter-hl-mode))
