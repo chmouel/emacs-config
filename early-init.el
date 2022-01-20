@@ -1,7 +1,7 @@
 (setq mac-option-modifier 'meta)
 (setq mac-command-modifier 'super)
 
-;; Save all tempfiles in $TMPDIR/emacs$UID/                                                        
+;; Save all tempfiles in $TMPDIR/emacs$UID/
 (defconst emacs-tmp-dir (expand-file-name (format "emacs%d" (user-uid)) temporary-file-directory))
 (setq backup-directory-alist
       `((".*" . ,emacs-tmp-dir)))
@@ -47,6 +47,8 @@ Deactivate this advice with:
    (string= (getenv "WAYLAND_DISPLAY") "wayland-1")
    (string= (my-short-hostname) "domac"))
   (setq init-default-font-size "13" ))
+ ((string= (my-short-hostname) "snitch")
+  (setq init-default-font "Menlo"))
  ((string= (my-short-hostname) "thebatman")
   (setq init-default-font "Roboto Mono"))
  ((string= (my-short-hostname) "windaube")
