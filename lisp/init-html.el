@@ -17,7 +17,7 @@
     (setq web-mode-attr-indent-offset 2
           web-mode-css-indent-offset 2
           web-mode-markup-indent-offset 2))
-  (add-hook 'sgml-mode-hook 'my-html-mode-hook)  
+  (add-hook 'sgml-mode-hook 'my-html-mode-hook)
   (add-hook 'web-mode-hook  'my-web-mode-hook)
   :mode ("\\.tpl\\.php\\'" "\\.[agj]sp\\'"
          "\\.as[cp]x\\'" "\\.erb\\'"
@@ -34,7 +34,7 @@
            (match-end 0)
            'face (list :background
                        (match-string-no-properties 0)))))))
-  (defun hexcolour-add-to-font-lock () (font-lock-add-keywords nil hexcolour-keywords))  
+  (defun hexcolour-add-to-font-lock () (font-lock-add-keywords nil hexcolour-keywords))
   :commands (css-mode)
   :mode "\\.css\\'"
   :config
