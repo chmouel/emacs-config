@@ -47,8 +47,6 @@ Deactivate this advice with:
    (string= (getenv "WAYLAND_DISPLAY") "wayland-1")
    (string= (my-short-hostname) "domac"))
   (setq init-default-font-size "13" ))
- ((string= (my-short-hostname) "snitch")
-  (setq init-default-font "Menlo"))
  ((string= (my-short-hostname) "thebatman")
   (setq init-default-font "Roboto Mono"))
  ((string= (my-short-hostname) "windaube")
