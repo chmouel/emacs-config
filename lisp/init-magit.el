@@ -24,6 +24,8 @@
   (transient-levels-file (locate-user-emacs-file "auto-save-list/transient.levels.el"))
   (magit-display-buffer-function 'magit-display-buffer-fullframe-status-topleft-v1)
   :config
+  (if (fboundp 'evil-ex-set-initial-state)
+      (evil-set-initial-state 'git-commit-mode 'emacs))
   (defun my-magit-commit-buffer()
 	(interactive)
 	(if (not (magit-anything-modified-p nil (list (buffer-file-name))))
