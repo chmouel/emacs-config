@@ -47,14 +47,6 @@
     (local-set-key '[(control =)] 'magit-commit-create))
   (global-git-commit-mode))
 
-
-;; (use-package git-commit
-;;   :config
-;;   (add-to-list
-;;    'git-commit-setup-hook
-;;    (lambda () (interactive "P")
-;;      (call-interactively 'git-commit-signoff))))
-
 (use-package smerge-mode
   :bind ("s-m" . hydra-smerge/body)
   :init
