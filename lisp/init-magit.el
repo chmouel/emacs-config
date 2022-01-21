@@ -47,6 +47,12 @@
     (local-set-key '[(control =)] 'magit-commit-create))
   (global-git-commit-mode))
 
+
+(use-package vc
+  :config
+  (if (fboundp 'evil-ex-set-initial-state)
+      (evil-set-initial-state 'vc-git-log-edit-mode 'emacs)))
+
 (use-package smerge-mode
   :bind ("s-m" . hydra-smerge/body)
   :init
