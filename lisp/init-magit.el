@@ -47,8 +47,13 @@
     (local-set-key '[(control =)] 'magit-commit-create))
   (global-git-commit-mode))
 
-
 (use-package vc
+  :ensure nil
+  :custom
+  (vc-follow-symlinks t)
+  (vc-make-backup-files t)
+  :hook
+  (log-edit . flyspell-mode)
   :config
   (if (fboundp 'evil-ex-set-initial-state)
       (evil-set-initial-state 'vc-git-log-edit-mode 'emacs)))
