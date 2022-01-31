@@ -1,6 +1,4 @@
 (use-package evil
-  :hook
-  (after-init . evil-mode)
   :config
   (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
   (evil-define-key 'normal 'global (kbd "C-k") (lambda () (interactive)(previous-logical-line 10)))
