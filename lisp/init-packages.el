@@ -39,7 +39,7 @@
           ("-" er/contract-region "Decrease")
           ("q" nil "quit"))
   :bind
-  (("C-c C-<up>" . er/expand-region)
+  (("C-c <up>" . er/expand-region)
    ("C-." . hydra-expand-region/body)))
 
 (use-package easy-kill
