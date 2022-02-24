@@ -10,6 +10,9 @@
 (use-package smooth-scrolling
   :hook (after-init . smooth-scrolling-mode))
 
+(use-package whitespace-cleanup
+  :hook (after-init . global-whitespace-cleanup-mode))
+
 (use-package bufler
   :bind
   ("C-x C-b" . bufler))
