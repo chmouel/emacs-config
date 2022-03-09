@@ -11,6 +11,7 @@
   :hook (after-init . smooth-scrolling-mode))
 
 (use-package whitespace-cleanup
+  :disabled
   :hook (after-init . global-whitespace-cleanup-mode))
 
 (use-package bufler
