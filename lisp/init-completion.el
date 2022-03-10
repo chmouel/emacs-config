@@ -36,6 +36,8 @@
   ("C-|" . consult-recent-file)
   ("C-c U" . consult-ripgrep)
   ("C-S-s" . consult-isearch)
+  ("C-S-b" . consult-buffer)
+  ("C-S-f" . consult-find)
   ("M-g M-g" . consult-goto-line))
 
 (use-package embark
