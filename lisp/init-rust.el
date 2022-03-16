@@ -5,7 +5,7 @@
   :custom
   (lsp-rust-analyzer-server-display-inlay-hints t)
   :config
-  (setq rustic-format-on-save nil))
+  (setq rustic-format-on-save t))
 
 (use-package rust-playground
   :config
