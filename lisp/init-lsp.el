@@ -84,40 +84,31 @@
   (dap-ui-mode t)
   (dap-tooltip-mode 1)
   (tooltip-mode 1)
-                                        ;(dap-ui-controls-mode 0)
   :commands dap-debug)
 
-(use-package company
-  :diminish
-  :ensure t
-  :custom
-  (company-dabbrev-downcase nil)
-  (company-show-numbers t)
-  (company-tooltip-limit 20)
-  (company-tooltip-idle-delay 0.4)
-  (company-async-timeout 20)
-  (company-tooltip-align-annotations t)
-  (company-format-margin-function #'company-vscode-light-icons-margin)
-  :config
-  (define-key company-active-map (kbd "TAB") 'company-select-next)
-  (define-key company-active-map (kbd "<backtab>") 'company-select-previous)
-  (define-key company-active-map (kbd "RET") nil)
-  (defun my-company-yasnippet ()
-    "Hide the current completeions and show snippets."
-    (interactive)
-    (company-cancel)
-    (call-interactively 'company-yasnippet))  
+(use-package corfu
   :bind
-  (:map company-mode-map
-        ("<backtab>" . company-yasnippet)
-        :map company-active-map
-        ("C-p" . company-select-previous)
-        ("C-n" . company-select-next)
-        ;; ("<tab>" . company-complete-common-or-cycle)
-        ;; ("<backtab>" . my-company-yasnippet)
-        :map company-search-map
-        ("C-p" . company-select-previous)
-        ("C-n" . company-select-next)))
+  (:map corfu-map
+        ("C-n" . corfu-next)
+        ("C-p" . corfu-previous)
+        ("<escape>" . corfu-quit)
+        ("<return>" . corfu-insert)
+        ("C-d"  . corfu-show-documentation)
+        ("C-l"  . corfu-show-location))
+  :custom
+  (corfu-quit-at-boundary nil)
+  (corfu-quit-no-match t)
+  (corfu-cycle t)
+  (corfu-auto-delay 0.25)
+  (corfu-scroll-margin 4)
+  (corfu-auto t)
+  :init
+  (setq lsp-completion-provider :none)
+  (defun corfu-lsp-setup ()
+    (setq-local completion-styles '(orderless)
+                completion-category-defaults nil))
+  (add-hook 'lsp-mode-hook #'corfu-lsp-setup)
+  (corfu-global-mode t))
 
 
 (provide 'init-lsp)

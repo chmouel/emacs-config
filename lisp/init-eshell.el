@@ -3,10 +3,6 @@
   :custom
   (eshell-directory-name (locate-user-emacs-file "auto-save-list/eshell/")))
 
-(use-package esh-autosuggest
-  :after eshell
-  :hook (eshell-mode . esh-autosuggest-mode))
-
 (use-package eshell-toggle
   :disabled
   :defer t
