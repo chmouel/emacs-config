@@ -15,6 +15,7 @@
 
 (use-package vterm-toggle
   :config
+  (setq vterm-always-compile-module 't)
   (if (fboundp 'evil-ex-set-initial-state)
       (evil-set-initial-state 'vterm-mode 'emacs))
   :bind
