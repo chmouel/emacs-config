@@ -106,9 +106,9 @@
   (setq lsp-completion-provider :none)
   (defun corfu-lsp-setup ()
     (setq-local completion-styles '(orderless)
+                corfu-auto-prefix 2
                 completion-category-defaults nil))
   (add-hook 'lsp-mode-hook #'corfu-lsp-setup)
   (corfu-global-mode t))
-
 
 (provide 'init-lsp)
