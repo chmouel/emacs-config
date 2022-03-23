@@ -50,7 +50,7 @@
   :custom
   (go-playground-ask-file-name t)
   (go-playground-init-command "go mod init github.com/chmouel/$(basename $PWD|sed 's/-at.*//')")
-  (go-playground-basedir "~/tmp/goplay"))
+  (go-playground-basedir "~/Sync/goplay"))
 
 (use-package go-mode
   :custom
