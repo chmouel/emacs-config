@@ -95,6 +95,7 @@
   (git-link-open-in-browser t)
   :bind
   ("<f6>" . git-link))
+
 ;; Eldoc-Mode
 (use-package smartparens
   :bind
