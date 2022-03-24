@@ -89,6 +89,12 @@
   :bind
   ("<f6>" . github-browse-remote))
 
+
+(use-package git-link
+  :custom
+  (git-link-open-in-browser t)
+  :bind
+  ("<f6>" . git-link))
 ;; Eldoc-Mode
 (use-package smartparens
   :bind
