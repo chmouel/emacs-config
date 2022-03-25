@@ -9,7 +9,7 @@
 (use-package pytest 
   :after python-mode)
 
-(use-package yapfify
+(use-package blacken
   :after python-mode)
 
 (use-package hungry-delete
@@ -62,7 +62,7 @@
   
   (add-to-list 'multi-compile-alist '(python-mode . (("pyhon-run" . "python3 -E %path"))))
   
-  :hook ((python-mode . yapf-mode)
+  :hook ((python-mode . blacken-mode)
 	     (python-mode . flycheck-mode)
 	     (python-mode . hungry-delete-mode)
 	     (python-mode . highlight-indentation-mode)

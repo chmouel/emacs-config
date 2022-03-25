@@ -11,8 +11,6 @@
   (lsp-eldoc-enable-hover nil)
   (lsp-eldoc-render-all nil)
   (lsp-enable-file-watchers nil)
-  (lsp-pyls-plugins-flake8-max-line-length 200)
-  (lsp-pyls-plugins-pycodestyle-max-line-length 500)
   (lsp-enable-symbol-highlighting nil)
   (lsp-enable-links t)
   (lsp-enable-snippet t)
@@ -44,6 +42,11 @@
                          (add-hook 'before-save-hook #'lsp-format-buffer t t)
                          (add-hook 'before-save-hook #'lsp-organize-imports t t))))))
 
+(use-package lsp-pyright
+  :ensure t
+  :hook (python-mode . (lambda ()
+                         (require 'lsp-pyright)
+                         (lsp))))  ; or lsp-deferred
 
 ;; optional - provides fancy overlay information
 (use-package lsp-ui
@@ -54,9 +57,6 @@
    (lsp-ui-doc-max-height 15)
    (lsp-ui-doc-max-width 30)
    (lsp-ui-sideline-ignore-duplicate t)
-   (lsp-pyls-plugins-pylint-enabled 't)
-   (lsp-pyls-plugins-pycodestyle-enabled 'nil)
-   (lsp-pyls-plugins-mccabe-enabled 'nil)
    (lsp-ui-doc-show-with-cursor nil)
    (lsp-ui-doc-position 'bottom)
    (lsp-ui-flycheck-enable t t)
