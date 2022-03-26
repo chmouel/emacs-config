@@ -7,6 +7,13 @@
 
 (use-package hydra)
 
+(use-package easy-hugo
+  :custom
+  (easy-hugo-postdir "content/posts")
+  (easy-hugo-server-flags "-D")
+  (easy-hugo-url "https://blog.chmouel.com")
+  (easy-hugo-basedir "~/GIT/go/src/github.com/chmouel/blog/"))
+
 (use-package smooth-scrolling
   :hook (after-init . smooth-scrolling-mode))
 
