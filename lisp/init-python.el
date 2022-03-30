@@ -13,6 +13,15 @@
   :diminish
   :after python-mode)
 
+(use-package reformatter
+  :hook ((python-mode . darker-reformat-on-save-mode))
+  :config
+  (reformatter-define darker-reformat
+    :program "darker"
+    :stdin nil
+    :stdout nil
+    :args (list "-q" input-file)))
+
 (use-package python
   :custom
   (python-shell-interpreter "python3")
