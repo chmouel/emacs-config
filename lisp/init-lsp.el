@@ -74,8 +74,9 @@
         ("<f11>" . lsp-treemacs-errors-list)))
 
 (use-package dap-mode
-  :disabled
   :after lsp
+  :hook
+  (dap-stopped-hook . (lambda (arg) (call-interactively #'dap-hydra)))
   :preface
   (setq dap-breakpoints-file (locate-user-emacs-file "auto-save-list/dap-breakpoints")
         dap-utils-extension-path (locate-user-emacs-file "auto-save-list/lsp-extensions"))
