@@ -2,6 +2,7 @@
 
 (use-package emacs
   :config
+  (setq-default cursor-type 'bar) 
   (set-frame-parameter (selected-frame) 'alpha '(95 . 90)))
 
 ;; Maybe we can do something a bit more smart with those config
