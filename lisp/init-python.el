@@ -14,6 +14,7 @@
   :after python-mode)
 
 (use-package reformatter
+  :if (executable-find "darker")
   :hook ((python-mode . darker-reformat-on-save-mode))
   :config
   (reformatter-define darker-reformat
