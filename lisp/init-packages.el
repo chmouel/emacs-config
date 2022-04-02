@@ -35,7 +35,9 @@
   :bind ("C-0" . ace-jump-word-mode))
 
 (use-package multiple-cursors
-  :bind (("C-c ." . mc/mark-all-dwim))
+  :bind (("C-S-<up>" . mc/mark-previous-lines)
+         ("C-S-<down>" . mc/mark-next-lines)
+         ("C-c ." . mc/mark-all-dwim))
   :custom
   (mc/list-file (locate-user-emacs-file "auto-save-list/multi-curor-list.el")))
 
@@ -205,14 +207,6 @@
   (direnv-show-paths-in-summary nil)
   :config
   (direnv-mode))
-
-(use-package buffer-move
-  :disabled
-  :bind
-  ("M-S-<left>" . buf-move-left)
-  ("M-S-<right>" . buf-move-right)
-  ("M-S-<up>" . buf-move-up)
-  ("M-S-<down>" . buf-move-down))
 
 (use-package circe
   :custom
