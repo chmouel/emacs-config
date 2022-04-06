@@ -63,7 +63,7 @@
    (lsp-ui-imenu-enable t)
    (lsp-ui-peek-enable t)
    (lsp-ui-sideline-delay 0.5)
-   (lsp-ui-doc-enable nil)))
+   (lsp-ui-doc-enable t)))
 
 (use-package lsp-treemacs
   :custom

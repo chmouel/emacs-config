@@ -1,6 +1,8 @@
 (use-package emacs
   :ensure nil
   :defer t
+  :custom
+  (next-error-message-highlight t)
   :config
   (add-hook 'before-save-hook
             (lambda ()
