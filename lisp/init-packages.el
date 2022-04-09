@@ -49,6 +49,7 @@
           ("C-." er/expand-region "Increase")
           ("<return>" copy-region-as-kill "Copy")
           ("<delete>" kill-region "Cut")
+          ("l" easy-kill "Line")
           ("-" er/contract-region "Decrease")
           ("q" nil "quit"))
   :bind
