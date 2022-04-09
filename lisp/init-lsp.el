@@ -20,6 +20,7 @@
   (lsp-gopls-staticcheck t t)
   (lsp-prefer-flymake nil t)
   (lsp-idle-delay 1)
+  (lsp-lens-enable nil)
   (lsp-headerline-breadcrumb-segments '(project file symbols))
   (read-process-output-max (* 1024 1024))
   (lsp-completion-provider :capf)
@@ -63,7 +64,7 @@
    (lsp-ui-imenu-enable t)
    (lsp-ui-peek-enable t)
    (lsp-ui-sideline-delay 0.5)
-   (lsp-ui-doc-enable t)))
+   (lsp-ui-doc-enable nil)))
 
 (use-package lsp-treemacs
   :custom
