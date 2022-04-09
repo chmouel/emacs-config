@@ -31,8 +31,39 @@
   (browse-kill-ring-show-preview nil)
   :bind (("C-c k" . browse-kill-ring)))
 
-(use-package ace-jump-mode
-  :bind ("C-0" . ace-jump-word-mode))
+(use-package avy
+  :bind (
+         ("C-0" . my-avy-copy-word)
+         :prefix "C-x 0"
+         :prefix-map avy-map
+         :prefix-docstring "Counsel"
+	     ("w" . my-avy-copy-word)
+	     ("W" . avy-goto-word-1)
+	     ("l" . my-avy-just-copy-line)
+	     ("L" . avy-goto-line))
+  :config
+  (defun my-avy-just-copy-line (arg)
+    (interactive "p")
+    (let ((initial-window (selected-window)))
+      (avy-with my-avy-just-copy-line
+        (let* ((start (avy--line))
+               (str (buffer-substring-no-properties
+                     start
+                     (save-excursion
+                       (goto-char start)
+                       (move-end-of-line arg)
+                       (point)))))
+          (select-window initial-window)
+          (kill-new str)))))
+
+  (defun my-avy-copy-word (arg)
+    (interactive "p")
+    (save-excursion 
+      (call-interactively  'avy-goto-symbol-1)
+      (let ((symbol (thing-at-point 'symbol)))
+        (when symbol
+          (kill-new symbol)
+          (message "\"%s\" has been copied" symbol))))))
 
 (use-package multiple-cursors
   :bind (("C-S-<up>" . mc/mark-previous-lines)
