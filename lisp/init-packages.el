@@ -33,11 +33,10 @@
 
 (use-package avy
   :bind (
-         ("C-0" . my-avy-copy-word)
-         :prefix "C-x 0"
+         :prefix "C-0"
          :prefix-map avy-map
          :prefix-docstring "Counsel"
-	     ("w" . my-avy-copy-word)
+         ("C-0" . my-avy-copy-word)
 	     ("W" . avy-goto-word-1)
 	     ("l" . my-avy-just-copy-line)
 	     ("L" . avy-goto-line))
