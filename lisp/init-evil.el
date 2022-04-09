@@ -22,7 +22,6 @@
   (evil-want-keybinding nil)
   (evil-want-C-u-scroll t)
   :bind
-  ("<f9>" . evil-mode)
   :commands (evil-local-mode))
 
 (use-package evil-commentary
