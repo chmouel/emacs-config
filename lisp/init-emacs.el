@@ -123,6 +123,8 @@
 
 ;; Save Places
 (use-package saveplace
+  :config
+  (save-place-mode 1)
   :custom
   (save-place t))
 
@@ -255,6 +257,7 @@
      "^/tmp/" "^/var/folders/.+$" "^/ssh:" "/persp-confs/"
      (lambda (file) (file-in-directory-p file package-user-dir))))
   (recentf-save-file (locate-user-emacs-file "auto-save-list/recent-file-list.el"))
+  (recentf-auto-cleanup "8:00am")
   (recentf-max-saved-items 500)
   :config
   (push (expand-file-name recentf-save-file) recentf-exclude)
