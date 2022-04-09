@@ -32,9 +32,6 @@
   :custom
   (dired-dwim-target t)
   (dired-kill-when-opening-new-dired-buffer 't)
-  :bind
-  ("C-x C-j" . dired-jump)
-  ("C-x j" . dired-jump)
   (:map dired-mode-map
         ("W" . browse-url-of-dired-file)
         ("O" . dired-omit-mode)
