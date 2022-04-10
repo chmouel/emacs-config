@@ -25,6 +25,8 @@
                      collect (cons (car pair)
                                    (string-trim-right (cdr pair)
                                                       "\\(?:>\\|]\\|}\\)+\\'"))))))
+(use-package rainbow-mode
+  :hook (css-mode))
 
 
 (provide 'init-web)
