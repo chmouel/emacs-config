@@ -78,3 +78,4 @@
 (require 'init-go)
 (require 'init-rust)
 (require 'init-yadm)
+(require 'init-web)
