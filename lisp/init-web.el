@@ -1,7 +1,11 @@
 (use-package web-mode
   :mode
-  (".html?$" ".tmpl$")
+  ("\\.html\\'" "\\.tmpl\\'" "\\.phtml\\'")
   :custom
+  (web-mode-enable-block-face t)
+  (web-mode-enable-comment-keywords t)
+  (web-mode-enable-current-element-highlight t)
+  (web-mode-enable-current-column-highlight t)
   (web-mode-markup-indent-offset 2)
   (web-mode-css-indent-offset 2)
   (web-mode-code-indent-offset 2)
