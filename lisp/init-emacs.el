@@ -248,6 +248,8 @@
 (use-package recentf
   :ensure nil
   :hook (after-init . recentf-mode)
+  :bind
+  ("C-|" . recentf-open-files)
   :custom
   (recentf-max-saved-items 500)
   (recentf-exclude

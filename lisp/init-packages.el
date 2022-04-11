@@ -145,6 +145,7 @@
          ("C-S-l" . crux-other-window-or-switch-buffer)
          ("C-M-j" . crux-top-join-line)
          ("C-a" . crux-move-beginning-of-line)
+         ("C-\\" . crux-recentf-find-file)
          ("M-S-<down>" . crux-duplicate-current-line-or-region)
          ("M-S-<up>" . (lambda (arg)
                          (interactive "P")
