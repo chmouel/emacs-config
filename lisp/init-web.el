@@ -15,6 +15,8 @@
   (web-mode-enable-auto-opening t)
   (web-mode-enable-auto-pairing t)
   (web-mode-enable-auto-indentation t)
+  :bind
+  ("C-=" . web-mode-navigate)
   :config
   ;; Let smartparens handle auto closing brackets, e.g. {{ }} or {% %}
   ;; https://github.com/hlissner/doom-emacs/blob/develop/modules/lang/web/%2Bhtml.el#L56

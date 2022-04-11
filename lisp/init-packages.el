@@ -265,6 +265,4 @@
   :bind
   ("C-c ;" . resize-window))
 
-(use-package rainbow-mode)
-
 (provide 'init-packages)
