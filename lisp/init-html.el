@@ -37,6 +37,8 @@
   (defun hexcolour-add-to-font-lock () (font-lock-add-keywords nil hexcolour-keywords))
   :commands (css-mode)
   :mode "\\.css\\'"
+  :custom
+  (css-indent-offset 2)
   :config
   (add-hook 'css-mode-hook 'hexcolour-add-to-font-lock))
 
