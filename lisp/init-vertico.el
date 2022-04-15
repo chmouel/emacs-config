@@ -4,7 +4,7 @@
   (vertico-count-format '())
   :config
   (setq completion-styles
-        '(partial-completion substring initials flex))
+        '(partial-completion substring initials substring flex))
 
   (setq completion-category-overrides
         '((file (styles . (partial-completion substring)))
