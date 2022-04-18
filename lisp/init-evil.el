@@ -1,8 +1,14 @@
 (use-package evil
+  :hook
+  (after-init . evil-mode)
+  (evil-normal-state-entry . (lambda ()(interactive)(setq-local display-line-numbers 'relative)))
   :config
   (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
-  (evil-define-key 'normal 'global (kbd "C-k") (lambda () (interactive)(previous-logical-line 10)))
-  (evil-define-key 'normal 'global (kbd "C-j") (lambda () (interactive)(next-logical-line 10)))
+  (evil-define-key 'normal 'global (kbd "TAB") (lambda () (interactive)(tab-next)))
+  (evil-define-key 'normal 'global (kbd "backtab") (lambda () (interactive)(tab-previous)))
+  (evil-define-key 'normal 'global (kbd "C-f") (lambda () (interactive)(project-find-file)))
+  (evil-define-key 'normal 'global (kbd "C-0") (lambda () (interactive)(call-interactively 'avy-goto-word-0)))
+  (evil-define-key 'normal 'global (kbd "C-.") (lambda () (interactive)(call-interactively 'er/expand-region)))
   (with-eval-after-load 'evil-maps
     (define-key evil-motion-state-map (kbd "SPC") nil)
     (define-key evil-motion-state-map (kbd "RET") nil)

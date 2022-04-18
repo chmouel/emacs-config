@@ -35,18 +35,13 @@
   :bind
   (:map dired-mode-map
         ("W" . browse-url-of-dired-file)
+        ("TAB" . tab-next)
         ("O" . dired-omit-mode)
         ("E" . wdired-change-to-wdired-mode)
         ("s" . dired-up-directory)
         ("f" . fzf)
         ("j" . dired-next-line)
         ("k" . dired-previous-line)))
-
-(use-package dired-subtree
-  :after dired
-  :bind
-  (:map dired-mode-map
-        ("TAB" . dired-subtree-toggle)))
 
 (use-package dirvish
   :bind
