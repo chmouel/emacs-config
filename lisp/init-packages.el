@@ -37,7 +37,7 @@
          :prefix-map avy-map
          :prefix-docstring "Counsel"
          ("C-0" . avy-goto-word-1)
-	     ("W" . my-avy-copy-word)
+	     ("w" . my-avy-copy-word)
 	     ("l" . my-avy-just-copy-line)
 	     ("L" . avy-goto-line))
   :config
