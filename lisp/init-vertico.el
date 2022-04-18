@@ -1,16 +1,26 @@
+(use-package orderless
+  :init
+  (setq completion-styles '(orderless flex basic)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles partial-completion))))
+  (setq orderless-matching-styles
+        '(orderless-initialism
+          orderless-prefixes
+          orderless-literal)))
+
 ;; Enable vertico
 (use-package vertico
   :custom
   (vertico-count-format '())
-  :config
-  (setq completion-styles
-        '(partial-completion substring initials substring flex))
+  ;; :config
+  ;; (setq completion-styles
+  ;;       '(partial-completion substring initials substring flex))
 
-  (setq completion-category-overrides
-        '((file (styles . (partial-completion substring)))
-          (buffer (styles . ( basic substring partial-completion)))
-          (project-file (styles . (partial-completion substring)))
-          (info-menu (styles . (substring)))))
+  ;; (setq completion-category-overrides
+  ;;       '((file (styles . (partial-completion substring)))
+  ;;         (buffer (styles . ( basic substring partial-completion)))
+  ;;         (project-file (styles . (partial-completion substring)))
+  ;;         (info-menu (styles . (substring)))))
   :bind
   (:map vertico-map
         ("C-s" . vertico-next)
