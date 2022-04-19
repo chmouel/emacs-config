@@ -30,6 +30,8 @@
   :bind
   :commands (evil-local-mode))
 
+(use-package evil-anzu)
+
 (use-package evil-commentary
   :after evil
   :ensure t
