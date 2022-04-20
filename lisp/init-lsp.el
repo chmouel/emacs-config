@@ -4,6 +4,7 @@
   :commands (lsp lsp-deferred lsp-organize-imports)
   :custom
   (lsp-server-install-dir (locate-user-emacs-file "auto-save-list/lsp"))
+  (lsp-completion-default-behaviour :insert)
   (lsp-auto-guess-root t)
   (lsp-prefer-flymake nil)
   (lsp-document-highlight-delay 2.0 t)
