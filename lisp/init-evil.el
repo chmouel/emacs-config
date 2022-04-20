@@ -1,4 +1,5 @@
 (use-package evil
+  :disabled
   :hook
   (after-init . evil-mode)
   (evil-normal-state-entry . (lambda ()(interactive)(setq-local display-line-numbers 'relative)))
@@ -30,7 +31,8 @@
   :bind
   :commands (evil-local-mode))
 
-(use-package evil-anzu)
+(use-package evil-anzu
+  :after evil)
 
 (use-package evil-commentary
   :after evil
@@ -44,8 +46,13 @@
   (evil-collection-init))
 
 (use-package evil-matchit
+  :after evil
   :config
-  (define-key evil-normal-state-map (kbd "%") 'evilmi-jump-items)
   (global-evil-matchit-mode t))
+
+(use-package evil-surround
+  :after evil
+  :config
+  (global-evil-surround mode t))
 
 (provide 'init-evil)
