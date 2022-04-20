@@ -24,6 +24,13 @@
   (lsp-headerline-breadcrumb-segments '(project file symbols))
   (read-process-output-max (* 1024 1024))
   (lsp-completion-provider :capf)
+  (lsp-go-use-gofumpt t)
+  (lsp-go-analyses '((unusedparams . t)
+                     (unusedwrite . t)
+                     (nilness . t)))
+  (lsp-register-custom-settings '(("gopls.experimentalWorkspaceModule" t t)
+                                  ("gopls.experimentalPostfixCompletions" t t)
+                                  ("gopls.staticcheck" t t)))
   :init (setq lsp-keymap-prefix "C-c l")
   :config
   (setq centaur-lsp-format-on-save-ignore-modes '(c-mode c++-mode markdown-mode yaml-mode python-mode))
