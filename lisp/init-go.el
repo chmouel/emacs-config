@@ -80,8 +80,9 @@
               ("C-c d" . godoc-at-point)
               ("C-S-r" . go-run)
               ("C-c t" . ff-find-other-file))
-  :hook ((go-mode . lsp)
+  :hook ((go-mode . lsp-deferred)
          (go-mode . subword-mode)
+         (go-dot-mod-mode . lsp-deferred)
          (go-mode . my-go-mode-hook))
   :config
   (defun my-go-mode-hook ()
