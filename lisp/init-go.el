@@ -54,7 +54,6 @@
 
 (use-package go-mode
   :custom
-  (lsp-go-use-gofumpt t)
   (gofmt-command "gofumpt")
   :hydra (hydra-golang (:timeout 10)
                        ""
