@@ -32,14 +32,16 @@
   :bind (("C-c k" . browse-kill-ring)))
 
 (use-package avy
-  :bind (
-         :prefix "C-0"
-         :prefix-map avy-map
-         :prefix-docstring "Counsel"
-         ("C-0" . avy-goto-word-1)
-	     ("w" . my-avy-copy-word)
-	     ("l" . my-avy-just-copy-line)
-	     ("L" . avy-goto-line))
+  :bind
+  ("C--" . avy-goto-char)
+  (:prefix "C-0"
+           :prefix-map avy-map
+           :prefix-docstring "Counsel"
+           ("g" . avy-goto-char)
+           ("C-0" . avy-goto-word-1)
+	       ("w" . my-avy-copy-word)
+	       ("l" . my-avy-just-copy-line)
+	       ("L" . avy-goto-line))
   :config
   (defun my-avy-just-copy-line (arg)
     (interactive "p")

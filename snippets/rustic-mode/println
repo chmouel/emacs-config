@@ -3,4 +3,4 @@
 #
 # binding: M-p
 # --
-println!("{}", `yas-selected-text`$0)
+println!("{}", `yas-selected-text`$0);

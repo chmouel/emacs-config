@@ -33,7 +33,7 @@
   ("C-x B" . consult-bookmark)
   ("C-x C-r" . consult-recent-file)
   ("C-c U" . consult-ripgrep)
-  ("C-S-s" . consult-isearch)
+  ("C-S-s" . consult-line)
   ("C-x C-SPC" . consult-global-mark)
   ("C-x b" . consult-buffer)
   ("C-S-f" . consult-find)

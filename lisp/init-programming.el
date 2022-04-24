@@ -17,10 +17,16 @@
       (progn
         (pop-to-buffer "*Go Test*")
         (recompile)))
-     ((get-buffer "*pytest*")
+     ((get-buffer "*cargo-run*")
       (progn
-        (pop-to-buffer "*pytest*")
-        (recompile)))
+        (pop-to-buffer "*cargo-run*")
+        (rustic-cargo-run-rerun)
+        (select-window (previous-window))))
+     ((get-buffer "*pytest*")
+      (save-excursion
+        (progn
+          (pop-to-buffer "*pytest*")
+          (recompile))))
      ((get-buffer "*compilation*")
       (progn
         (pop-to-buffer "*compilation*")
@@ -138,5 +144,20 @@
   :mode ("\\.rest\\'" . restclient-mode)
   :config
   (add-to-list 'restclient-content-type-modes '("application/json" . json-mode)))
+
+(use-package reformatter
+  :if (executable-find "darker")
+  :hook ((python-mode . darker-reformat-on-save-mode))
+  :config
+  (reformatter-define rustfmt-reformat
+    :program "rustfmt"
+    :stdin nil
+    :stdout nil
+    :args (list input-file))
+  (reformatter-define darker-reformat
+    :program "darker"
+    :stdin nil
+    :stdout nil
+    :args (list "-q" input-file)))
 
 (provide 'init-programming)

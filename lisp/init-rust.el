@@ -1,7 +1,7 @@
 (use-package rustic
   :bind (:map rustic-mode-map
               ("M-j" . lsp-ui-imenu)
-              ("C-c s" . lsp-rust-analyzer-status))
+              ("C-c r" . rustic-cargo-run))
   :custom
   (lsp-rust-analyzer-server-display-inlay-hints t)
   :config
@@ -15,7 +15,7 @@
       (format "%s/%s-%s/" rust-playground-basedir snippet-name base )))
   (advice-add 'rust-playground-dir-name :filter-return #'my-rust-playground-dir-name)
   :init
-  (setq rust-playground-basedir "~/tmp/rustplay"))
+  (setq rust-playground-basedir "~/Sync/rustplay"))
 
 
 (provide 'init-rust)
