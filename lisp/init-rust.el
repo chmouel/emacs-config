@@ -3,7 +3,7 @@
               ("M-j" . lsp-ui-imenu)
               ("C-c r" . rustic-cargo-run))
   :custom
-  (lsp-rust-analyzer-server-display-inlay-hints t)
+  (lsp-rust-analyzer-server-display-inlay-hints nil)
   :config
   (setq rustic-format-on-save t))
 
