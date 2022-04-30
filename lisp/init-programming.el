@@ -14,22 +14,20 @@
     (interactive "P")
     (cond
      ((get-buffer "*Go Test*")
-      (progn
-        (pop-to-buffer "*Go Test*")
+      (with-current-buffer "*Go Test*"
         (recompile)))
+     ((and (get-buffer "*cargo-test*")
+           my-rustic-current-test-compile)
+      (with-current-buffer "*cargo-test*"
+        (rustic-cargo-test-run my-rustic-current-test-compile)))
      ((get-buffer "*cargo-run*")
-      (progn
-        (pop-to-buffer "*cargo-run*")
-        (rustic-cargo-run-rerun)
-        (select-window (previous-window))))
+      (with-current-buffer "*cargo-run*"
+        (rustic-cargo-run-rerun)))
      ((get-buffer "*pytest*")
-      (save-excursion
-        (progn
-          (pop-to-buffer "*pytest*")
-          (recompile))))
+      (with-current-buffer "*pytest*"
+        (recompile)))
      ((get-buffer "*compilation*")
-      (progn
-        (pop-to-buffer "*compilation*")
+      (with-current-buffer"*compilation*"
         (recompile)))
      ((call-interactively 'compile))))
   :bind
