@@ -17,6 +17,7 @@
       (with-current-buffer "*Go Test*"
         (recompile)))
      ((and (get-buffer "*cargo-test*")
+           (boundp 'my-rustic-current-test-compile)
            my-rustic-current-test-compile)
       (with-current-buffer "*cargo-test*"
         (rustic-cargo-test-run my-rustic-current-test-compile)))
