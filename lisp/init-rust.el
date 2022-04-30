@@ -1,10 +1,18 @@
 (use-package rustic
   :bind (:map rustic-mode-map
               ("M-j" . lsp-ui-imenu)
+              ("C-S-r". (lambda ()
+                          (interactive)
+                          (let ((test (concat rustic-default-test-arguments " "
+                                              (substring-no-properties (cdr (rustic-cargo--get-current-fn-name))))))
+                            (setq my-rustic-current-test-compile test)
+                            (rustic-cargo-test-run test))))
               ("C-c r" . rustic-cargo-run))
   :custom
   (lsp-rust-analyzer-server-display-inlay-hints nil)
+  (rustic-default-test-arguments "-q --benches --tests --all-features")
   :config
+  (defvar my-rustic-current-test-compile nil)
   (setq rustic-format-on-save t))
 
 (use-package rust-playground
