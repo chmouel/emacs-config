@@ -22,8 +22,21 @@
   :hook (after-init . global-whitespace-cleanup-mode))
 
 (use-package bufler
+  :config
+  (setf bufler-groups (bufler-defgroups (group (auto-project))))
+  (add-to-list 'bufler-filter-buffer-modes 'dired-mode)
+  (add-to-list 'bufler-filter-buffer-modes 'magit-status-mode)
+  (add-to-list 'bufler-filter-buffer-name-regexps "\\*"))
+
+(use-package emacs
   :bind
-  ("C-x C-b" . bufler))
+  ("C-x B" . consult-buffer)
+  ("C-x b" . bufler-switch-buffer)
+  ("C-x C-b" . bufler-list)
+  ("C-S-b" . (lambda ()(interactive)
+               (let ((consult-buffer-filter))
+                 (add-to-list 'consult-buffer-filter "\\*")
+                 (call-interactively 'consult-buffer)))))
 
 ;;; Browse Kill Ring 
 (use-package browse-kill-ring

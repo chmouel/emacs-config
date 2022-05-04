@@ -2,7 +2,10 @@
 (use-package project
   :ensure t
   :bind
-  ("C-c b" . project-switch-to-buffer)
+  ("C-c b" . (lambda ()(interactive)
+               (let ((consult-buffer-filter))
+                 (add-to-list 'consult-buffer-filter "\\*")
+                 (call-interactively 'consult-project-buffer))))
   ("C-x p o" . (lambda ()
                  (interactive)
                  (let ((project-switch-commands 'project-find-file))
