@@ -21,7 +21,7 @@
   ("C-c \[" . previous-error)
   ("C-x C-=" . ediff-buffers)
   ;; kill-current-buffer works weirdly for me, it switch to another buffer i am
-  ;; not expected with and i have been using that keybining/lambda to a very long time
+  ;; not expected with and I have been using this keybining/lambda to a very long time
   ("C-x C-k" . (lambda ()
                  (interactive)(kill-buffer (current-buffer))))
 
@@ -36,7 +36,7 @@
 
   ("C-2" . split-window-vertically)
 
-  ;; Redefine {for/back}ward paragraphs to just 4 lines
+  ;; Redefine {for/back}ward paragraphs for 4 lines
   ("C-<down>" .
    (lambda ()
      (interactive)
@@ -101,7 +101,7 @@
 ;; XREF
 (use-package xref
   :custom
-  (xref-search-program 'ripgrep))
+  (xref-search-program 'rg))
 
 ;; Ediff
 (use-package ediff

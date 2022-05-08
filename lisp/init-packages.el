@@ -192,17 +192,17 @@
   (defun my-deadgrep-project-el()
     "Use projectel root"
     (project-root (project-current t)))
+  ;; (("C-S-g" . (lambda ()
+  ;;   			(interactive)
+  ;;   			(setq-local deadgrep-project-root-function 'my-deadgrep-no-project)
+  ;;   			(call-interactively 'deadgrep)))
+  ;;  ("C-c u" . (lambda ()
+  ;;   			(interactive)
+  ;;   			(setq-local deadgrep-project-root-function 'my-deadgrep-project-el)
+  ;;   			(call-interactively 'deadgrep)))
   :bind
-  (("C-S-g" . (lambda ()
-				(interactive)
-				(setq-local deadgrep-project-root-function 'my-deadgrep-no-project)
-				(call-interactively 'deadgrep)))
-   ("C-c u" . (lambda ()
-				(interactive)
-				(setq-local deadgrep-project-root-function 'my-deadgrep-project-el)
-				(call-interactively 'deadgrep)))
-   :map deadgrep-mode-map
-   ("C-e" . deadgrep-edit-mode)))
+  (:map deadgrep-mode-map
+        ("C-e" . deadgrep-edit-mode)))
 
 (use-package which-key
   :init
@@ -236,7 +236,27 @@
    ("C-h F" . helpful-function)
    ("C-c C-d" . helpful-at-point)))
 
-(use-package ripgrep)
+(use-package rg
+  :bind
+  ("C-c u" . my-rg-project)
+  ("C-S-g" . my-rg-dir)
+  ("C-x C-g" . my-rg-project-same-files)
+  :config
+  (rg-define-search my-rg-dir
+    :query ask
+    :format regexp
+    :files "all"
+    :dir current)
+  (rg-define-search my-rg-project-same-files
+    :query ask
+    :format regexp
+    :files current
+    :dir project)  
+  (rg-define-search my-rg-project
+    :query ask
+    :format regexp
+    :files "all"
+    :dir project))
 
 (use-package restart-emacs)
 
