@@ -287,4 +287,7 @@
         ("j" . pdf-view-next-line-or-next-page)
         ("k" . pdf-view-previous-line-or-previous-page)))
 
+(use-package pdf-view-restore
+  :hook (pdf-view-mode . pdf-view-restore-mode))
+
 (provide 'init-packages)
