@@ -64,6 +64,7 @@
   (global-unset-key "\C-z")
 
   :custom
+  (large-file-warning-threshold 20000000)
   (windmove-wrap-around t)
   (mouse-autoselect-window t)
   (reb-re-syntax #'string)
