@@ -148,11 +148,6 @@
   :if (executable-find "darker")
   :hook ((python-mode . darker-reformat-on-save-mode))
   :config
-  (reformatter-define rustfmt-reformat
-    :program "rustfmt"
-    :stdin nil
-    :stdout nil
-    :args (list input-file))
   (reformatter-define darker-reformat
     :program "darker"
     :stdin nil

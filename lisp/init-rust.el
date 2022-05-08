@@ -11,9 +11,11 @@
   :custom
   (lsp-rust-analyzer-server-display-inlay-hints nil)
   (rustic-default-test-arguments "-q --benches --tests --all-features")
+  (rustic-format-display-method 'ignore)  
+  (rustic-lsp-format t)
+  (rustic-format-on-save nil)  
   :config
-  (defvar my-rustic-current-test-compile nil)
-  (setq rustic-format-on-save t))
+  (defvar my-rustic-current-test-compile nil))
 
 (use-package rust-playground
   :config
@@ -24,6 +26,11 @@
   (advice-add 'rust-playground-dir-name :filter-return #'my-rust-playground-dir-name)
   :init
   (setq rust-playground-basedir "~/Sync/rustplay"))
+
+(use-package cargo
+  :ensure t
+  :after rustic-mode
+  :hook (rustic-mode . cargo-minor-mode))
 
 
 (provide 'init-rust)
