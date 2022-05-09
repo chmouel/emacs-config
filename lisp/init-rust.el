@@ -7,6 +7,7 @@
                                               (substring-no-properties (cdr (rustic-cargo--get-current-fn-name))))))
                             (setq my-rustic-current-test-compile test)
                             (rustic-cargo-test-run test))))
+              ("C-c C-a" . rustic-cargo-add)
               ("C-c r" . rustic-cargo-run))
   :custom
   (lsp-rust-analyzer-server-display-inlay-hints nil)
