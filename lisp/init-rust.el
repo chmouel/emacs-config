@@ -28,10 +28,4 @@
   :init
   (setq rust-playground-basedir "~/Sync/rustplay"))
 
-(use-package cargo
-  :ensure t
-  :after rustic-mode
-  :hook (rustic-mode . cargo-minor-mode))
-
-
 (provide 'init-rust)
