@@ -242,6 +242,11 @@
   ("C-S-g" . my-rg-dir)
   ("C-x C-g" . my-rg-project-same-files)
   :config
+  (add-to-list
+   'display-buffer-alist
+   '("\\*rg\\*" (lambda (buffer alist)
+                  (select-window  (display-buffer-pop-up-window buffer alist)))))
+
   (rg-define-search my-rg-dir
     :query ask
     :format regexp
