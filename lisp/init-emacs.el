@@ -18,6 +18,7 @@
   ("C-<next>" . end-of-buffer)
   ("C-<prior>" . beginning-of-buffer)
   ("C-c \]" . next-error)
+  ("C-`" . delete-window)
   ("C-c \[" . previous-error)
   ("C-x C-=" . ediff-buffers)
   ;; kill-current-buffer works weirdly for me, it switch to another buffer i am

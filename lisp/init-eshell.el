@@ -9,9 +9,7 @@
   :custom
   (eshell-toggle-size-fraction 3)
   (eshell-toggle-run-command "ls")
-  (eshell-toggle-init-function #'eshell-toggle-init-eshell)
-  :bind
-  ("C-`" . eshell-toggle))
+  (eshell-toggle-init-function #'eshell-toggle-init-eshell))
 
 (use-package vterm-toggle
   :config
@@ -19,7 +17,7 @@
   (if (fboundp 'evil-ex-set-initial-state)
       (evil-set-initial-state 'vterm-mode 'emacs))
   :bind
-  ("C-`" . vterm-toggle))
+  ("C-c RET" . vterm-toggle))
 
 (use-package esh-module
   :defer t
