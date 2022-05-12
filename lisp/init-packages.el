@@ -30,7 +30,7 @@
 
 (use-package emacs
   :bind
-  ("C-x B" . consult-buffer)
+  ("C-x B" . switch-to-buffer)
   ("C-x b" . bufler-switch-buffer)
   ("C-x C-b" . bufler-list)
   ("C-S-b" . (lambda ()(interactive)
