@@ -126,6 +126,6 @@
                 corfu-auto-prefix 2
                 completion-category-defaults nil))
   (add-hook 'lsp-mode-hook #'corfu-lsp-setup)
-  (corfu-global-mode t))
+  (global-corfu-mode t))
 
 (provide 'init-lsp)
