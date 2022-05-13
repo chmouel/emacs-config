@@ -22,11 +22,25 @@
 
 (use-package rust-playground
   :config
+  (defun my-jump-rust-playground-snippet (snippet)
+    (interactive
+     (list
+      (completing-read
+       "Snippet: "
+       (mapcar
+        (lambda (x)
+          (f-base x))
+        (f-directories rust-playground-basedir)))))
+    (find-file
+     (concat
+      rust-playground-basedir "/" snippet "/src/main.rs")))
   (defun my-rust-playground-dir-name(fpath)
     (let ((base (file-name-nondirectory (directory-file-name fpath)))
           (snippet-name (read-string "Snippet Name: ")))
       (format "%s/%s-%s/" rust-playground-basedir snippet-name base )))
   (advice-add 'rust-playground-dir-name :filter-return #'my-rust-playground-dir-name)
+  :bind (:map rustic-mode-map
+              ("C-c ," . my-jump-rust-playground-snippet))
   :init
   (setq rust-playground-basedir "~/Sync/rustplay"))
 
