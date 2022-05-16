@@ -1,5 +1,4 @@
 (use-package evil
-  :disabled
   :hook
   (after-init . evil-mode)
   (evil-normal-state-entry . (lambda ()(interactive)(setq-local display-line-numbers 'relative)))
