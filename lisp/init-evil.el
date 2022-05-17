@@ -4,11 +4,11 @@
   (evil-normal-state-entry . (lambda ()(interactive)(setq-local display-line-numbers 'relative)))
   :config
   (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
-  (evil-define-key 'normal 'global (kbd "TAB") (lambda () (interactive)(tab-next)))
-  (evil-define-key 'normal 'global (kbd "backtab") (lambda () (interactive)(tab-previous)))
-  (evil-define-key 'normal 'global (kbd "C-f") (lambda () (interactive)(project-find-file)))
-  (evil-define-key 'normal 'global (kbd "C-0") (lambda () (interactive)(call-interactively 'avy-goto-word-0)))
-  (evil-define-key 'normal 'global (kbd "C-.") (lambda () (interactive)(call-interactively 'er/expand-region)))
+  (evil-define-key 'normal 'global (kbd "TAB") 'tab-next)
+  (evil-define-key 'normal 'global (kbd "RET") 'next-line)
+  (evil-define-key 'normal 'global (kbd "<backtab>") 'tab-previous)
+  (evil-define-key 'normal 'global (kbd "C-f") 'project-find-file)
+  (evil-define-key 'normal 'global (kbd "C-.") 'er/expand-region)
   (with-eval-after-load 'evil-maps
     (define-key evil-motion-state-map (kbd "SPC") nil)
     (define-key evil-motion-state-map (kbd "RET") nil)
@@ -20,7 +20,7 @@
   (define-key evil-ex-completion-map (kbd "C-b") 'backward-char)
   (define-key evil-ex-completion-map (kbd "M-p") 'previous-complete-history-element)
   (define-key evil-ex-completion-map (kbd "M-n") 'next-complete-history-element)
-  (define-key evil-normal-state-map "go" 'avy-goto-char)
+  (define-key evil-normal-state-map (kbd "M-.") 'evil-goto-definition)
   (define-key evil-normal-state-map (kbd "q") nil)
   :custom
   (evil-undo-system 'undo-redo)
@@ -50,8 +50,6 @@
   (global-evil-matchit-mode t))
 
 (use-package evil-surround
-  :after evil
-  :config
-  (global-evil-surround mode t))
+  :after evil)
 
 (provide 'init-evil)
