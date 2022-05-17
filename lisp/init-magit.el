@@ -60,7 +60,7 @@
 
 (use-package smerge-mode
   :bind ("s-m" . hydra-smerge/body)
-  :init
+  :config
   (defun my-smerge-first ()
     (interactive)
     (progn

@@ -179,19 +179,6 @@
      try-complete-lisp-symbol)))
 
 (use-package tab-bar
-  :hydra (hydra-tabs (:timeout 10)
-                     ""
-                     ("n" tab-new "new")
-                     ("k" tab-close "kill")
-                     ("f" find-file-other-tab "find-file")
-                     ("\[" tab-previous "previous")
-                     ("\]" tab-next "next")
-                     ("<return>" nil "quit")
-                     ("t" tab-bar-select-tab-by-name "select")
-                     ("m" tab-bar-move-tab "move")
-                     ("r" tab-bar-rename-tab "rename")
-                     ("M" (lambda () (interactive) (tab-bar-move-tab -1)) "moveleft")
-                     ("q" nil "quit"))
   :bind
   ("C-M-l" . tab-recent)
   ("C-c x x" . hydra-tabs/body)

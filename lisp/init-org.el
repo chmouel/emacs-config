@@ -11,8 +11,6 @@
 (set-register ?o (cons 'file org-todo-file))
 (set-register ?c (cons 'file org-notes-file))
 
-(require 'org-protocol nil t)
-
 (use-package visual-fill-column
   :hook (org-mode . efs/org-mode-visual-fill)
   :config
@@ -31,10 +29,10 @@
   (org-shiftright-final . windmove-right)
   :bind
   ("C-c c c" . org-capture)
-  ("C-c c t" . (lambda () (interactive) (org-capture nil "t"))) 
-  ("C-c c n" . (lambda () (interactive) (org-capture nil "n"))) 
-  ("C-c c l" . (lambda () (interactive) (org-capture nil "l"))) 
-  ("C-c c p" . (lambda () (interactive) (org-capture nil "p"))) 
+  ("C-c c t" . (lambda () (interactive) (org-capture nil "t")))
+  ("C-c c n" . (lambda () (interactive) (org-capture nil "n")))
+  ("C-c c l" . (lambda () (interactive) (org-capture nil "l")))
+  ("C-c c p" . (lambda () (interactive) (org-capture nil "p")))
   ("C-c c j" . (lambda () (interactive) (find-file org-todo-file))) ;; TODO
   :config
   (defun my-capture-code-snippet ()
@@ -91,7 +89,7 @@ Captured at %U"
            (file+olp org-notes-file "Work")
            "* %?\nCaptured at %U"
            :empty-lines 1)
-          
+
           ("l" "Link" entry
            (file+olp org-links-file "LINKS")
            "* %a\n%U\n%?\n%i"
@@ -130,7 +128,7 @@ Captured at %U"
                    (:startgroup . nil)
                    ("pipelinesascode") ("openshift") ("redhat") ("tektoncd")
                    (:endgroup . nil)))
-  
+
   (org-special-ctrl-a/e t)
   (org-special-ctrl-o nil)
   (org-startup-truncated nil)

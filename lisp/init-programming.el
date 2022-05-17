@@ -72,7 +72,6 @@
         ("C-'" . toggle-quotes)))
 
 (use-package multi-compile
-  :demand t
   :custom
   (multi-compile-history-file
    (locate-user-emacs-file "auto-save-list/multi-compile.cache")))
