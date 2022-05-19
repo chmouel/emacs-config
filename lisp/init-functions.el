@@ -31,15 +31,6 @@
     (error "Cannot find kubeconfig: %s" kubeconfig)))
 
 ;;https://www.emacswiki.org/emacs/NavigatingParentheses
-(defun forward-or-backward-sexp (&optional arg)
-  "Go to the matching parenthesis character if one is adjacent to point."
-  (interactive "^p")
-  (cond ((looking-at "\\s(") (forward-sexp arg))
-        ((looking-back "\\s)" 1) (backward-sexp arg))
-        ;; Now, try to succeed from inside of a bracket
-        ((looking-at "\\s)") (forward-char) (backward-sexp arg))
-        ((looking-back "\\s(" 1) (backward-char) (forward-sexp arg))))
-(global-set-key (read-kbd-macro "C-=") 'forward-or-backward-sexp)
 
 ;; Sync directories with gh repo sync, gh repo sync is not great, may just adapt
 ;; in "pure" magit commands
