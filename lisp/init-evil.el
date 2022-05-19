@@ -22,6 +22,9 @@
   (define-key evil-ex-completion-map (kbd "M-n") 'next-complete-history-element)
   (define-key evil-normal-state-map (kbd "M-.") 'evil-goto-definition)
   (define-key evil-normal-state-map (kbd "q") nil)
+  (add-hook 'evil-insert-state-exit-hook
+            (lambda ()
+              (call-interactively #'save-buffer)))
   :custom
   (evil-undo-system 'undo-redo)
   (evil-want-integration nil)
@@ -43,6 +46,16 @@
   :after evil
   :config
   (evil-collection-init))
+
+(use-package evil-leader
+  :after evil
+  :config
+  (evil-leader/set-leader "<SPC>")
+  (evil-leader/set-key
+    "w" (lambda ()
+          (interactive)
+          (call-interactively #'save-buffer)))
+  (evil-leader-mode))
 
 (use-package evil-matchit
   :after evil
