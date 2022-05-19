@@ -934,3 +934,4 @@
     ("yuo" "you" nil 0)
     ("yuor" "your" nil 0)
     ))
+(provide 'init-abbrev)
