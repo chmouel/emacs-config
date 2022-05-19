@@ -39,7 +39,7 @@ Deactivate this advice with:
 ;;
 ;; Frame by default
 ;;
-(defvar init-default-font-size "17" )
+(defvar init-default-font-size "20" )
 (defvar init-default-font "JetBrains Mono")
 
 (cond

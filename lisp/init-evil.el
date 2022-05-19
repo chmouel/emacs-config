@@ -27,12 +27,17 @@
             (lambda ()
               (call-interactively #'save-buffer)))
   :custom
-  (evil-undo-system 'undo-redo)
+  (evil-vsplit-window-right t)
+  (evil-undo-system 'nil)
   (evil-want-integration nil)
   (evil-want-keybinding nil)
   (evil-want-C-u-scroll t)
   :bind
   :commands (evil-local-mode))
+
+(use-package undo-fu
+  :custom
+  (evil-undo-system 'undo-fu))
 
 (use-package evil-anzu
   :after evil)
