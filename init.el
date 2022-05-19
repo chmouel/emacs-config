@@ -49,14 +49,16 @@
 ;; Requires
 (require 'init-theme)
 (require 'init-emacs)
+(require 'init-abbrev)
 (require 'init-popmark)
 (require 'init-functions)
 (require 'init-dired)
 (require 'init-sessions)
-(require 'init-packages)
 (require 'init-project)
+
+;; Packages
+(require 'init-packages)
 (require 'init-completion)
-;; (require 'init-ivy)
 (require 'init-vertico)
 (require 'init-eshell)
 (require 'init-magit)
