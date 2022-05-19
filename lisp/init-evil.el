@@ -1,7 +1,8 @@
 (use-package evil
   :hook
   (after-init . evil-mode)
-  (evil-normal-state-entry . (lambda ()(interactive)(setq-local display-line-numbers 'relative)))
+  (evil-normal-state-entry . (lambda ()(interactive)
+                               (setq-local display-line-numbers 'relative)))
   :config
   (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
   (evil-define-key 'normal 'global (kbd "TAB") 'tab-next)
@@ -58,9 +59,10 @@
          (call-interactively #'save-buffer))))
 
 (use-package evil-matchit
-  :after evil
-  :config
-  (global-evil-matchit-mode t))
+  :bind
+  ("C-=" . 'evilmi-jump-items-native)
+  :hook (evil-local-mode . evil-matchit-mode)) ;
+  
 
 (use-package evil-surround
   :after evil)
