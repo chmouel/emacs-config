@@ -48,14 +48,14 @@
   (evil-collection-init))
 
 (use-package evil-leader
+  :hook (evil-local-mode . evil-leader-mode) ;
   :after evil
   :config
   (evil-leader/set-leader "<SPC>")
   (evil-leader/set-key
-    "w" (lambda ()
-          (interactive)
-          (call-interactively #'save-buffer)))
-  (evil-leader-mode))
+   "w" (lambda ()
+         (interactive)
+         (call-interactively #'save-buffer))))
 
 (use-package evil-matchit
   :after evil
