@@ -28,6 +28,7 @@
 
   ("C-x f" . find-file-at-point)
   ("M-q" . fill-region)
+  ("M-<SPC>" . cycle-spacing)
 
   ("C-c <up>" . backward-paragraph)
   ("C-c <down>" . forward-paragraph)
@@ -221,6 +222,7 @@
    ("M-o" . my-isearch-moccur))
   :custom
   (isearch-allow-scroll t)
+  (search-whitespace-regexp ".*")
   :config
   (defun my-isearch-moccur ()
     (interactive)
