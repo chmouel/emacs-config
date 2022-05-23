@@ -37,10 +37,6 @@
   :bind
   :commands (evil-local-mode))
 
-  (use-package undo-fu
-    :custom
-    (evil-undo-system 'undo-fu))
-
 (use-package evil-anzu
   :after evil)
 
