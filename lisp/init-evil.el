@@ -9,6 +9,7 @@
   (evil-define-key 'normal 'global (kbd "C-e") 'evil-end-of-line)
   (evil-define-key 'normal 'global (kbd "C-p") 'evil-previous-line)
   (evil-define-key 'normal 'global (kbd "C-n") 'evil-next-line)
+  (evil-define-key 'normal 'global (kbd "M-.") 'xref-find-definitions)
   (evil-define-key 'normal 'global (kbd "C-.") 'er/expand-region)
   (evil-define-key 'insert 'global (kbd "C-y") 'evil-paste-after)
   (evil-define-key 'insert 'global (kbd "C-e") 'evil-end-of-line)
@@ -26,6 +27,7 @@
   (define-key evil-ex-completion-map (kbd "M-n") 'next-complete-history-element)
   (define-key evil-normal-state-map (kbd "q") nil)
   :custom
+  (evil-default-state 'emacs)
   (evil-vsplit-window-right t)
   (evil-undo-system 'nil)
   (evil-want-integration nil)
