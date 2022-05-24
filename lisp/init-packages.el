@@ -44,7 +44,7 @@
                  (add-to-list 'consult-buffer-filter "\\*")
                  (call-interactively 'consult-buffer)))))
 
-;;; Browse Kill Ring 
+;;; Browse Kill Ring
 (use-package browse-kill-ring
   :custom
   (browse-kill-ring-show-preview nil)
@@ -78,7 +78,7 @@
 
   (defun my-avy-copy-word (arg)
     (interactive "p")
-    (save-excursion 
+    (save-excursion
       (call-interactively  'avy-goto-symbol-1)
       (let ((symbol (thing-at-point 'symbol)))
         (when symbol
@@ -198,14 +198,6 @@
   (defun my-deadgrep-project-el()
     "Use projectel root"
     (project-root (project-current t)))
-  ;; (("C-S-g" . (lambda ()
-  ;;   			(interactive)
-  ;;   			(setq-local deadgrep-project-root-function 'my-deadgrep-no-project)
-  ;;   			(call-interactively 'deadgrep)))
-  ;;  ("C-c u" . (lambda ()
-  ;;   			(interactive)
-  ;;   			(setq-local deadgrep-project-root-function 'my-deadgrep-project-el)
-  ;;   			(call-interactively 'deadgrep)))
   :bind
   (:map deadgrep-mode-map
         ("C-e" . deadgrep-edit-mode)))
@@ -248,11 +240,6 @@
   ("C-S-g" . my-rg-dir)
   ("C-x C-g" . my-rg-project-same-files)
   :config
-  (add-to-list
-   'display-buffer-alist
-   '("\\*rg\\*" (lambda (buffer alist)
-                  (select-window  (display-buffer-pop-up-window buffer alist)))))
-
   (rg-define-search my-rg-dir
     :query ask
     :format regexp
@@ -262,7 +249,7 @@
     :query ask
     :format regexp
     :files current
-    :dir project)  
+    :dir project)
   (rg-define-search my-rg-project
     :query ask
     :format regexp
