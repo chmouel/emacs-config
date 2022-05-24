@@ -14,6 +14,10 @@
   (easy-hugo-url "https://blog.chmouel.com")
   (easy-hugo-basedir "~/GIT/go/src/github.com/chmouel/blog/"))
 
+(use-package auto-package-update
+  :custom
+  (auto-package-update-last-update-day-filename (locate-user-emacs-file "auto-save-list/last-package-update-day")))
+
 (use-package smooth-scrolling
   :hook (after-init . smooth-scrolling-mode))
 
