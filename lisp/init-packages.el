@@ -15,6 +15,8 @@
   (easy-hugo-basedir "~/GIT/go/src/github.com/chmouel/blog/"))
 
 (use-package auto-package-update
+  :config
+  (auto-package-update-at-time "03:00")
   :custom
   (auto-package-update-last-update-day-filename (locate-user-emacs-file "auto-save-list/last-package-update-day")))
 
