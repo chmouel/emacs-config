@@ -119,6 +119,9 @@
   (corfu-auto-delay 0.25)
   (corfu-scroll-margin 4)
   (corfu-auto t)
+  (corfu-preselect-first t)
+  (corfu-min-width 20)
+  (corfu-max-width 100)
   :init
   (setq lsp-completion-provider :none)
   (defun corfu-lsp-setup ()
@@ -127,5 +130,14 @@
                 completion-category-defaults nil))
   (add-hook 'lsp-mode-hook #'corfu-lsp-setup)
   (global-corfu-mode t))
+
+(use-package corfu-doc
+  :init
+  (add-hook 'corfu-mode-hook #'corfu-doc-mode)
+  :config
+  (define-key corfu-map (kbd "C-c") #'corfu-quit) ;; corfu-next
+  (define-key corfu-map (kbd "M-p") #'corfu-doc-scroll-down) ;; corfu-next
+  (define-key corfu-map (kbd "M-n") #'corfu-doc-scroll-up)  ;; corfu-previous
+  (define-key corfu-map (kbd "M-d") #'corfu-doc-toggle))
 
 (provide 'init-lsp)
