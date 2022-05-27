@@ -1,4 +1,1 @@
-Author: Chmouel Boudjnah
-
-It's mine so I am happy with it :)
-
+# Moved to https://gitlab.freedesktop.org/chmouel/emacs-config
