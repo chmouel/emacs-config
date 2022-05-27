@@ -1,4 +1,0 @@
-# -*- mode: snippet -*-
-# name: Debug PDB
-# --
-import pdb; pdb.set_trace()

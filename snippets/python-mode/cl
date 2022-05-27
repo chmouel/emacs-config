@@ -1,6 +1,0 @@
-# name: Class
-# key: cl
-# --
-class ${1:ClassName}(object):
-    def __init__(self):
-        $0

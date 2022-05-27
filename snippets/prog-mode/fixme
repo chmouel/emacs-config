@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: fixme
-# key: fixme
-# --
-`comment-start`FIXME(chmou): $0`comment-end 

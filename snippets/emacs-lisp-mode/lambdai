@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: lambdai
-# key: lambdai
-# --
-(lambda () (interactive)

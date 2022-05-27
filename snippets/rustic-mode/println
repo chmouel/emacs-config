@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# name: fmp
-#
-# binding: M-p
-# --
-println!("{}", `yas-selected-text`$0);

@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name: lang
-# key: lang
-# binding: C-`
-# --
-\`\`\`${0:bash}
-$>`yas-selected-text`\`\`\`
-

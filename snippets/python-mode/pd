@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# name: PPRINT with dir
-# key: pd
-# --
-from pprint import pprint as p
-p(dir($0))

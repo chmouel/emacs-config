@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name: Temporary File
-# key: tmpc
-# --
-TMP=$(mktemp /tmp/.mm.XXXXXX)
-clean() { rm -f \${TMP}; }
-trap clean EXIT
-$0

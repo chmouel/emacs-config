@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: _js
-# key: _js
-# --
-#+BEGIN_SRC json
-{
-$0
-}
-#+END_SRC
