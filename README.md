@@ -1,1 +1,1 @@
-# Moved to https://gitlab.freedesktop.org/chmouel/emacs-config
+# Moved to https://gitlab.org/chmouel/emacs-config
